@@ -22,44 +22,7 @@ import RedFont from "../../Components/FontColor/RedFont";
 // Tipagens
 
 const Login: React.FC = () => {
-  const navigate = useNavigate();
-  // Auxiliars
-  function sumirModais(setadorModais: any) {
-    setTimeout(() => {
-      setadorModais(null);
-    }, 3000);
-  }
-  function navegarAtePagina(caminho: string) {
-    setTimeout(() => {
-      window.location.assign(caminho);
-    }, 3000);
-  }
 
-  const [dados, setDados] = useState<any | null>(null);
-  const [isCarregando, setIsCarregando] = useState(false);
-  const [error, setError] = useState<any | null>(null);
-
-  async function login(data: object) {
-    setIsCarregando(true);
-    try {
-      const response = await endpoint.post("/api/auth/login", data);
-
-      setDados(response.data);
-
-      const { tokenUser, userData } = response.data;
-      inserirDadosUsuarioNaSessao(userData.id, userData.name, tokenUser);
-
-      sumirModais(setDados);
-      navegarAtePagina("/dashboard");
-    } catch (error) {
-      setError(error);
-      sumirModais(setError);
-
-      console.error(error);
-    } finally {
-      setIsCarregando(false);
-    }
-  }
 
   const {
     register,
@@ -94,9 +57,9 @@ const Login: React.FC = () => {
           <DarkButton>login</DarkButton>
         </Form>
         <RegisterContainer>
-          {dados && <ModalSucesso>{dados?.msg}</ModalSucesso>}
+          {/* {dados && <ModalSucesso>{dados?.msg}</ModalSucesso>}
           {isCarregando && <ModalCarregando />}
-          {error && <ModalErro>{error?.response?.data?.msg}</ModalErro>}
+          {error && <ModalErro>{error?.response?.data?.msg}</ModalErro>} */}
           <Link to={"/esqueci-senha"}>Esqueceu seu senha? Clique aqui</Link>
           <DarkButton onClick={() => navigate("/registrar")}>
             Registrar-se
