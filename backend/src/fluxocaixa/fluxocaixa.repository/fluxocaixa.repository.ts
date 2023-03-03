@@ -3,7 +3,6 @@ import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 import { Paginacao } from "../../utils/Paginacao";
 import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
 
-
 export interface IFluxocaixaRepository {
   save(data: FluxocaixaDto);
   update(id: string, newData: FluxocaixaDto);
@@ -16,8 +15,16 @@ export interface IFluxocaixaRepository {
   sumBiggerThanZero(usuarioId: string);
   sumLessThanZero(usuarioId: string);
   findAllByPage(numeroPagina: number, quantidadeItemPagina: number);
-  findAllByPageAndUsuariosId(numeroPagina: number, quantidadeItemPagina: number, usuariosId:string);
-  findAllByPageAndUsuariosIdAndThisMonth(numeroPagina: number, quantidadeItemPagina: number, usuariosId:string);
+  findAllByPageAndUsuariosId(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  );
+  findAllByPageAndUsuariosIdAndThisMonth(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  );
 }
 
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
@@ -27,7 +34,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
-  async findAllByPageAndUsuariosIdAndThisMonth(numeroPagina: number, quantidadeItemPagina: number, usuariosId: string) {
+
+  async findAllByPageAndUsuariosIdAndThisMonth(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  ) {
     const quantidadeTotalRegistros = await this.countAll();
     const itemsPorPagina = Number(quantidadeItemPagina);
 
@@ -39,8 +51,8 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
-      where:{
-        usuariosId
+      where: {
+        usuariosId,
       },
       skip: pularPagina,
       take: itemsPorPagina,
@@ -48,7 +60,6 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
   }
-
 
   async updateLastItemSaldo(valor: number, usuariosId: string) {
     return await this.prisma.$executeRawUnsafe(
@@ -150,7 +161,11 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
   }
 
-  async findAllByPageAndUsuariosId(numeroPagina: number, quantidadeItemPagina: number, usuariosId:string) {
+  async findAllByPageAndUsuariosId(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  ) {
     const quantidadeTotalRegistros = await this.countAll();
     const itemsPorPagina = Number(quantidadeItemPagina);
 
@@ -162,8 +177,8 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
-      where:{
-        usuariosId
+      where: {
+        usuariosId,
       },
       skip: pularPagina,
       take: itemsPorPagina,

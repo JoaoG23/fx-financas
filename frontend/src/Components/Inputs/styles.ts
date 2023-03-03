@@ -1,11 +1,13 @@
 import styled from "styled-components";
 
 export const NoBorders = styled.input`
-  border: none;
   padding: 4px;
 
   background-color: transparent;
-  border-bottom: 1px solid var(--dark);
+  border: none;
+  box-shadow: 1px 1px 5px #1ed49d33;
+
+  border-radius: 0.5em;
 
 
   :focus{

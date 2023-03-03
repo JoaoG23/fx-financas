@@ -8,5 +8,7 @@ class Autenticacao {
          });
          return tokenGenerated;
      }
+
+     
  }
 export default new Autenticacao();

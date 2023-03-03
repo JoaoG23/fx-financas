@@ -1,7 +1,5 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
-// import * as dotenv from "dotenv";
-
 import AdminRouters from "./Routers/AdminRouters";
 import InicialRouters from "./Routers/InicialRouters";
 
@@ -11,26 +9,29 @@ import { Body, ImagePesos1Flutuante, ImagePesos2Flutuante } from "./styles";
 
 import Sidebar from "./Components/Navs/Sidebar";
 import Header from "./Components/Navs/Header";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    // <Provider >
-    <>
+    <QueryClientProvider client={queryClient}>
       <>
-        <ImagePesos1Flutuante src="./assets/pesoBackgroundBig.svg"></ImagePesos1Flutuante>
-        <ImagePesos2Flutuante src="./assets/pesoBackgroundSmall.svg"></ImagePesos2Flutuante>
-        <GlobalStyle />
-        <Router>
-          <Sidebar />
-          <Header />
-          <Body>
-            <AdminRouters />
-          </Body>
-          <InicialRouters />
-        </Router>
+        <>
+          <ImagePesos1Flutuante src="./assets/pesoBackgroundBig.svg"></ImagePesos1Flutuante>
+          <ImagePesos2Flutuante src="./assets/pesoBackgroundSmall.svg"></ImagePesos2Flutuante>
+          <GlobalStyle />
+          <Router>
+            <Sidebar />
+            <Header />
+            <Body>
+              <AdminRouters />
+            </Body>
+            <InicialRouters />
+          </Router>
+        </>
       </>
-    </>
+    </QueryClientProvider>
   );
 }
 

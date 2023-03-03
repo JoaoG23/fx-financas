@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import fluxocaixaService from "../fluxocaixa.service/fluxocaixa.service";
 
 class FluxoCaixaController {
+  
   async listarTodosPorPaginaUsuario(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;

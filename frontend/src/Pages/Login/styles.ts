@@ -1,65 +1,17 @@
 import styled from "styled-components";
 
-export const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 17em;
-  max-width: 17em;
-  height: 50vh;
-  padding: 20px;
-  gap: 10px;
-
-  text-align: center;
-
-  border-radius: 15px;
-  
-  a {
-    text-decoration: none;
-  }
-  a:hover {
-    transition: .3s;
-  }
-
-  animation: entradaSuave 1s alternate forwards;
-  @media only screen and (max-width: 768px) {
-    padding: 0px;
-    margin: 0px;
-  }
-`;
-
 export const LoginContainer = styled.main`
+  padding: 2em;
   width: auto;
   display: grid;
+
   grid-template-columns: auto;
   justify-items: center;
-  align-items: flex-end;
-  height: 100vh;
-  background-color: #dcfc34;
-
-`;
-
-export const FormContainer = styled.form`
-  display: grid;
-  grid-template-columns: auto;
-  justify-items: center;
-  background-color: #dcfc34;
-
-`;
-export const RegisterContainer = styled.div`
-  height: 70px;
-
-  a {
-    color: #000;
-  }
-  a:hover {
-    transition: 0.3s ease-in;
-    color: #5d5858c8;
-  }
-  gap: 10px;
-  display: flex;
-  flex-direction: column;
+  align-items: center;
+  height: 30vh;
+  background-color: #f8f8f9;
+  border-radius: 1.5em;
+  box-shadow: 2px 2px 10px #1ed49d33;
 `;
 
 export const ContainerMain = styled.main`
@@ -67,12 +19,17 @@ export const ContainerMain = styled.main`
   width: 100vw;
 
   display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
-  background-image: url('./assets/img-login.jpg');
+
+  background-color:#1CAF82;
+
+  /* background-color: #f8f8f9; */
+  /* background-color:#FFA26B; */
+  /* background-color:#6979F8; */
+  /* background-color:#FF65A4; */
   background-repeat: no-repeat;
-  background-attachment:fixed;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   overflow-y: auto;
@@ -81,37 +38,10 @@ export const ContainerMain = styled.main`
   top: 0;
   z-index: 2;
   align-items: center;
+
   @media only screen and (max-width: 768px) {
     background-image: none;
     display: block;
-    background-color:#DCFC34;
-  }
-  
-`;
-
-export const Input = styled.input`
-  border: none;
-  padding: 4px;
-
-  background-color: transparent;
-  border-bottom: 1px solid var(--dark);
-
-  :focus {
-    animation-name: toRight;
-    animation-duration: 1s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease;
-    animation-direction: alternate;
-    animation-fill-mode: both;
-  }
-
-  @keyframes toRight {
-    0% {
-      transform: translateX(0vw);
-    }
-
-    100% {
-      transform: translateX(1vw);
-    }
+    background-color: #f8f8f9;
   }
 `;

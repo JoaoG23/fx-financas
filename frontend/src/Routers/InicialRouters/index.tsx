@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Login from "../../Pages/Login";
+import Login from "../../Pages/Login/Login";
 import Registrarse from "../../Pages/Registrarse";
 
 const InicialRouters = () => {

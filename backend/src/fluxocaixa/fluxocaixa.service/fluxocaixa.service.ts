@@ -5,8 +5,12 @@ import {
   IFluxocaixaRepository,
 } from "../fluxocaixa.repository/fluxocaixa.repository";
 
-class FluxoCaixaServices {
-  constructor(private fluxoCaixaRepository: IFluxocaixaRepository) {}
+export class FluxoCaixaServices {
+  public fluxoCaixaRepository: IFluxocaixaRepository;
+
+  constructor(fluxoCaixaRepository) {
+    this.fluxoCaixaRepository = fluxoCaixaRepository;
+  }
 
   async buscarPorId(id: string) {
     return await this.fluxoCaixaRepository.findById(id);
@@ -31,7 +35,7 @@ class FluxoCaixaServices {
   async listarTodosPorPaginaUsuario(
     numeroPagina: number,
     quantidadeItemPagina: number,
-    usuariosId:string
+    usuariosId: string
   ) {
     return await this.fluxoCaixaRepository.findAllByPageAndUsuariosId(
       numeroPagina,
@@ -42,7 +46,7 @@ class FluxoCaixaServices {
   async listarTodosPorPaginaUsuarioMes(
     numeroPagina: number,
     quantidadeItemPagina: number,
-    usuariosId:string
+    usuariosId: string
   ) {
     return await this.fluxoCaixaRepository.findAllByPageAndUsuariosIdAndThisMonth(
       numeroPagina,
