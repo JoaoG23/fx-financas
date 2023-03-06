@@ -33,7 +33,7 @@ const GlobalStyle = createGlobalStyle`
 
     body {
     
-    background-color: var(--dark);
+    background-color: #f7fffa;
     padding: 0;
     margin: 0;
     }

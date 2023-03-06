@@ -1,6 +1,11 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
 import AdminRouters from "./Routers/AdminRouters";
+import { ToastContainer } from "react-toastify";
+
+import 'react-toastify/dist/ReactToastify.css';
+
+
 import InicialRouters from "./Routers/InicialRouters";
 
 import GlobalStyle from "./themes/global";
@@ -17,9 +22,10 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <>
+      <ToastContainer></ToastContainer>
         <>
-          <ImagePesos1Flutuante src="./assets/pesoBackgroundBig.svg"></ImagePesos1Flutuante>
-          <ImagePesos2Flutuante src="./assets/pesoBackgroundSmall.svg"></ImagePesos2Flutuante>
+          {/* <ImagePesos1Flutuante src="./assets/pesoBackgroundBig.svg"></ImagePesos1Flutuante> */}
+          {/* <ImagePesos2Flutuante src="./assets/pesoBackgroundSmall.svg"></ImagePesos2Flutuante> */}
           <GlobalStyle />
           <Router>
             <Sidebar />

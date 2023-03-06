@@ -4,8 +4,7 @@ import { buscaDadoUsuarioNaSessao } from '../buscaDadoUsuarioNaSessao';
 
 const { tokenSessao } = buscaDadoUsuarioNaSessao();
 export const endpoint = axios.create({
-    baseURL: "https://way-of-the-weights-api.vercel.app",
-    // baseURL: "http://localhost:3000",
+    baseURL: "http://localhost:3001/api/v1/",
     headers: {
       "Content-type": "application/json",
       'authorization-token':`${tokenSessao}`

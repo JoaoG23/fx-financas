@@ -1,32 +1,10 @@
-import { useNavigate, Link } from "react-router-dom";
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-
-// Components
-import {
-  LoginContainer,
-  ContainerMain,
-} from "./styles";
-import DarkButton from "../../Components/Buttons/ButtonDark";
-import ModalSucesso from "../../Components/Modais/ModalSucesso";
-import ModalCarregando from "../../Components/Modais/ModalCarregando";
-import ModalErro from "../../Components/Modais/ModalErro";
-
-// Services
-import { endpoint } from "../../services/endpoint";
-import { inserirDadosUsuarioNaSessao } from "../../services/inserirDadosUsuarioNaSessao";
-import RedFont from "../../Components/FontColor/RedFont";
 import { Formulario } from "./Formulario/Formulario";
-// Tipagens
+import { ContainerMain, LoginContainer } from "./styles";
 
 const Login: React.FC = () => {
-  // const {
-  //   register,
-  //   handleSubmit,
-  //   formState: { errors },
-  // } = useForm();
   return (
     <ContainerMain>
+      <img src="./assets/login-fundo.png" alt="login-fudo"></img>
       <LoginContainer>
         <h4>Login</h4>
         <Formulario />

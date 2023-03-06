@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 90vw;
-  height: 6vh;
+  width: 80vw;
+  height: 4vh;
 
   border-radius: 2em;
   display: flex;
@@ -18,7 +18,7 @@ export const Container = styled.div`
 
   justify-content: space-between;
 
-  background-color: #636573cc;
+  background-color: #1CAF82;
   box-shadow: 2px 2px 4px #00000027;
   color: #fff;
   a {

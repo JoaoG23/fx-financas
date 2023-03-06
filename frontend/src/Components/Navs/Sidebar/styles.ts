@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
- width: 80px;
+ width: 13vw;
  height: 100vh;
  
  position: absolute;
@@ -12,7 +12,15 @@ export const Container = styled.div`
  gap:1em;
  justify-content: center;
 
- background-color: #dcfc34;
+ background-color:#1CAF82;
+
+/* background-color: #f8f8f9; */
+/* background-color:#FFA26B; */
+/* background-color:#6979F8; */
+/* background-color:#FF65A4; */
+/* background-image:url('./assets/login-fundo.jpg'); */
+
+ /* background-color: #dcfc34; */
  box-shadow: 2px 2px 4px #00000027;
 
  @media only screen and (max-width: 768px) {
@@ -45,7 +53,7 @@ export const Item = styled.div`
 
     a{
         text-decoration: none;
-        color:#000;
+        color:#fff;
     }
     :hover{
         border-radius: 1em;
@@ -55,7 +63,7 @@ export const Item = styled.div`
 
 @keyframes toRightButtons {
   0%   {
-    border-radius: .2em;
+    border-radius: .1m;
     background-color: #636573;
     transform: translateX(0vw);
   }
@@ -63,7 +71,7 @@ export const Item = styled.div`
   100% {
     border-radius: 1em;
     background-color: #0000003f;
-    transform: translateX(1vw);
+    transform: translateX(0.1vw);
   }
 }
 `

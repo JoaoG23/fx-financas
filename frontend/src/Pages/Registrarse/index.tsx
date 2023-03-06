@@ -10,7 +10,7 @@ import {
   ContainerMain,
   Input,
 } from "./styles";
-import DarkButton from "../../Components/Buttons/ButtonDark";
+import DarkButton from "../../Components/Buttons/ButtonDefault/ButtonDark";
 import ModalSucesso from "../../Components/Modais/ModalSucesso";
 import ModalCarregando from "../../Components/Modais/ModalCarregando";
 import ModalErro from "../../Components/Modais/ModalErro";

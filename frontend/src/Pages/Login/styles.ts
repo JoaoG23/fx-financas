@@ -1,5 +1,4 @@
 import styled from "styled-components";
-
 export const LoginContainer = styled.main`
   padding: 2em;
   width: auto;
@@ -13,13 +12,17 @@ export const LoginContainer = styled.main`
   border-radius: 1.5em;
   box-shadow: 2px 2px 10px #1ed49d33;
 `;
+export const Bolas = styled.main`
+
+`;
+
 
 export const ContainerMain = styled.main`
   height: 100vh;
   width: 100vw;
 
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
 
   background-color:#1CAF82;
@@ -28,6 +31,8 @@ export const ContainerMain = styled.main`
   /* background-color:#FFA26B; */
   /* background-color:#6979F8; */
   /* background-color:#FF65A4; */
+  /* background-image:url('./assets/login-fundo.jpg'); */
+  
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;

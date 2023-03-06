@@ -11,7 +11,7 @@ import { SucessoResposta } from "../../types/Respostas/SucessoResposta";
 import { Container, Input, Form, InputHidden } from "./styles";
 import ModalCarregando from "../../Components/Modais/ModalCarregando";
 import ModalErro from "../../Components/Modais/ModalErro";
-import DarkButton from "../../Components/Buttons/ButtonDark";
+import DarkButton from "../../Components/Buttons/ButtonDefault/ButtonDark";
 import ModalSucesso from "../../Components/Modais/ModalSucesso";
 import RedFont from "../../Components/FontColor/RedFont";
 

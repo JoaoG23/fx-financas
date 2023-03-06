@@ -1,31 +1,38 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { InputDefault } from "../../../Components/Inputs/InputDefault";
-import { Form } from "./styles";
+import { useMutation } from "react-query";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import ModalCarregando from "../../../Components/Modais/ModalCarregando";
+import { navegarAtePaginaDepoisTempo } from "../../../services/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
+import { logarUsuario } from "../api";
+import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
+import { FormularioStyle } from "./styles";
+
 
 export const Formulario: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+
+	const navigate= useNavigate()
+
+	const { mutate, isLoading } = useMutation(
+		async (value: any) => await logarUsuario(value),
+		{
+			onError: (error: any) => {
+				toast.error(`Ops! Houve um error: ${error.response.data}`);
+			},
+			onSuccess: () => {
+				toast.success('Login Realizado com sucesso')
+				navegarAtePaginaDepoisTempo(navigate,'/dash')
+			},
+		}
+	);
   return (
-    <Form>
-      <InputDefault
-        name={"teste"}
-        register={register}
-        placeholder={"Testando"}
-      ></InputDefault>
-      <InputDefault
-        name={"teste"}
-        register={register}
-        placeholder={"Testando"}
-      ></InputDefault>
-      <InputDefault
-        name={"teste"}
-        register={register}
-        placeholder={"Testando"}
-      ></InputDefault>
-    </Form>
+    <FormularioStyle>
+      <CamposFormulario
+        funcaoSubmit={(values: any) => {
+          mutate(values);
+        }}
+      />
+	  {isLoading && <ModalCarregando/>}
+    </FormularioStyle>
   );
 };

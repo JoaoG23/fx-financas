@@ -1,21 +1,21 @@
 import styled from "styled-components";
 
-export const Dark = styled.button`
+export const DefaultStyle = styled.button`
   border: none;
 
   background-image: linear-gradient(
     to right,
-    #323240 0%,
-    #3e3e4f 50%,
-    #4a4a5e 80%,
-    #4a4a5e 100%
+    #1ed49d 0%,
+    #1bc390 50%,
+    #17a97d 80%,
+    #128864 100%
   );
   border-radius: 20px;
-  color: #dcfc34;
-  padding: 0.5em;
+  color: #fff;
+  padding: 0.3em;
   background-size: 200% 200%;
 
-  box-shadow: 0 0 2px #323240;
+  box-shadow: 0 0 2px   #1ed49d33;
 
   :hover{
 
