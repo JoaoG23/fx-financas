@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
+import { IFluxoCaixaService } from "../fluxocaixa.service/fluxocaixa.interface.service";
 import fluxocaixaService from "../fluxocaixa.service/fluxocaixa.service";
+export class FluxoCaixaController {
 
-class FluxoCaixaController {
-  
   async listarTodosPorPaginaUsuario(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;
@@ -65,5 +65,3 @@ class FluxoCaixaController {
     }
   }
 }
-
-export default new FluxoCaixaController();

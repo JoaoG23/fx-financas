@@ -1,6 +1,10 @@
 import { Router } from "express";
 const routers = Router();
-import fluxocaixaController from "../fluxocaixa.controller/fluxocaixa.controller";
+
+import { FluxoCaixaController } from "../fluxocaixa.controller/fluxocaixa.controller";
+import { FluxoCaixaServices } from "../fluxocaixa.service/fluxocaixa.service";
+
+const fluxocaixaController = new FluxoCaixaController();
 
 routers.get("/", fluxocaixaController.listarTodos);
 routers.get("/paginas", fluxocaixaController.listarTodosPorPaginaUsuario);
