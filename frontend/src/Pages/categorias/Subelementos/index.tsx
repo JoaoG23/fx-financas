@@ -2,23 +2,22 @@ import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import { Container } from "./styles";
 import { useState } from "react";
-import { buscarTodosElementos } from "./api";
-import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { buscarTodosSubElementos } from "./api";
 import { PaginacaoComum } from "../../../Components/paginacoes/Paginacao";
 import Card from "../../../Components/Card";
-import { BsFillBoxSeamFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { BsFillBasket2Fill, BsFillBoxSeamFill } from "react-icons/bs";
+import { Link, useParams } from "react-router-dom";
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 
-export const Elementos: React.FC = () => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+export const Subelementos: React.FC = () => {
   const [pagina, setPagina] = useState(1);
+  const { id } = useParams();
 
   const { isLoading, data } = useQuery(
-    ["elemento-usuario", pagina],
+    ["subelementos-elemento", pagina],
     () =>
-      buscarTodosElementos({
-        elementosId: idConvertido!,
+      buscarTodosSubElementos({
+        elementosId: id!,
         numero_pagina: pagina,
       }),
     {
@@ -27,20 +26,18 @@ export const Elementos: React.FC = () => {
       },
     }
   );
-
-  const elementos = data?.data[1];
+  const subelementos = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
-
   return (
     <Container>
       {isLoading && <SpinnerCarregamento />}
-      {elementos?.map((elemento: any) => {
+      {subelementos?.map((subelemento: any) => {
         return (
-          <Link to={`subelementos/${elemento.id}`} key={elemento.id}>
-            <Card key={elemento.id}>
-              <BsFillBoxSeamFill />
-              <h4>{elemento.descricao}</h4>
+          <Link to={"subelementos"} key={subelemento.id}>
+            <Card key={subelemento.id}>
+              <BsFillBasket2Fill />
+              <h4>{subelemento.descricao}</h4>
             </Card>
           </Link>
         );
@@ -49,7 +46,7 @@ export const Elementos: React.FC = () => {
         setPagina={setPagina}
         pagina={pagina}
         totalPaginas={totalQuantidadePaginas}
-        arrayElementos={elementos}
+        arrayElementos={subelementos}
         quantidadeTotalItems={quantidadeTotalRegistros}
       />
     </Container>
