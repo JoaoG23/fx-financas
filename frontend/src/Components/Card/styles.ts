@@ -1,36 +1,40 @@
 import styled from "styled-components";
 
+type CardContainerProps = {
+  tipoLayout?: any;
+};
+
 export const CardContainer = styled.div`
-  box-shadow: 1px 1px 3px #636573;
-  border-radius: 2em;
-  gap: 1em;
+  box-shadow: 2px 2px 5px #1ed49d33;
+  border-radius: 10px;
+  gap: 0.3em;
 
   display: flex;
-  justify-content: space-between;
-  font-weight: 500;
+  justify-content: ${(props: CardContainerProps) =>
+    props.tipoLayout || "space-between"};
+
+  font-weight: 400;
 
   align-items: center;
-  padding: 2em;
- background-color: #636573cc;
-  color: #fff;
+  padding: 0.5em;
+  background-color: #f7fffa;
+  color: #f0821a;
   animation: entradaSuave 0.6s ease-out;
-  
-  :hover{
-    
+
+  :hover {
     transition: 1s;
-    padding: 1.5em;
+    padding: 0.6em;
   }
 
-  div{
+  div {
     margin: 1em;
     justify-content: center;
     flex-direction: column;
     display: flex;
     gap: 0.3em;
-  }  
+  }
 
-
-  a{
+  a {
     color: #fff;
   }
 
@@ -49,12 +53,11 @@ export const CardContainer = styled.div`
     }
   }
 
-
   @media screen and (max-width: 320px) {
     font-size: medium;
     border-radius: 1.5em;
-  
-    div{
+
+    div {
       flex-direction: column;
       gap: 0.2em;
     }
@@ -63,4 +66,4 @@ export const CardContainer = styled.div`
       gap: 0.2em;
     }
   }
-  `;
+`;

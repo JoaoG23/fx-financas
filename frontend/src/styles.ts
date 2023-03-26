@@ -2,12 +2,10 @@ import styled from "styled-components";
 
 export const Body = styled.div`
   position: absolute;
-  display: flex;
-
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 
   height: 80vh;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   justify-content: center;
 
   top: 15vh;

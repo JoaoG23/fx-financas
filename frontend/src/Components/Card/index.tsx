@@ -9,7 +9,7 @@ type ChildrensCard = {
 const Card :React.FC<ChildrensCard> = ({
     children,
 }) => {
-    return(<CardContainer>
+    return(<CardContainer tipoLayout={'center'}>
         { children }
     </CardContainer>)
 };

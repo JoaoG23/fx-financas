@@ -8,10 +8,9 @@ import {
   BsFillPieChartFill,
 } from "react-icons/bs";
 
-import { linkes } from "./data/listLinks";
-import { limparSessaoUsuario } from "../../../services/limparSessaoUsuario";
+import { categorias } from "./data/listLinks";
 
-import { Container, Item, Image } from "./styles";
+import { Container, Item } from "./styles";
 const Sidebar: React.FC = () => {
   return (
     <Container>
@@ -41,7 +40,7 @@ const Sidebar: React.FC = () => {
         <details>
           <summary></summary>
           <ul>
-            {linkes.map((paginas) => {
+            {categorias.map((paginas) => {
               return (
                 <li key={paginas.id}>
                   <Link to={paginas.path}>{paginas.descricao}</Link>

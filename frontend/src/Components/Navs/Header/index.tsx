@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
 import { Container, ImageContainer, VoltarText, TextLimited } from "./styles";
-import { buscaDadoUsuarioNaSessao } from "../../../services/buscaDadoUsuarioNaSessao";
+import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 const Header: React.FC = () => {
   const { nomeUsuario } = buscaDadoUsuarioNaSessao();

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from "react-router-dom";
 
-import AdminRouters from "./Routers/AutenticadasRotas";
+import AutenticadasRouters from "./Routers/AutenticadasRotas";
 import { ToastContainer } from "react-toastify";
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -31,7 +31,7 @@ function App() {
             <Sidebar />
             <Header />
             <Body>
-              <AdminRouters />
+              <AutenticadasRouters />
             </Body>
             <InicialRouters />
           </Router>
