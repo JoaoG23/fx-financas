@@ -28,7 +28,6 @@ const AdicionarTreino: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
 
   async function adicionar(body:object) {
     setIsCarregando(true);
@@ -57,7 +56,7 @@ const AdicionarTreino: React.FC = () => {
         </div>
         <InputHidden
           type="number"
-          value={idConvertido}
+          value={2}
           placeholder={"Usuário"}
           {...register("userId", { required: true })}
         ></InputHidden>
