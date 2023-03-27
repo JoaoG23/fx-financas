@@ -8,6 +8,7 @@ import Card from "../../../Components/Card";
 import { BsFillBasket2Fill } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
+import { TableComum } from "../../../Components/tables/TableComum";
 
 export const Subelementos: React.FC = () => {
   const [pagina, setPagina] = useState(1);
@@ -32,16 +33,34 @@ export const Subelementos: React.FC = () => {
   return (
     <Container>
       {isLoading && <SpinnerCarregamento />}
-      {subelementos?.map((subelemento: any) => {
-        return (
-          <Link to={"subelementos"} key={subelemento.id}>
-            <Card key={subelemento.id}>
-              <BsFillBasket2Fill />
-              <h4>{subelemento.descricao}</h4>
-            </Card>
-          </Link>
-        );
-      })}
+      <header>
+        <h3>Fluxo de caixa</h3>
+      </header>
+      <TableComum>
+        <tr>
+          <th>
+            <input type={"checkbox"}></input>
+          </th>
+          <th>Descrição</th>
+          <th></th>
+        </tr>
+        {subelementos?.map((subelemento: any) => {
+          return (
+            <tr key={subelemento.id}>
+              <td>
+                <input type={"checkbox"}></input>
+              </td>
+              <td>{subelemento.descricao}</td>
+              <td>
+                <button>
+                  Items
+                  <Link to={"subelementos"} key={subelemento.id}></Link>
+                </button>
+              </td>
+            </tr>
+          );
+        })}
+      </TableComum>
       <PaginacaoComum
         setPagina={setPagina}
         pagina={pagina}
