@@ -5,7 +5,7 @@ import { useState } from "react";
 import { buscarTodosSubElementos } from "./api";
 import { PaginacaoComum } from "../../../Components/paginacoes/Paginacao";
 import Card from "../../../Components/Card";
-import { BsFillBasket2Fill, BsFillBoxSeamFill } from "react-icons/bs";
+import { BsFillBasket2Fill } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 

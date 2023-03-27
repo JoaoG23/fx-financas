@@ -8,7 +8,7 @@ type Criterios = {
 
 export async function buscarTodosSubElementos({
   numero_pagina,
-  quantidade_items_pagina = 12,
+  quantidade_items_pagina = 1,
   elementosId,
 }: Criterios) {
   const resposta = await endpoint.get(`/subelementos/elementos/paginas`, {
