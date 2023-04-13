@@ -66,8 +66,8 @@ export class FluxoCaixaServices {
     const saldoFinal =
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
     const data = {
-      data: dataAgora,
-      hora: horaAgora,
+      data_insersao: dataAgora,
+      hora_insersao: horaAgora,
       saldo: saldoFinal,
       ...dados,
     };
