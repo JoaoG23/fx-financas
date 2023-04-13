@@ -1,14 +1,15 @@
 import * as React from "react";
-import { Container } from "./styles";
+import * as FluxoCaixaStyle from "./styles";
 
 export const FluxoCaixa: React.FC = () => {
   return (
-    <Container>
+    <FluxoCaixaStyle.Container>
       <header>
         <h3>Fluxo de caixa</h3>
       </header>
       <main>
-        <table>
+        <FluxoCaixaStyle.Tabela>
+          
           <tr>
             <th>Company</th>
             <th>Contact</th>
@@ -24,8 +25,8 @@ export const FluxoCaixa: React.FC = () => {
             <td>Francisco Chang</td>
             <td>Mexico</td>
           </tr>
-        </table>
+        </FluxoCaixaStyle.Tabela>
       </main>
-    </Container>
+    </FluxoCaixaStyle.Container>
   );
 };

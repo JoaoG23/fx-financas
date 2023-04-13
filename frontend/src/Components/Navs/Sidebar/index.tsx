@@ -10,7 +10,7 @@ import {
 
 import { categorias } from "./data/listLinks";
 
-import { Container, Item } from "./styles";
+import { ColecaoElementos, Container, Item } from "./styles";
 const Sidebar: React.FC = () => {
   return (
     <Container>
@@ -32,24 +32,22 @@ const Sidebar: React.FC = () => {
           <p>Agenda</p>
         </Link>
       </Item>
-      <Item>
-        <BsFillGrid3X2GapFill color="#fff" />
-        <Link to={""}>
+
+      <details>
+        <ColecaoElementos>
+          <BsFillGrid3X2GapFill color="#fff" />
           <p>Categorias</p>
-        </Link>
-        <details>
-          <summary></summary>
-          <ul>
-            {categorias.map((paginas) => {
-              return (
-                <li key={paginas.id}>
-                  <Link to={paginas.path}>{paginas.descricao}</Link>
-                </li>
-              );
-            })}
-          </ul>
-        </details>
-      </Item>
+        </ColecaoElementos>
+        <ul>
+          {categorias.map((paginas) => {
+            return (
+              <li key={paginas.id}>
+                <Link to={paginas.path}>{paginas.descricao}</Link>
+              </li>
+            );
+          })}
+        </ul>
+      </details>
     </Container>
   );
 };
