@@ -180,6 +180,28 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
       where: {
         usuariosId,
       },
+      include:{
+        elementos:{
+          select:{
+            descricao:true
+          }
+        },
+        subelementos:{
+          select:{
+            descricao:true
+          }
+        },
+        tipos:{
+          select:{
+            descricao:true
+          }
+        },
+        subtipos:{
+          select:{
+            descricao:true
+          }
+        },
+      },
       skip: pularPagina,
       take: itemsPorPagina,
     });

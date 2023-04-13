@@ -27,7 +27,7 @@ export const FluxoCaixa: React.FC = () => {
     }
   );
 
-  const fluxoCaixas = data?.data[1];
+  const itemsFluxoCaixa = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 
@@ -40,22 +40,29 @@ export const FluxoCaixa: React.FC = () => {
       <Fluxo.Tabela>
         <thead>
           <tr>
-            <th>Company</th>
-            <th>Contact</th>
-            <th>Country</th>
+            <th>Id</th>
+            <th>Data Insersão</th>
+            <th>Hora Insersão</th>
+            <th>Descrição Gasto</th>
+            <th>Valor Gasto</th>
+            <th>Saldo Atual</th>
+            <th>Elemento</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Alfreds Futterkiste</td>
-            <td>Maria Anders</td>
-            <td>Germany</td>
-          </tr>
-          <tr>
-            <td>Centro comercial Moctezuma</td>
-            <td>Francisco Chang</td>
-            <td>Mexico</td>
-          </tr>
+          {itemsFluxoCaixa?.map((item: any) => {
+            return (
+              <tr>
+                <td>{item.orderador}</td>
+                <td>{item.data_insersao}</td>
+                <td>{item.hora_insersao}</td>
+                <td>{item.descricao}</td>
+                <td>{item.valor}</td>
+                <td>{item.saldo}</td>
+                <td>{item.elementos.descricao}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </Fluxo.Tabela>
 
@@ -63,7 +70,7 @@ export const FluxoCaixa: React.FC = () => {
         setPagina={setPagina}
         pagina={pagina}
         totalPaginas={totalQuantidadePaginas}
-        arrayElementos={fluxoCaixas}
+        arrayElementos={itemsFluxoCaixa}
         quantidadeTotalItems={quantidadeTotalRegistros}
       />
     </Fluxo.Container>

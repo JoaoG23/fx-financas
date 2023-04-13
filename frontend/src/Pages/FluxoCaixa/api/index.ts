@@ -8,7 +8,7 @@ type Criterios = {
 
 export async function buscarFluxoCaixaPorUsuario({
   numero_pagina,
-  quantidade_items_pagina = 12,
+  quantidade_items_pagina = 4,
   usuariosId,
 }: Criterios) {
   const resposta = await endpoint.get(`/fluxocaixa/paginas`, {
