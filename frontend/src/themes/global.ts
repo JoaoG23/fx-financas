@@ -28,6 +28,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a{
+      color:gray;
       text-decoration: none;
     }
 

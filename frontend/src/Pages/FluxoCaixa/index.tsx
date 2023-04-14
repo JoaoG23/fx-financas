@@ -8,6 +8,10 @@ import { buscarFluxoCaixaPorUsuario } from "./api";
 import { toast } from "react-toastify";
 import { PaginacaoComum } from "../../Components/paginacoes/Paginacao";
 import { SpinnerCarregamento } from "../../Components/spinners/SpinnerCarregamento";
+import { ItemFluxoCaixa } from "../../types/ItemFluxoCaixa";
+import { formataDataPadraoBR } from "../../utils/formatadoresDatahora/formatarDataPadraoBR";
+import { formataHoraPadraoBR } from "../../utils/formatadoresDatahora/formatarHoraPadraoBR";
+import { AcoesItems } from "../../Components/acoes/AcoesItems";
 
 export const FluxoCaixa: React.FC = () => {
   const { idConvertido } = buscaDadoUsuarioNaSessao();
@@ -43,23 +47,31 @@ export const FluxoCaixa: React.FC = () => {
             <th>Id</th>
             <th>Data Insersão</th>
             <th>Hora Insersão</th>
-            <th>Descrição Gasto</th>
-            <th>Valor Gasto</th>
-            <th>Saldo Atual</th>
             <th>Elemento</th>
+            <th>Subelemento</th>
+            <th>Tipo</th>
+            <th>Subtipo</th>
+            <th>Descrição Gasto</th>
+            <th>Valor</th>
+            <th>Saldo Atual</th>
+            <th>Acoes</th>
           </tr>
         </thead>
         <tbody>
-          {itemsFluxoCaixa?.map((item: any) => {
+          {itemsFluxoCaixa?.map((item: ItemFluxoCaixa) => {
             return (
               <tr>
-                <td>{item.orderador}</td>
-                <td>{item.data_insersao}</td>
-                <td>{item.hora_insersao}</td>
-                <td>{item.descricao}</td>
-                <td>{item.valor}</td>
-                <td>{item.saldo}</td>
-                <td>{item.elementos.descricao}</td>
+                <td>{item?.orderador}</td>
+                <td>{formataDataPadraoBR(item?.data_insersao?.toString()!)}</td>
+                <td>{formataHoraPadraoBR(item?.data_insersao?.toString()!)}</td>
+                <td>{item?.elementos?.descricao}</td>
+                <td>{item?.subelementos?.descricao}</td>
+                <td>{item?.tipos?.descricao}</td>
+                <td>{item?.subtipos?.descricao}</td>
+                <td>{item?.descricao}</td>
+                <td>{item?.valor}</td>
+                <td>{item?.saldo}</td>
+                <td><AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa"/></td>
               </tr>
             );
           })}
