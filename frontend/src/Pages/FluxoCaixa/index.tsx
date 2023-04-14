@@ -12,6 +12,7 @@ import { ItemFluxoCaixa } from "../../types/ItemFluxoCaixa";
 import { formataDataPadraoBR } from "../../utils/formatadoresDatahora/formatarDataPadraoBR";
 import { formataHoraPadraoBR } from "../../utils/formatadoresDatahora/formatarHoraPadraoBR";
 import { AcoesItems } from "../../Components/acoes/AcoesItems";
+import { CabecalhoTabela } from "./Components/CabecalhoTabela";
 
 export const FluxoCaixa: React.FC = () => {
   const { idConvertido } = buscaDadoUsuarioNaSessao();
@@ -36,47 +37,41 @@ export const FluxoCaixa: React.FC = () => {
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 
   return (
-    <Fluxo.Container>
+    <div>
       {isLoading && <SpinnerCarregamento />}
       <header>
         <h3>Fluxo de caixa</h3>
       </header>
-      <Fluxo.Tabela>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Data Insersão</th>
-            <th>Hora Insersão</th>
-            <th>Elemento</th>
-            <th>Subelemento</th>
-            <th>Tipo</th>
-            <th>Subtipo</th>
-            <th>Descrição Gasto</th>
-            <th>Valor</th>
-            <th>Saldo Atual</th>
-            <th>Acoes</th>
-          </tr>
-        </thead>
-        <tbody>
-          {itemsFluxoCaixa?.map((item: ItemFluxoCaixa) => {
-            return (
-              <tr>
-                <td>{item?.orderador}</td>
-                <td>{formataDataPadraoBR(item?.data_insersao?.toString()!)}</td>
-                <td>{formataHoraPadraoBR(item?.data_insersao?.toString()!)}</td>
-                <td>{item?.elementos?.descricao}</td>
-                <td>{item?.subelementos?.descricao}</td>
-                <td>{item?.tipos?.descricao}</td>
-                <td>{item?.subtipos?.descricao}</td>
-                <td>{item?.descricao}</td>
-                <td>{item?.valor}</td>
-                <td>{item?.saldo}</td>
-                <td><AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa"/></td>
-              </tr>
-            );
-          })}
-        </tbody>
-      </Fluxo.Tabela>
+      <Fluxo.Container>
+        <Fluxo.Tabela>
+          <CabecalhoTabela />
+          <tbody>
+            {itemsFluxoCaixa?.map((item: ItemFluxoCaixa) => {
+              return (
+                <tr>
+                  <td>{item?.orderador}</td>
+                  <td>
+                    {formataDataPadraoBR(item?.data_insersao?.toString()!)}
+                  </td>
+                  <td>
+                    {formataHoraPadraoBR(item?.data_insersao?.toString()!)}
+                  </td>
+                  <td>{item?.elementos?.descricao}</td>
+                  <td>{item?.subelementos?.descricao}</td>
+                  <td>{item?.tipos?.descricao}</td>
+                  <td>{item?.subtipos?.descricao}</td>
+                  <td>{item?.descricao}</td>
+                  <td>{item?.valor}</td>
+                  <td>{item?.saldo}</td>
+                  <td>
+                    <AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa" />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </Fluxo.Tabela>
+      </Fluxo.Container>
 
       <PaginacaoComum
         setPagina={setPagina}
@@ -85,6 +80,6 @@ export const FluxoCaixa: React.FC = () => {
         arrayElementos={itemsFluxoCaixa}
         quantidadeTotalItems={quantidadeTotalRegistros}
       />
-    </Fluxo.Container>
+    </div>
   );
 };
