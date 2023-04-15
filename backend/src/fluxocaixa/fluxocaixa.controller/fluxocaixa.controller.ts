@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { IFluxoCaixaService } from "../fluxocaixa.service/fluxocaixa.interface.service";
 import fluxocaixaService from "../fluxocaixa.service/fluxocaixa.service";
 export class FluxoCaixaController {
 

@@ -1,3 +1,4 @@
+import { SecondaryButton } from "../../Buttons/SecondaryButton/ButtonDark";
 import { LinkDeletar } from "../../links/LinkDeletar";
 import { LinkEditar } from "../../links/LinkEditar";
 import { LinkVisualizar } from "../../links/LinkVisualizar";

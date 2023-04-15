@@ -4,12 +4,12 @@ const GlobalStyle = createGlobalStyle`
     ${VigaFont}
 
     :root{
-      --yellow:#dcfc34;
+      /* --yellow:#dcfc34;
       --blue:#20e5e0;
       --dark:#323240;
-      --white:#fff;
+      --white:#fff; */
 
-
+    --tamanhoPadrao: 0.5em;
       // size
 
       --size-20:20px
@@ -19,22 +19,24 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
 }
 
+  
 
     *{
         font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         margin:0;
         padding:0;
         box-sizing: border-box;
+        
     }
 
     a{
-      color:gray;
+      color:#717f95;
       text-decoration: none;
     }
 
     body {
     
-    background-color: #f7fffa;
+    background-color: #fff;
     padding: 0;
     margin: 0;
     }
@@ -77,7 +79,7 @@ const GlobalStyle = createGlobalStyle`
       opacity: 0;
     }
     100% {
-      transform: translateX(0vh);
+      transform: translateX(0vw);
       opacity: 1;
     }
   }

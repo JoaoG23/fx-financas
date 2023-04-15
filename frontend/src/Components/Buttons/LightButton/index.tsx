@@ -1,14 +1,14 @@
 import React from "react";
 import { Light } from "./styles";
 
-type Propriedades = {
+type Props = {
   children?: string | JSX.Element | JSX.Element[];
-  onClick?:any;
+  onClick?:React.MouseEventHandler<HTMLButtonElement>;
 };
 
 
-const LightButton:React.FC<Propriedades> = ({ onClick,  children }) => {
+export const LightButton:React.FC<Props> = ({ onClick,  children }) => {
   return <Light onClick={onClick}>{children}</Light>;
 };
 
-export default LightButton;
+
