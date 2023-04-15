@@ -1,40 +1,57 @@
 import { ElementoDto } from "../elementos.dto/Elementos.dto";
-import { ElementoBuscasServices } from "./elementos.buscas.services/ElementoBuscasServices";
+import { ElementosRepository } from "../elementos.repository/elementos.repository";
+import { IElementosRepository } from "../elementos.repository/InterfaceElementosRepository";
+
 import { IElementosServices } from "./IElementoServices";
 
-class ElementosServices
-  extends ElementoBuscasServices
-  implements IElementosServices
-{
-  async criar(data: ElementoDto) {
-    const elementos = await this.prismaService.elementos.create({
-      data,
-    });
-    return elementos;
+export class ElementosServices implements IElementosServices {
+  private elementosRepository: IElementosRepository;
+
+  constructor() {
+    this.elementosRepository = new ElementosRepository();
   }
 
-  async atualizarUmPorId(id: string, dadosNovos: ElementoDto) {
-    const existeIdelementos = await this.buscarPorId(id);
-    if (!existeIdelementos) {
-      throw new Error("Não existe esse ID para ser atualizado");
-    }
-
-    const elementos = await this.prismaService.elementos.update({
-      where: { id },
-      data: dadosNovos,
-    });
-    return elementos;
+  async buscarPorId(id: string) {
+    return this.elementosRepository.findById(id);
   }
 
-  async deletarUmPorId(id: any) {
-    const existeIdelementos = await this.buscarPorId(id);
+  async validarExisteId(id: string, operacao: string) {
+    const existeIdelementos = await this.elementosRepository.findById(id);
     if (!existeIdelementos) {
-      throw new Error("Não há esse Id para ser excluido");
+      throw new Error("Não existe esse ID para realizar operação " + operacao);
     }
-    return this.prismaService.elementos.delete({
-      where: { id },
-    });
+  }
+
+  async listarTodos() {
+    return this.elementosRepository.findAll();
+  }
+
+  async listarPorUsuarioPorPagina(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  ) {
+    return this.elementosRepository.findAllByPageAndUsuariosId(
+      numeroPagina,
+      quantidadeItemPagina,
+      usuariosId
+    );
+  }
+
+  async criar(elemento: ElementoDto) {
+    return this.elementosRepository.save(elemento);
+  }
+
+  async atualizarUmPorId(id: string, elemento: ElementoDto) {
+    await this.validarExisteId(id, "atualização");
+
+    return this.elementosRepository.update(id, elemento);
+  }
+
+  async deletarUmPorId(id: string) {
+    await this.validarExisteId(id, "exclusao");
+
+    return this.elementosRepository.delete(id);
   }
 }
 
-export default new ElementosServices();

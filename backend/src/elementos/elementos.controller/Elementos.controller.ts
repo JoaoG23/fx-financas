@@ -1,21 +1,9 @@
 import { Request, Response } from "express";
-import elementosService from "../elementos.services/ElementosServices";
-import { IElementoController } from "./IElementosController";
+import { ElementosServices } from "../elementos.services/ElementosServices";
+import { IElementosServices } from "../elementos.services/IElementoServices";
 
-class ElementosController implements IElementoController {
-  async listarTodosPorPagina(req: Request, res: Response) {
-    try {
-      const { numero_pagina, quantidade_items_pagina } = req.query;
-      const pagina = await elementosService.listarTodosPorPagina(
-        numero_pagina,
-        quantidade_items_pagina
-      );
-      res.status(200).json(pagina);
-    } catch (error) {
-      res.status(400).json(error.message);
-    }
-  }
-
+const elementosService: IElementosServices = new ElementosServices();
+class ElementosController {
   async listarPorUsuarioPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;
@@ -42,7 +30,7 @@ class ElementosController implements IElementoController {
   async listaPorId(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const usuario = await elementosService.listaPorId(id);
+      const usuario = await elementosService.buscarPorId(id);
       res.status(200).json(usuario);
     } catch (error) {
       res.status(400).json(error.message);
@@ -78,5 +66,4 @@ class ElementosController implements IElementoController {
     }
   }
 }
-
 export default new ElementosController();

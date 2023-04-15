@@ -1,10 +1,8 @@
 import { Router } from "express";
 const routers = Router();
-import elementosController from '../elementos.controller/Elementos.controller';
-
+import elementosController from "../elementos.controller/Elementos.controller";
 
 routers.get("/", elementosController.listarTodos);
-routers.get("/paginas", elementosController.listarTodosPorPagina);
 routers.get("/usuarios/paginas", elementosController.listarPorUsuarioPorPagina);
 routers.get("/:id", elementosController.listaPorId);
 
