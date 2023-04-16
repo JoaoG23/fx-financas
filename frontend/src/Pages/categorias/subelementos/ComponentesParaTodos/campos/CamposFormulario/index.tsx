@@ -1,12 +1,12 @@
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
+import { InputDefault } from "../../../../../../Components/Inputs/InputDefault";
 
 import * as Form from "./styles";
-import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { SecondaryButton } from "../../../../../../Components/Buttons/SecondaryButton/ButtonDark";
 
-import RedFont from "../../../../../Components/FontColor/RedFont";
+import RedFont from "../../../../../../Components/FontColor/RedFont";
 import { BsFillEmojiExpressionlessFill } from "react-icons/bs";
 
 type Props = {
@@ -27,7 +27,7 @@ export const CamposFormulario: React.FC<Props> = ({
       <Form.Campos>
         <div>
           <InputDefault
-            placeholder="Digite nome do elemento.."
+            placeholder="Digite nome do subelemento..."
             type="text"
             name="descricao"
             register={register}
@@ -35,7 +35,7 @@ export const CamposFormulario: React.FC<Props> = ({
           />
           {errors?.descricao?.type === "required" && (
             <RedFont>
-              Campo elemento vazio! Por gentileza preencher-o!{" "}
+              Campo subelemento vazio! Por gentileza preencher-o!{" "}
               <BsFillEmojiExpressionlessFill />
             </RedFont>
           )}

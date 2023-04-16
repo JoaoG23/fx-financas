@@ -6,6 +6,7 @@ import { EditarElemento } from "../../../Pages/categorias/elementos/EditarElemen
 import { DeletarElemento } from "../../../Pages/categorias/elementos/DeletarElementos";
 import { VisualizarElemento } from "../../../Pages/categorias/elementos/VisualizarElementos";
 import { TodosSubElementos } from "../../../Pages/categorias/subelementos/TodosSubelementos";
+import { AdicionarSubelementos } from "../../../Pages/categorias/subelementos/AdicionarSubelementos";
 
 export const CategoriasRotas = () => {
   return (
@@ -53,25 +54,30 @@ export const CategoriasRotas = () => {
             }
           />
         </Route>
+
+        {/* -------- Subelemento --------- */}
+        <Route
+          path="elementos/subelementos"
+        >
+          <Route
+            path=":id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <TodosSubElementos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="adicionar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <AdicionarSubelementos />
+              </PrivateRoute>
+            }
+          />
+        </Route>
       </Route>
 
-      <Route
-        path="subelementos"
-        element={
-          <PrivateRoute redirectTo={"/"}>
-            <TodosSubElementos />
-          </PrivateRoute>
-        }
-      >
-        <Route
-          path=":id"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              <TodosSubElementos />
-            </PrivateRoute>
-          }
-        />
-      </Route>
     </Routes>
   );
 };

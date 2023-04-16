@@ -11,11 +11,11 @@ export const LinhaSubelementos: React.FC<Props> = ({ subelemento }) => {
   return (
     <tr aria-label="linha">
       <td>
-        <Link to={`/tipos/${subelemento?.id}`}>{subelemento?.descricao}</Link>
+        <Link to={`/categorias/elementos/subelementos/tipos/${subelemento?.id}`}>{subelemento?.descricao}</Link>
       </td>
       <td>
         <AcoesItems
-          caminhoPrincipal="/categorias/subelementos"
+          caminhoPrincipal="/categorias/elementos/subelementos"
           id={subelemento?.id}
         />
       </td>

@@ -47,7 +47,7 @@ export const TodosSubElementos: React.FC = () => {
       {isLoading && <SpinnerCarregamento />}
       <SubElementosStyle.Header>
         <h3>Todos Subelementos</h3>
-        <ButtonDefault onClick={() => navigate("adicionar")}>
+        <ButtonDefault onClick={() => navigate(`/categorias/elementos/subelementos/adicionar/${id}`)}>
           Adicionar +
         </ButtonDefault>
       </SubElementosStyle.Header>
