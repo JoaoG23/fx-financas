@@ -12,6 +12,8 @@ import { DeletarSubelemento } from "../../../Pages/categorias/subelementos/Delet
 import { VisualizarSubelemento } from "../../../Pages/categorias/subelementos/VisualizarSubelementos";
 import { TodosTipos } from "../../../Pages/categorias/tipos/TodosTipos";
 import { AdicionarTipos } from "../../../Pages/categorias/tipos/AdicionarTipos";
+import { EditarTipo } from "../../../Pages/categorias/tipos/EditarTipos";
+import { DeletarTipo } from "../../../Pages/categorias/tipos/DeletarTipos";
 
 export const CategoriasRotas = () => {
   return (
@@ -138,7 +140,7 @@ export const CategoriasRotas = () => {
             path="editar/:id"
             element={
               <PrivateRoute redirectTo={"/"}>
-                <EditarSubElemento />
+                <EditarTipo />
               </PrivateRoute>
             }
           />
@@ -146,7 +148,7 @@ export const CategoriasRotas = () => {
             path="deletar/:id"
             element={
               <PrivateRoute redirectTo={"/"}>
-                <DeletarSubelemento />
+                <DeletarTipo />
               </PrivateRoute>
             }
           />

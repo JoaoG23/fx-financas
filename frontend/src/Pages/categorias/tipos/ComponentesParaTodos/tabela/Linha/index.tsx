@@ -15,7 +15,7 @@ export const LinhaTipo: React.FC<Props> = ({ tipo }) => {
       </td>
       <td>
         <AcoesItems
-          caminhoPrincipal="/categorias/elementos/tipos"
+          caminhoPrincipal="/categorias/elementos/subelementos/tipos"
           id={tipo?.id}
         />
       </td>
