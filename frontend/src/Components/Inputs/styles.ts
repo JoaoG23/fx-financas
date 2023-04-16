@@ -7,7 +7,7 @@ export const NoBorders = styled.input`
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius: 0.5em;
+  border-radius:1em;
 
   :focus {
     animation-name: toRight;

@@ -12,7 +12,7 @@ export const CabecalhoTabela: React.FC = () => {
         <th>Subelemento</th>
         <th>Tipo</th>
         <th>Subtipo</th>
-        <th>Descrição Gasto</th>
+        <th>Descrição</th>
         <th>Valor</th>
         <th>Saldo Atual</th>
         <th>Acoes</th>

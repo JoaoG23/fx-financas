@@ -4,57 +4,70 @@ import { TodosElementos } from "../../../Pages/categorias/elementos/TodosElement
 import { AdicionarElemento } from "../../../Pages/categorias/elementos/AdicionarElementos";
 import { EditarElemento } from "../../../Pages/categorias/elementos/EditarElementos";
 import { DeletarElemento } from "../../../Pages/categorias/elementos/DeletarElementos";
-import { VisualizarElemento } from "../../../Pages/categorias/elementos/VisualizarElemento";
+import { VisualizarElemento } from "../../../Pages/categorias/elementos/VisualizarElementos";
+import { TodosSubElementos } from "../../../Pages/categorias/subelementos/TodosSubelementos";
 
 export const CategoriasRotas = () => {
   return (
     <Routes>
       <Route path="categorias">
+        <Route path="elementos">
+          <Route
+            path=""
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <TodosElementos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="adicionar"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <AdicionarElemento />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="editar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <EditarElemento />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="deletar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <DeletarElemento />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="visualizar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <VisualizarElemento />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Route>
+
+      <Route
+        path="subelementos"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <TodosSubElementos />
+          </PrivateRoute>
+        }
+      >
         <Route
-          path="elementos"
+          path=":id"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <TodosElementos />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="elementos/adicionar"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              <AdicionarElemento />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="elementos/editar/:id"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              <EditarElemento />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="elementos/deletar/:id"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              <DeletarElemento />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="elementos/visualizar/:id"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              <VisualizarElemento />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="elementos/subelementos/:id"
-          element={
-            <PrivateRoute redirectTo={"/"}>
-              {/* <Subelementos /> */}
+              <TodosSubElementos />
             </PrivateRoute>
           }
         />

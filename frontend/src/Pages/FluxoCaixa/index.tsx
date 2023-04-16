@@ -22,7 +22,7 @@ export const FluxoCaixa: React.FC = () => {
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(
-    ["fluxocaixa-usuario", pagina],
+    ["todos-fluxocaixas-usuario", pagina],
     () =>
       buscarFluxoCaixaPorUsuario({
         usuariosId: idConvertido!,

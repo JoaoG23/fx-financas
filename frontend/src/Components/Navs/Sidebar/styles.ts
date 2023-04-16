@@ -54,22 +54,7 @@ export const Item = styled.div`
     color: #fff;
   }
   :hover {
-    border-radius: 1em;
     animation: toRightButtons 0.2s forwards ease-in;
-  }
-
-  @keyframes toRightButtons {
-    0% {
-      border-radius: 0.1em;
-      background-color: #636573;
-      transform: translateX(0em);
-    }
-
-    100% {
-      border-radius: 1em;
-      background-color: #0000003f;
-      transform: translateX(0.1em);
-    }
   }
 `;
 

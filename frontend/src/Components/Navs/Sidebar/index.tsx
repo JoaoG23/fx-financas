@@ -9,34 +9,35 @@ import {
 
 import { categorias } from "./data/listLinks";
 
-import { ColecaoElementos, Container, Item } from "./styles";
+import * as SideBar from "./styles";
+
 const Sidebar: React.FC = () => {
   return (
-    <Container>
-      <Item>
+    <SideBar.Container>
+      <SideBar.Item>
         <BsFillPieChartFill color="#fff" />
         <Link to={"/dashboard"}>
           <p>Dashbord</p>
         </Link>
-      </Item>
-      <Item>
+      </SideBar.Item>
+      <SideBar.Item>
         <BsFillFileRuledFill color="#fff" />
         <Link to={"/fluxocaixa"}>
           <p>Fluxo de caixa</p>
         </Link>
-      </Item>
-      <Item>
+      </SideBar.Item>
+      <SideBar.Item>
         <BsFillCalendarWeekFill color="#fff" />
         <Link to={"/agenda"}>
           <p>Agenda</p>
         </Link>
-      </Item>
+      </SideBar.Item>
 
       <details>
-        <ColecaoElementos>
+        <SideBar.ColecaoElementos>
           <BsFillGrid3X2GapFill color="#fff" />
           <p>Categorias</p>
-        </ColecaoElementos>
+        </SideBar.ColecaoElementos>
         <ul>
           {categorias.map((paginas) => {
             return (
@@ -47,7 +48,7 @@ const Sidebar: React.FC = () => {
           })}
         </ul>
       </details>
-    </Container>
+    </SideBar.Container>
   );
 };
 export default Sidebar;

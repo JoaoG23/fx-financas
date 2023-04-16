@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import { CamposFormulario } from "../../../ComponentesParaTodos/CamposFormulario";
+import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormulario";
 import { ModalSucesso } from "../../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarregando";
 
