@@ -13,8 +13,10 @@ import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarreg
 import { Elemento } from "../../../../../../types/Elemento";
 import { adicionarElemento } from "../../api";
 import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 
 export const Formulario: React.FC = () => {
+  const { idConvertido } = buscaDadoUsuarioNaSessao();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -43,7 +45,11 @@ export const Formulario: React.FC = () => {
     <>
       <CamposFormulario
         onSubmit={handleSubmit((elemento: Elemento) => {
-          mutate(elemento);
+          const novoElemento = {
+            ...elemento,
+            usuariosId: idConvertido,
+          };
+          mutate(novoElemento as any);
         })}
         register={register}
         control={control}

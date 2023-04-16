@@ -27,7 +27,7 @@ export const TodosElementos: React.FC = () => {
     ["elemento-usuario", pagina],
     () =>
       buscarTodosElementos({
-        elementosId: idConvertido!,
+        usuariosId: idConvertido!,
         numero_pagina: pagina,
       }),
     {

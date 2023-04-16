@@ -47,7 +47,8 @@ export const Body = styled.div`
   box-shadow: 2px 2px 5px #00000050;
 
   div{
-    display: flex;
+    display: grid;
+    grid-template-columns: 100px 100px;
     gap: 0.5em;
   }
 

@@ -4,6 +4,7 @@ export const DefaultStyle = styled.button`
   border: none;
   display: flex;
   align-items: center;
+  justify-content: center;
 
   background-image: linear-gradient(
     to right,
