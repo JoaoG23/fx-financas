@@ -28,7 +28,7 @@ export const BackGround = styled.div`
 `;
 
 export const Body = styled.div`
-  width:40vw;
+  width:37vw;
   height: auto;
 
   text-align: center;
@@ -40,7 +40,7 @@ export const Body = styled.div`
 
   padding: 1em;
 
-  background-color: #DCFC34;
+  background-color: #fff;
 
   border: none;
   border-radius: 25px;

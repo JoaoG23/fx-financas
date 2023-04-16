@@ -1,5 +1,5 @@
 import React from "react";
-import { NoBorders } from "../styles";
+import { ContainerInput, NoBorders } from "../styles";
 
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
@@ -28,7 +28,8 @@ export const InputDefault: React.FC<Props> = ({
   requirido = true,
 }) => {
   return (
-    <div>
+    <ContainerInput>
+      <strong>{label}</strong>
       <NoBorders
         readOnly={desativar}
         placeholder={placeholder}
@@ -37,6 +38,6 @@ export const InputDefault: React.FC<Props> = ({
         {...register(name, { required: requirido })}
         type={type}
       ></NoBorders>
-    </div>
+    </ContainerInput>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import ModalCarregando from "../../../Components/Modais/ModalCarregando";
+import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 import { navegarAtePaginaDepoisTempo } from "../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { pegarUsuarioSessao } from "../../../utils/pegarUsuarioSessao";
 import { logarUsuario } from "../api";
@@ -12,7 +12,7 @@ import { FormularioStyle } from "./styles";
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
 
-  const { mutate, isLoading, data } = useMutation(
+  const { mutate, isLoading } = useMutation(
     async (value: any) => await logarUsuario(value),
     {
       onError: (error: any) => {
@@ -20,10 +20,9 @@ export const Formulario: React.FC = () => {
       },
       onSuccess: (dados: any) => {
         const usuario = dados?.data;
-        console.log("🚀 ~ file: Formulario.tsx:26 ~ usuario:", usuario);
         toast.success("Login Realizado com sucesso");
         pegarUsuarioSessao(usuario);
-        navegarAtePaginaDepoisTempo(navigate,'/dashboard')
+        navegarAtePaginaDepoisTempo(navigate, "/dashboard");
       },
     }
   );

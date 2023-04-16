@@ -19,7 +19,7 @@ export const PaginacaoComum: React.FC<Props> = ({
     const criarTodosBotaoPaginar = (totalPaginas:number) => {
         let arrayBotoes:any = [];
         for (let i = 0; i < totalPaginas; i++) {
-            arrayBotoes.push(<button onClick={() => setPagina(() => i + 1)} >{i + 1}</button>);
+            arrayBotoes.push(<button key={i} onClick={() => setPagina(() => i + 1)} >{i + 1}</button>);
             
         }
         return arrayBotoes;

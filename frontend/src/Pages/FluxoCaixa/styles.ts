@@ -10,7 +10,6 @@ type Colors = {
 export const Container = styled.main`
   display: block;
   color: #424651;
-  justify-content: center;
 
   header {
     margin-bottom: 1em;

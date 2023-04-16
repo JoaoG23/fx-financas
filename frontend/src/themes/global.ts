@@ -4,11 +4,6 @@ const GlobalStyle = createGlobalStyle`
     ${VigaFont}
 
     :root{
-      /* --yellow:#dcfc34;
-      --blue:#20e5e0;
-      --dark:#323240;
-      --white:#fff; */
-
     --tamanhoPadrao: 0.5em;
       // size
 
@@ -19,6 +14,9 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
 }
 
+h1, h2, h3, strong{
+  color:#667387;
+}
   
 
     *{
@@ -30,7 +28,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     a{
-      color:#717f95;
+      color:#667387;
       text-decoration: none;
     }
 

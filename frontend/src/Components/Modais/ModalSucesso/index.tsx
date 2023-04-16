@@ -1,21 +1,20 @@
 import React from "react";
-import { ModalStyle, ModalBackgroundStyle, AnimationSucesso } from "./styles";
+import * as Modal from "./styles";
+import { BsFillHandThumbsUpFill } from "react-icons/bs";
 
 type Props = {
     children?: JSX.Element[] | JSX.Element;
   }
   
-
-const ModalSucesso :React.FC<Props> = ({
+export const ModalSucesso :React.FC<Props> = ({
     children,
 }) => (
-        <ModalBackgroundStyle>
-            <ModalStyle>
-                <AnimationSucesso src="/assets/success.svg" alt="success"/>
+        <Modal.BackGround>
+            <Modal.Body>
+                <BsFillHandThumbsUpFill size={110} color="#1CAF82"/>
                 <h3>Operação concluida com sucesso</h3>
                 {children}
-            </ModalStyle>
-        </ModalBackgroundStyle>
+            </Modal.Body>
+        </Modal.BackGround>
 );
 
-export default ModalSucesso;

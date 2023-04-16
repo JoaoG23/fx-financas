@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBackgroundStyle = styled.div`
+export const BackGround = styled.div`
   display: flex;
   position: fixed;
   z-index: 2;
@@ -27,8 +27,8 @@ export const ModalBackgroundStyle = styled.div`
   }
 `;
 
-export const ModalStyle = styled.div`
-  width:40vw;
+export const Body = styled.div`
+  width:38vw;
   height: auto;
 
   text-align: center;
@@ -36,30 +36,33 @@ export const ModalStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  gap: 1em;
 
   padding: 1em;
 
-  background-color: #DCFC34;
-  color:#000;
+  background-color: #fff;
 
   border: none;
-  border-radius: 25px;
+  border-radius: 1.5em;
   box-shadow: 2px 2px 5px #00000050;
 
   @media screen and (max-width:769px) {
     width:90vw;
   }
 `;
-export const AnimationLoading = styled.img`
 
-animation: rodandoPesos 0.5s infinite;
-@keyframes rodandoPesos {
+export const AnimationSucesso = styled.img`
+
+animation: aparecendoSucesso 1s ease-out alternate forwards;
+@keyframes aparecendoSucesso {
     0% {
-      transform: rotateZ(0deg);
+      transform: rotate(0deg) scale(0);
+    }
+    50% {
+      transform: rotate(-60deg) scale(1);
     }
     100% {
-      transform: rotateZ(360deg);
+      transform: rotate(0deg) scale(0.8);
     }
   }
 `;

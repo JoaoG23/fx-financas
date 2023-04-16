@@ -12,10 +12,12 @@ export const DefaultStyle = styled.button`
   );
   border-radius: 20px;
   color: #fff;
-  padding: 0.3em;
+
+  font-weight: 500;
+  padding: 0.4em;
   background-size: 200% 200%;
 
-  box-shadow: 0 0 2px   #1ed49d33;
+  box-shadow: 0 0 3px  #717f953a;
 
   :hover{
 

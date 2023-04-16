@@ -1,17 +1,15 @@
 import styled from "styled-components";
 
 export const NoBorders = styled.input`
-  padding: 4px;
+  padding: 6px;
 
   background-color: transparent;
   border: none;
-  box-shadow: 1px 1px 5px #1ed49d33;
+  box-shadow: 1px 1px 5px #717f953a;
 
   border-radius: 0.5em;
 
-
-  :focus{
-    
+  :focus {
     animation-name: toRight;
     animation-duration: 1s;
     animation-iteration-count: 1;
@@ -21,16 +19,18 @@ export const NoBorders = styled.input`
   }
 
   @keyframes toRight {
-  0%   {
-    transform: translateX(0vw);
-  }
-  
-  100% {
-    transform: translateX(1vw);
-  }
-}
+    0% {
+      transform: translateX(0vw);
+    }
 
+    100% {
+      transform: translateX(.3vw);
+    }
+  }
+`;
+export const ContainerInput = styled.div`
+  display: grid;
+  gap: 10px;
 `;
 
-export const SecondaryInputStyle = styled(NoBorders)`
-`;
+export const SecondaryInputStyle = styled(NoBorders)``;

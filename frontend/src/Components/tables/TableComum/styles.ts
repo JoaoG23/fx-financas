@@ -24,11 +24,11 @@ export const Tabela = styled.table`
   th {
     color: #9ca7b7;
     background-color: ${(props: Colors) => props.headerColor || "#F8FAFC"};
-    text-align: center;
   }
 
   th, td {
-    padding: 0.5em;
+    padding: 0.4em;
+    text-align: center;
 
     animation: entradaSuave 0.5s ease alternate both;
   }
@@ -42,7 +42,6 @@ export const Tabela = styled.table`
 
   td {
     font-weight: 500;
-    text-align: center;
   }
 
 `;

@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import { Elementos } from "../../../Pages/categorias/Elementos";
-import { Subelementos } from "../../../Pages/categorias/Subelementos";
 import PrivateRoute from "../../Auth/PrivateRouter";
+import { TodosElementos } from "../../../Pages/categorias/elementos/TodosElementos";
+import { AdicionarElemento } from "../../../Pages/categorias/elementos/AdicionarElementos";
+import { EditarElemento } from "../../../Pages/categorias/elementos/EditarElementos";
+import { DeletarElemento } from "../../../Pages/categorias/elementos/DeletarElementos";
 
 export const CategoriasRotas = () => {
   return (
@@ -11,7 +13,31 @@ export const CategoriasRotas = () => {
           path="elementos"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <Elementos />
+              <TodosElementos />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="elementos/adicionar"
+          element={
+            <PrivateRoute redirectTo={"/"}>
+              <AdicionarElemento />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="elementos/editar/:id"
+          element={
+            <PrivateRoute redirectTo={"/"}>
+              <EditarElemento />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="elementos/deletar/:id"
+          element={
+            <PrivateRoute redirectTo={"/"}>
+              <DeletarElemento />
             </PrivateRoute>
           }
         />
@@ -19,7 +45,7 @@ export const CategoriasRotas = () => {
           path="elementos/subelementos/:id"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <Subelementos />
+              {/* <Subelementos /> */}
             </PrivateRoute>
           }
         />

@@ -1,4 +1,4 @@
-import { endpoint } from "../../../../services/endpoint";
+import { endpoint } from "../../../../../services/endpoint";
 
 type Criterios = {
   numero_pagina?: number;
@@ -6,12 +6,12 @@ type Criterios = {
   elementosId?: string;
 };
 
-export async function buscarTodosSubElementos({
+export async function buscarTodosElementos({
   numero_pagina,
-  quantidade_items_pagina = 1,
+  quantidade_items_pagina = 12,
   elementosId,
 }: Criterios) {
-  const resposta = await endpoint.get(`/subelementos/elementos/paginas`, {
+  const resposta = await endpoint.get(`/elementos/usuarios/paginas`, {
     params: {
       numero_pagina,
       quantidade_items_pagina,

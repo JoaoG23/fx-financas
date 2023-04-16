@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const ModalBackgroundStyle = styled.div`
+export const BackGround = styled.div`
   display: flex;
   position: fixed;
   z-index: 2;
@@ -27,8 +27,8 @@ export const ModalBackgroundStyle = styled.div`
   }
 `;
 
-export const ModalStyle = styled.div`
-  width:40vw;
+export const Body = styled.div`
+  width:38vw;
   height: auto;
 
   text-align: center;
@@ -36,14 +36,14 @@ export const ModalStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
+  gap: 1em;
 
   padding: 1em;
 
-  background-color: #DCFC34;
+  background-color: #fff;
 
   border: none;
-  border-radius: 25px;
+  border-radius: 1.5em;
   box-shadow: 2px 2px 5px #00000050;
 
   @media screen and (max-width:769px) {
