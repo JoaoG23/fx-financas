@@ -9,6 +9,7 @@ import { TodosSubElementos } from "../../../Pages/categorias/subelementos/TodosS
 import { AdicionarSubelementos } from "../../../Pages/categorias/subelementos/AdicionarSubelementos";
 import { EditarSubElemento } from "../../../Pages/categorias/subelementos/EditarSubelementos";
 import { DeletarSubelemento } from "../../../Pages/categorias/subelementos/DeletarSubelementos";
+import { VisualizarSubelemento } from "../../../Pages/categorias/subelementos/VisualizarSubelementos";
 
 export const CategoriasRotas = () => {
   return (
@@ -74,6 +75,14 @@ export const CategoriasRotas = () => {
             element={
               <PrivateRoute redirectTo={"/"}>
                 <AdicionarSubelementos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="visualizar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <VisualizarSubelemento />
               </PrivateRoute>
             }
           />
