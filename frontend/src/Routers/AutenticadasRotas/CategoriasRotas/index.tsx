@@ -10,6 +10,8 @@ import { AdicionarSubelementos } from "../../../Pages/categorias/subelementos/Ad
 import { EditarSubElemento } from "../../../Pages/categorias/subelementos/EditarSubelementos";
 import { DeletarSubelemento } from "../../../Pages/categorias/subelementos/DeletarSubelementos";
 import { VisualizarSubelemento } from "../../../Pages/categorias/subelementos/VisualizarSubelementos";
+import { TodosTipos } from "../../../Pages/categorias/tipos/TodosTipos";
+import { AdicionarTipos } from "../../../Pages/categorias/tipos/AdicionarTipos";
 
 export const CategoriasRotas = () => {
   return (
@@ -75,6 +77,52 @@ export const CategoriasRotas = () => {
             element={
               <PrivateRoute redirectTo={"/"}>
                 <AdicionarSubelementos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="visualizar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <VisualizarSubelemento />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="editar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <EditarSubElemento />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="deletar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <DeletarSubelemento />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+
+        {/* ------------ Tipos ------------ */}
+        <Route
+          path="elementos/subelementos/tipos"
+        >
+          <Route
+            path=":id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <TodosTipos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="adicionar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                < AdicionarTipos/>
               </PrivateRoute>
             }
           />
