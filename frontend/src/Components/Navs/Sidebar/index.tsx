@@ -6,10 +6,12 @@ import {
   BsFillGrid3X2GapFill,
   BsFillPieChartFill,
 } from "react-icons/bs";
+import { IoLogOut } from "react-icons/io5";
 
 import { categorias } from "./data/listLinks";
 
 import * as SideBar from "./styles";
+import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 const Sidebar: React.FC = () => {
   return (
@@ -48,6 +50,12 @@ const Sidebar: React.FC = () => {
           })}
         </ul>
       </details>
+      <SideBar.Item onClick={limparSessaoUsuario}>
+        <IoLogOut color="#fff" />
+        <Link to={"/"}>
+          <p>Sair</p>
+        </Link>
+      </SideBar.Item>
     </SideBar.Container>
   );
 };
