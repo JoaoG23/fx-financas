@@ -1,4 +1,4 @@
-import { endpoint } from "../../../services/endpoint";
+import { endpoint } from "../../../../services/endpoint";
 
 type Criterios = {
   numero_pagina?: number;

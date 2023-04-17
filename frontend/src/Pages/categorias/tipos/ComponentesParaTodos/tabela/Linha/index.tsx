@@ -8,10 +8,12 @@ type Props = {
 };
 
 export const LinhaTipo: React.FC<Props> = ({ tipo }) => {
+
+  const caminhoClick = `/categorias/elementos/subelementos/tipos/subtipos/${tipo?.id}?titulo=${tipo?.descricao}`
   return (
     <tr aria-label="linha">
       <td>
-        <Link to={`/categorias/elementos/subelementos/tipos/subtipos/${tipo?.id}`}>{tipo?.descricao}</Link>
+        <Link to={caminhoClick}>{tipo?.descricao}</Link>
       </td>
       <td>
         <AcoesItems

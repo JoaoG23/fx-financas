@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "../../Pages/Dashboard";
-import { FluxoCaixa } from "../../Pages/FluxoCaixa";
 import PrivateRoute from "../Auth/PrivateRouter";
 import { CategoriasRotas } from "./CategoriasRotas";
+import { TodosItemsFluxoCaixa } from "../../Pages/fluxocaixas/TodosItemsFluxoxcaixa";
 
 const AutenticadasRotas = () => {
   return (
@@ -20,7 +20,7 @@ const AutenticadasRotas = () => {
           path="/fluxocaixa"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <FluxoCaixa />
+              <TodosItemsFluxoCaixa />
             </PrivateRoute>
           }
         />

@@ -14,6 +14,12 @@ import { TodosTipos } from "../../../Pages/categorias/tipos/TodosTipos";
 import { AdicionarTipos } from "../../../Pages/categorias/tipos/AdicionarTipos";
 import { EditarTipo } from "../../../Pages/categorias/tipos/EditarTipos";
 import { DeletarTipo } from "../../../Pages/categorias/tipos/DeletarTipos";
+import { VisualizarTipos } from "../../../Pages/categorias/tipos/VisualizarTipos";
+import { TodosSubtipos } from "../../../Pages/categorias/subtipos/TodosSubtipos";
+import { AdicionarSubtipos } from "../../../Pages/categorias/subtipos/AdicionarSubtipos";
+import { EditarSubtipo } from "../../../Pages/categorias/subtipos/EditarSubtipos";
+import { DeletarSubtipo } from "../../../Pages/categorias/subtipos/DeletarSubtipos";
+import { VisualizarSubtipos } from "../../../Pages/categorias/subtipos/VisualizarSubtipos";
 
 export const CategoriasRotas = () => {
   return (
@@ -63,9 +69,7 @@ export const CategoriasRotas = () => {
         </Route>
 
         {/* -------- Subelemento --------- */}
-        <Route
-          path="elementos/subelementos"
-        >
+        <Route path="elementos/subelementos">
           <Route
             path=":id"
             element={
@@ -109,9 +113,7 @@ export const CategoriasRotas = () => {
         </Route>
 
         {/* ------------ Tipos ------------ */}
-        <Route
-          path="elementos/subelementos/tipos"
-        >
+        <Route path="elementos/subelementos/tipos">
           <Route
             path=":id"
             element={
@@ -124,7 +126,7 @@ export const CategoriasRotas = () => {
             path="adicionar/:id"
             element={
               <PrivateRoute redirectTo={"/"}>
-                < AdicionarTipos/>
+                <AdicionarTipos />
               </PrivateRoute>
             }
           />
@@ -132,7 +134,7 @@ export const CategoriasRotas = () => {
             path="visualizar/:id"
             element={
               <PrivateRoute redirectTo={"/"}>
-                <VisualizarSubelemento />
+                <VisualizarTipos />
               </PrivateRoute>
             }
           />
@@ -153,8 +155,51 @@ export const CategoriasRotas = () => {
             }
           />
         </Route>
-      </Route>
 
+        {/* ----------- Subtipos --------------- */}
+        <Route path="elementos/subelementos/tipos/subtipos">
+          <Route
+            path=":id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <TodosSubtipos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="adicionar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <AdicionarSubtipos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="visualizar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <VisualizarSubtipos />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="editar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <EditarSubtipo />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="deletar/:id"
+            element={
+              <PrivateRoute redirectTo={"/"}>
+                <DeletarSubtipo />
+              </PrivateRoute>
+            }
+          />
+        </Route>
+      </Route>
     </Routes>
   );
 };
