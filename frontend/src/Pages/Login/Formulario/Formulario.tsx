@@ -23,7 +23,6 @@ export const Formulario: React.FC = () => {
         toast.success("Login Realizado com sucesso");
         pegarUsuarioSessao(usuario);
         navegarAtePaginaDepoisTempo(navigate, "/dashboard");
-        // navegarAtePaginaDepoisTempo(navigate, 0);
       },
     }
   );

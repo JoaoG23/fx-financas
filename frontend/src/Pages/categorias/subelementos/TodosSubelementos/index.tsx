@@ -5,8 +5,6 @@ import * as SubElementosStyle from "./styles";
 import { useState } from "react";
 import { buscarTodosSubelementosPorPagina } from "./api";
 
-
-
 import { SpinnerCarregamento } from "../../../../Components/spinners/SpinnerCarregamento";
 import { TableComum } from "../../../../Components/tables/TableComum";
 
@@ -17,11 +15,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import { LinhaSubelementos } from "../ComponentesParaTodos/tabela/Linha";
 import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela";
 import { Subelemento } from "../../../../types/Subelemento";
+import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 
 export const TodosSubElementos: React.FC = () => {
   const navigate = useNavigate();
 
-  const { id } = useParams()
+  const { tituloPagina } = useBuscaTituloPagina();
+
+  const { id } = useParams();
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(
@@ -42,12 +43,18 @@ export const TodosSubElementos: React.FC = () => {
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 
+
+  
   return (
     <SubElementosStyle.Container>
       {isLoading && <SpinnerCarregamento />}
       <SubElementosStyle.Header>
-        <h3>Todos Subelementos</h3>
-        <ButtonDefault onClick={() => navigate(`/categorias/elementos/subelementos/adicionar/${id}`)}>
+        <h3>{tituloPagina}</h3>
+        <ButtonDefault
+          onClick={() =>
+            navigate(`/categorias/elementos/subelementos/adicionar/${id}`)
+          }
+        >
           Adicionar +
         </ButtonDefault>
       </SubElementosStyle.Header>

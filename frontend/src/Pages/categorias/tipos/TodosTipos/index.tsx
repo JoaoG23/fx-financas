@@ -15,9 +15,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Tipo } from "../../../../types/Tipo";
 import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela";
 import { LinhaTipo } from "../ComponentesParaTodos/tabela/Linha";
+import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 
 export const TodosTipos: React.FC = () => {
   const navigate = useNavigate();
+
+  const { tituloPagina } = useBuscaTituloPagina();
 
   const { id } = useParams();
   const [pagina, setPagina] = useState(1);
@@ -44,7 +47,7 @@ export const TodosTipos: React.FC = () => {
     <tiposStyle.Container>
       {isLoading && <SpinnerCarregamento />}
       <tiposStyle.Header>
-        <h3>Todos Tipo</h3>
+        <h3>{tituloPagina}</h3>
         <ButtonDefault
           onClick={() =>
             navigate(`/categorias/elementos/subelementos/tipos/adicionar/${id}`)

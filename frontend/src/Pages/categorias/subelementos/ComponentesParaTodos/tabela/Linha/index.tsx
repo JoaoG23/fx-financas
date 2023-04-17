@@ -8,10 +8,12 @@ type Props = {
 };
 
 export const LinhaSubelementos: React.FC<Props> = ({ subelemento }) => {
+
+  
   return (
     <tr aria-label="linha">
       <td>
-        <Link to={`/categorias/elementos/subelementos/tipos/${subelemento?.id}`}>{subelemento?.descricao}</Link>
+        <Link to={`/categorias/elementos/subelementos/tipos/${subelemento?.id}?titulo=${subelemento?.descricao}`}>{subelemento?.descricao}</Link>
       </td>
       <td>
         <AcoesItems
