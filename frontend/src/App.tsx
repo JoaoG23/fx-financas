@@ -10,7 +10,7 @@ import InicialRouters from "./Routers/InicialRouters";
 
 import GlobalStyle from "./themes/global";
 
-import { Body, ImagePesos1Flutuante, ImagePesos2Flutuante } from "./styles";
+import { Body } from "./styles";
 
 import Sidebar from "./Components/Navs/Sidebar";
 import Header from "./Components/Navs/Header";
