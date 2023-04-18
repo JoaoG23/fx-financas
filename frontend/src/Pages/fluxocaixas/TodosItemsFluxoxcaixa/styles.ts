@@ -11,7 +11,10 @@ export const Container = styled.main`
   display: block;
   color: #424651;
 
-  header {
-    margin-bottom: 1em;
-  }
+`;
+export const Header = styled.header`
+
+  display: flex;
+  justify-content: space-between;
+  margin: .3em;
 `;

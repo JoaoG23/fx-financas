@@ -1,5 +1,6 @@
 import * as Fluxo from "./styles";
 import { useQuery } from "react-query";
+import { useNavigate } from "react-router-dom";
 
 import { useState } from "react";
 import { buscarFluxoCaixaPorUsuario } from "./api";
@@ -14,13 +15,16 @@ import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela"
 import { LinhaItemFluxocaixa } from "../ComponentesParaTodos/tabela/Linha";
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
 import { PaginacaoComum } from "../../../Components/paginacoes/Paginacao";
+import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 
 export const TodosItemsFluxoCaixa: React.FC = () => {
+  const navigate = useNavigate();
+
   const { idConvertido } = buscaDadoUsuarioNaSessao();
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(
-    ["todos-fluxocaixas-usuario", pagina],
+    ["todos-fluxocaixa-usuario", pagina],
     () =>
       buscarFluxoCaixaPorUsuario({
         usuariosId: idConvertido!,
@@ -40,9 +44,10 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
   return (
     <Fluxo.Container>
       {isLoading && <SpinnerCarregamento />}
-      <header>
+      <Fluxo.Header>
         <h2>Fluxo de caixa</h2>
-      </header>
+        <ButtonDefault onClick={() => navigate("adicionar")} >Adicionar +</ButtonDefault>
+      </Fluxo.Header>
       <TableComum>
         <CabecalhoTabela />
         {itemsFluxoCaixa?.map((item: ItemFluxoCaixa) => (

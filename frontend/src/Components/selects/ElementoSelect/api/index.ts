@@ -6,15 +6,13 @@ type Criterios = {
   usuariosId?: string;
 };
 
-export async function buscarFluxoCaixaPorUsuario({
-  numero_pagina,
-  quantidade_items_pagina = 12,
+export async function buscarTodosElementos({
   usuariosId,
 }: Criterios) {
-  const resposta = await endpoint.get(`/fluxocaixa/paginas`, {
+  const resposta = await endpoint.get(`/elementos/usuarios/paginas`, {
     params: {
-      numero_pagina,
-      quantidade_items_pagina,
+      numero_pagina:1,
+      quantidade_items_pagina:100,
       usuariosId,
     },
   });
