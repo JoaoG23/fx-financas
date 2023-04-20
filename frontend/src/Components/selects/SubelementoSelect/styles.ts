@@ -24,7 +24,7 @@ export const Container = styled.select`
     }
 
     100% {
-      transform: translateX(.3vw);
+      transform: translateX(.2vw);
     }
   }
 `;

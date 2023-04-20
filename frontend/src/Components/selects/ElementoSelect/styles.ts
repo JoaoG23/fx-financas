@@ -9,9 +9,9 @@ export const Container = styled.select`
 
   border-radius:1em;
 
-  :focus {
+  :hover {
     animation-name: toRight;
-    animation-duration: 1s;
+    animation-duration: 0.2s;
     animation-iteration-count: 1;
     animation-timing-function: ease;
     animation-direction: alternate;

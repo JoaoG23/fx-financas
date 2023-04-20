@@ -1,5 +1,4 @@
 import { useQuery } from "react-query";
-import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 import { buscarTodosSubelementos } from "./api";
 import { toast } from "react-toastify";
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
@@ -13,7 +12,7 @@ type Props = {
   register: any;
   desativar?: boolean;
   requirido?: boolean;
-  elementosId?:any;
+  elementosId?:string;
 };
 
 export const SublementoSelect: React.FC<Props> = ({
@@ -26,8 +25,10 @@ export const SublementoSelect: React.FC<Props> = ({
   elementosId
 }) => {
 
+
+
   const { isLoading, data } = useQuery(
-    ["elemento-usuario"],
+    ["subelementos-usuario",elementosId ],
     () =>
       buscarTodosSubelementos({
         elementosId: elementosId!,
@@ -39,7 +40,7 @@ export const SublementoSelect: React.FC<Props> = ({
     }
   );
 
-  const elementos = data?.data[1];
+  const subelementos = data?.data[1];
 
   return (
     <Selects.ContainerInput>
@@ -52,7 +53,7 @@ export const SublementoSelect: React.FC<Props> = ({
         disabled={desativar}
       >
         <option value={""}> Selecione Item</option>
-        {elementos?.map((option: any) => (
+        {subelementos?.map((option: any) => (
           <option key={option?.id} value={option?.id!}>
             {option?.descricao}
           </option>

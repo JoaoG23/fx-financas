@@ -7,6 +7,7 @@ import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import RedFont from "../../../../../Components/FontColor/RedFont";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
 import { ElementoSelect } from "../../../../../Components/selects/ElementoSelect";
+import { SublementoSelect } from "../../../../../Components/selects/SubelementoSelect";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -26,21 +27,6 @@ export const CamposFormulario: React.FC<Props> = ({
       <Form.Campos>
         <Form.PrimeiraLinha>
           <div>
-            <InputDefault
-              placeholder="Digite descrição do item..."
-              type="text"
-              name="descricao"
-              register={register}
-              label="Descrição"
-            />
-            {errors?.descricao?.type === "required" && (
-              <RedFont>
-                Campo tipo vazio! Por gentileza preencher-o!{" "}
-                <BsFillEmojiExpressionlessFill />
-              </RedFont>
-            )}
-          </div>
-          <div>
             <ElementoSelect
               name="elementosId"
               register={register}
@@ -56,6 +42,70 @@ export const CamposFormulario: React.FC<Props> = ({
         </Form.PrimeiraLinha>
         <Form.SegundaLinha>
           <div>
+            <SublementoSelect
+              name="subelementosId"
+              register={register}
+              label="subelementosId"
+              
+            />
+            {errors?.subelementosId?.type === "required" && (
+              <RedFont>
+                Campo tipo vazio! Por gentileza preencher-o!{" "}
+                <BsFillEmojiExpressionlessFill />
+              </RedFont>
+            )}
+          </div>
+          <div>
+            <InputDefault
+              placeholder="Digite descrição do item..."
+              type="text"
+              name="descricao"
+              register={register}
+              label="Descrição"
+            />
+            {errors?.descricao?.type === "required" && (
+              <RedFont>
+                Campo tipo vazio! Por gentileza preencher-o!{" "}
+                <BsFillEmojiExpressionlessFill />
+              </RedFont>
+            )}
+          </div>
+        </Form.SegundaLinha>
+        <Form.SegundaLinha>
+          <div>
+            <InputDefault
+              placeholder="Digite descrição do item..."
+              type="text"
+              name="descricao"
+              register={register}
+              label="Descrição"
+            />
+            {errors?.descricao?.type === "required" && (
+              <RedFont>
+                Campo tipo vazio! Por gentileza preencher-o!{" "}
+                <BsFillEmojiExpressionlessFill />
+              </RedFont>
+            )}
+          </div>
+          <div>
+            <InputDefault
+              placeholder="Digite descrição do item..."
+              type="text"
+              name="descricao"
+              register={register}
+              label="Descrição"
+            />
+            {errors?.descricao?.type === "required" && (
+              <RedFont>
+                Campo tipo vazio! Por gentileza preencher-o!{" "}
+                <BsFillEmojiExpressionlessFill />
+              </RedFont>
+            )}
+          </div>
+        </Form.SegundaLinha>
+        <Form.SegundaLinha>
+          <div>
+            <h4></h4>
             <InputDefault
               placeholder="Digite descrição do item..."
               type="text"
@@ -102,7 +152,7 @@ export const CamposFormulario: React.FC<Props> = ({
               </RedFont>
             )}
           </div>
-          <div>
+          {/* <div>
             <InputDefault
               placeholder="Digite descrição do item..."
               type="text"
@@ -116,22 +166,7 @@ export const CamposFormulario: React.FC<Props> = ({
                 <BsFillEmojiExpressionlessFill />
               </RedFont>
             )}
-          </div>
-          <div>
-            <InputDefault
-              placeholder="Digite descrição do item..."
-              type="text"
-              name="descricao"
-              register={register}
-              label="Descrição"
-            />
-            {errors?.descricao?.type === "required" && (
-              <RedFont>
-                Campo tipo vazio! Por gentileza preencher-o!{" "}
-                <BsFillEmojiExpressionlessFill />
-              </RedFont>
-            )}
-          </div>
+          </div> */}
         </Form.TeceiraLinha>
       </Form.Campos>
       <footer>

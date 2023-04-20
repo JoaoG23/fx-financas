@@ -4,8 +4,8 @@ import { buscarTodosElementos } from "./api";
 import { toast } from "react-toastify";
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 
-
-import * as  Selects  from './styles';
+import * as Selects from "./styles";
+import { useState } from "react";
 
 type Props = {
   label?: string;
@@ -24,8 +24,10 @@ export const ElementoSelect: React.FC<Props> = ({
 }) => {
   const { idConvertido } = buscaDadoUsuarioNaSessao();
 
+  const [idElementoSelecionado, setIdElementoSelecionado] = useState("");
+
   const { isLoading, data } = useQuery(
-    ["elemento-usuario"],
+    ["elemento-usuario", idConvertido],
     () =>
       buscarTodosElementos({
         usuariosId: idConvertido!,
@@ -37,8 +39,9 @@ export const ElementoSelect: React.FC<Props> = ({
     }
   );
 
-  const elementos = data?.data[1];
 
+  const elementos = data?.data[1];
+  
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
@@ -49,9 +52,9 @@ export const ElementoSelect: React.FC<Props> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
       >
-        <option value={""}> Selecione elemento</option>
+        <option value={""}> Selecione o primeiro elemento</option>
         {elementos?.map((option: any) => (
-          <option key={option?.id} value={option?.id!}>
+          <option key={option?.id} value={option?.id}>
             {option?.descricao}
           </option>
         ))}
