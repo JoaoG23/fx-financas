@@ -30,6 +30,8 @@ export const Container = styled.select`
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 10px;
-`;
+  gap: .5em;
+  margin-bottom:.5em
+  
+  `;
 

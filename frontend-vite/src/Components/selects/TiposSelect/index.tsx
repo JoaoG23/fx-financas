@@ -1,44 +1,41 @@
+import { Control, Controller, FieldValues } from "react-hook-form";
 import { useQuery } from "react-query";
-import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
-import { buscarTodosElementos } from "./api";
 import { toast } from "react-toastify";
 
-import * as Selects from "./styles";
+import { buscarTodosTipos } from "./api";
 
+import * as Selects from "./styles";
 import Select from "react-select";
 
-import { Controller } from "react-hook-form";
-
-import { useElementoStore } from "../../../stores/useElementoStore/useElementoStore";
 import { estiloConstumizado } from "../configs/configsStyles";
 import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
+
+import { useTiposStore } from "../../../stores/useTiposStore/useTiposStore";
 
 type Props = {
   label?: string;
   name: string;
-  control?: any;
   desativar?: boolean;
   requirido?: boolean;
+  subelementosId?: string;
+  control?: Control<FieldValues> | undefined;
 };
 
-export const ElementoSelect: React.FC<Props> = ({
+export const TiposSelect: React.FC<Props> = ({
   label,
   name,
   control,
   desativar = false,
   requirido = true,
+  subelementosId,
 }) => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
-
-  const selecionarElemento = useElementoStore(
-    (state) => state.adicionarElemento
-  );
+  const selecionarSubElemento = useTiposStore((state) => state.adicionarTipos);
 
   const { isLoading, data } = useQuery(
-    ["elemento-usuario", idConvertido],
+    ["tipos-usuario", subelementosId!],
     () =>
-      buscarTodosElementos({
-        usuariosId: idConvertido!,
+      buscarTodosTipos({
+        subelementosId: subelementosId!,
       }),
     {
       onError: (error: any) => {
@@ -47,8 +44,8 @@ export const ElementoSelect: React.FC<Props> = ({
     }
   );
 
-  const elementos = data?.data[1];
-  const elementosOptions = converterElementoParaOptions(elementos) || [];
+  const tipos = data?.data[1];
+  const tiposOptions = converterElementoParaOptions(tipos) || [];
 
   return (
     <Selects.ContainerInput>
@@ -58,12 +55,13 @@ export const ElementoSelect: React.FC<Props> = ({
         name={name}
         render={({ field: { onChange } }) => (
           <Select
-            isLoading={isLoading}
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            options={elementosOptions}
+            isSearchable={false}
+            isLoading={isLoading}
+            options={tiposOptions}
             onChange={(valor: any) => {
-              selecionarElemento(valor);
+              selecionarSubElemento(valor);
               onChange(valor.value);
             }}
           />

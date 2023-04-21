@@ -1,44 +1,41 @@
+import { Control, Controller, FieldValues } from "react-hook-form";
 import { useQuery } from "react-query";
-import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
-import { buscarTodosElementos } from "./api";
 import { toast } from "react-toastify";
 
-import * as Selects from "./styles";
+import { buscarTodosSubTipos } from "./api";
 
+import * as Selects from "./styles";
 import Select from "react-select";
 
-import { Controller } from "react-hook-form";
-
-import { useElementoStore } from "../../../stores/useElementoStore/useElementoStore";
 import { estiloConstumizado } from "../configs/configsStyles";
 import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
+import { usesubtipoStore } from "../../../stores/useSubtipoStore/useSubtiposStore";
+
 
 type Props = {
   label?: string;
   name: string;
-  control?: any;
   desativar?: boolean;
   requirido?: boolean;
+  tiposId?: string;
+  control?: Control<FieldValues> | undefined;
 };
 
-export const ElementoSelect: React.FC<Props> = ({
+export const SubtiposSelect: React.FC<Props> = ({
   label,
   name,
   control,
   desativar = false,
   requirido = true,
+  tiposId,
 }) => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
-
-  const selecionarElemento = useElementoStore(
-    (state) => state.adicionarElemento
-  );
+  const selecionarSubElemento = usesubtipoStore((state) => state.adicionarSubtipo);
 
   const { isLoading, data } = useQuery(
-    ["elemento-usuario", idConvertido],
+    ["subtipos-usuario", tiposId!],
     () =>
-      buscarTodosElementos({
-        usuariosId: idConvertido!,
+      buscarTodosSubTipos({
+        tiposId: tiposId!,
       }),
     {
       onError: (error: any) => {
@@ -47,8 +44,8 @@ export const ElementoSelect: React.FC<Props> = ({
     }
   );
 
-  const elementos = data?.data[1];
-  const elementosOptions = converterElementoParaOptions(elementos) || [];
+  const Subtipos = data?.data[1];
+  const SubtiposOptions = converterElementoParaOptions(Subtipos);
 
   return (
     <Selects.ContainerInput>
@@ -58,12 +55,14 @@ export const ElementoSelect: React.FC<Props> = ({
         name={name}
         render={({ field: { onChange } }) => (
           <Select
-            isLoading={isLoading}
+            isDisabled={desativar}
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            options={elementosOptions}
+            isSearchable={false}
+            isLoading={isLoading}
+            options={SubtiposOptions}
             onChange={(valor: any) => {
-              selecionarElemento(valor);
+              selecionarSubElemento(valor);
               onChange(valor.value);
             }}
           />

@@ -31,31 +31,9 @@ export const Container = styled.select`
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 10px;
+  gap: .5em;
+  margin-bottom:.5em;
 `;
 
 
 
-export const StyledSelect = styled(Select)`
-  .react-select__control {
-    background-color: #f33 !important; 
-    border: none;
-    border-radius: 5px;
-    box-shadow: none;
-    height: 40px;
-  }
-
-  .react-select__single-value {
-    color: #333;
-  }
-
-  .react-select__option--is-selected {
-    background-color: #f59 !important;
-    color: #fff;
-  }
-
-  .react-select__option--is-focused {
-    background-color: #f59 !important;
-    color: #fff;
-  }
-`;

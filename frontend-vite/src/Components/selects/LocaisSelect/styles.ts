@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const NoBorders = styled.input`
-  padding: .8em;
+export const Container = styled.select`
+  padding: 6px;
 
   background-color: transparent;
   border: none;
@@ -24,13 +24,14 @@ export const NoBorders = styled.input`
     }
 
     100% {
-      transform: translateX(.3vw);
+      transform: translateX(.2vw);
     }
   }
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 10px;
+  gap: .5em;
+  margin-bottom:.5em;
+
 `;
 
-export const SecondaryInputStyle = styled(NoBorders)

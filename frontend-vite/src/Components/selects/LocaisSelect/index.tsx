@@ -2,13 +2,11 @@ import { Control, Controller, FieldValues } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-import { buscarTodosSubelementos } from "./api";
+import { buscarTodosLocais } from "./api";
 
 import * as Selects from "./styles";
 import Select from "react-select";
 
-
-import { useSubelementoStore } from "../../../stores/useSubelementoStore/useSubelementoStore";
 import { estiloConstumizado } from "../configs/configsStyles";
 import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
 
@@ -17,39 +15,24 @@ type Props = {
   name: string;
   desativar?: boolean;
   requirido?: boolean;
-  elementosId?: string;
   control?: Control<FieldValues> | undefined;
 };
 
-export const SublementoSelect: React.FC<Props> = ({
+export const LocaisSelect: React.FC<Props> = ({
   label,
   name,
   control,
   desativar = false,
   requirido = true,
-  elementosId,
 }) => {
-  const selecionarSubElemento = useSubelementoStore(
-    (state) => state.adicionarSubelemento
-  );
+  const { isLoading, data } = useQuery("todos-locais", buscarTodosLocais, {
+    onError: (error: any) => {
+      toast.error(`Houve um error: ${error.response.data}`);
+    },
+  });
 
-  const { isLoading, data } = useQuery(
-    ["subelemento-usuario", elementosId!],
-    () =>
-      buscarTodosSubelementos({
-        elementosId: elementosId!,
-      }),
-    {
-      onError: (error: any) => {
-        toast.error(`Houve um error: ${error.response.data}`);
-      },
-    }
-  );
-
-
-
-  const subelementos = data?.data[1];
-  const subelementosOptions = converterElementoParaOptions(subelementos) || [];
+  const locais = data?.data;
+  const locaisOptions = converterElementoParaOptions(locais) || [];
 
   return (
     <Selects.ContainerInput>
@@ -63,9 +46,8 @@ export const SublementoSelect: React.FC<Props> = ({
             placeholder={`Selecione ${label}`}
             isSearchable={false}
             isLoading={isLoading}
-            options={subelementosOptions}
+            options={locaisOptions}
             onChange={(valor: any) => {
-              selecionarSubElemento(valor);
               onChange(valor.value);
             }}
           />

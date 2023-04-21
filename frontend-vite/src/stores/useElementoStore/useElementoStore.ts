@@ -10,6 +10,7 @@ type State = {
   elemento: ElementoSelect;
 
   adicionarElemento(elemento: ElementoSelect): void;
+  limparElemento(): void;
 };
 
 export const useElementoStore = create<State>((set) => ({
@@ -20,6 +21,6 @@ export const useElementoStore = create<State>((set) => ({
   },
 
   limparElemento() {
-    set(() => ({}));
+    set((state) => ({...state.elemento, elemento:{} }));
   },
 }));
