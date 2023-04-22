@@ -61,7 +61,7 @@ export const SublementoSelect: React.FC<Props> = ({
           <Select
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            isSearchable={false}
+            isSearchable={true}
             isLoading={isLoading}
             options={subelementosOptions}
             onChange={(valor: any) => {

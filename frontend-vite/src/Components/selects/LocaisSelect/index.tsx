@@ -44,7 +44,7 @@ export const LocaisSelect: React.FC<Props> = ({
           <Select
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            isSearchable={false}
+            isSearchable={true}
             isLoading={isLoading}
             options={locaisOptions}
             onChange={(valor: any) => {

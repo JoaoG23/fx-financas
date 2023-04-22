@@ -1,20 +1,18 @@
-import { UsuarioDTO } from "../../usuario.dto/Usuario.dto";
+// import { UsuarioDTO } from "../../usuario.dto/Usuario.dto";
 
-export const usuarioCriado: UsuarioDTO = {
-  id_usuario: "admin",
-  login_nome: "admin",
-  email: "admin@admin.com",
-  nome: "Adminstrador",
-  senha: "admin",
-  status: "1",
-  id_perfil: "admin",
+export const usuarioCriado = {
+  nome: "tito",
+  username: "tito",
+  senha: "tito",
+  email: "tito@admin.com",
+  telefone: "(31)99999-99999",
 };
 
-export const usuarioEditado: Omit<UsuarioDTO, "id_usuario"> = {
-  login_nome: "tester",
-  email: "tester@tester.com",
-  nome: "Analistar de Testes",
-  senha: "tester",
-  status: "0",
-  id_perfil: "tester",
+export const usuarioEditado = {
+  nome: "joao",
+  username: "joao",
+  email: "joao@joao.com",
+  senha: "tito",
+
+  telefone: "(31)99999-99999",
 };

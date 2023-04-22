@@ -15,6 +15,7 @@ import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
 import { TextAreaDefault } from "../../../../../Components/Inputs/TextAreaDefault";
+import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -92,10 +93,11 @@ export const CamposFormulario: React.FC<Props> = ({
               )}
             </div>
             <div>
-              <InputDefault
+              <DinheiroInput
                 name="valor"
                 placeholder="Digite o valor do Item"
                 register={register}
+                control={control}
                 label="Valor"
               />
               {errors?.valor?.type === "required" && (

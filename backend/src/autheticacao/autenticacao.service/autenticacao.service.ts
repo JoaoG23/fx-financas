@@ -2,11 +2,14 @@ import { PrismaClient } from "@prisma/client";
 import autenticacao from "../../utils/Autenticacao";
 import criptografia from "../../utils/Criptografia";
 import { AutenticacaoUsuarioDto } from "../AutenticacaoUsuarioDto";
+import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/fluxocaixa.repository";
 
 export class AuthenticacaoService {
   public prisma: PrismaClient;
+  public fluxocaixaRepository: FluxoCaixaRepository;
   constructor() {
     this.prisma = new PrismaClient();
+    this.fluxocaixaRepository = new FluxoCaixaRepository();
   }
 
   async verificarExisteEmail(email: string) {
@@ -67,9 +70,26 @@ export class AuthenticacaoService {
 
     dadosLogin.senha = criptografia.crptografarSenha(senha);
 
-    return await this.prisma.usuarios.create({
-      data: dadosLogin ,
+    // Criar primeiro Item fluxo caixa
+    const novoUsuario = await this.prisma.usuarios.create({
+      data: dadosLogin,
     });
+
+    await this.fluxocaixaRepository.save({
+      descricao: "Saldo inicial",
+      valor: 100,
+      elementosId: null,
+      usuariosId: novoUsuario.id,
+      locaisId: null,
+      subelementosId: null,
+      tiposId: null,
+      subtiposId: null,
+      data_insersao: new Date(),
+      hora_insersao: new Date(),
+      saldo: 0,
+    });
+
+    return novoUsuario;
   }
 
   async esqueciSenha(dadosLogin: AutenticacaoUsuarioDto) {
@@ -85,7 +105,7 @@ export class AuthenticacaoService {
 
     await this.prisma.usuarios.update({
       where: { id: existeEmail?.id },
-      data: { senha:hashSenha },
+      data: { senha: hashSenha },
     });
 
     return "Operacão realizada com sucesso! Tente logar novamente com senha nova!";

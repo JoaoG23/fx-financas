@@ -27,6 +27,7 @@ export interface IFluxocaixaRepository {
   );
 }
 
+
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
   private paginacao: Paginacao;
   private prisma: PrismaClient;

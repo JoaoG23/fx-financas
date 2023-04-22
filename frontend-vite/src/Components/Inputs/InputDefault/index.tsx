@@ -3,7 +3,6 @@ import { ContainerInput, NoBorders } from "../styles";
 
 import { FieldValues, UseFormRegister } from "react-hook-form";
 
-
 type Props = {
   label?: string;
   name: string;

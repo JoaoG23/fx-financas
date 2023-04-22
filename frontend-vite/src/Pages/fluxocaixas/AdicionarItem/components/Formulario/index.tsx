@@ -51,7 +51,9 @@ export const Formulario: React.FC = () => {
           const novoItemFluxocaixa = {
             ...ItemFluxocaixa,
             usuariosId: idConvertido,
+            valor:ItemFluxocaixa?.valor
           };
+          // console.log("🚀 ~ file: index.tsx:52 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:", novoItemFluxocaixa)
           mutate(novoItemFluxocaixa as any);
         })}
         register={register}

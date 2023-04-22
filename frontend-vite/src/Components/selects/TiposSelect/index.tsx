@@ -57,7 +57,7 @@ export const TiposSelect: React.FC<Props> = ({
           <Select
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            isSearchable={false}
+            isSearchable={true}
             isLoading={isLoading}
             options={tiposOptions}
             onChange={(valor: any) => {

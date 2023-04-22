@@ -58,7 +58,7 @@ export const SubtiposSelect: React.FC<Props> = ({
             isDisabled={desativar}
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
-            isSearchable={false}
+            isSearchable={true}
             isLoading={isLoading}
             options={SubtiposOptions}
             onChange={(valor: any) => {

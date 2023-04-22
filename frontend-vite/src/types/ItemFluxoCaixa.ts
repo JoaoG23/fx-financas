@@ -4,8 +4,8 @@ export type ItemFluxoCaixa = {
   data_insersao?: Date | string;
   hora_insersao?: Date | string;
   descricao?: string;
-  valor?: string;
-  saldo?: string;
+  valor?: number;
+  saldo?: number;
   elementosId?: string;
   usuariosId?: string;
   locaisId?:string;
