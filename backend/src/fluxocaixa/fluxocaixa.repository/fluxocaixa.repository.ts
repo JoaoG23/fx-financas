@@ -27,7 +27,6 @@ export interface IFluxocaixaRepository {
   );
 }
 
-
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
@@ -52,6 +51,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
+      orderBy: [
+        {
+          orderador: "desc",
+        },
+      ],
+
       where: {
         usuariosId,
       },
@@ -178,29 +183,34 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
+      orderBy: [
+        {
+          orderador: "desc",
+        },
+      ],
       where: {
         usuariosId,
       },
-      include:{
-        elementos:{
-          select:{
-            descricao:true
-          }
+      include: {
+        elementos: {
+          select: {
+            descricao: true,
+          },
         },
-        subelementos:{
-          select:{
-            descricao:true
-          }
+        subelementos: {
+          select: {
+            descricao: true,
+          },
         },
-        tipos:{
-          select:{
-            descricao:true
-          }
+        tipos: {
+          select: {
+            descricao: true,
+          },
         },
-        subtipos:{
-          select:{
-            descricao:true
-          }
+        subtipos: {
+          select: {
+            descricao: true,
+          },
         },
       },
       skip: pularPagina,

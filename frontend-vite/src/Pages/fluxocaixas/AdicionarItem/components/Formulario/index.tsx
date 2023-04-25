@@ -8,15 +8,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormulario";
 
-
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 import { adicionarItem } from "../../api";
-
-
+import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
 
 export const Formulario: React.FC = () => {
   const { idConvertido } = buscaDadoUsuarioNaSessao();
@@ -24,7 +22,8 @@ export const Formulario: React.FC = () => {
   const navigate = useNavigate();
 
   const { mutate, isLoading, isSuccess } = useMutation(
-    async (ItemFluxocaixa: ItemFluxoCaixa) => await adicionarItem(ItemFluxocaixa),
+    async (ItemFluxocaixa: ItemFluxoCaixa) =>
+      await adicionarItem(ItemFluxocaixa),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -51,9 +50,17 @@ export const Formulario: React.FC = () => {
           const novoItemFluxocaixa = {
             ...ItemFluxocaixa,
             usuariosId: idConvertido,
-            valor:ItemFluxocaixa?.valor
+            elementosId: converterVazioParaNull(ItemFluxocaixa?.elementosId),
+            subelementosId:  converterVazioParaNull(ItemFluxocaixa?.subelementosId),
+            tiposId:converterVazioParaNull(ItemFluxocaixa?.tiposId),
+            subtiposId:converterVazioParaNull(ItemFluxocaixa?.subtiposId),
+            locaisId:converterVazioParaNull(ItemFluxocaixa?.locaisId),
+            valor: parseFloat(ItemFluxocaixa?.valor as any),
           };
-          // console.log("🚀 ~ file: index.tsx:52 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:", novoItemFluxocaixa)
+          console.log(
+            "🚀 ~ file: index.tsx:52 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:",
+            novoItemFluxocaixa
+          );
           mutate(novoItemFluxocaixa as any);
         })}
         register={register}
@@ -65,5 +72,3 @@ export const Formulario: React.FC = () => {
     </>
   );
 };
-
-

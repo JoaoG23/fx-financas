@@ -1,0 +1,9 @@
+"
+Invalid `this.prisma.elementos.delete()` invocation in
+C:\\github\\joaoG23\\pessoal\\fx-financas\\backend\\src\\elementos\\elementos.repository\\elementos.repository.ts:31:46
+
+  28 }
+  29 
+  30 async delete(id: string) {
+    → 31   return await this.prisma.elementos.delete(
+    Foreign key constraint failed on the field: `fluxocaixa_tiposId_fkey (index)`"

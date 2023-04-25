@@ -35,12 +35,10 @@ export const DinheiroInput: React.FC<Props> = ({
         <Input.ContainerInput>
           <strong>{label}</strong>
           <Input.Campo
-            type="text"
-            decimalScale={2}
+            type="number"
+            step="0.01" 
             placeholder={placeholder}
-            fixedDecimalScale
             disabled={desativar}
-            decimalSeparator=","
             onChange={onChange}
           />
         </Input.ContainerInput>

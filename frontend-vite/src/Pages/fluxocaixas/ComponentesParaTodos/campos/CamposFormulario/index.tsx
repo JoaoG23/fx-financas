@@ -73,13 +73,14 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
             <div>
               <SubtiposSelect
+                requirido={false}
                 tiposId={tipos?.value!}
                 control={control}
-                name="tiposId"
+                name="subtiposId"
                 label={converterNullParaVazio(tipos?.label)}
               />
-              {errors?.tiposId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo tipos vazio! Por gentileza preencher-o!" />
+              {errors?.subtiposId?.type === "required" && (
+                <AlertCampoVazio mensagem="Campo Subtipo vazio! Por gentileza preencher-o!" />
               )}
             </div>
             <div>

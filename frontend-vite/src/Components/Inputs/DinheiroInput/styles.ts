@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { NumericFormat } from "react-number-format";
 
-export const Campo = styled(NumericFormat)`
+export const Campo = styled.input`
   padding: 8px;
 
   background-color: transparent;
