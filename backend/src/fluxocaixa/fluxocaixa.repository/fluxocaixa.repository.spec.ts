@@ -1,7 +1,10 @@
 import { describe, test, expect, afterEach } from "vitest";
 import { FluxoCaixaRepository } from "./fluxocaixa.repository";
 import { limparTabelaFluxoCaixa } from "../test/utils/limparTabelaFluxoCaixa";
-import { itemFluxocaixaCriado } from "../test/mock/fluxocaixasCriado";
+import {
+  itemFluxocaixaCriado,
+  itemFluxocaixaEditado,
+} from "../test/mock/fluxocaixasCriado";
 import { Decimal } from "@prisma/client/runtime";
 import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 
@@ -55,6 +58,28 @@ describe("fluxocaixa.repository", () => {
         expect(retorno).not.toBeUndefined();
         expect(retorno).not.toBeFalsy();
         expect(retorno).toStrictEqual([]);
+      });
+    });
+  });
+
+  describe("update", () => {
+    describe("Quanto funcao for execultada", () => {
+      afterEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+      test("Deveria capaz de atualizar salvo no table fluxo de caixa", async () => {
+        const { id } = await criarItem(itemFluxocaixaCriado);
+
+        const retorno = await repository.update(id, itemFluxocaixaEditado);
+        expect(retorno).toHaveProperty("descricao", "Editado");
+        expect(retorno).toHaveProperty("valor", new Decimal(0));
+        expect(retorno).toHaveProperty("elementosId", null);
+        expect(retorno).toHaveProperty("usuariosId", null);
+        expect(retorno).toHaveProperty("locaisId", null);
+        expect(retorno).toHaveProperty("subelementosId", null);
+        expect(retorno).toHaveProperty("tiposId", null);
+        expect(retorno).toHaveProperty("subtiposId", null);
+        expect(retorno).toHaveProperty("saldo", new Decimal(0));
       });
     });
   });
