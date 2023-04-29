@@ -2,6 +2,8 @@ import { describe, test, expect, afterEach } from "vitest";
 import { FluxoCaixaRepository } from "./fluxocaixa.repository";
 import { limparTabelaFluxoCaixa } from "../test/utils/limparTabelaFluxoCaixa";
 import {
+  item1FluxocaixaCriado,
+  item2FluxocaixaCriado,
   itemFluxocaixaCriado,
   itemFluxocaixaEditado,
 } from "../test/mock/fluxocaixasCriado";
@@ -35,12 +37,13 @@ describe("fluxocaixa.repository", () => {
       });
     });
   });
+
   describe("findAll", () => {
     afterEach(async () => {
       await limparTabelaFluxoCaixa();
     });
 
-    describe("Quanto funcao for execultada", () => {
+    describe("Quanto função for execultada", () => {
       test("Deveria capaz de listar item salvo no table fluxo de caixa", async () => {
         await criarItem(itemFluxocaixaCriado);
         const retorno = await repository.findAll();
@@ -50,7 +53,7 @@ describe("fluxocaixa.repository", () => {
       });
     });
 
-    describe("Quanto funcao for execultada", () => {
+    describe("Quanto função for execultada", () => {
       test("Deveria mostrar vazio", async () => {
         const retorno = await repository.findAll();
 
@@ -63,7 +66,7 @@ describe("fluxocaixa.repository", () => {
   });
 
   describe("update", () => {
-    describe("Quanto funcao for execultada", () => {
+    describe("Quanto função for execultada", () => {
       afterEach(async () => {
         await limparTabelaFluxoCaixa();
       });
@@ -80,6 +83,91 @@ describe("fluxocaixa.repository", () => {
         expect(retorno).toHaveProperty("tiposId", null);
         expect(retorno).toHaveProperty("subtiposId", null);
         expect(retorno).toHaveProperty("saldo", new Decimal(0));
+      });
+    });
+  });
+
+  describe("delete", () => {
+    describe("Quanto função for execultada", () => {
+      afterEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+      test("Deveria capaz de deletar item salvo no fluxo de caixa", async () => {
+        const { id } = await criarItem(itemFluxocaixaCriado);
+
+        const retorno = await repository.delete(id);
+        expect(retorno).toHaveProperty("descricao", "Item de teste");
+        expect(retorno).toHaveProperty("valor", new Decimal(100));
+        expect(retorno).toHaveProperty("elementosId", null);
+        expect(retorno).toHaveProperty("usuariosId", null);
+        expect(retorno).toHaveProperty("locaisId", null);
+        expect(retorno).toHaveProperty("subelementosId", null);
+        expect(retorno).toHaveProperty("tiposId", null);
+        expect(retorno).toHaveProperty("subtiposId", null);
+        expect(retorno).toHaveProperty("saldo", new Decimal(100));
+      });
+    });
+
+    describe("Quanto função for execultada", () => {
+      afterEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+      test(`
+      Deveria capaz de deletar e
+      execultar da outra função de para buscar
+      e retorna null
+      `, async () => {
+        const { id } = await criarItem(itemFluxocaixaCriado);
+
+        await repository.delete(id);
+        const retorno = await repository.findById(id);
+
+        expect(retorno).toBeNull();
+      });
+    });
+  });
+
+  describe("findById", () => {
+    describe("Quanto função for execultada", () => {
+      afterEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+      test("Deveria capaz de retornar um item salvo por id fluxo de caixa", async () => {
+        const { id } = await criarItem(itemFluxocaixaCriado);
+
+        const retorno = await repository.findById(id);
+        expect(retorno).toHaveProperty("descricao", "Item de teste");
+        expect(retorno).toHaveProperty("valor", new Decimal(100));
+        expect(retorno).toHaveProperty("elementosId", null);
+        expect(retorno).toHaveProperty("usuariosId", null);
+        expect(retorno).toHaveProperty("locaisId", null);
+        expect(retorno).toHaveProperty("subelementosId", null);
+        expect(retorno).toHaveProperty("tiposId", null);
+        expect(retorno).toHaveProperty("subtiposId", null);
+        expect(retorno).toHaveProperty("saldo", new Decimal(100));
+      });
+    });
+  });
+
+  describe("findLastItem", () => {
+    describe("Quanto função for execultada", () => {
+      afterEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+      test("Deveria capaz de retornar um item salvo por id fluxo de caixa", async () => {
+        await criarItem(item1FluxocaixaCriado);
+        await criarItem(item2FluxocaixaCriado);
+
+        const retorno = await repository.findLastItem();
+        expect(retorno).toHaveProperty("descricao", "Item 2");
+        expect(retorno).toHaveProperty("valor", new Decimal(200));
+        expect(retorno).toHaveProperty("elementosId", null);
+        expect(retorno).toHaveProperty("usuariosId", null);
+        expect(retorno).toHaveProperty("locaisId", null);
+        expect(retorno).toHaveProperty("subelementosId", null);
+        expect(retorno).toHaveProperty("tiposId", null);
+        expect(retorno).toHaveProperty("subtiposId", null);
+        expect(retorno).toHaveProperty("saldo", new Decimal(90));
       });
     });
   });
