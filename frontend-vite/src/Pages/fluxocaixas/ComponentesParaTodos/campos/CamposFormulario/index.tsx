@@ -108,12 +108,11 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
             <div>
               <SwitchDefault
-
-              descricaoDesligado="Saida"
-              name={"entradaSaida"}
-              register={register}
-              requirido={false}
-              descricaoLigado="Entrada"
+                descricaoDesligado="Saida"
+                name={"entradaSaida"}
+                register={register}
+                requirido={false}
+                descricaoLigado="Entrada"
               />
             </div>
           </main>

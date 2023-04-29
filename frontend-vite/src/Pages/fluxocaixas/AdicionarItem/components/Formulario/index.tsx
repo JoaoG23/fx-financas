@@ -22,8 +22,8 @@ export const Formulario: React.FC = () => {
   const navigate = useNavigate();
 
   const { mutate, isLoading, isSuccess } = useMutation(
-    async (ItemFluxocaixa: ItemFluxoCaixa) =>
-      await adicionarItem(ItemFluxocaixa),
+    async (itemFluxocaixa: ItemFluxoCaixa) =>
+      await adicionarItem(itemFluxocaixa),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -46,19 +46,25 @@ export const Formulario: React.FC = () => {
   return (
     <>
       <CamposFormulario
-        onSubmit={handleSubmit((ItemFluxocaixa: ItemFluxoCaixa) => {
+        onSubmit={handleSubmit((itemFluxocaixa: ItemFluxoCaixa) => {
+
+
+          function retornarSeValorPositivoNegativo(entradaSaida:boolean, valorDebitado: string ) {
+            return entradaSaida ? parseFloat(valorDebitado) : parseFloat('-' + valorDebitado) 
+          }
+          
           const novoItemFluxocaixa = {
-            ...ItemFluxocaixa,
+            ...itemFluxocaixa,
             usuariosId: idConvertido,
-            elementosId: converterVazioParaNull(ItemFluxocaixa?.elementosId),
-            subelementosId:  converterVazioParaNull(ItemFluxocaixa?.subelementosId),
-            tiposId:converterVazioParaNull(ItemFluxocaixa?.tiposId),
-            subtiposId:converterVazioParaNull(ItemFluxocaixa?.subtiposId),
-            locaisId:converterVazioParaNull(ItemFluxocaixa?.locaisId),
-            valor: parseFloat(ItemFluxocaixa?.valor as any),
+            elementosId: converterVazioParaNull(itemFluxocaixa?.elementosId),
+            subelementosId:  converterVazioParaNull(itemFluxocaixa?.subelementosId),
+            tiposId:converterVazioParaNull(itemFluxocaixa?.tiposId),
+            subtiposId:converterVazioParaNull(itemFluxocaixa?.subtiposId),
+            locaisId:converterVazioParaNull(itemFluxocaixa?.locaisId),
+            valor: retornarSeValorPositivoNegativo(itemFluxocaixa?.entradaSaida!,itemFluxocaixa.valor!),
           };
-          console.log("🚀 ~ file: index.tsx:51 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:", novoItemFluxocaixa)
-          // mutate(novoItemFluxocaixa as ItemFluxoCaixa);
+          delete novoItemFluxocaixa.entradaSaida 
+          mutate(novoItemFluxocaixa as any);
         })}
         register={register}
         control={control}
