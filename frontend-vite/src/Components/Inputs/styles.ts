@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const NoBorders = styled.input`
-  padding: .8em;
+  padding: .7em;
 
   background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:1em;
+  border-radius:1.2em;
 
   :focus {
     animation-name: toRight;
