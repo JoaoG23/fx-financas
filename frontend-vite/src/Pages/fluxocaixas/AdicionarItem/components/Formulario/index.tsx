@@ -10,11 +10,15 @@ import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFor
 
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
-import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
+import {
+  ItemFluxoCaixa,
+  ItemFluxoCaixaCriado,
+} from "../../../../../types/ItemFluxoCaixa";
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 import { adicionarItem } from "../../api";
 import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
+import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 
 export const Formulario: React.FC = () => {
   const { idConvertido } = buscaDadoUsuarioNaSessao();
@@ -46,24 +50,11 @@ export const Formulario: React.FC = () => {
   return (
     <>
       <CamposFormulario
-        onSubmit={handleSubmit((itemFluxocaixa: ItemFluxoCaixa) => {
-
-
-          function retornarSeValorPositivoNegativo(entradaSaida:boolean, valorDebitado: string ) {
-            return entradaSaida ? parseFloat(valorDebitado) : parseFloat('-' + valorDebitado) 
-          }
-          
-          const novoItemFluxocaixa = {
-            ...itemFluxocaixa,
-            usuariosId: idConvertido,
-            elementosId: converterVazioParaNull(itemFluxocaixa?.elementosId),
-            subelementosId:  converterVazioParaNull(itemFluxocaixa?.subelementosId),
-            tiposId:converterVazioParaNull(itemFluxocaixa?.tiposId),
-            subtiposId:converterVazioParaNull(itemFluxocaixa?.subtiposId),
-            locaisId:converterVazioParaNull(itemFluxocaixa?.locaisId),
-            valor: retornarSeValorPositivoNegativo(itemFluxocaixa?.entradaSaida!,itemFluxocaixa.valor!),
-          };
-          delete novoItemFluxocaixa.entradaSaida 
+        onSubmit={handleSubmit((itemFluxocaixa: ItemFluxoCaixaCriado) => {
+          const novoItemFluxocaixa = converterValoresItemFluxocaixa(
+            idConvertido!,
+            itemFluxocaixa!
+          );
           mutate(novoItemFluxocaixa as any);
         })}
         register={register}

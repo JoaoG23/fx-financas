@@ -26,7 +26,7 @@ export type ItemFluxoCaixa = {
     descricao?:string
   };
 };
-export type ItemFluxoCaixaCreate = {
+export type ItemFluxoCaixaCriado = {
   descricao?: string;
   entradaSaida?:boolean;
   valor?:  string;

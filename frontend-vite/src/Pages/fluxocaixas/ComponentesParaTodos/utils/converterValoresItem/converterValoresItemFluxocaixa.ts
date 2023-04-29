@@ -1,8 +1,8 @@
-import { ItemFluxoCaixaCreate } from '../../../../../types/ItemFluxoCaixa';
+import { ItemFluxoCaixaCriado } from '../../../../../types/ItemFluxoCaixa';
 import { converterVazioParaNull } from '../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull';
 
 
-export const converterValoresItemFluxocaixa = ( idConvertido:string,itemFluxocaixa: ItemFluxoCaixaCreate) => {
+export const converterValoresItemFluxocaixa = ( idConvertido:string,itemFluxocaixa: ItemFluxoCaixaCriado) => {
     function retornarSeValorPositivoNegativo(entradaSaida:boolean, valorDebitado: string ) {
         return entradaSaida ? parseFloat(valorDebitado) : parseFloat('-' + valorDebitado) 
       }
