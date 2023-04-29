@@ -16,6 +16,7 @@ import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
 import { TextAreaDefault } from "../../../../../Components/Inputs/TextAreaDefault";
 import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
+import { SwitchDefault } from "../../../../../Components/switchs/SwitchDefault";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -105,13 +106,23 @@ export const CamposFormulario: React.FC<Props> = ({
                 <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
               )}
             </div>
+            <div>
+              <SwitchDefault
+
+              descricaoDesligado="Saida"
+              name={"entradaSaida"}
+              register={register}
+              requirido={false}
+              descricaoLigado="Entrada"
+              />
+            </div>
           </main>
         </Form.UmaColuna>
 
         <Form.ObservacoesLinha>
           <div>
-            <TextAreaDefault
-              placeholder="Digite alguma descrição referente ao item salvado..."
+            <InputDefault
+              placeholder="Digite alguma descrição do item..."
               type="text"
               name="descricao"
               register={register}

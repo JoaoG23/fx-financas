@@ -7,10 +7,10 @@ export const Campos = styled.section`
 `;
 
 export const UmaColuna = styled.section`
+  padding: 1em;
   display: grid;
-  grid-template-columns:  1fr 3fr;
+  grid-template-columns: 1fr 3fr;
 `;
-
 
 export const ObservacoesLinha = styled.section`
   display: grid;

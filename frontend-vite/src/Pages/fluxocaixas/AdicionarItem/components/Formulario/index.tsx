@@ -57,11 +57,8 @@ export const Formulario: React.FC = () => {
             locaisId:converterVazioParaNull(ItemFluxocaixa?.locaisId),
             valor: parseFloat(ItemFluxocaixa?.valor as any),
           };
-          console.log(
-            "🚀 ~ file: index.tsx:52 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:",
-            novoItemFluxocaixa
-          );
-          mutate(novoItemFluxocaixa as any);
+          console.log("🚀 ~ file: index.tsx:51 ~ onSubmit={handleSubmit ~ novoItemFluxocaixa:", novoItemFluxocaixa)
+          // mutate(novoItemFluxocaixa as ItemFluxoCaixa);
         })}
         register={register}
         control={control}
