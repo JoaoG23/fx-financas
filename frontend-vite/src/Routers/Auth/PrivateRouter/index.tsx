@@ -10,7 +10,6 @@ const PrivateRoute:React.FC<Private> = ({
     redirectTo
 }) => {
     const isAuthenticated = localStorage.getItem('token') !== null ;
-    console.log('Auth : ' + isAuthenticated);
     return isAuthenticated ? children : <Navigate to={redirectTo} />
 }
 

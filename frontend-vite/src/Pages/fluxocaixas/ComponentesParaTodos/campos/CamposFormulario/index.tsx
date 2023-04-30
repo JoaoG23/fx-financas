@@ -95,11 +95,10 @@ export const CamposFormulario: React.FC<Props> = ({
               )}
             </div>
             <div>
-              <DinheiroInput
+              <InputDefault
                 name="valor"
                 placeholder="Digite o valor do Item"
                 register={register}
-                control={control}
                 label="Valor"
               />
               {errors?.valor?.type === "required" && (

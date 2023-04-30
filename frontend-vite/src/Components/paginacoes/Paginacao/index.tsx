@@ -14,7 +14,6 @@ export const PaginacaoComum: React.FC<Props> = ({
     arrayElementos,
     quantidadeTotalItems = 0,
 }) => {
-    console.log("🚀 ~ file: index.tsx:17 ~ pagina:", pagina)
 
     const criarTodosBotaoPaginar = (totalPaginas:number) => {
         let arrayBotoes:any = [];
