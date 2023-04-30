@@ -11,12 +11,17 @@ import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePagi
 import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormulario";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
+import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
+import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
 
 
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const { idConvertido } = buscaDadoUsuarioNaSessao();
+
 
   const { id } = useParams();
 
@@ -67,7 +72,11 @@ export const Formulario: React.FC = () => {
     <>
       <CamposFormulario
         onSubmit={handleSubmit((itemFluxoCaixa: ItemFluxoCaixaCriado) => {
-          mutate(itemFluxoCaixa);
+          const novoItemFluxocaixa = converterValoresItemFluxocaixa(
+            idConvertido!,
+            itemFluxoCaixa!
+          );
+          mutate(novoItemFluxocaixa as any);
         })}
         register={register}
         control={control}

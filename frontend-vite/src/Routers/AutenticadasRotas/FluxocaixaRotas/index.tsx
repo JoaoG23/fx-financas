@@ -4,6 +4,7 @@ import { TodosItemsFluxoCaixa } from "../../../Pages/fluxocaixas/TodosItemsFluxo
 import PrivateRoute from "../../Auth/PrivateRouter";
 import { AdicionarItem } from "../../../Pages/fluxocaixas/AdicionarItem";
 import { EditarItem } from "../../../Pages/fluxocaixas/EditarItem";
+import { DeletarItem } from "../../../Pages/fluxocaixas/DeletarItem";
 
 
 export const FluxocaixaRotas: React.FC = () => {
@@ -30,6 +31,14 @@ export const FluxocaixaRotas: React.FC = () => {
         element={
           <PrivateRoute redirectTo={"/"}>
             <EditarItem/>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/fluxocaixa/deletar/:id"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <DeletarItem/>
           </PrivateRoute>
         }
       />
