@@ -13,7 +13,7 @@ export const DefaultStyle = styled.button`
     #feaa7a 80%,
     #fbae82 100%
   );
-  border-radius: .7em;
+  border-radius: 1em;
 
   color: #fff;
   padding: 0.5em;

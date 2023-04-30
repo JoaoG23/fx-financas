@@ -107,6 +107,7 @@ export const CamposFormulario: React.FC<Props> = ({
               )}
             </div>
             <div>
+              <strong>Selecione receita ou despesa:</strong>
               <SwitchDefault
                 descricaoDesligado="Saida"
                 name={"entradaSaida"}

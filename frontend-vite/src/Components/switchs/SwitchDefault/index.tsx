@@ -23,7 +23,7 @@ export const SwitchDefault: React.FC<Props> = ({
 }) => {
   return (
     <Container>
-      <strong>{descricaoDesligado}</strong>
+      <p>{descricaoDesligado}</p>
       <SwitchContainer >
         <SwitchInput
         role="switch-default"
@@ -34,7 +34,7 @@ export const SwitchDefault: React.FC<Props> = ({
         />
         <SwitchSlider />
       </SwitchContainer>
-      <strong>{descricaoLigado}</strong>
+      <p>{descricaoLigado}</p>
     </Container>
   );
 };
