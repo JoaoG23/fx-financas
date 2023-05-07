@@ -1,35 +1,41 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import {
+  Control,
+  Controller,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
 import { buscarTodosSubTipos } from "./api";
 
 import * as Selects from "./styles";
-import Select from "react-select";
 
-import { estiloConstumizado } from "../configs/configsStyles";
-import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
 import { usesubtipoStore } from "../../../stores/useSubtipoStore/useSubtiposStore";
+import { Subtipo } from "../../../types/Subtipo";
+import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 
-
-type Props = {
+type Props<T = unknown> = {
   label?: string;
   name: string;
+  register: UseFormRegister<any> | Function;
   desativar?: boolean;
   requirido?: boolean;
   tiposId?: string;
   control?: Control<FieldValues> | undefined;
+  opcoes?: T[];
 };
 
 export const SubtiposSelect: React.FC<Props> = ({
   label,
   name,
-  control,
+  register,
   desativar = false,
   requirido = true,
   tiposId,
+  opcoes = [],
 }) => {
-  const selecionarSubElemento = usesubtipoStore((state) => state.adicionarSubtipo);
+  const selecionarSubtipo = usesubtipoStore((state) => state.adicionarSubtipo);
 
   const { isLoading, data } = useQuery(
     ["subtipos-usuario", tiposId!],
@@ -44,35 +50,36 @@ export const SubtiposSelect: React.FC<Props> = ({
     }
   );
 
-  const Subtipos = data?.data[1];
-  const SubtiposOptions = converterElementoParaOptions(Subtipos);
+  const subtipos = data?.data[1] || opcoes;
 
   return (
     <Selects.ContainerInput>
+      {isLoading && <SpinnerCarregamento />}
+
       <strong>{label}</strong>
 
-      <Controller
-        name={name}
-        render={({ field: { onChange,value } }) => (
-          <Select
-            isDisabled={desativar}
-            styles={estiloConstumizado}
-            placeholder={`Selecione ${label}`}
-            isSearchable={true}
-            isLoading={isLoading}
-            options={SubtiposOptions}
-            onChange={(valor: any) => {
-              selecionarSubElemento(valor);
-              onChange(valor.value);
-            }}
-            value={value}
+      <Selects.Container
+        aria-label="subtipos"
+        {...register(name, { required: requirido })}
+        disabled={desativar}
+        onChange={(e: any) => {
+          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
 
-          />
-        )}
-        control={control}
-        defaultValue={""}
-        rules={{ required: requirido }}
-      />
+          const tipoSelecionado = {
+            label: descricao,
+            value: e.target.value,
+          };
+
+          selecionarSubtipo(tipoSelecionado);
+        }}
+      >
+        <option value="">Selecione um subtipo</option>
+        {subtipos?.map((option: Subtipo) => (
+          <option key={option?.id} value={option?.id}>
+            {option?.descricao}
+          </option>
+        ))}
+      </Selects.Container>
     </Selects.ContainerInput>
   );
 };

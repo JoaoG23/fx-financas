@@ -12,9 +12,8 @@ import { useSubelementoStore } from "../../../../../stores/useSubelementoStore/u
 import { TiposSelect } from "../../../../../Components/selects/TiposSelect";
 import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
 import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
-import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
-import { SwitchDefault } from "../../../../../Components/switchs/SwitchDefault";
+import { TipoGastoSelect } from "../../../../../Components/selects/TipoGastoSelect";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -75,6 +74,7 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
             <div>
               <SubtiposSelect
+                register={register}
                 requirido={false}
                 tiposId={tipos?.value!}
                 control={control}
@@ -86,7 +86,8 @@ export const CamposFormulario: React.FC<Props> = ({
               )}
             </div>
             <div>
-              <LocaisSelect
+              <TipoGastoSelect
+                register={register}
                 name="locaisId"
                 control={control}
                 label="Credito ou Debito"

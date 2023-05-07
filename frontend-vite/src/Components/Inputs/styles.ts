@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const NoBorders = styled.input`
-  padding: 5px;
+  padding: 6px;
 
   background-color: transparent;
   border: none;

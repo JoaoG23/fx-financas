@@ -1,8 +1,4 @@
-import {
-  Control,
-  FieldValues,
-  UseFormRegister,
-} from "react-hook-form";
+import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
@@ -54,7 +50,8 @@ export const TiposSelect: React.FC<Props<Tipo>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      {label}
+      <strong>{label}</strong>
+
       <Selects.Container
         aria-label="tipos"
         {...register(name, { required: requirido })}

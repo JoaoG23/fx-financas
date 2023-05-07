@@ -54,7 +54,7 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      {label}
+      <strong>{label}</strong>
       <Selects.Container
         aria-label="elementos"
         {...register(name, { required: requirido })}

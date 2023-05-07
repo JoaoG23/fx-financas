@@ -1,4 +1,4 @@
-import { Control, FieldValues } from "react-hook-form";
+import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
@@ -17,7 +17,7 @@ type Props<T = unknown> = {
   desativar?: boolean;
   requirido?: boolean;
   elementosId?: string;
-  register: any;
+  register: UseFormRegister<any> | Function;
   control?: Control<FieldValues> | undefined;
   opcoes?: T[];
 };
@@ -53,7 +53,8 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      {label}
+      <strong>{label}</strong>
+
       <Selects.Container
         aria-label="subelementos"
         {...register(name, { required: requirido })}
