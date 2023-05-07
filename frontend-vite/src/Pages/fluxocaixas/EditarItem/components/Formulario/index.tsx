@@ -13,15 +13,13 @@ import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregand
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
-
-
+import { converterElementoParaOptions } from "../../../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { idConvertido } = buscaDadoUsuarioNaSessao();
-
 
   const { id } = useParams();
 
@@ -42,7 +40,8 @@ export const Formulario: React.FC = () => {
     isLoading: isCarregandoSalvacaoitemFluxoCaixa,
     isSuccess,
   } = useMutation(
-    async (itemFluxoCaixa: ItemFluxoCaixaCriado) => await editarItemPorId(id!, itemFluxoCaixa),
+    async (itemFluxoCaixa: ItemFluxoCaixaCriado) =>
+      await editarItemPorId(id!, itemFluxoCaixa),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -60,13 +59,17 @@ export const Formulario: React.FC = () => {
     handleSubmit,
     control,
     reset,
-    setValue,
     formState: { errors },
   } = useForm();
 
+  const defaultValues = {
+    ...itemFluxoCaixa,
+    valor: parseFloat(itemFluxoCaixa?.valor!),
+  };
+
   useEffect(() => {
-    reset({ ...itemFluxoCaixa , valor:parseFloat(itemFluxoCaixa?.valor!) });
-  }, [itemFluxoCaixa]);
+    reset(defaultValues);
+  }, [reset, data]);
 
   return (
     <>
@@ -88,5 +91,3 @@ export const Formulario: React.FC = () => {
     </>
   );
 };
-
-

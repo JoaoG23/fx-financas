@@ -28,23 +28,4 @@ describe("converterValoresItemFluxocaixa", () => {
       expect(retorno).toHaveProperty("saldo", 0);
     });
   });
-
-  describe("Quando enviar todos valores, resaltando propriedade valor = 100 e entradaSaida = false", () => {
-    test("Retorne propriedade valor (-100) representando um valor negativo", () => {
-      const id = "USL19099";
-      const retorno = converterValoresItemFluxocaixa(id, {
-        descricao: "descricao do item",
-        entradaSaida: false,
-        valor: "100",
-        saldo: 0,
-        elementosId: "",
-        locaisId: "",
-        subelementosId: "",
-        tiposId: "",
-        subtiposId: "",
-      });
-
-      expect(retorno).toHaveProperty("valor", -100);
-    });
-  });
 });

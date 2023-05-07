@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "unitest":"vitest"
+    "unitest":"vitest",
+    "test":"vitest"
   },
   "dependencies": {
     "axios": "^0.27.2",

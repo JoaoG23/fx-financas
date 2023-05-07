@@ -1,5 +1,5 @@
 import React from "react";
-import create from "zustand";
+import { create } from "zustand";
 
 type ElementoSelect = {
   value?: string;
@@ -17,10 +17,10 @@ export const useElementoStore = create<State>((set) => ({
   elemento: {},
 
   adicionarElemento(elemento: ElementoSelect) {
-    set((state) => ({  ...state.elemento, elemento  }));
+    set((state) => ({ ...state.elemento, elemento }));
   },
 
   limparElemento() {
-    set((state) => ({...state.elemento, elemento:{} }));
+    set((state) => ({ ...state.elemento, elemento: {} }));
   },
 }));

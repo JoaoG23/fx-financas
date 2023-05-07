@@ -1,35 +1,40 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import {
+  Control,
+  FieldValues,
+  UseFormRegister,
+} from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
 import { buscarTodosTipos } from "./api";
 
 import * as Selects from "./styles";
-import Select from "react-select";
-
-import { estiloConstumizado } from "../configs/configsStyles";
-import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
 
 import { useTiposStore } from "../../../stores/useTiposStore/useTiposStore";
+import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+import { Tipo } from "../../../types/Tipo";
 
-type Props = {
+type Props<T = unknown> = {
   label?: string;
   name: string;
   desativar?: boolean;
   requirido?: boolean;
   subelementosId?: string;
   control?: Control<FieldValues> | undefined;
+  register: UseFormRegister<any> | Function;
+  opcoes?: T[];
 };
 
-export const TiposSelect: React.FC<Props> = ({
+export const TiposSelect: React.FC<Props<Tipo>> = ({
   label,
   name,
-  control,
+  register,
   desativar = false,
   requirido = true,
+  opcoes = [],
   subelementosId,
 }) => {
-  const selecionarSubElemento = useTiposStore((state) => state.adicionarTipos);
+  const selecionarTipo = useTiposStore((state) => state.adicionarTipos);
 
   const { isLoading, data } = useQuery(
     ["tipos-usuario", subelementosId!],
@@ -44,32 +49,34 @@ export const TiposSelect: React.FC<Props> = ({
     }
   );
 
-  const tipos = data?.data[1];
-  const tiposOptions = converterElementoParaOptions(tipos) || [];
+  const tipos = data?.data[1] || opcoes;
 
   return (
     <Selects.ContainerInput>
-      <strong>{label}</strong>
+      {isLoading && <SpinnerCarregamento />}
+      {label}
+      <Selects.Container
+        aria-label="tipos"
+        {...register(name, { required: requirido })}
+        disabled={desativar}
+        onChange={(e: any) => {
+          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
 
-      <Controller
-        name={name}
-        render={({ field: { onChange } }) => (
-          <Select
-            styles={estiloConstumizado}
-            placeholder={`Selecione ${label}`}
-            isSearchable={true}
-            isLoading={isLoading}
-            options={tiposOptions}
-            onChange={(valor: any) => {
-              selecionarSubElemento(valor);
-              onChange(valor.value);
-            }}
-          />
-        )}
-        control={control}
-        defaultValue={""}
-        rules={{ required: requirido }}
-      />
+          const tipoSelecionado = {
+            label: descricao,
+            value: e.target.value,
+          };
+
+          selecionarTipo(tipoSelecionado);
+        }}
+      >
+        <option value="">Selecione um tipo</option>
+        {tipos?.map((option: Tipo) => (
+          <option key={option?.id} value={option?.id}>
+            {option?.descricao}
+          </option>
+        ))}
+      </Selects.Container>
     </Selects.ContainerInput>
   );
 };

@@ -53,7 +53,7 @@ export const SubtiposSelect: React.FC<Props> = ({
 
       <Controller
         name={name}
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange,value } }) => (
           <Select
             isDisabled={desativar}
             styles={estiloConstumizado}
@@ -65,6 +65,8 @@ export const SubtiposSelect: React.FC<Props> = ({
               selecionarSubElemento(valor);
               onChange(valor.value);
             }}
+            value={value}
+
           />
         )}
         control={control}

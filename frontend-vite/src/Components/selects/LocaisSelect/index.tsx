@@ -40,7 +40,7 @@ export const LocaisSelect: React.FC<Props> = ({
 
       <Controller
         name={name}
-        render={({ field: { onChange } }) => (
+        render={({ field: { onChange, value } }) => (
           <Select
             styles={estiloConstumizado}
             placeholder={`Selecione ${label}`}
@@ -50,6 +50,7 @@ export const LocaisSelect: React.FC<Props> = ({
             onChange={(valor: any) => {
               onChange(valor.value);
             }}
+            value={value}
           />
         )}
         control={control}

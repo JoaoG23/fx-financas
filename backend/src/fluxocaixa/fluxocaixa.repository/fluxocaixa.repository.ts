@@ -10,6 +10,7 @@ export interface IFluxocaixaRepository {
   findById(id: string);
   findLastItem();
   findAll();
+  describeAllFields();
   countAll();
   updateLastItemSaldo(valor: number, usuariosId: string);
   sumBiggerThanZero(usuarioId: string);
@@ -33,6 +34,59 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
   constructor() {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
+  }
+
+  describeAllFields() {
+    return {
+      elementos: {
+        select: {
+          descricao: true,
+        },
+      },
+      subelementos: {
+        select: {
+          descricao: true,
+        },
+      },
+      tipos: {
+        select: {
+          descricao: true,
+        },
+      },
+      subtipos: {
+        select: {
+          descricao: true,
+        },
+      },
+    };
+  }
+  describeAndIdAllFields() {
+    return {
+      elementos: {
+        select: {
+          id:true,
+          descricao: true,
+        },
+      },
+      subelementos: {
+        select: {
+          id:true,
+          descricao: true,
+        },
+      },
+      tipos: {
+        select: {
+          id:true,
+          descricao: true,
+        },
+      },
+      subtipos: {
+        select: {
+          id:true,
+          descricao: true,
+        },
+      },
+    };
   }
 
   async findAllByPageAndUsuariosIdAndThisMonth(
@@ -125,6 +179,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
   async findById(id: string) {
     const fluxocaixa = await this.prisma.fluxocaixa.findFirst({
       where: { id },
+      include: this.describeAllFields(),
     });
     return fluxocaixa;
   }
@@ -140,7 +195,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
   async findAll() {
     return await this.prisma.fluxocaixa.findMany({
-      include: joinDescricaoSelect,
+      include: this.describeAllFields(),
     });
   }
   async countAll() {
@@ -191,28 +246,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
       where: {
         usuariosId,
       },
-      include: {
-        elementos: {
-          select: {
-            descricao: true,
-          },
-        },
-        subelementos: {
-          select: {
-            descricao: true,
-          },
-        },
-        tipos: {
-          select: {
-            descricao: true,
-          },
-        },
-        subtipos: {
-          select: {
-            descricao: true,
-          },
-        },
-      },
+      include: this.describeAllFields(),
       skip: pularPagina,
       take: itemsPorPagina,
     });

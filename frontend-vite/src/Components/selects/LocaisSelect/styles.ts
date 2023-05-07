@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.select`
-  padding: 6px;
+  padding: 5px;
 
   background-color: transparent;
   border: none;

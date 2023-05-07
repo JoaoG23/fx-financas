@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 import { ReactSelectOptions } from "../../types/react-select/ReactSelectOptions";
 
 type State = {

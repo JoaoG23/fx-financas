@@ -1,13 +1,13 @@
 import styled from "styled-components";
 
 export const NoBorders = styled.input`
-  padding: .7em;
+  padding: 5px;
 
   background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:1.2em;
+  border-radius: 0.8em;
 
   :focus {
     animation-name: toRight;
@@ -24,7 +24,7 @@ export const NoBorders = styled.input`
     }
 
     100% {
-      transform: translateX(.3vw);
+      transform: translateX(0.3vw);
     }
   }
 `;
@@ -33,4 +33,4 @@ export const ContainerInput = styled.div`
   gap: 10px;
 `;
 
-export const SecondaryInputStyle = styled(NoBorders)
+export const SecondaryInputStyle = styled(NoBorders);

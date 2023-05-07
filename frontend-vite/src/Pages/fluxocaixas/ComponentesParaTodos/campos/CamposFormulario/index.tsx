@@ -14,8 +14,6 @@ import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore
 import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
-import { TextAreaDefault } from "../../../../../Components/Inputs/TextAreaDefault";
-import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
 import { SwitchDefault } from "../../../../../Components/switchs/SwitchDefault";
 
 type Props = {
@@ -42,6 +40,7 @@ export const CamposFormulario: React.FC<Props> = ({
           <main>
             <div>
               <ElementoSelect
+                register={register}
                 control={control}
                 name="elementosId"
                 label="Elemento"
@@ -52,6 +51,7 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
             <div>
               <SublementoSelect
+                register={register}
                 elementosId={elemento?.value!}
                 control={control}
                 name="subelementosId"
@@ -63,6 +63,7 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
             <div>
               <TiposSelect
+                register={register}
                 subelementosId={subelemento?.value!}
                 control={control}
                 name="tiposId"
@@ -104,16 +105,6 @@ export const CamposFormulario: React.FC<Props> = ({
               {errors?.valor?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
               )}
-            </div>
-            <div>
-              <strong>Selecione receita ou despesa:</strong>
-              <SwitchDefault
-                descricaoDesligado="Saida"
-                name={"entradaSaida"}
-                register={register}
-                requirido={false}
-                descricaoLigado="Entrada"
-              />
             </div>
           </main>
         </Form.UmaColuna>

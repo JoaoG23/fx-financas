@@ -1,32 +1,34 @@
-import { Control, Controller, FieldValues } from "react-hook-form";
+import { Control, FieldValues } from "react-hook-form";
+
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
 import { buscarTodosSubelementos } from "./api";
 
 import * as Selects from "./styles";
-import Select from "react-select";
-
 
 import { useSubelementoStore } from "../../../stores/useSubelementoStore/useSubelementoStore";
-import { estiloConstumizado } from "../configs/configsStyles";
-import { converterElementoParaOptions } from "../../../utils/conversao/converterElementoParaOptions/converterElementoParaOptions";
+import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+import { Subelemento } from "../../../types/Subelemento";
 
-type Props = {
+type Props<T = unknown> = {
   label?: string;
   name: string;
   desativar?: boolean;
   requirido?: boolean;
   elementosId?: string;
+  register: any;
   control?: Control<FieldValues> | undefined;
+  opcoes?: T[];
 };
 
-export const SublementoSelect: React.FC<Props> = ({
+export const SublementoSelect: React.FC<Props<Subelemento>> = ({
   label,
   name,
-  control,
+  register,
   desativar = false,
   requirido = true,
+  opcoes = [],
   elementosId,
 }) => {
   const selecionarSubElemento = useSubelementoStore(
@@ -46,34 +48,34 @@ export const SublementoSelect: React.FC<Props> = ({
     }
   );
 
-
-
-  const subelementos = data?.data[1];
-  const subelementosOptions = converterElementoParaOptions(subelementos) || [];
+  const subelementos = data?.data[1] || opcoes;
 
   return (
     <Selects.ContainerInput>
-      <strong>{label}</strong>
+      {isLoading && <SpinnerCarregamento />}
+      {label}
+      <Selects.Container
+        aria-label="subelementos"
+        {...register(name, { required: requirido })}
+        disabled={desativar}
+        onChange={(e: any) => {
+          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
 
-      <Controller
-        name={name}
-        render={({ field: { onChange } }) => (
-          <Select
-            styles={estiloConstumizado}
-            placeholder={`Selecione ${label}`}
-            isSearchable={true}
-            isLoading={isLoading}
-            options={subelementosOptions}
-            onChange={(valor: any) => {
-              selecionarSubElemento(valor);
-              onChange(valor.value);
-            }}
-          />
-        )}
-        control={control}
-        defaultValue={""}
-        rules={{ required: requirido }}
-      />
+          const subelementoSelecionado = {
+            label: descricao,
+            value: e.target.value,
+          };
+
+          selecionarSubElemento(subelementoSelecionado);
+        }}
+      >
+        <option value="">Selecione um subelemento</option>
+        {subelementos?.map((option: Subelemento) => (
+          <option key={option?.id} value={option?.id}>
+            {option?.descricao}
+          </option>
+        ))}
+      </Selects.Container>
     </Selects.ContainerInput>
   );
 };

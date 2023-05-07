@@ -2,13 +2,13 @@ import styled from "styled-components";
 import Select from 'react-select';
 
 export const Container = styled.select`
-  padding: 6px;
+  padding: 5px;
 
   background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:1em;
+  border-radius:.8em;
 
   :hover {
     animation-name: toRight;
@@ -29,7 +29,7 @@ export const Container = styled.select`
     }
   }
 `;
-export const ContainerInput = styled.div`
+export const ContainerInput = styled.label`
   display: grid;
   gap: .5em;
   margin-bottom:.5em;
