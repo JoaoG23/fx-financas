@@ -8,17 +8,17 @@ datasource db {
 }
 
 model usuarios {
-  id                       String                     @id @default(uuid())
-  nome                     String                     @db.VarChar(200)
-  username                 String                     @db.VarChar(200)
-  senha                    String
-  email                    String                     @db.VarChar(200)
-  telefone                 String                     @db.VarChar(22)
-  createdAt                DateTime                   @default(now())
-  updateAt                 DateTime                   @updatedAt
-  fluxocaixa               fluxocaixa[]
-  elementos                elementos[]
-  descricao_classificacaos descricao_classificacaos[]
+  id         String       @id @default(uuid())
+  nome       String       @db.VarChar(200)
+  username   String       @db.VarChar(200)
+  senha      String
+  email      String       @db.VarChar(200)
+  telefone   String       @db.VarChar(22)
+  createdAt  DateTime     @default(now())
+  updateAt   DateTime     @updatedAt
+  fluxocaixa fluxocaixa[]
+  elementos  elementos[]
+  locais     locais[]
 }
 
 model elementos {
@@ -57,37 +57,39 @@ model subtipos {
 }
 
 model fluxocaixa {
-  orderador      Int           @default(autoincrement())
-  id             String        @id @default(uuid())
-  data_insersao  DateTime      @db.Date
-  hora_insersao  DateTime      @db.Time(0)
-  descricao      String        @db.VarChar(70)
-  valor          Decimal       @db.Decimal(12, 2)
-  saldo          Decimal       @db.Decimal(12, 2)
-  elementosId    String?       @default("")
-  usuariosId     String?
-  elementos      elementos?    @relation(fields: [elementosId], references: [id])
-  usuarios       usuarios?     @relation(fields: [usuariosId], references: [id])
-  locais         locais?       @relation(fields: [locaisId], references: [id])
-  locaisId       String?       @default("")
-  subelementos   subelementos? @relation(fields: [subelementosId], references: [id])
-  subelementosId String?       @default("")
-  tipos          tipos?        @relation(fields: [tiposId], references: [id])
-  tiposId        String?       @default("")
-  subtipos       subtipos?     @relation(fields: [subtiposId], references: [id])
-  subtiposId     String?       @default("")
+  orderador        Int             @default(autoincrement())
+  id               String          @id @default(uuid())
+  data_insersao    DateTime        @db.Date
+  hora_insersao    DateTime        @db.Time(0)
+  descricao        String          @db.VarChar(70)
+  valor            Decimal         @db.Decimal(12, 2)
+  saldo            Decimal         @db.Decimal(12, 2)
+  elementosId      String?         @default("")
+  usuariosId       String?
+  elementos        elementos?      @relation(fields: [elementosId], references: [id])
+  usuarios         usuarios?       @relation(fields: [usuariosId], references: [id])
+  locais           locais?         @relation(fields: [locaisId], references: [id])
+  locaisId         String?         @default("")
+  subelementos     subelementos?   @relation(fields: [subelementosId], references: [id])
+  subelementosId   String?         @default("")
+  tipos            tipos?          @relation(fields: [tiposId], references: [id])
+  tiposId          String?         @default("")
+  subtipos         subtipos?       @relation(fields: [subtiposId], references: [id])
+  subtiposId       String?         @default("")
+  tipos_despesas   tipos_despesas? @relation(fields: [tipos_despesasId], references: [id])
+  tipos_despesasId String?
 }
 
-model locais {
+model tipos_despesas {
   id         String       @id @default(uuid())
   descricao  String       @db.VarChar(70)
   fluxocaixa fluxocaixa[]
 }
 
-model descricao_classificacaos {
-  id        String @id @default(uuid())
-  descricao String @db.VarChar(70)
-
-  usuarios   usuarios? @relation(fields: [usuariosId], references: [id])
+model locais {
+  id         String       @id @default(uuid())
+  descricao  String       @db.VarChar(70)
+  usuarios   usuarios?    @relation(fields: [usuariosId], references: [id])
   usuariosId String?
+  fluxocaixa fluxocaixa[]
 }
