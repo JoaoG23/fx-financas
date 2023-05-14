@@ -90,6 +90,6 @@ model locais {
   id         String       @id @default(uuid())
   descricao  String       @db.VarChar(70)
   usuarios   usuarios?    @relation(fields: [usuariosId], references: [id])
-  usuariosId String?
+  usuariosId String?      @default("")
   fluxocaixa fluxocaixa[]
 }
