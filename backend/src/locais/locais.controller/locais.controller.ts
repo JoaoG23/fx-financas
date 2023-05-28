@@ -1,7 +1,11 @@
 import { Request, Response } from "express";
 import { ITodosControllers } from "../../interfaces/ITodosControllers";
-import locaisService from "../locais.service/locais.service";
+import { LocaisServices } from "../locais.service/locais.service";
+import { LocaisRepository } from "../locais.repository/locais.repository";
+import { tratarErroSemStatus } from "../../utils/tratarErroSemStatus/tratarErroSemStatus";
 
+const locaisRepository = new LocaisRepository();
+const locaisService = new LocaisServices(locaisRepository);
 class LocaisController implements ITodosControllers {
   async listarTodosPorPagina(req: Request, res: Response) {
     try {
@@ -12,7 +16,7 @@ class LocaisController implements ITodosControllers {
       );
       res.status(200).json(pagina);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 
@@ -21,7 +25,7 @@ class LocaisController implements ITodosControllers {
       const todos = await locaisService.listarTodos();
       res.status(200).json(todos);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 
@@ -31,7 +35,7 @@ class LocaisController implements ITodosControllers {
       const locais = await locaisService.listaPorId(id);
       res.status(200).json(locais);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 
@@ -41,16 +45,16 @@ class LocaisController implements ITodosControllers {
       const locais = await locaisService.deletarUmPorId(id);
       res.status(200).json(locais);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 
   async criar(req: Request, res: Response) {
     try {
-      const locais = await locaisService.criar(req.body);
+      const locais = await locaisService.criarUm(req.body);
       res.status(200).json(locais);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 
@@ -60,7 +64,7 @@ class LocaisController implements ITodosControllers {
       const locais = await locaisService.atualizarUmPorId(id, req.body);
       res.status(200).json(locais);
     } catch (error) {
-      res.status(400).json(error.message);
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
 }

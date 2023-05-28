@@ -2,7 +2,7 @@ import { afterEach, describe, expect, test } from "vitest";
 
 import { limparTabelaLocais } from "../../test/utils/limparTabelaLocais";
 import { LocaisRepository } from "../locais.repository";
-import { localCriado } from "../../test/mock/locais";
+import { localCriado } from "../../test/mock/locaisCriado";
 
 export function buscarPorId() {
   describe("findById", () => {

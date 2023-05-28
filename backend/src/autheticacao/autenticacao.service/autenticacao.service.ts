@@ -42,7 +42,7 @@ export class AuthenticacaoService {
     });
 
     if (existeUsername) {
-      throw new ConflictError("","Esse nome de usuário já existe");
+      throw new ConflictError("", "Esse nome de usuário já existe");
     }
   }
 
@@ -65,15 +65,17 @@ export class AuthenticacaoService {
     const logado = {
       id: existeUsername.id,
       nome: existeUsername.nome,
-      msg: "",
-      token: null,
     };
 
     const tokenRecebido = await autenticacao.gerarTokenSessao(logado);
 
-    (logado.msg = "Logado com sucesso"), (logado.token = tokenRecebido);
+    const usuarioLogado = {
+      ...logado,
+      msg: "Logado com sucesso",
+      token: tokenRecebido,
+    };
 
-    return logado;
+    return usuarioLogado;
   }
 
   async registar(dadosLogin: AutenticacaoUsuarioDto) {

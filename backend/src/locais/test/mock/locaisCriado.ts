@@ -3,8 +3,3 @@ export const localCriado = {
   usuariosId:null
 };
 
-export const localEditado = {
-  descricao: "NEXT",
-  usuariosId:null
-};
-
