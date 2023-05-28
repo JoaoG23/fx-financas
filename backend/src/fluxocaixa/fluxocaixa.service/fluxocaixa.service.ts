@@ -23,15 +23,6 @@ export class FluxoCaixaServices {
     return await this.fluxoCaixaRepository.findAll();
   }
 
-  async listarTodosPorPagina(
-    numeroPagina: number,
-    quantidadeItemPagina: number
-  ) {
-    return await this.fluxoCaixaRepository.findAllByPage(
-      numeroPagina,
-      quantidadeItemPagina
-    );
-  }
   async listarTodosPorPaginaUsuario(
     numeroPagina: number,
     quantidadeItemPagina: number,

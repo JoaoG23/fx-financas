@@ -3,7 +3,7 @@ import autenticacao from "../../utils/Autenticacao";
 import criptografia from "../../utils/Criptografia";
 import { AutenticacaoUsuarioDto } from "../AutenticacaoUsuarioDto";
 import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/fluxocaixa.repository";
-
+import { ConflictError } from "rest-api-errors";
 export class AuthenticacaoService {
   public prisma: PrismaClient;
   public fluxocaixaRepository: FluxoCaixaRepository;
@@ -24,6 +24,26 @@ export class AuthenticacaoService {
       where: { username },
     });
     return usuario;
+  }
+
+  async validarExisteEmail(email: string) {
+    const existeEmail = await this.prisma.usuarios.findFirst({
+      where: { email },
+    });
+
+    if (existeEmail) {
+      throw new ConflictError("", "Esse email já está cadastrado no sistema");
+    }
+  }
+
+  async validarExisteUsername(username: string) {
+    const existeUsername = await this.prisma.usuarios.findFirst({
+      where: { username },
+    });
+
+    if (existeUsername) {
+      throw new ConflictError("","Esse nome de usuário já existe");
+    }
   }
 
   async logar(dadosLogin: any) {
@@ -59,14 +79,8 @@ export class AuthenticacaoService {
   async registar(dadosLogin: AutenticacaoUsuarioDto) {
     const { email, username, senha } = dadosLogin;
 
-    const existeEmail = await this.verificarExisteEmail(email);
-    const existeUsername = await this.verificarExisteUsername(username);
-    if (existeEmail) {
-      throw new Error("Esse email já está cadastrado no sistema");
-    }
-    if (existeUsername) {
-      throw new Error("Esse nome de usuário já existe");
-    }
+    await this.validarExisteEmail(email);
+    await this.validarExisteUsername(username);
 
     dadosLogin.senha = criptografia.crptografarSenha(senha);
 

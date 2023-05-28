@@ -1,14 +1,14 @@
 import { describe, test, expect, afterEach } from "vitest";
-import { FluxoCaixaRepository } from "./fluxocaixa.repository";
-import { limparTabelaFluxoCaixa } from "../test/utils/limparTabelaFluxoCaixa";
+import { FluxoCaixaRepository } from "../fluxocaixa.repository";
+import { limparTabelaFluxoCaixa } from "../../test/utils/limparTabelaFluxoCaixa";
 import {
   item1FluxocaixaCriado,
   item2FluxocaixaCriado,
   itemFluxocaixaCriado,
   itemFluxocaixaEditado,
-} from "../test/mock/fluxocaixasCriado";
+} from "../../test/mock/fluxocaixasCriado";
 import { Decimal } from "@prisma/client/runtime";
-import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
+import { FluxocaixaDto } from "../../fluxocaixa.dto/fluxocaixa.dto";
 
 describe("fluxocaixa.repository", () => {
   const repository = new FluxoCaixaRepository();

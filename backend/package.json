@@ -48,6 +48,7 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.4",
     "moment-timezone": "^0.5.40",
+    "rest-api-errors": "^1.2.5",
     "ts-node": "^10.9.1",
     "vitest": "^0.30.1"
   }

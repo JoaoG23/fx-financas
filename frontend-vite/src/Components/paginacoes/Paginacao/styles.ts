@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Light = styled.button`
+export const Button = styled.button`
   display: flex;
   align-items: center;
   border: 0.6px solid #fbfbfb;
@@ -24,4 +24,15 @@ export const Light = styled.button`
       transform: translateY(-4px);
     }
   }
+`;
+
+export const Container = styled.div`
+  display: flex;
+  margin: 5px;
+  align-items: center;
+  gap: 0.5em;
+  border: 0.6px solid #fbfbfb;
+  background-color: #fff;
+  border-radius: 0.7em;
+  color: #717f95;
 `;

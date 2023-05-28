@@ -1,30 +1,54 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
-import { ILocaisRepository } from "./InterfaceLocaisRepository";
+import { LocaisRepositoryInteface } from "./InterfaceLocaisRepository";
 import { LocaisDto } from "../locais.dto/locais.dto";
 
-export class LocaisRepository implements ILocaisRepository {
+export class LocaisRepository implements LocaisRepositoryInteface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
   constructor() {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
+  async countAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.locais.count({
+      where: { usuariosId },
+    });
+  }
+
   delete(id: string) {
     throw new Error("Method not implemented.");
   }
   findAll() {
     throw new Error("Method not implemented.");
   }
-  countAll() {
-    throw new Error("Method not implemented.");
-  }
-  findAllByPageAndUsuariosId(
+
+  async findAllByPageAndUsuariosId(
     numeroPagina: number,
     quantidadeItemPagina: number,
     usuariosId: string
   ) {
-    throw new Error("Method not implemented.");
+    const quantidadeTotalRegistros = await this.countAllByUsuariosId(
+      usuariosId
+    );
+    const itemsPorPagina = Number(quantidadeItemPagina);
+
+    const totalQuantidadePaginas =
+      await this.paginacao.retornaQuantidadePaginas(
+        quantidadeTotalRegistros,
+        itemsPorPagina
+      );
+
+    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
+    const fluxocaixa = await this.prisma.locais.findMany({
+      where: {
+        usuariosId,
+      },
+      skip: pularPagina,
+      take: itemsPorPagina,
+    });
+
+    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
   }
 
   async save(data: LocaisDto) {
