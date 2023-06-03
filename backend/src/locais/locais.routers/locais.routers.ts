@@ -1,5 +1,6 @@
 import { Router } from "express";
 const routers = Router();
+
 import locaisController from "../locais.controller/locais.controller";
 
 routers.get("/paginas", locaisController.listarTodosPorPaginaUsuariosId);

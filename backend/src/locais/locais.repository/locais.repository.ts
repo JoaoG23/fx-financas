@@ -6,6 +6,7 @@ import { LocaisDto } from "../locais.dto/locais.dto";
 export class LocaisRepository implements LocaisRepositoryInteface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
+
   constructor() {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
@@ -70,5 +71,4 @@ export class LocaisRepository implements LocaisRepositoryInteface {
     });
     return Locais;
   }
-
 }

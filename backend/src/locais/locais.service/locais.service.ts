@@ -1,4 +1,4 @@
-import { NotFoundError } from "rest-api-errors";
+import { ConflictError, NotFoundError } from "rest-api-errors";
 import { PrismaClient } from "@prisma/client";
 
 import { LocaisDto } from "../locais.dto/locais.dto";
@@ -8,12 +8,20 @@ import { Paginacao } from "../../utils/Paginacao";
 import { LocaisServiceInterface } from "./LocaisServiceInterface";
 
 import { LocaisRepositoryInteface } from "../locais.repository/InterfaceLocaisRepository";
+import { validarSeCamposCorretos } from "../locais.dto/validador.dto";
 
 export class LocaisServices implements LocaisServiceInterface {
   private locaisRepository: LocaisRepositoryInteface;
 
   constructor(locaisRepository: LocaisRepositoryInteface) {
     this.locaisRepository = locaisRepository;
+  }
+
+  validarTodosCampos(local: LocaisDto) {
+    const { error } = validarSeCamposCorretos(local);
+    if (error) {
+      throw new ConflictError(null, error.message);
+    }
   }
 
   async validarNaoExisteId(id: string) {
@@ -41,6 +49,8 @@ export class LocaisServices implements LocaisServiceInterface {
   }
 
   async criarUm(local: LocaisDto) {
+    await this.validarTodosCampos(local);
+
     return this.locaisRepository.save(local);
   }
 
