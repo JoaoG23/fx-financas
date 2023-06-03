@@ -6,13 +6,14 @@ import { tratarErroSemStatus } from "../../utils/tratarErroSemStatus/tratarErroS
 
 const locaisRepository = new LocaisRepository();
 const locaisService = new LocaisServices(locaisRepository);
-class LocaisController implements ITodosControllers {
-  async listarTodosPorPagina(req: Request, res: Response) {
+class LocaisController  {
+  async listarTodosPorPaginaUsuariosId(req: Request, res: Response) {
     try {
-      const { numero_pagina, quantidade_items_pagina } = req.query;
-      const pagina = await locaisService.listarTodosPorPagina(
+      const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;
+      const pagina = await locaisService.listarTodosPorPaginaUsuariosId(
         numero_pagina,
-        quantidade_items_pagina
+        quantidade_items_pagina,
+        usuariosId
       );
       res.status(200).json(pagina);
     } catch (error) {

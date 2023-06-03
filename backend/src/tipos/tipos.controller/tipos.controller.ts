@@ -1,8 +1,7 @@
 import { Request, Response } from "express";
-import { ITodosControllers } from "../../interfaces/ITodosControllers";
 import tiposService from "../tipos.service/tipos.service";
 
-class TiposController implements ITodosControllers {
+class TiposController  {
   async listarTodosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina } = req.query;

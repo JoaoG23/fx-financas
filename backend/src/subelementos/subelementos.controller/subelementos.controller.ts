@@ -2,11 +2,8 @@ import { Request, Response } from "express";
 import { ITodosControllers } from "../../interfaces/ITodosControllers";
 import subelementosService from "../subelementos.service/subelementos.service";
 
-interface ISubelementoController extends ITodosControllers {
-  listarPorElementosPorPagina(req: Request, res: Response);
-}
 
-class SubelementoController implements ISubelementoController {
+class SubelementoController  {
   async listarPorElementosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, elementosId } = req.query;

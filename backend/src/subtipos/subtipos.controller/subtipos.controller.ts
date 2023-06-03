@@ -1,9 +1,7 @@
-import { ITodosControllers } from "../../interfaces/ITodosControllers";
-import subtiposService from "../subtipos.service/subtipos.service";
 import { Request, Response } from "express";
+import subtiposService from "../subtipos.service/subtipos.service";
 
-
-class SubtiposController implements ITodosControllers {
+class SubtiposController  {
   async listarTodosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina } = req.query;

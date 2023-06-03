@@ -57,7 +57,7 @@ export function adicionarLocaisSubtests() {
         const usuario = await criarUsuario();
 
         const idUsuario = usuario.body.id;
-        const local = {
+        const localComUsuariosId = {
           ...localCriado,
           usuariosId: idUsuario,
         };
@@ -65,7 +65,7 @@ export function adicionarLocaisSubtests() {
         const retorno = await request(app)
           .post(`/api/v1/locais`)
           .set("auth", token)
-          .send(local);
+          .send(localComUsuariosId);
 
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);

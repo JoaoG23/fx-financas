@@ -82,7 +82,7 @@ model fluxocaixa {
 
 model tipos_despesas {
   id         String       @id @default(uuid())
-  descricao  String       @db.VarChar(70)
+  descricao  String       @db.VarChar(30)
   fluxocaixa fluxocaixa[]
 }
 
