@@ -1,12 +1,12 @@
-import { afterEach, beforeEach, describe, expect, test } from "vitest";
+import { beforeEach, describe, expect, test } from "vitest";
 import request from "supertest";
 
 import app from "../../../../app";
+
 import { localCriado } from "../../mock/locaisCriado";
 
-import { limparTabelaLocais } from "../../utils/limparTabelaLocais";
 import { limparTabelaUsuarios } from "../../../../usuarios/tests/utils/limparTabelaUsuarios";
-
+import { limparTabelaLocais } from "../../utils/limparTabelaLocais";
 import autenticacao from "../../../../utils/Autenticacao";
 
 const logado = {
@@ -56,10 +56,10 @@ export function adicionarLocaisSubtests() {
       test("Deverá registrar um local para usuario com dados enviados e retorná-lo com sucesso", async () => {
         const usuario = await criarUsuario();
 
-        const idUsuario = usuario.body.id
+        const idUsuario = usuario.body.id;
         const local = {
           ...localCriado,
-          usuariosId: idUsuario
+          usuariosId: idUsuario,
         };
 
         const retorno = await request(app)

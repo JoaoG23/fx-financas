@@ -3,28 +3,26 @@ import request from "supertest";
 
 import app from "../../../../app";
 
+import { localCriado } from "../../mock/locaisCriado";
+
 import { limparTabelaLocais } from "../../utils/limparTabelaLocais";
 import autenticacao from "../../../../utils/Autenticacao";
-
-import { localCriado } from "../../mock/locaisCriado";
-import { localEditado } from "../../mock/locaisEditado";
 
 const logado = {
   id: "id-usuario-test",
   nome: "testado",
 };
 
-
-export function editarLocaisSubtests() {
-  describe("PUT /api/v1/locais", async () => {
+export function deletarLocaisSubtests() {
+  describe("DELETE /api/v1/locais", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 
-    describe("(SUCESSO) Quando dados e id forem enviado após local ter sido criado", () => {
+    describe("(SUCESSO) Quando id for enviado após local ter sido criado", () => {
       beforeEach(async () => {
         await limparTabelaLocais();
       });
 
-      test("Deverá atualizar um local por id com dados enviados e retorná-lo com sucesso", async () => {
+      test("Deverá deletar um local por id e retorná-lo com sucesso", async () => {
         const criado = await request(app)
           .post(`/api/v1/locais`)
           .set("auth", token)
@@ -33,15 +31,24 @@ export function editarLocaisSubtests() {
         const idLocal = criado.body.id;
 
         const retorno = await request(app)
-          .put(`/api/v1/locais/${idLocal}`)
-          .set("auth", token)
-          .send(localEditado);
+          .delete(`/api/v1/locais/${idLocal}`)
+          .set("auth", token);
 
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);
 
-        expect(resposta).toHaveProperty("descricao", "NEXT");
+        expect(resposta).toHaveProperty("descricao", "BRADESCO");
         expect(resposta).toHaveProperty("usuariosId", null);
+      });
+
+      test("Deverá não listar local na base de dados", async () => {
+        const retorno = await request(app)
+          .get(`/api/v1/locais`)
+          .set("auth", token);
+
+        const resposta = retorno.body;
+        expect(retorno.statusCode).toEqual(200);
+        expect(resposta).toStrictEqual([]);
       });
     });
   });
