@@ -40,16 +40,6 @@ export function deletarLocaisSubtests() {
         expect(resposta).toHaveProperty("descricao", "BRADESCO");
         expect(resposta).toHaveProperty("usuariosId", null);
       });
-
-      test("Deverá não listar local na base de dados", async () => {
-        const retorno = await request(app)
-          .get(`/api/v1/locais`)
-          .set("auth", token);
-
-        const resposta = retorno.body;
-        expect(retorno.statusCode).toEqual(200);
-        expect(resposta).toStrictEqual([]);
-      });
     });
   });
 }

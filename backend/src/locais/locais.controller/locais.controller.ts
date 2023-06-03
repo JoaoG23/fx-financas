@@ -6,7 +6,7 @@ import { tratarErroSemStatus } from "../../utils/tratarErroSemStatus/tratarErroS
 
 const locaisRepository = new LocaisRepository();
 const locaisService = new LocaisServices(locaisRepository);
-class LocaisController  {
+class LocaisController {
   async listarTodosPorPaginaUsuariosId(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;
@@ -21,19 +21,11 @@ class LocaisController  {
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
-    try {
-      const todos = await locaisService.listarTodos();
-      res.status(200).json(todos);
-    } catch (error) {
-      res.status(tratarErroSemStatus(error.status)).json(error.message);
-    }
-  }
 
   async listaPorId(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const locais = await locaisService.listaPorId(id);
+      const locais = await locaisService.listaUmPorId(id);
       res.status(200).json(locais);
     } catch (error) {
       res.status(tratarErroSemStatus(error.status)).json(error.message);

@@ -5,8 +5,6 @@ export interface LocaisServiceInterface {
 
   listaUmPorId(id: string);
 
-  contarTotalRegistros();
-
   listarTodosPorPaginaUsuariosId(numeroPagina: number, quantidadeItemPagina: number, usuariosId: string);
 
   criarUm(local: LocaisDto);

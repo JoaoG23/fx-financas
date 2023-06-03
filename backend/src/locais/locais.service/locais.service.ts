@@ -10,18 +10,10 @@ import { LocaisServiceInterface } from "./LocaisServiceInterface";
 import { LocaisRepositoryInteface } from "../locais.repository/InterfaceLocaisRepository";
 
 export class LocaisServices implements LocaisServiceInterface {
-  private prismaService: PrismaClient;
-  private paginacaoService: Paginacao;
   private locaisRepository: LocaisRepositoryInteface;
 
   constructor(locaisRepository: LocaisRepositoryInteface) {
-    this.prismaService = new PrismaClient();
-    this.paginacaoService = new Paginacao();
     this.locaisRepository = locaisRepository;
-  }
-
-  async criarUm(local: LocaisDto) {
-    return this.locaisRepository.save(local);
   }
 
   async validarNaoExisteId(id: string) {
@@ -36,32 +28,20 @@ export class LocaisServices implements LocaisServiceInterface {
     return local;
   }
 
-  async listarTodos() {
-    const locais = await this.prismaService.locais.findMany({});
-    return locais;
-  }
-  async listaPorId(id: string) {
-    const locais = await this.prismaService.locais.findUnique({
-      where: { id },
-    });
-    return locais;
-  }
-
-  async contarTotalRegistros() {
-    const contagem = await this.prismaService.locais.count();
-    return contagem;
-  }
-
   async listarTodosPorPaginaUsuariosId(
     numeroPagina: number,
     quantidadeItemPagina: number,
-    usuariosId:string
+    usuariosId: string
   ) {
     return await this.locaisRepository.findAllByPageAndUsuariosId(
       numeroPagina,
       quantidadeItemPagina,
       usuariosId
     );
+  }
+
+  async criarUm(local: LocaisDto) {
+    return this.locaisRepository.save(local);
   }
 
   async atualizarUmPorId(id: string, local: LocaisDto) {
