@@ -8,7 +8,6 @@ import * as TiposDespesaStyle from "./styles";
 import { buscarTodosTiposDespesas } from "./api";
 
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
-import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { TableComum } from "../../../Components/tables/TableComum";
 import { CabecalhoTabela } from "./components/tabela/CabecalhoTabela";
 import { LinhaTipoDespesas } from "./components/tabela/Linha";
@@ -43,9 +42,6 @@ export const TodosTiposDespesa: React.FC = () => {
       {isLoading && <SpinnerCarregamento />}
       <TiposDespesaStyle.Header>
         <h3>Tipo Despesa</h3>
-        <ButtonDefault onClick={() => navigate("adicionar")}>
-          Adicionar +
-        </ButtonDefault>
       </TiposDespesaStyle.Header>
 
       <TableComum>

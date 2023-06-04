@@ -7,6 +7,7 @@ import { buscarTodosLocais } from "./api";
 import * as Selects from "./styles";
 
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+import { Local } from "../../../types/Local";
 
 type Props<T = unknown> = {
   label?: string;
@@ -18,8 +19,7 @@ type Props<T = unknown> = {
   opcoes?: T[];
 };
 
-
-export const TipoGastoSelect: React.FC<Props<any>> = ({
+export const LocaisSelect: React.FC<Props<any>> = ({
   label,
   name,
   register,
@@ -27,13 +27,13 @@ export const TipoGastoSelect: React.FC<Props<any>> = ({
   opcoes = [],
   requirido = true,
 }) => {
-  const { isLoading, data } = useQuery("todos-tipos-gasto", buscarTodosLocais, {
+  const { isLoading, data } = useQuery("todos-locais", buscarTodosLocais, {
     onError: (error: any) => {
       toast.error(`Houve um error: ${error.response.data}`);
     },
   });
 
-  const tipoGastos = data?.data || opcoes ;
+  const locais = data?.data || opcoes;
 
   return (
     <Selects.ContainerInput>
@@ -44,8 +44,8 @@ export const TipoGastoSelect: React.FC<Props<any>> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
       >
-        <option value="">Selecione um tipos de gasto</option>
-        {tipoGastos?.map((option: any) => (
+        <option value="">Selecione um local da movimentação</option>
+        {locais?.map((option: Local) => (
           <option key={option?.id} value={option?.id}>
             {option?.descricao}
           </option>

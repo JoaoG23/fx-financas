@@ -11,6 +11,9 @@ export class LocaisRepository implements LocaisRepositoryInteface {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
+  async findAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.locais.findMany({ where: { usuariosId } });
+  }
 
   async updateById(id: string, local: LocaisDto) {
     return await this.prisma.locais.update({
@@ -22,6 +25,12 @@ export class LocaisRepository implements LocaisRepositoryInteface {
   async deleteById(id: string) {
     return await this.prisma.locais.delete({
       where: { id },
+    });
+  }
+
+  async save(data: LocaisDto) {
+    return await this.prisma.locais.create({
+      data,
     });
   }
 
@@ -59,16 +68,10 @@ export class LocaisRepository implements LocaisRepositoryInteface {
     return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
   }
 
-  async save(data: LocaisDto) {
-    return await this.prisma.locais.create({
-      data,
-    });
-  }
-
   async findById(id: string) {
-    const Locais = await this.prisma.locais.findFirst({
+    const locais = await this.prisma.locais.findFirst({
       where: { id },
     });
-    return Locais;
+    return locais;
   }
 }

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 13vw;
   height: 100vh;
-  padding-left: 0.5em;
+  padding-left: 5px;
 
   position: absolute;
   left: 0px;
@@ -20,7 +20,6 @@ export const Container = styled.div`
   /* background-color:#6979F8; */
   /* background-color:#FF65A4; */
   /* background-image:url('./assets/login-fundo.jpg'); */
-
   /* background-color: #dcfc34; */
   box-shadow: 2px 2px 4px #00000027;
 
@@ -45,8 +44,8 @@ export const Image = styled.img`
 
 export const Item = styled.div`
   display: flex;
+  border-radius: 8px;
 
-  /* padding: 2px; */
   align-items: center;
   gap: 1em;
 
@@ -55,13 +54,14 @@ export const Item = styled.div`
     color: #fff;
   }
   :hover {
-    border-radius: 1em;
-    animation: toRightButtons 0.2s forwards ease-in;
+    transition: 0.3s;
+    background-color: #0000003f;
   }
 `;
 
 export const ColecaoElementos = styled.summary`
   display: flex;
+  border-radius: 12px;
 
   align-items: center;
   gap: 1em;
@@ -69,22 +69,10 @@ export const ColecaoElementos = styled.summary`
   text-decoration: none;
 
   :hover {
-    border-radius: 1em;
+    transition: 0.3s;
+    background-color: #0000003f;
 
-    animation: toRightButtons 0.2s forwards ease-in;
   }
 
-  @keyframes toRightButtons {
-    0% {
-      border-radius: 0.1em;
-      background-color: #636573;
-      transform: translateX(0px);
-    }
 
-    100% {
-      border-radius: 1em;
-      background-color: #0000003f;
-      transform: translateX(2px);
-    }
-  }
 `;

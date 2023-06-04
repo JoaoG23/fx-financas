@@ -40,7 +40,7 @@ export function adicionarLocaisSubtests() {
           .send(localCriado);
 
         const resposta = retorno.body;
-        expect(retorno.statusCode).toEqual(200);
+        expect(retorno.statusCode).toEqual(201);
 
         expect(resposta).toHaveProperty("descricao", "BRADESCO");
         expect(resposta).toHaveProperty("usuariosId", null);
@@ -68,7 +68,7 @@ export function adicionarLocaisSubtests() {
           .send(localComUsuariosId);
 
         const resposta = retorno.body;
-        expect(retorno.statusCode).toEqual(200);
+        expect(retorno.statusCode).toEqual(201);
 
         expect(resposta).toHaveProperty("descricao", "BRADESCO");
         expect(resposta).toHaveProperty("usuariosId", idUsuario);

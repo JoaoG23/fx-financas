@@ -5,12 +5,14 @@ import {
   BsFillFileRuledFill,
   BsFillGrid3X2GapFill,
   BsFillPieChartFill,
+  BsFillBasket2Fill,
 } from "react-icons/bs";
 import { IoLogOut } from "react-icons/io5";
 
 import { categorias } from "./data/listLinks";
 
 import * as SideBar from "./styles";
+
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 const Sidebar: React.FC = () => {
@@ -29,7 +31,7 @@ const Sidebar: React.FC = () => {
         </Link>
       </SideBar.Item>
       <SideBar.Item>
-        <BsFillFileRuledFill color="#fff" />
+        <BsFillBasket2Fill color="#fff" />
         <Link to={"/tipos_despesas"}>
           <p>Tipos de Despesas</p>
         </Link>

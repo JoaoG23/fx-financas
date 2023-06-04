@@ -33,6 +33,16 @@ class LocaisController {
     }
   }
 
+  async listarTodosPorUsuariosId(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.query;
+      const locais = await locaisService.listarTodosPorUsuariosId(usuariosId);
+      res.status(200).json(locais);
+    } catch (error) {
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
+    }
+  }
+
   async deletarPorId(req: Request, res: Response) {
     const { id } = req.params;
     try {
@@ -46,7 +56,7 @@ class LocaisController {
   async criar(req: Request, res: Response) {
     try {
       const locais = await locaisService.criarUm(req.body);
-      res.status(200).json(locais);
+      res.status(201).json(locais);
     } catch (error) {
       res.status(tratarErroSemStatus(error.status)).json(error.message);
     }

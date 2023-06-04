@@ -5,7 +5,7 @@ export const validarSeCamposCorretos = (localDto:LocaisDto) => {
   const schema = Joi.object({
     id: Joi.string(),
     descricao: Joi.string().required().max(50),
-    usuariosId: Joi.string().required(),
+    usuariosId: Joi.string().allow(null),
   });
 
   return schema.validate(localDto);

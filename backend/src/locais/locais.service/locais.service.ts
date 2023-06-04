@@ -36,6 +36,10 @@ export class LocaisServices implements LocaisServiceInterface {
     return local;
   }
 
+  async listarTodosPorUsuariosId(usuariosId:string) {
+    return await this.locaisRepository.findAllByUsuariosId(usuariosId);
+  }
+
   async listarTodosPorPaginaUsuariosId(
     numeroPagina: number,
     quantidadeItemPagina: number,
