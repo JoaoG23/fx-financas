@@ -3,6 +3,7 @@ import Dashboard from "../../Pages/Dashboard";
 import PrivateRoute from "../Auth/PrivateRouter";
 import { CategoriasRotas } from "./CategoriasRotas";
 import { FluxocaixaRotas } from "./FluxocaixaRotas";
+import { TodosTiposDespesa } from "../../Pages/tiposdespesas/TodosTiposDespesas";
 
 const AutenticadasRotas = () => {
   return (
@@ -13,6 +14,16 @@ const AutenticadasRotas = () => {
           element={
             <PrivateRoute redirectTo={"/"}>
               <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+      <Routes>
+        <Route
+          path="/tipos_despesas"
+          element={
+            <PrivateRoute redirectTo={"/"}>
+              <TodosTiposDespesa />
             </PrivateRoute>
           }
         />

@@ -46,6 +46,7 @@ export const Image = styled.img`
 export const Item = styled.div`
   display: flex;
 
+  /* padding: 2px; */
   align-items: center;
   gap: 1em;
 
@@ -54,6 +55,7 @@ export const Item = styled.div`
     color: #fff;
   }
   :hover {
+    border-radius: 1em;
     animation: toRightButtons 0.2s forwards ease-in;
   }
 `;
@@ -76,13 +78,13 @@ export const ColecaoElementos = styled.summary`
     0% {
       border-radius: 0.1em;
       background-color: #636573;
-      transform: translateX(0em);
+      transform: translateX(0px);
     }
 
     100% {
       border-radius: 1em;
       background-color: #0000003f;
-      transform: translateX(0.1em);
+      transform: translateX(2px);
     }
   }
 `;

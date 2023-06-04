@@ -29,6 +29,12 @@ const Sidebar: React.FC = () => {
         </Link>
       </SideBar.Item>
       <SideBar.Item>
+        <BsFillFileRuledFill color="#fff" />
+        <Link to={"/tipos_despesas"}>
+          <p>Tipos de Despesas</p>
+        </Link>
+      </SideBar.Item>
+      <SideBar.Item>
         <BsFillCalendarWeekFill color="#fff" />
         <Link to={"/agenda"}>
           <p>Agenda</p>
