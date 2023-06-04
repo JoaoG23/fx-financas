@@ -22,7 +22,7 @@ export class TipoDespesasServices {
   async validarNaoExisteId(id: string) {
     const existeIdLocal = await this.tiposDespesaRepository.findById(id);
     if (!existeIdLocal) {
-      throw new NotFoundError("", "Não existe esse Id para operação");
+      throw new NotFoundError(null, "Não existe esse Id para operação");
     }
   }
 
