@@ -1,8 +1,8 @@
 import { ConflictError, NotFoundError } from "rest-api-errors";
 
 import { TipoDespesaDto } from "../tiposDespesas.dto/tiposDespesas.dto";
-
 import { validarSeCamposCorretos } from "../tiposDespesas.dto/validador.dto";
+
 import { TiposDespesasRepositoryInteface } from "../tiposDespesas.repository/tiposDespesas.repositoryInterface";
 
 export class TipoDespesasServices {
@@ -27,8 +27,7 @@ export class TipoDespesasServices {
   }
 
   async listaUmPorId(id: string) {
-    const local = await this.tiposDespesaRepository.findById(id);
-    return local;
+    return await this.tiposDespesaRepository.findById(id);
   }
 
   async listarTodosPorPagina(

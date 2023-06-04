@@ -15,7 +15,7 @@ const logado = {
 };
 
 export function buscarPaginaTodosTiposDespesaSubtests() {
-  describe("GET /api/v1/locais/paginas", async () => {
+  describe("GET /api/v1/tipos_despesas/paginas", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 
     describe("(SUCESSO) Quando após tipo de despesa ter sido criado", () => {
@@ -28,13 +28,13 @@ export function buscarPaginaTodosTiposDespesaSubtests() {
         const quantidadeItemPagina = 1;
 
         const criado = await request(app)
-          .post(`/api/v1/locais`)
+          .post(`/api/v1/tipos_despesas`)
           .set("auth", token)
           .send(tipoDespesaCriado);
 
         const retorno = await request(app)
           .get(
-            `/api/v1/locais/paginas?numero_pagina=${numeroPagina}&quantidade_items_pagina=${quantidadeItemPagina}`
+            `/api/v1/tipos_despesas/paginas?numero_pagina=${numeroPagina}&quantidade_items_pagina=${quantidadeItemPagina}`
           )
           .set("auth", token);
 
