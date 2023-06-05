@@ -2,7 +2,7 @@ import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-import { buscarTodosLocaisPorId } from "./api";
+import { buscarTodosTipoDespesa } from "./api";
 
 import * as Selects from "./styles";
 
@@ -20,7 +20,7 @@ type Props<T = unknown> = {
   opcoes?: T[];
 };
 
-export const LocaisSelect: React.FC<Props<any>> = ({
+export const TipoDespesaSelect: React.FC<Props<any>> = ({
   label,
   name,
   register,
@@ -28,10 +28,9 @@ export const LocaisSelect: React.FC<Props<any>> = ({
   opcoes = [],
   requirido = true,
 }) => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
   const { isLoading, data } = useQuery(
-    ["todos-locais", idConvertido],
-    () => buscarTodosLocaisPorId(idConvertido!),
+    "todos-tipos-despesas",
+    buscarTodosTipoDespesa,
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);
@@ -39,19 +38,19 @@ export const LocaisSelect: React.FC<Props<any>> = ({
     }
   );
 
-  const locais = data?.data || opcoes;
+  const tipoDespesas = data?.data || opcoes;
 
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
       <strong>{label}</strong>
       <Selects.Container
-        aria-label="locais"
+        aria-label="tipoDespesa"
         {...register(name, { required: requirido })}
         disabled={desativar}
       >
-        <option value="">Selecione um local da movimentação</option>
-        {locais?.map((option: Local) => (
+        <option value="">Selecione um tipo despesa</option>
+        {tipoDespesas?.map((option: Local) => (
           <option key={option?.id} value={option?.id}>
             {option?.descricao}
           </option>

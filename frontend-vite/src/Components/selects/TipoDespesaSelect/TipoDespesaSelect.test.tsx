@@ -1,17 +1,17 @@
 import "@testing-library/jest-dom";
 import { fireEvent, render } from "@testing-library/react";
+
 import { describe, test, expect } from "vitest";
-
-import { LocaisSelect } from ".";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { TipoDespesaSelect } from ".";
 
-describe("<LocaisSelect />", () => {
+describe("<TipoDespesaSelect />", () => {
   const queryClient = new QueryClient();
 
   test("should to render in the screen", () => {
     const { getByText, getByLabelText } = render(
       <QueryClientProvider client={queryClient}>
-        <LocaisSelect
+        <TipoDespesaSelect
           name={"gasto"}
           register={() => {}}
           opcoes={[
@@ -22,17 +22,17 @@ describe("<LocaisSelect />", () => {
       </QueryClientProvider>
     );
 
-    const option = getByText("Selecione um local da movimentação");
+    const option = getByText("Selecione um tipo despesa");
     expect(option).toBeInTheDocument();
 
-    const select = getByLabelText("locais");
+    const select = getByLabelText("tipoDespesa");
     expect(select).toBeInTheDocument();
   });
 
   test("Should able select one when selected one option", () => {
     const { getByDisplayValue, getByLabelText } = render(
       <QueryClientProvider client={queryClient}>
-        <LocaisSelect
+        <TipoDespesaSelect
           name={"gasto"}
           register={() => {}}
           opcoes={[
@@ -42,7 +42,7 @@ describe("<LocaisSelect />", () => {
         />
       </QueryClientProvider>
     );
-    const select = getByLabelText("locais");
+    const select = getByLabelText("tipoDespesa");
     expect(select).toBeInTheDocument();
 
     fireEvent.change(select, {
@@ -55,10 +55,10 @@ describe("<LocaisSelect />", () => {
   test("it verifies if the select element is disabled", () => {
     const { getByLabelText } = render(
       <QueryClientProvider client={queryClient}>
-        <LocaisSelect name={"gasto"} register={() => {}} desativar />
+        <TipoDespesaSelect name={"gasto"} register={() => {}} desativar />
       </QueryClientProvider>
     );
-    const select = getByLabelText("locais");
+    const select = getByLabelText("tipoDespesa");
 
     expect(select).toBeDisabled();
   });

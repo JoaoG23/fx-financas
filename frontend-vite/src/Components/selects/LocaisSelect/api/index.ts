@@ -1,12 +1,10 @@
 import { endpoint } from "../../../../services/endpoint";
 
-type Criterios = {
-  numero_pagina?: number;
-  quantidade_items_pagina?: number;
-  subelementosId?: string;
-};
-
-export async function buscarTodosLocaisPorId() {
-  const resposta = await endpoint.get(`/locais`, {});
+export async function buscarTodosLocaisPorId(usuariosId: string) {
+  const resposta = await endpoint.get(`/locais`, {
+    params: {
+      usuariosId,
+    },
+  });
   return resposta;
 }
