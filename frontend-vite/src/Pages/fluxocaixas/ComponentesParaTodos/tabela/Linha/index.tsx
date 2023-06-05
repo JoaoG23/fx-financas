@@ -10,19 +10,19 @@ type Props = {
 export const LinhaItemFluxocaixa: React.FC<Props> = ({ item }) => {
   return (
     <tr aria-label="linha">
-        <td>{item?.orderador}</td>
-        <td>{formataDataPadraoBR(item?.data_insersao?.toString()!)}</td>
-        <td>{formataHoraPadraoBR(item?.data_insersao?.toString()!)}</td>
-        <td>{item?.elementos?.descricao}</td>
-        <td>{item?.subelementos?.descricao}</td>
-        <td>{item?.tipos?.descricao}</td>
-        <td>{item?.subtipos?.descricao}</td>
-        <td>{item?.descricao}</td>
-        <td>{item?.valor}</td>
-        <td>{item?.saldo}</td>
-        <td>
-          <AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa" />
-        </td>
+      <td>{formataDataPadraoBR(item?.data_insersao?.toString()!)}</td>
+      <td>{formataHoraPadraoBR(item?.data_insersao?.toString()!)}</td>
+      <td>{item?.elementos?.descricao}</td>
+      <td>{item?.subelementos?.descricao}</td>
+      <td>{item?.tipos?.descricao}</td>
+      <td>{item?.subtipos?.descricao}</td>
+      <td>{item?.descricao}</td>
+      <td>{item?.locais?.descricao}</td>
+      <td>{item?.valor}</td>
+      <td>{item?.saldo}</td>
+      <td>
+        <AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa" />
+      </td>
     </tr>
   );
 };

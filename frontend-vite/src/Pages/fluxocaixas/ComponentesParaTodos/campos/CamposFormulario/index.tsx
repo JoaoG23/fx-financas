@@ -15,6 +15,7 @@ import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect
 import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
 import { TipoGastoSelect } from "../../../../../Components/selects/TipoGastoSelect";
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
+import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -95,6 +96,17 @@ export const CamposFormulario: React.FC<Props> = ({
               />
               {errors?.locaisId?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo locais vazio! Por gentileza preencher-o!" />
+              )}
+            </div>
+            <div>
+              <TipoDespesaSelect
+                register={register}
+                name="tipos_despesasId"
+                control={control}
+                label="Tipos Despesa"
+              />
+              {errors?.tipos_despesasId?.type === "required" && (
+                <AlertCampoVazio mensagem="Campo tipo despesa vazio! Por gentileza preencher-o!" />
               )}
             </div>
             <div>

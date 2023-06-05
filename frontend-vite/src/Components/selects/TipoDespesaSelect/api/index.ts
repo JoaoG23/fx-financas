@@ -9,8 +9,8 @@ type Criterios = {
 export async function buscarTodosTipoDespesa() {
   const resposta = await endpoint.get(`/tipos_despesas/paginas`, {
     params: {
-      quantidade_items_pagina: 1,
-      numero_pagina: 20,
+      quantidade_items_pagina: 20,
+      numero_pagina: 1,
     },
   });
   return resposta;

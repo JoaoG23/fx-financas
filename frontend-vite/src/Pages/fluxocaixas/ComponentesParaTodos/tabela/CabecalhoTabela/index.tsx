@@ -3,7 +3,6 @@ import React from "react";
 export const CabecalhoTabela: React.FC = () => {
   return (
     <tr>
-      <th>Id</th>
       <th>Data Insersão</th>
       <th>Hora Insersão</th>
       <th>Elemento</th>
@@ -11,6 +10,7 @@ export const CabecalhoTabela: React.FC = () => {
       <th>Tipo</th>
       <th>Subtipo</th>
       <th>Descrição</th>
+      <th>Locais</th>
       <th>Valor</th>
       <th>Saldo Atual</th>
       <th>Acoes</th>

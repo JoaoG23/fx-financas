@@ -4,15 +4,19 @@ export type ItemFluxoCaixa = {
   data_insersao?: Date | string;
   hora_insersao?: Date | string;
   descricao?: string;
-  entradaSaida?:boolean;
-  valor?:  string;
+  entradaSaida?: boolean;
+  valor?: number;
   saldo?: number;
   elementosId?: string;
   usuariosId?: string;
-  locaisId?:string;
-  subelementosId?:string;
+  locaisId?: string;
+  subelementosId?: string;
   tiposId?: string;
   subtiposId?: string;
+  tipos_despesasId?: string;
+  locais?: {
+    descricao?: string;
+  };
   elementos?: {
     descricao?: string;
   };
@@ -20,21 +24,25 @@ export type ItemFluxoCaixa = {
     descricao?: string;
   };
   tipos?: {
-    descricao?:string
+    descricao?: string;
   };
   subtipos?: {
-    descricao?:string
+    descricao?: string;
+  };
+  tipos_despesas?: {
+    descricao?: string;
   };
 };
 export type ItemFluxoCaixaCriado = {
   descricao?: string;
-  entradaSaida?:boolean;
-  valor?:  string;
+  entradaSaida?: boolean;
+  valor?: string;
   saldo?: number;
   elementosId?: string;
   usuariosId?: string;
-  locaisId?:string;
-  subelementosId?:string;
+  locaisId?: string;
+  subelementosId?: string;
   tiposId?: string;
   subtiposId?: string;
+  tipos_despesasId?: string;
 };

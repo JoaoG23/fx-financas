@@ -38,7 +38,7 @@ export const TipoDespesaSelect: React.FC<Props<any>> = ({
     }
   );
 
-  const tipoDespesas = data?.data || opcoes;
+  const tipoDespesas = data?.data[1] || opcoes;
 
   return (
     <Selects.ContainerInput>
