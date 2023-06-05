@@ -2,7 +2,6 @@ import { Router } from "express";
 const routers = Router();
 
 import { FluxoCaixaController } from "../fluxocaixa.controller/fluxocaixa.controller";
-import { FluxoCaixaServices } from "../fluxocaixa.service/fluxocaixa.service";
 
 const fluxocaixaController = new FluxoCaixaController();
 

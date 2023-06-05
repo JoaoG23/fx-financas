@@ -47,6 +47,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
           descricao: true,
         },
       },
+      locais: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
       tipos: {
         select: {
           descricao: true,
@@ -59,6 +65,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
       },
     };
   }
+
   describeAndIdAllFields() {
     return {
       elementos: {
@@ -68,6 +75,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
         },
       },
       subelementos: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
+      locais: {
         select: {
           id: true,
           descricao: true,

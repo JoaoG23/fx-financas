@@ -39,6 +39,7 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
   );
 
   const itemsFluxoCaixa = data?.data[1];
+  console.log("🚀 ~ file: index.tsx:42 ~ itemsFluxoCaixa:", itemsFluxoCaixa)
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
   const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
 

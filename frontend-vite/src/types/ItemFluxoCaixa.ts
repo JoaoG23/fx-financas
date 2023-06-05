@@ -33,6 +33,7 @@ export type ItemFluxoCaixa = {
     descricao?: string;
   };
 };
+
 export type ItemFluxoCaixaCriado = {
   descricao?: string;
   entradaSaida?: boolean;
