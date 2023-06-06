@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Campos = styled.section`
   display: grid;
 
-  /* grid-template-columns: 20% auto; */
 `;
 
 export const UmaColuna = styled.section`

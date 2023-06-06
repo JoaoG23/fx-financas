@@ -8,6 +8,7 @@ export const Light = styled.button`
   border-radius: 0.7em;
   color: #717f95;
   padding: 0.5em;
+  gap: 3px;
 
   box-shadow: 0 0 2px gray;
 
