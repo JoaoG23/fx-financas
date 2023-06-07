@@ -48,7 +48,7 @@ export class FluxoCaixaController {
   async criar(req: Request, res: Response) {
     try {
       const fluxocaixa = await fluxocaixaService.criar(req.body);
-      res.status(200).json(fluxocaixa);
+      res.status(201).json(fluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
     }
