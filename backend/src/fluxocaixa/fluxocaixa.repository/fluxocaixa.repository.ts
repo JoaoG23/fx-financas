@@ -8,13 +8,13 @@ export interface IFluxocaixaRepository {
   update(id: string, newData: FluxocaixaDto);
   delete(id: string);
   findById(id: string);
-  findLastItem();
+  findLastItemByUsuariosId(usuariosId: string);
   findAll();
   describeAllFields();
   countAllByIdUsuario(usuariosId: string);
   updateLastItemSaldo(valor: number, usuariosId: string);
-  sumBiggerThanZero(usuarioId: string);
-  sumLessThanZero(usuarioId: string);
+  sumBiggerThanZero(usuariosId: string);
+  sumLessThanZero(usuariosId: string);
   findAllByPageAndUsuariosId(
     numeroPagina: number,
     quantidadeItemPagina: number,
@@ -101,38 +101,6 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     };
   }
 
-  async findAllByPageAndUsuariosIdAndThisMonth(
-    numeroPagina: number,
-    quantidadeItemPagina: number,
-    usuariosId: string
-  ) {
-    const quantidadeTotalRegistros = await this.countAllByIdUsuario(usuariosId);
-    const itemsPorPagina = Number(quantidadeItemPagina);
-
-    const totalQuantidadePaginas =
-      await this.paginacao.retornaQuantidadePaginas(
-        quantidadeTotalRegistros,
-        itemsPorPagina
-      );
-
-    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
-    const fluxocaixa = await this.prisma.fluxocaixa.findMany({
-      orderBy: [
-        {
-          orderador: "desc",
-        },
-      ],
-
-      where: {
-        usuariosId,
-      },
-      skip: pularPagina,
-      take: itemsPorPagina,
-    });
-
-    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
-  }
-
   async updateLastItemSaldo(valor: number, usuariosId: string) {
     return await this.prisma.$executeRawUnsafe(
       `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT MAX(orderador) FROM fluxocaixa) AND "usuariosId" = $2`,
@@ -196,12 +164,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     return fluxocaixa;
   }
 
-  async findLastItem() {
+  async findLastItemByUsuariosId(usuariosId: string) {
     return await this.prisma.fluxocaixa.findFirst({
+      where: { usuariosId },
       orderBy: {
         orderador: "desc",
       },
-      take: 1,
     });
   }
 
@@ -243,6 +211,38 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
         usuariosId,
       },
       include: this.describeAllFields(),
+      skip: pularPagina,
+      take: itemsPorPagina,
+    });
+
+    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
+  }
+
+  async findAllByPageAndUsuariosIdAndThisMonth(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    usuariosId: string
+  ) {
+    const quantidadeTotalRegistros = await this.countAllByIdUsuario(usuariosId);
+    const itemsPorPagina = Number(quantidadeItemPagina);
+
+    const totalQuantidadePaginas =
+      await this.paginacao.retornaQuantidadePaginas(
+        quantidadeTotalRegistros,
+        itemsPorPagina
+      );
+
+    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
+    const fluxocaixa = await this.prisma.fluxocaixa.findMany({
+      orderBy: [
+        {
+          orderador: "desc",
+        },
+      ],
+
+      where: {
+        usuariosId,
+      },
       skip: pularPagina,
       take: itemsPorPagina,
     });

@@ -65,7 +65,7 @@ export function buscarTodosLocaisPorUsuariosIdSubtests() {
         await limparTabelaLocais();
       });
 
-      test.only("Não deverá ser capaz de listar local nenhum", async () => {
+      test("Não deverá ser capaz de listar local nenhum", async () => {
 
         const idUsuario = '';
         const localComUsuariosId = {

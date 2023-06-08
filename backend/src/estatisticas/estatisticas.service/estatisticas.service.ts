@@ -8,11 +8,34 @@ export class EstatisticasService {
     this.estatisticasRepository = estatisticasRepository;
   }
 
-  async buscarSomaTotalGastosMesPorUsuario(usuariosId: string) {
-    return await this.estatisticasRepository.sumAllValorOfMonthLessThanZeroByUsuarioId(
-      usuariosId
-    );
+  async buscarGastosTotalMesPorUsuario(usuariosId: string) {
+    const sum =
+      await this.estatisticasRepository.sumAllValorOfMonthLessThanZeroByUsuarioId(
+        usuariosId
+      );
+
+    const totalGastosMesUsuario = sum._sum.valor;
+
+    return { totalGastosMesUsuario };
+  }
+  
+  async buscarGanhosTotalMesPorUsuario(usuariosId: string) {
+    const sum =
+      await this.estatisticasRepository.sumAllValorOfMonthMoreThanZeroByUsuarioId(
+        usuariosId
+      );
+
+    const ganhosTotalMesUsuario = sum._sum.valor;
+
+    return { ganhosTotalMesUsuario };
+  }
+
+  async buscarSaldoAtualPorUsuario(usuariosId: string) {
+    const itemFluxoCaixa =
+      await this.estatisticasRepository.findLastSaldoByUsuariosId(usuariosId);
+
+    return { saldoAtual: itemFluxoCaixa.saldo };
   }
 }
 
-export default new EstatisticasService(new EstatisticaRepository())
+export default new EstatisticasService(new EstatisticaRepository());

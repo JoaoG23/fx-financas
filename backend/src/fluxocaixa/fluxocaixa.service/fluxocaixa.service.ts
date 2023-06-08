@@ -52,7 +52,7 @@ export class FluxoCaixaServices {
     const dataAgora = moment().utc(true).format();
     const horaAgora = moment().utc(true).format();
 
-    const ultimoItemAdicionado = await this.fluxoCaixaRepository.findLastItem();
+    const ultimoItemAdicionado = await this.fluxoCaixaRepository.findLastItemByUsuariosId(dados.usuariosId);
 
     const saldoFinal =
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);

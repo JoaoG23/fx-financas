@@ -7,6 +7,38 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
     this.prisma = new PrismaClient();
   }
 
+  async sumAllValorOfMonthMoreThanZeroByUsuarioId(usuariosId: string) {
+    const currentDate = new Date();
+
+    const firstDayOfMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      1
+    );
+
+    const lastDayOfMonth = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth() + 1,
+      0
+    );
+
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        data_insersao: {
+          gte: firstDayOfMonth,
+          lt: lastDayOfMonth,
+        },
+        valor: {
+          gt: 0,
+        },
+        usuariosId,
+      },
+    });
+  }
+
   async sumAllValorOfMonthLessThanZeroByUsuarioId(usuariosId: string) {
     const currentDate = new Date();
 
@@ -35,6 +67,15 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
           lt: 0,
         },
         usuariosId,
+      },
+    });
+  }
+
+  async findLastSaldoByUsuariosId(usuariosId: string) {
+    return await this.prisma.fluxocaixa.findFirst({
+      where: { usuariosId },
+      orderBy: {
+        orderador: "desc",
       },
     });
   }

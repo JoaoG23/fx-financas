@@ -93,7 +93,7 @@ export class AuthenticacaoService {
 
     await this.fluxocaixaRepository.save({
       descricao: "Saldo inicial",
-      valor: 100,
+      valor: 0,
       elementosId: null,
       usuariosId: novoUsuario.id,
       locaisId: null,
