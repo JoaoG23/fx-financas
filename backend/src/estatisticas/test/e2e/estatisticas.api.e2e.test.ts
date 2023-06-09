@@ -13,9 +13,9 @@ describe("ROTAS de manipulação /estatisticas", () => {
     await limparTabelaFluxoCaixa();
   });
 
-  // buscarSomaGanhosMesUsuarioSubtests()
-  // buscarSomaGastosMesUsuarioSubtests()
-  // buscarSaldoAtualUsuarioSubtests();
+  buscarSomaGanhosMesUsuarioSubtests()
+  buscarSomaGastosMesUsuarioSubtests()
+  buscarSaldoAtualUsuarioSubtests();
   buscarDespesas12MesesSubtests()
   
 });
