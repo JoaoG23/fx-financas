@@ -54,6 +54,7 @@ export function adicionarLocaisSubtests() {
       });
 
       test("Deverá registrar um local para usuario com dados enviados e retorná-lo com sucesso", async () => {
+
         const usuario = await criarUsuario();
 
         const idUsuario = usuario.body.id;

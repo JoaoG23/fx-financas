@@ -18,7 +18,7 @@ export class EstatisticasService {
 
     return { totalGastosMesUsuario };
   }
-  
+
   async buscarGanhosTotalMesPorUsuario(usuariosId: string) {
     const sum =
       await this.estatisticasRepository.sumAllValorOfMonthMoreThanZeroByUsuarioId(
@@ -35,6 +35,25 @@ export class EstatisticasService {
       await this.estatisticasRepository.findLastSaldoByUsuariosId(usuariosId);
 
     return { saldoAtual: itemFluxoCaixa.saldo };
+  }
+
+  async buscarDespesas12MesesAnoPorUsuario(usuariosId: string, ano: number) {
+    const despesaPorMes: object[] = [];
+
+    for (let mes = 0; mes < 12; mes++) {
+      const {
+        _sum: { valor },
+      } = await this.estatisticasRepository.sumAllValorLessThanZeroByUsuariosIdAndMonthAndYears(
+        mes,
+        usuariosId,
+        ano
+      );
+
+      const mesCorrigido = mes + 1;
+      despesaPorMes.push({ mes: mesCorrigido, despesaValor: valor });
+    }
+
+    return despesaPorMes;
   }
 }
 

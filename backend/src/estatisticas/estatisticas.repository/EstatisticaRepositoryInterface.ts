@@ -1,5 +1,10 @@
 export interface EstatisticaRepositoryInterface {
   sumAllValorOfMonthLessThanZeroByUsuarioId(usuariosId: string);
   sumAllValorOfMonthMoreThanZeroByUsuarioId(usuariosId: string);
-  findLastSaldoByUsuariosId(usuariosId:string);
+  sumAllValorLessThanZeroByUsuariosIdAndMonthAndYears(
+    numberOfMonth: number,
+    usuariosId: string,
+    years: number
+  );
+  findLastSaldoByUsuariosId(usuariosId: string);
 }

@@ -50,12 +50,15 @@ O sistema possui as seguintes telas:
 ### Lista de features a adicionar
 
 - [x] Soma saldo atual (Somar entrada e saídas)
-- [x] Soma gasto do mês por usuário
-- [X] Corrigir valor (Corrigir valor ao editar item ou deletar item)
-- [] Trazer todos os items gasto por tabela do mes
-- [] Fluxo de caixa somente com os item do referente este mes
-- [] Trazer todos os gasto e lucros dos ultimo 12 meses
-- [] Estabelece Limite de gastos por item
+- [x] Soma despesa do mês por usuário.
+- [x] Soma receita do mês por usuário.
+- [x] Corrigir valor (Corrigir valor ao editar item ou deletar item)
+- [x] Soma todas despesas por classificação "Ex: elemento, subelementos...".
+- [x] Soma todas receitas por classificação "Ex: elemento, subelementos...".
+- [x] Trazer despesas dos ultimo 12 meses.
+- [] Trazer receitas dos ultimo 12 meses.
+- [] Estabelece Limite de gastos por item.
+- [] Criar automação adição programada item fluxo de caixa rotineiro.
 
 Para utilizar o sistema, siga os seguintes passos:
 

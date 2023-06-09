@@ -1,5 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { EstatisticaRepositoryInterface } from "./EstatisticaRepositoryInterface";
+import { buscarUltimoDiaMes } from "../../utils/datetime/buscarUltimoDiaMes/buscarUltimoDiaMes";
+import { buscarPrimeiroDiaMes } from "../../utils/datetime/buscarPrimeiroDiaMes/buscarPrimeiroDiaMes";
 
 export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   private prisma: PrismaClient;
@@ -7,20 +9,35 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
     this.prisma = new PrismaClient();
   }
 
-  async sumAllValorOfMonthMoreThanZeroByUsuarioId(usuariosId: string) {
+  async sumAllValorLessThanZeroByUsuariosIdAndMonthAndYears(
+    numberOfMonth: number,
+    usuariosId: string,
+    years: number
+  ) {
     const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = numberOfMonth + 1;
 
-    const firstDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      1
-    );
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        data_insersao: {
+          gte: new Date(years || currentYear, currentMonth - 1, 1),
+          lt: new Date(years || currentYear, currentMonth, 1),
+        },
+        valor: {
+          lt: 0,
+        },
+        usuariosId,
+      },
+    });
+  }
 
-    const lastDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
-      0
-    );
+  async sumAllValorOfMonthMoreThanZeroByUsuarioId(usuariosId: string) {
+    const firstDayOfMonth = buscarPrimeiroDiaMes();
+    const lastDayOfMonth = buscarUltimoDiaMes();
 
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {
@@ -40,19 +57,8 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   }
 
   async sumAllValorOfMonthLessThanZeroByUsuarioId(usuariosId: string) {
-    const currentDate = new Date();
-
-    const firstDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth(),
-      1
-    );
-
-    const lastDayOfMonth = new Date(
-      currentDate.getFullYear(),
-      currentDate.getMonth() + 1,
-      0
-    );
+    const firstDayOfMonth = buscarPrimeiroDiaMes();
+    const lastDayOfMonth = buscarUltimoDiaMes();
 
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {
