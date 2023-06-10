@@ -1,6 +1,9 @@
 import { EstatisticaRepositoryInterface } from "../estatisticas.repository/EstatisticaRepositoryInterface";
 import { EstatisticaRepository } from "../estatisticas.repository/estatisticas.repository";
 
+import { Despesa } from "../types/Despesa";
+import { Receita } from "../types/Receita";
+
 export class EstatisticasService {
   private estatisticasRepository: EstatisticaRepositoryInterface;
 
@@ -15,7 +18,6 @@ export class EstatisticasService {
       );
 
     const totalGastosMesUsuario = sum._sum.valor;
-
     return { totalGastosMesUsuario };
   }
 
@@ -26,7 +28,6 @@ export class EstatisticasService {
       );
 
     const ganhosTotalMesUsuario = sum._sum.valor;
-
     return { ganhosTotalMesUsuario };
   }
 
@@ -38,8 +39,7 @@ export class EstatisticasService {
   }
 
   async buscarDespesas12MesesAnoPorUsuario(usuariosId: string, ano: number) {
-    const despesaPorMes: object[] = [];
-
+    const despesasPorMes: Despesa[] = [];
     for (let mes = 0; mes < 12; mes++) {
       const {
         _sum: { valor },
@@ -50,10 +50,26 @@ export class EstatisticasService {
       );
 
       const mesCorrigido = mes + 1;
-      despesaPorMes.push({ mes: mesCorrigido, despesaValor: valor });
+      despesasPorMes.push({ mes: mesCorrigido, despesaValor: valor });
     }
+    return despesasPorMes;
+  }
 
-    return despesaPorMes;
+  async buscarReceitas12MesesAnoPorUsuario(usuariosId: string, ano: number) {
+    const receitasPorMes: Receita[] = [];
+    for (let mes = 0; mes < 12; mes++) {
+      const {
+        _sum: { valor },
+      } = await this.estatisticasRepository.sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
+        mes,
+        usuariosId,
+        ano
+      );
+
+      const mesCorrigido = mes + 1;
+      receitasPorMes.push({ mes: mesCorrigido, receitaValor: valor });
+    }
+    return receitasPorMes;
   }
 }
 

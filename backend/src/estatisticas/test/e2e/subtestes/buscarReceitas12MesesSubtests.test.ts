@@ -23,8 +23,8 @@ async function criarUsuario() {
   });
 }
 
-export function buscarDespesas12MesesSubtests() {
-  describe("GET /api/v1/estatisticas/despesas_dozes_meses", async () => {
+export function buscarReceitas12MesesSubtests() {
+  describe("GET /api/v1/estatisticas/receitas_dozes_meses", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 
     describe("(SUCESSO) Quando após 12 items para cada mês fossem criados", () => {
@@ -33,7 +33,7 @@ export function buscarDespesas12MesesSubtests() {
         await limparTabelaUsuarios();
       });
 
-      test("Deverá ser capaz retorna os 12 total de despesa de cada mês, sendo que no (primeiro mês) foi gasto um valor (90 reais)", async () => {
+      test("Deverá ser capaz retorna os 12 total de receitas de cada mês, sendo que no (primeiro mês) foi recebido um valor (90 reais)", async () => {
         const usuario = await criarUsuario();
         const idUsuario = usuario.body.id;
 
@@ -42,7 +42,7 @@ export function buscarDespesas12MesesSubtests() {
           .set("auth", token)
           .send({
             descricao: `Item do mês`,
-            valor: -40,
+            valor: 40,
             data_insersao: new Date(2023, 0, 12),
             hora_insersao: new Date(),
             elementosId: null,
@@ -59,7 +59,7 @@ export function buscarDespesas12MesesSubtests() {
             .set("auth", token)
             .send({
               descricao: `Item do mês ${i}`,
-              valor: -50,
+              valor: 50,
               data_insersao: new Date(2023, i, 12),
               hora_insersao: new Date(),
               elementosId: null,
@@ -73,7 +73,7 @@ export function buscarDespesas12MesesSubtests() {
 
         const retorno = await request(app)
           .get(
-            `/api/v1/estatisticas/despesas_dozes_meses?usuariosId=${idUsuario}&ano=${2023} `
+            `/api/v1/estatisticas/receitas_dozes_meses?usuariosId=${idUsuario}&ano=${2023}`
           )
           .set("auth", token);
 
@@ -82,18 +82,18 @@ export function buscarDespesas12MesesSubtests() {
 
         expect(resposta).not.toBeNull();
         expect(resposta).toStrictEqual([
-          { mes: 1, despesaValor: "-90" },
-          { mes: 2, despesaValor: "-50" },
-          { mes: 3, despesaValor: "-50" },
-          { mes: 4, despesaValor: "-50" },
-          { mes: 5, despesaValor: "-50" },
-          { mes: 6, despesaValor: "-50" },
-          { mes: 7, despesaValor: "-50" },
-          { mes: 8, despesaValor: "-50" },
-          { mes: 9, despesaValor: "-50" },
-          { mes: 10, despesaValor: "-50" },
-          { mes: 11, despesaValor: "-50" },
-          { mes: 12, despesaValor: "-50" },
+          { mes: 1, receitaValor: "90" },
+          { mes: 2, receitaValor: "50" },
+          { mes: 3, receitaValor: "50" },
+          { mes: 4, receitaValor: "50" },
+          { mes: 5, receitaValor: "50" },
+          { mes: 6, receitaValor: "50" },
+          { mes: 7, receitaValor: "50" },
+          { mes: 8, receitaValor: "50" },
+          { mes: 9, receitaValor: "50" },
+          { mes: 10, receitaValor: "50" },
+          { mes: 11, receitaValor: "50" },
+          { mes: 12, receitaValor: "50" },
         ]);
       });
     });

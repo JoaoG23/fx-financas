@@ -9,6 +9,32 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
     this.prisma = new PrismaClient();
   }
 
+  async sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
+    numberOfMonth: number,
+    usuariosId: string,
+    years: number
+  ) {
+    const currentDate = new Date();
+    const currentYear = currentDate.getFullYear();
+    const currentMonth = numberOfMonth + 1;
+
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        data_insersao: {
+          gte: new Date(years || currentYear, currentMonth - 1, 1),
+          lt: new Date(years || currentYear, currentMonth, 1),
+        },
+        valor: {
+          gt: 0,
+        },
+        usuariosId,
+      },
+    });
+  }
+
   async sumAllValorLessThanZeroByUsuariosIdAndMonthAndYears(
     numberOfMonth: number,
     usuariosId: string,

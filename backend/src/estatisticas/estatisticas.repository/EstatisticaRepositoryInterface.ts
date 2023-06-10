@@ -6,5 +6,10 @@ export interface EstatisticaRepositoryInterface {
     usuariosId: string,
     years: number
   );
+  sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
+    numberOfMonth: number,
+    usuariosId: string,
+    years: number
+  );
   findLastSaldoByUsuariosId(usuariosId: string);
 }
