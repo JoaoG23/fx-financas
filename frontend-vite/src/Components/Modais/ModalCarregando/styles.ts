@@ -8,7 +8,7 @@ export const BackGround = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #00000098;
+  background-color: #000000cc;
 
   align-items: center;
   justify-content: center;

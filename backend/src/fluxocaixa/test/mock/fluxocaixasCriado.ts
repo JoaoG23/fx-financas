@@ -9,7 +9,8 @@ export const itemFluxocaixaCriado = {
   subelementosId: null,
   tiposId: null,
   subtiposId: null,
-  saldo: 100,
+  tipos_despesasId:null,
+  saldo:0
 };
 
 
@@ -23,8 +24,9 @@ export const item1FluxocaixaCriado = {
   locaisId: null,
   subelementosId: null,
   tiposId: null,
+  tipos_despesasId:null,
   subtiposId: null,
-  saldo: 90,
+  saldo:0
 };
 
 export const item2FluxocaixaCriado = {
@@ -37,6 +39,7 @@ export const item2FluxocaixaCriado = {
   locaisId: null,
   subelementosId: null,
   tiposId: null,
+  tipos_despesasId:null,
   subtiposId: null,
   saldo: 90,
 };

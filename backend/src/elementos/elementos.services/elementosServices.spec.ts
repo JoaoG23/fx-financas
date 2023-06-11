@@ -1,5 +1,5 @@
-import { limparTabelaUsuarios } from "../tests/utils/limparTabelaUsuarios";
-import { usuarioCriado, usuarioEditado } from "../tests/seeds/usuarios";
+import { limparTabelaUsuarios } from "../tests/utils/limparTabelaElementos";
+import { usuarioCriado, usuarioEditado } from "../tests/mock/elementoCriado";
 
 import usuarioService from "./ElementosServices";
 

@@ -50,7 +50,7 @@ class ElementosController {
   async criar(req: Request, res: Response) {
     try {
       const usuario = await elementosService.criar(req.body);
-      res.status(200).json(usuario);
+      res.status(201).json(usuario);
     } catch (error) {
       res.status(400).json(error.message);
     }

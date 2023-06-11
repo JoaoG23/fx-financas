@@ -9,7 +9,7 @@ export interface IFluxocaixaRepository {
   delete(id: string);
   findById(id: string);
   findLastItemByUsuariosId(usuariosId: string);
-  findAll();
+  findAllByUsuariosId(usuariosId: string);
   describeAllFields();
   countAllByIdUsuario(usuariosId: string);
   updateLastItemSaldo(valor: number, usuariosId: string);
@@ -173,8 +173,9 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     });
   }
 
-  async findAll() {
+  async findAllByUsuariosId(usuariosId: string) {
     return await this.prisma.fluxocaixa.findMany({
+      where: { usuariosId },
       include: this.describeAllFields(),
     });
   }

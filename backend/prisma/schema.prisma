@@ -63,7 +63,7 @@ model fluxocaixa {
   hora_insersao    DateTime        @db.Time(0)
   descricao        String          @db.VarChar(70)
   valor            Decimal         @db.Decimal(12, 2)
-  saldo            Decimal         @db.Decimal(12, 2)
+  saldo            Decimal?        @default(0) @db.Decimal(12, 2)
   elementosId      String?         @default("")
   usuariosId       String?
   elementos        elementos?      @relation(fields: [elementosId], references: [id])

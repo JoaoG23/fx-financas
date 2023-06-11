@@ -16,8 +16,8 @@ export class FluxoCaixaServices {
     return await this.fluxoCaixaRepository.findById(id);
   }
 
-  async listarTodos() {
-    return await this.fluxoCaixaRepository.findAll();
+  async listarTodosPorUsuariosId(usuariosId) {
+    return await this.fluxoCaixaRepository.findAllByUsuariosId(usuariosId);
   }
 
   async listarTodosPorPaginaUsuario(
@@ -49,7 +49,10 @@ export class FluxoCaixaServices {
     const dataAgora = moment().utc(true).format();
     const horaAgora = moment().utc(true).format();
 
-    const ultimoItemAdicionado = await this.fluxoCaixaRepository.findLastItemByUsuariosId(dados.usuariosId);
+    const ultimoItemAdicionado =
+      await this.fluxoCaixaRepository.findLastItemByUsuariosId(
+        dados.usuariosId
+      );
 
     const saldoFinal =
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);

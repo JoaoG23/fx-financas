@@ -8,11 +8,13 @@ export class FluxocaixaDto implements Prisma.fluxocaixaCreateManyInput {
   hora_insersao: string | Date;
   descricao: string;
   valor: string | number | Prisma.Decimal | DecimalJsLike;
-  saldo: string | number | Prisma.Decimal | DecimalJsLike;
+  saldo?: string | number | Prisma.Decimal | DecimalJsLike;
   elementosId?: string;
   usuariosId?: string;
   locaisId?: string;
   subelementosId?: string;
   tiposId?: string;
   subtiposId?: string;
+  tipos_despesasId?: string;
+ 
 }

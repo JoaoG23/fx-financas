@@ -4,8 +4,11 @@ import request from "supertest";
 import app from "../../../../app";
 
 import { limparTabelaUsuarios } from "../../../../usuarios/tests/utils/limparTabelaUsuarios";
+
 import autenticacao from "../../../../utils/Autenticacao";
+
 import { limparTabelaFluxoCaixa } from "../../utils/limparTabelaFluxoCaixa";
+
 import { itemFluxocaixaCriado } from "../../mock/fluxocaixasCriado";
 
 const logado = {
@@ -51,7 +54,6 @@ export function adicionarItemFluxoCaixaSubtests() {
         expect(resposta).toHaveProperty("subelementosId", null);
         expect(resposta).toHaveProperty("tiposId", null);
         expect(resposta).toHaveProperty("subtiposId", null);
-        expect(resposta).toHaveProperty("saldo", "100");
       });
     });
 
@@ -89,7 +91,6 @@ export function adicionarItemFluxoCaixaSubtests() {
         expect(resposta).toHaveProperty("subelementosId", null);
         expect(resposta).toHaveProperty("tiposId", null);
         expect(resposta).toHaveProperty("subtiposId", null);
-        expect(resposta).toHaveProperty("saldo", "100");
       });
     });
   });

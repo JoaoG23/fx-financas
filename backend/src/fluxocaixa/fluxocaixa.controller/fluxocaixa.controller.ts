@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
 import fluxocaixaService from "../fluxocaixa.service/fluxocaixa.service";
 export class FluxoCaixaController {
-
   async listarTodosPorPaginaUsuario(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, usuariosId } = req.query;
@@ -16,9 +15,12 @@ export class FluxoCaixaController {
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
+  async listarTodosPorUsuariosId(req: Request, res: Response) {
     try {
-      const todos = await fluxocaixaService.listarTodos();
+      const { usuariosId } = req.params;
+      const todos = await fluxocaixaService.listarTodosPorUsuariosId(
+        usuariosId
+      );
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
