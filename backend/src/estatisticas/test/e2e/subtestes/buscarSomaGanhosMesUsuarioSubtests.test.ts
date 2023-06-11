@@ -69,8 +69,8 @@ export function buscarSomaGanhosMesUsuarioSubtests() {
         const resposta = retorno.body;
         await expect(retorno.statusCode).toEqual(200);
 
-        await expect(resposta.ganhosTotalMesUsuario).not.toBeNull();
-        await expect(resposta.ganhosTotalMesUsuario).toBe("100");
+        await expect(resposta).not.toBeNull();
+        await expect(resposta).toBe("100");
 
       });
     });

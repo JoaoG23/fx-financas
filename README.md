@@ -53,12 +53,13 @@ O sistema possui as seguintes telas:
 - [x] Soma despesa do mês por usuário.
 - [x] Soma receita do mês por usuário.
 - [x] Corrigir valor (Corrigir valor ao editar item ou deletar item)
-- [x] Soma todas despesas por classificação "Ex: elemento, subelementos...".
-- [x] Soma todas receitas por classificação "Ex: elemento, subelementos...".
+- [] Soma todas despesas por classificação entre datas "Ex: elemento, subelementos...".
+- [] Soma todas receitas por classificação entre datas "Ex: elemento, subelementos...".
 - [x] Trazer despesas dos ultimo 12 meses.
-- [] Trazer receitas dos ultimo 12 meses.
+- [X] Trazer receitas dos ultimo 12 meses.
 - [] Estabelece Limite de gastos por item.
 - [] Criar automação adição programada item fluxo de caixa rotineiro.
+- [] Tela de pesquisar fluxo de caixa por subelemento elemento
 
 Para utilizar o sistema, siga os seguintes passos:
 

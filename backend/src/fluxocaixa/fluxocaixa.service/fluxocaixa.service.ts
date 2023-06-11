@@ -15,9 +15,6 @@ export class FluxoCaixaServices {
   async buscarPorId(id: string) {
     return await this.fluxoCaixaRepository.findById(id);
   }
-  async buscarUltimoRegistro() {
-    return await this.fluxoCaixaRepository.findLastItem();
-  }
 
   async listarTodos() {
     return await this.fluxoCaixaRepository.findAll();

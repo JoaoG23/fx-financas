@@ -2,6 +2,7 @@ import { EstatisticaRepositoryInterface } from "../estatisticas.repository/Estat
 import { EstatisticaRepository } from "../estatisticas.repository/estatisticas.repository";
 
 import { Despesa } from "../types/Despesa";
+import { DespesaReceitas } from "../types/DespesasReceitas";
 import { Receita } from "../types/Receita";
 
 export class EstatisticasService {
@@ -17,8 +18,8 @@ export class EstatisticasService {
         usuariosId
       );
 
-    const totalGastosMesUsuario = sum._sum.valor;
-    return { totalGastosMesUsuario };
+    const despesasTotalMesUsuario = sum._sum.valor;
+    return despesasTotalMesUsuario;
   }
 
   async buscarGanhosTotalMesPorUsuario(usuariosId: string) {
@@ -27,15 +28,15 @@ export class EstatisticasService {
         usuariosId
       );
 
-    const ganhosTotalMesUsuario = sum._sum.valor;
-    return { ganhosTotalMesUsuario };
+    const receitasTotalMesUsuario = sum._sum.valor;
+    return receitasTotalMesUsuario;
   }
 
   async buscarSaldoAtualPorUsuario(usuariosId: string) {
     const itemFluxoCaixa =
       await this.estatisticasRepository.findLastSaldoByUsuariosId(usuariosId);
 
-    return { saldoAtual: itemFluxoCaixa.saldo };
+    return itemFluxoCaixa.saldo;
   }
 
   async buscarDespesas12MesesAnoPorUsuario(usuariosId: string, ano: number) {
@@ -51,6 +52,52 @@ export class EstatisticasService {
 
       const mesCorrigido = mes + 1;
       despesasPorMes.push({ mes: mesCorrigido, despesaValor: valor });
+    }
+    return despesasPorMes;
+  }
+
+  async buscarDespesasReceitas12MesesAnoPorUsuario(
+    usuariosId: string,
+    ano: number
+  ) {
+    const despesasPorMes: DespesaReceitas[] = [];
+
+    const meses = [
+      "Janeiro",
+      "Fevereiro",
+      "Março",
+      "Abril",
+      "Maio",
+      "Junho",
+      "Julho",
+      "Agosto",
+      "Setembro",
+      "Outubro",
+      "Novembro",
+      "Dezembro",
+    ];
+
+    for (let mes = 0; mes < 12; mes++) {
+      const despesasRecebida =
+        await this.estatisticasRepository.sumAllValorLessThanZeroByUsuariosIdAndMonthAndYears(
+          mes,
+          usuariosId,
+          ano
+        );
+
+      const receitaRecebida =
+        await this.estatisticasRepository.sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
+          mes,
+          usuariosId,
+          ano
+        );
+
+
+      despesasPorMes.push({
+        mes: meses[mes],
+        receita: Number (receitaRecebida._sum.valor) || 0,
+        despesa: Number(despesasRecebida._sum.valor) || 0,
+      });
     }
     return despesasPorMes;
   }

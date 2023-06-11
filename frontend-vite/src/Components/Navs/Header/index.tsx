@@ -1,6 +1,9 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
+import { FaUser } from 'react-icons/fa'
+import { BsFillArrowRightCircleFill } from "react-icons/bs";
+
 import { Container, ImageContainer, VoltarText, TextLimited } from "./styles";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
@@ -15,7 +18,7 @@ const Header: React.FC = () => {
     <Container>
       <Link to={"/usuario-logado"}>
         <ImageContainer>
-          <img src="./assets/icons/header-icons/person.svg" alt="perfil"></img>
+        <FaUser/>
           <TextLimited>{nomeUsuario}</TextLimited>
         </ImageContainer>
       </Link>
@@ -27,7 +30,7 @@ const Header: React.FC = () => {
         }}
       >
         <VoltarText>Voltar</VoltarText>
-        <img src="./assets/icons/header-icons/voltar.svg" alt="voltar"></img>
+        <BsFillArrowRightCircleFill/>
       </ImageContainer>
     </Container>
   );

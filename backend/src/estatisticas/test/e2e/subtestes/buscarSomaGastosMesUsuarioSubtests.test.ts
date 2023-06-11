@@ -66,8 +66,8 @@ export function buscarSomaGastosMesUsuarioSubtests() {
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);
 
-        expect(resposta.totalGastosMesUsuario).not.toBeNull();
-        expect(resposta.totalGastosMesUsuario).toBe("-50");
+        expect(resposta).not.toBeNull();
+        expect(resposta).toBe("-50");
       });
     });
   });

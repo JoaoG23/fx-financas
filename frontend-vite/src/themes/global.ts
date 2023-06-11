@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import { VigaFont } from "../fonts/styles";
+import { RobotoBold } from "../fonts/styles";
 const GlobalStyle = createGlobalStyle`
-    ${VigaFont}
+    ${RobotoBold}
 
     :root{
     --tamanhoPadrao: 0.5em;
@@ -20,7 +20,7 @@ h1, h2, h3, h4, strong{
   
 
     *{
-        font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      font-family: 'Roboto', sans-serif;
         margin:0;
         padding:0;
         box-sizing: border-box;

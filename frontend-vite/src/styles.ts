@@ -2,10 +2,8 @@ import styled from "styled-components";
 
 export const Body = styled.div`
   position: absolute;
-  /* overflow-x: hidden; */
 
   height: 80vh;
-  /* overflow-y: scroll; */
   justify-content: center;
 
   top: 15vh;
@@ -19,9 +17,10 @@ export const Body = styled.div`
     justify-content: center;
   }
 `;
-export const ImagePesos1Flutuante = styled.img`
+export const IconFundo1Flutuante = styled.img`
   z-index: -2;
   position: fixed;
+  top:30vh;
   right: 10vw;
   animation: elevations 6s ease-in infinite alternate forwards;
 
@@ -35,14 +34,16 @@ export const ImagePesos1Flutuante = styled.img`
 
   @keyframes elevations {
     0% {
-      transform: translateY(0vh);
+      transform: rotateY(0deg);
+      /* transform: translateY(0vh); */
     }
     100% {
-      transform: translateY(20vh);
+      transform: rotateY(360deg);
+      /* transform: translateY(20vh); */
     }
   }
 `;
-export const ImagePesos2Flutuante = styled(ImagePesos1Flutuante)`
+export const ImagePesos2Flutuante = styled(IconFundo1Flutuante)`
   animation: elevations 8s 1s ease-in infinite alternate forwards;
 
   top:10vh;

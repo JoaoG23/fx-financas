@@ -1,16 +1,13 @@
 import styled from "styled-components";
 
-
 export const CardContainer = styled.div`
   border-radius: 1.4em;
   gap: 0.4em;
   box-shadow: 1px 1px 5px #717f953a;
 
-
   font-weight: 400;
-
   padding: 0.5em;
-  background-color: #fff;
+  background-color: #ffffff77;
   color: #717f95;
   animation: entradaSuave 0.6s ease-out;
 
@@ -19,11 +16,9 @@ export const CardContainer = styled.div`
     padding: 0.6em;
   }
 
-
   @media screen and (max-width: 769px) {
     display: block;
   }
-
 
   @media screen and (max-width: 320px) {
     font-size: medium;

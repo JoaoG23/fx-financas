@@ -15,12 +15,7 @@ export const Container = styled.div`
 
   background-color: #1caf82;
 
-  /* background-color: #f8f8f9; */
-  /* background-color:#FFA26B; */
-  /* background-color:#6979F8; */
-  /* background-color:#FF65A4; */
-  /* background-image:url('./assets/login-fundo.jpg'); */
-  /* background-color: #dcfc34; */
+
   box-shadow: 2px 2px 4px #00000027;
 
   @media only screen and (max-width: 768px) {

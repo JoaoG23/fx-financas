@@ -25,30 +25,19 @@ class EstatisticasController {
       res.status(tratarErroSemStatus(error.status)).json(error.message);
     }
   }
-  async buscarDespesas12MesesAnoPorUsuario(req: Request, res: Response) {
+  async buscarDespesasReceitas12MesesAnoPorUsuario(
+    req: Request,
+    res: Response
+  ) {
     try {
       const { usuariosId, ano } = req.query;
-      const despesa =
-        await estatisticasService.buscarDespesas12MesesAnoPorUsuario(
+      const despesasReceitas =
+        await estatisticasService.buscarDespesasReceitas12MesesAnoPorUsuario(
           usuariosId,
           ano
         );
 
-      res.status(200).json(despesa);
-    } catch (error) {
-      res.status(tratarErroSemStatus(error.status)).json(error.message);
-    }
-  }
-  async buscarReceitas12MesesAnoPorUsuario(req: Request, res: Response) {
-    try {
-      const { usuariosId, ano } = req.query;
-      const despesa =
-        await estatisticasService.buscarReceitas12MesesAnoPorUsuario(
-          usuariosId,
-          ano
-        );
-
-      res.status(200).json(despesa);
+      res.status(200).json(despesasReceitas);
     } catch (error) {
       res.status(tratarErroSemStatus(error.status)).json(error.message);
     }

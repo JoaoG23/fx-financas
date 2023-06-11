@@ -12,13 +12,10 @@ routers.get(
   estatisticasController.buscarGanhosMesPorUsuario
 );
 routers.get(
-  "/despesas_dozes_meses",
-  estatisticasController.buscarDespesas12MesesAnoPorUsuario
+  "/despesas_receitas_dozes_meses",
+  estatisticasController.buscarDespesasReceitas12MesesAnoPorUsuario
 );
-routers.get(
-  "/receitas_dozes_meses",
-  estatisticasController.buscarReceitas12MesesAnoPorUsuario
-);
+
 routers.get(
   "/saldo_atual/:usuariosId",
   estatisticasController.buscarSaldoAtualPorUsuario

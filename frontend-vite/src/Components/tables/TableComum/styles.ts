@@ -15,11 +15,7 @@ export const Tabela = styled.table`
 
   color: ${(props: Colors) => props.headerColor || "#717f95"};
 
-  /* border-radius: 1em; */
-  /* border-collapse: collapse; */
-
   text-align: left;
-  /* box-shadow: 1px 1px 3px ${(props: Colors) => props.shadowColor || "#717f953a"}; */
 
   th {
     
@@ -36,13 +32,13 @@ export const Tabela = styled.table`
   }
   tr {
     
-    
+    border: none;
     width: 100%;
-    background-color: ${(props: Colors) => props.bodyColor || "#fff"};
+    background-color: ${(props: Colors) => props.bodyColor || "#f8fafc7e"};
   }
   
   td {
-    border-bottom: 1px solid #eff3f7;
+    border-bottom: 1px solid #f8fafc7e;
     font-weight: 500;
   }
 

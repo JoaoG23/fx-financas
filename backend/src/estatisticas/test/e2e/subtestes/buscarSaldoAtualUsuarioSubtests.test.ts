@@ -69,8 +69,8 @@ export function buscarSaldoAtualUsuarioSubtests() {
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);
 
-        expect(resposta.saldoAtual).not.toBeNull();
-        expect(resposta.saldoAtual).toBe("50");
+        expect(resposta).not.toBeNull();
+        expect(resposta).toBe("50");
       });
     });
   });

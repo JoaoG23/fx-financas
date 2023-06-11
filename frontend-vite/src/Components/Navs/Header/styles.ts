@@ -41,7 +41,7 @@ export const ImageContainer = styled.div`
   border-radius: 2em;
   display: flex;
 
-  gap: 0.2em;
+  gap: 0.3em;
 
   align-items: center;
   :hover {
