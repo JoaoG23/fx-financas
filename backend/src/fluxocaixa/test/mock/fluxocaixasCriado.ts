@@ -10,7 +10,6 @@ export const itemFluxocaixaCriado = {
   tiposId: null,
   subtiposId: null,
   tipos_despesasId:null,
-  saldo:0
 };
 
 
@@ -26,7 +25,6 @@ export const item1FluxocaixaCriado = {
   tiposId: null,
   tipos_despesasId:null,
   subtiposId: null,
-  saldo:0
 };
 
 export const item2FluxocaixaCriado = {
@@ -41,21 +39,7 @@ export const item2FluxocaixaCriado = {
   tiposId: null,
   tipos_despesasId:null,
   subtiposId: null,
-  saldo: 90,
 };
 
 
 
-export const itemFluxocaixaEditado = {
-  descricao: "Editado",
-  valor: 0,
-  data_insersao:'2023-04-13T00:00:00.000Z',
-  hora_insersao: '2023-04-13T00:00:00.000Z',
-  elementosId: null,
-  usuariosId: null,
-  locaisId: null,
-  subelementosId: null,
-  tiposId: null,
-  subtiposId: null,
-  saldo: 0,
-};

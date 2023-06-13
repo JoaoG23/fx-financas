@@ -63,34 +63,44 @@ export function adicionarItemFluxoCaixaSubtests() {
         await limparTabelaFluxoCaixa();
       });
 
-      test("Deverá registrar um item Fluxocaixa para usuario com dados enviados e retorná-lo com sucesso", async () => {
+      test("Deverá adição dois items de fluxocaixa em seguidar saldo atual esta correto", async () => {
         const usuario = await criarUsuario();
+
+        const saldoAtualEsperado = "200";
 
         const idUsuario = usuario.body.id;
 
-        const itemFluxocaixaComUsuariosId = {
+        const item1ComUsuariosId = {
+          ...itemFluxocaixaCriado,
+          usuariosId: idUsuario,
+        };
+        const item2ComUsuariosId = {
           ...itemFluxocaixaCriado,
           usuariosId: idUsuario,
         };
 
-        const retorno = await request(app)
+        await request(app)
           .post(`/api/v1/fluxocaixa`)
           .set("auth", token)
-          .send(itemFluxocaixaComUsuariosId);
+          .send(item1ComUsuariosId);
 
-        const resposta = retorno.body;
-        expect(retorno.statusCode).toEqual(201);
+        await request(app)
+          .post(`/api/v1/fluxocaixa`)
+          .set("auth", token)
+          .send(item2ComUsuariosId);
 
-        expect(resposta).toHaveProperty("descricao", "Item de teste");
-        expect(resposta).toHaveProperty("valor", "100");
+        const retorno = await request(app)
+          .get(`/api/v1/fluxocaixa/usuario/${idUsuario}`)
+          .set("auth", token);
+
+        const resposta = retorno.body[2];
+        expect(retorno.statusCode).toEqual(200);
+
         expect(resposta).toHaveProperty("data_insersao");
         expect(resposta).toHaveProperty("hora_insersao");
         expect(resposta).toHaveProperty("elementosId", null);
         expect(resposta).toHaveProperty("usuariosId", idUsuario);
-        expect(resposta).toHaveProperty("locaisId", null);
-        expect(resposta).toHaveProperty("subelementosId", null);
-        expect(resposta).toHaveProperty("tiposId", null);
-        expect(resposta).toHaveProperty("subtiposId", null);
+        expect(resposta).toHaveProperty("saldo", saldoAtualEsperado);
       });
     });
   });

@@ -11,7 +11,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 import "moment/locale/pt-br.js";
 
-import { buscarTodosAgendamentos } from "./api";
+import { buscarTodosItemFluxoCaixa } from "./api";
 import { atualizarHorarioEvento } from "./api/atualizarHorarioEvento/atualizarHorarioEvento";
 
 import { retornaArrayEventosConvertido } from "../utils/retornaArrayConvertido";
@@ -21,8 +21,6 @@ import { EventoBigCalendar } from "../../../types/EventoBigCalendar";
 import { traducaoCabecalhoPortugues } from "../configs/traducaoCabecalhoPortugues";
 import { eventoStyle } from "../configs/eventoStyle";
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
-
-
 
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(Calendar);
@@ -39,7 +37,7 @@ export const Calendario = () => {
     data,
     isError: isErrorTodosEventos,
     isLoading: isCarregangdoTodosEventos,
-  } = useQuery("listar-todos-item-fluxo-caixa", buscarTodosAgendamentos);
+  } = useQuery("listar-todos-item-fluxo-caixa", buscarTodosItemFluxoCaixa);
 
   const { mutate, isLoading } = useMutation(
     async (values: any) => await atualizarHorarioEvento(values),
