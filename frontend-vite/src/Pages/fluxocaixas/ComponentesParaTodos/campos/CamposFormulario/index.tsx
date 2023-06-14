@@ -43,73 +43,60 @@ export const CamposFormulario: React.FC<Props> = ({
           <main>
             <div>
               <ElementoSelect
+                requirido={false}
                 register={register}
                 control={control}
                 name="elementosId"
                 label="Elemento"
               />
-              {errors?.elementosId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo elemento vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <SublementoSelect
+                requirido={false}
                 register={register}
                 elementosId={elemento?.value!}
                 control={control}
                 name="subelementosId"
                 label={converterNullParaVazio(elemento?.label)}
               />
-              {errors?.subelementosId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo subelemento vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <TiposSelect
+                requirido={false}
                 register={register}
                 subelementosId={subelemento?.value!}
                 control={control}
                 name="tiposId"
                 label={converterNullParaVazio(subelemento?.label)}
               />
-              {errors?.tiposId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo tipo vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <SubtiposSelect
-                register={register}
                 requirido={false}
+                register={register}
                 tiposId={tipos?.value!}
                 control={control}
                 name="subtiposId"
                 label={converterNullParaVazio(tipos?.label)}
               />
-              {errors?.subtiposId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo Subtipo vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <LocaisSelect
+                requirido={false}
                 register={register}
                 name="locaisId"
                 control={control}
                 label="Locais"
               />
-              {errors?.locaisId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo locais vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <TipoDespesaSelect
+                requirido={false}
                 register={register}
                 name="tipos_despesasId"
                 control={control}
                 label="Tipos Despesa"
               />
-              {errors?.tipos_despesasId?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo tipo despesa vazio! Por gentileza preencher-o!" />
-              )}
             </div>
             <div>
               <InputDefault
@@ -134,9 +121,6 @@ export const CamposFormulario: React.FC<Props> = ({
               register={register}
               label="Descrição do Item"
             />
-            {errors?.descricao?.type === "required" && (
-              <AlertCampoVazio mensagem="Campo elemento vazio! Por gentileza preencher-o!" />
-            )}
           </div>
         </Form.ObservacoesLinha>
       </Form.Campos>
