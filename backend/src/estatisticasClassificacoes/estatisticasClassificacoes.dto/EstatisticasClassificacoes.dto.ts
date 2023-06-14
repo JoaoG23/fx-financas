@@ -1,7 +1,1 @@
-
-  
-  export class ElementosClassificacoesDto implements any {
-
-}
-
-  
+export class ElementosClassificacoesDto {}

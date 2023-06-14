@@ -53,7 +53,7 @@ export const Formulario: React.FC = () => {
         onSubmit={handleSubmit((itemFluxocaixa: ItemFluxoCaixaCriado) => {
           const novoItemFluxocaixa = converterValoresItemFluxocaixa(
             idConvertido!,
-            itemFluxocaixa!
+            itemFluxocaixa as any
           );
           mutate(novoItemFluxocaixa as any);
         })}

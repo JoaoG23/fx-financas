@@ -7,8 +7,7 @@ describe("converterValoresItemFluxocaixa", () => {
       const id = "USL19099";
       const retorno = converterValoresItemFluxocaixa(id, {
         descricao: "descricao do item",
-        entradaSaida: true,
-        valor: "100",
+        valor: 100,
         saldo: 0,
         elementosId: "",
         locaisId: "",

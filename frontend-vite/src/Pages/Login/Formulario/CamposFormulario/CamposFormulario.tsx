@@ -25,7 +25,7 @@ export const CamposFormulario: React.FC<Props> = ({ funcaoSubmit }) => {
         <RedFont>Usuário vazio ❌</RedFont>
       )}
 
-      <InputDefault name={"senha"} register={register} placeholder={"Senha"} />
+      <InputDefault name={"senha"} type="password" register={register} placeholder={"Senha"} />
       {errors.senha?.type === "required" && <RedFont>Senha vazio ❌</RedFont>}
       <ButtonDefault>Logar</ButtonDefault>
 

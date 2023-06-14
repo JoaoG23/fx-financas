@@ -9,7 +9,7 @@ export function retornaArrayEventosConvertido(
 ) {
 	agendamentos?.forEach((evento: ItemFluxoCaixa) => {
 		const novoEvento = converterDataHoraParaEventoTipoBigCalendar(evento);
-		arrayConvertido.push(novoEvento);
+		arrayConvertido.push(novoEvento!);
 	});
 
 	return arrayConvertido;
