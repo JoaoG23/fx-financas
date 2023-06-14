@@ -21,7 +21,7 @@ const Sidebar: React.FC = () => {
       <SideBar.Item>
         <BsFillPieChartFill color="#fff" />
         <Link to={"/dashboard"}>
-          <p>Dashbord</p>
+          <p>Dashboard</p>
         </Link>
       </SideBar.Item>
       <SideBar.Item>

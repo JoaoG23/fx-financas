@@ -115,11 +115,11 @@ export const CamposFormulario: React.FC<Props> = ({
         <Form.ObservacoesLinha>
           <div>
             <InputDefault
-              placeholder="Digite alguma descrição do item..."
+              requirido={false}
               type="text"
               name="descricao"
               register={register}
-              label="Descrição do Item"
+              label="Digite alguma observação"
             />
           </div>
         </Form.ObservacoesLinha>

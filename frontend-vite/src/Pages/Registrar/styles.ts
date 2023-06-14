@@ -1,13 +1,13 @@
 import styled from "styled-components";
-export const LoginContainer = styled.main`
+export const RegistarContainer = styled.main`
   padding: 2em;
   width: auto;
   display: grid;
 
-  gap: 10px;
   grid-template-columns: auto;
   justify-items: center;
   align-items: center;
+  
   height: auto;
   background-color: #f8f8f9;
   border-radius: 1.5em;

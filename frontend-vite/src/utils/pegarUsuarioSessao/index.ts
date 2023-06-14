@@ -1,4 +1,4 @@
-export function pegarUsuarioSessao(usuario: any) {
+export async function pegarUsuarioSessao(usuario: any) {
   const { id, nome, token } = usuario;
   const idConvertido = localStorage.setItem("id", id);
   const nomeUsuario = localStorage.setItem("nome", nome);

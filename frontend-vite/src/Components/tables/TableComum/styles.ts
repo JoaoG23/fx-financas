@@ -10,6 +10,7 @@ type Colors = {
 
 export const Tabela = styled.table`
   width: 100%;
+  font-size: small;
 
   overflow-x: scroll;
 

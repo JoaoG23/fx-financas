@@ -36,3 +36,10 @@ export const Container = styled.div`
   border-radius: 0.7em;
   color: #717f95;
 `;
+
+
+export const NumeroPaginas = styled.div`
+  display: flex;
+  gap: 0.1em;
+
+`;
