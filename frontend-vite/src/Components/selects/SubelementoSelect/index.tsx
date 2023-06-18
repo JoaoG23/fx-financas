@@ -49,6 +49,7 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
   );
 
   const subelementos = data?.data[1] || opcoes;
+  console.log("🚀 ~ file: index.tsx:52 ~ subelementos:", subelementos)
 
   return (
     <Selects.ContainerInput>

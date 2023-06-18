@@ -1,8 +1,13 @@
 import { Request, Response } from "express";
 import { ElementosServices } from "../elementos.services/ElementosServices";
 import { IElementosServices } from "../elementos.services/IElementoServices";
+import { ElementosRepository } from "../elementos.repository/elementos.repository";
 
-const elementosService: IElementosServices = new ElementosServices();
+const elementosRepository = new ElementosRepository();
+
+const elementosService: IElementosServices = new ElementosServices(
+  elementosRepository
+);
 class ElementosController {
   async listarPorUsuarioPorPagina(req: Request, res: Response) {
     try {
@@ -21,6 +26,17 @@ class ElementosController {
   async listarTodos(req: Request, res: Response) {
     try {
       const todos = await elementosService.listarTodos();
+      res.status(200).json(todos);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async listarTodosPorUsuario(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.params;
+
+      const todos = await elementosService.listarTodosPorUsuario(usuariosId);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);

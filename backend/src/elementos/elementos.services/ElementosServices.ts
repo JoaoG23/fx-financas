@@ -1,5 +1,4 @@
 import { ElementoDto } from "../elementos.dto/Elementos.dto";
-import { ElementosRepository } from "../elementos.repository/elementos.repository";
 import { IElementosRepository } from "../elementos.repository/InterfaceElementosRepository";
 
 import { IElementosServices } from "./IElementoServices";
@@ -7,8 +6,8 @@ import { IElementosServices } from "./IElementoServices";
 export class ElementosServices implements IElementosServices {
   private elementosRepository: IElementosRepository;
 
-  constructor() {
-    this.elementosRepository = new ElementosRepository();
+  constructor(elementosRepository: IElementosRepository) {
+    this.elementosRepository = elementosRepository;
   }
 
   async buscarPorId(id: string) {
@@ -24,6 +23,9 @@ export class ElementosServices implements IElementosServices {
 
   async listarTodos() {
     return this.elementosRepository.findAll();
+  }
+  async listarTodosPorUsuario(usuariosId: string) {
+    return this.elementosRepository.findAllByUsuariosId(usuariosId);
   }
 
   async listarPorUsuarioPorPagina(
@@ -54,4 +56,3 @@ export class ElementosServices implements IElementosServices {
     return this.elementosRepository.delete(id);
   }
 }
-

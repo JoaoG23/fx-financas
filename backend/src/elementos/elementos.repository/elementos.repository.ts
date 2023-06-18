@@ -1,10 +1,8 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 
-
 import { ElementoDto } from "../elementos.dto/Elementos.dto";
 import { IElementosRepository } from "./InterfaceElementosRepository";
-
 
 export class ElementosRepository implements IElementosRepository {
   private paginacao: Paginacao;
@@ -43,6 +41,13 @@ export class ElementosRepository implements IElementosRepository {
   async findAll() {
     return await this.prisma.elementos.findMany({});
   }
+
+  async findAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.elementos.findMany({
+      where: { usuariosId },
+    });
+  }
+
   async countAll() {
     const contagem = await this.prisma.elementos.count();
     return contagem;

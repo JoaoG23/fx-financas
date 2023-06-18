@@ -6,6 +6,7 @@ export interface IElementosRepository {
     delete(id: string);
     findById(id: string);
     findAll();
+    findAllByUsuariosId(usuariosId:string);
     countAll();
     findAllByPageAndUsuariosId(
       numeroPagina: number,

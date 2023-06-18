@@ -5,6 +5,7 @@ const routers = Router();
 import elementosController from "../elementos.controller/Elementos.controller";
 
 routers.get("/", elementosController.listarTodos);
+routers.get("/usuario/:usuariosId", elementosController.listarTodosPorUsuario);
 routers.get("/usuarios/paginas", elementosController.listarPorUsuarioPorPagina);
 routers.get("/:id", elementosController.listaPorId);
 
