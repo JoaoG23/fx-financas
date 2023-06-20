@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../../utils/Paginacao";
 import { ITiposBuscas } from "./ITiposBuscas";
 
-export class TiposBuscasServices implements ITiposBuscas {
+export class TiposBuscasServices {
   prismaService: PrismaClient;
   paginacaoService: Paginacao;
 
@@ -10,12 +10,12 @@ export class TiposBuscasServices implements ITiposBuscas {
     this.prismaService = new PrismaClient();
     this.paginacaoService = new Paginacao();
   }
-  buscarPorTipoId(id: string) {
-    throw new Error("Method not implemented.");
-  }
 
-  
-  async listarPorSubelementosPorPagina(numeroPagina: number, quantidadeItemPagina: number, subelementosId:string) {
+  async listarPorSubelementosPorPagina(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    subelementosId: string
+  ) {
     const quantidadeTotalRegistros = await this.contarTotalRegistros();
     const itemsPorPagina = Number(quantidadeItemPagina);
 
@@ -28,7 +28,7 @@ export class TiposBuscasServices implements ITiposBuscas {
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const subelementos = await this.prismaService.tipos.findMany({
       where: {
-        subelementosId
+        subelementosId,
       },
       skip: pularPagina,
       take: itemsPorPagina,
@@ -48,6 +48,14 @@ export class TiposBuscasServices implements ITiposBuscas {
     const tipos = await this.prismaService.tipos.findMany({});
     return tipos;
   }
+
+  async listarTodosPorUsuariosId(usuariosId: string) {
+    const tipos = await this.prismaService.tipos.findMany({
+      where: { usuariosId },
+    });
+    return tipos;
+  }
+
   async listaPorId(id: string) {
     const tipos = await this.prismaService.tipos.findUnique({
       where: { id },

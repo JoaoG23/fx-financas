@@ -7,7 +7,9 @@ import { buscarTodosLocaisPorId } from "./api";
 import * as Selects from "./styles";
 
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+
 import { Local } from "../../../types/Local";
+
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 type Props<T = unknown> = {

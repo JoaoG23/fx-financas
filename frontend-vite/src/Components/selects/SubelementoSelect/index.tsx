@@ -7,7 +7,9 @@ import { buscarTodosSubelementos } from "./api";
 import * as Selects from "./styles";
 
 import { useSubelementoStore } from "../../../stores/useSubelementoStore/useSubelementoStore";
+
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+
 import { Subelemento } from "../../../types/Subelemento";
 
 type Props<T = unknown> = {
@@ -32,8 +34,8 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
 }) => {
   const selecionarSubElemento = useSubelementoStore(
     (state) => state.adicionarSubelemento
-    );
-    
+  );
+
   const { isLoading, data } = useQuery(
     ["subelemento-usuario", elementosId!],
     () => buscarTodosSubelementos(elementosId!),
@@ -44,7 +46,7 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
     }
   );
 
-  const subelementos = data?.data ;
+  const subelementos = data?.data;
 
   return (
     <Selects.ContainerInput>

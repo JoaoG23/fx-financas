@@ -11,18 +11,21 @@ import { ModalSucesso } from "../../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarregando";
 
 import { adicionarTipo } from "../../api";
-import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
+
 import { Tipo } from "../../../../../../types/Tipo";
 
+import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { id } = useParams()
+  const { id } = useParams();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
+
   const { mutate, isLoading, isSuccess } = useMutation(
-    async (tipo: Tipo) =>
-      await adicionarTipo(tipo),
+    async (tipo: Tipo) => await adicionarTipo(tipo),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -49,8 +52,9 @@ export const Formulario: React.FC = () => {
           const novoTipo = {
             ...tipo,
             subelementosId: id,
+            usuariosId: idUsuario,
           };
-          mutate(novoTipo as any);
+          mutate(novoTipo as Tipo);
         })}
         register={register}
         control={control}

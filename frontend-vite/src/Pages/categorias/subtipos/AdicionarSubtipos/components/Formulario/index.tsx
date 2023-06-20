@@ -13,16 +13,17 @@ import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarreg
 import { adicionarSubtipo } from "../../api";
 import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { Subtipo } from "../../../../../../types/Subtipo";
-
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { id } = useParams()
+  const { id } = useParams();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
+
   const { mutate, isLoading, isSuccess } = useMutation(
-    async (subtipo: Subtipo) =>
-      await adicionarSubtipo(subtipo),
+    async (subtipo: Subtipo) => await adicionarSubtipo(subtipo),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -49,6 +50,7 @@ export const Formulario: React.FC = () => {
           const novoSubtipo = {
             ...subtipo,
             tiposId: id,
+            usuariosId: idUsuario,
           };
           mutate(novoSubtipo as any);
         })}

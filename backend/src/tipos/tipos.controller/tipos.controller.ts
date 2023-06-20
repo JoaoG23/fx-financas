@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import tiposService from "../tipos.service/tipos.service";
 
-class TiposController  {
+class TiposController {
   async listarTodosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina } = req.query;
@@ -17,7 +17,8 @@ class TiposController  {
 
   async listarPorSubelementosPorPagina(req: Request, res: Response) {
     try {
-      const { numero_pagina, quantidade_items_pagina, subelementosId } = req.query;
+      const { numero_pagina, quantidade_items_pagina, subelementosId } =
+        req.query;
       const pagina = await tiposService.listarPorSubelementosPorPagina(
         numero_pagina,
         quantidade_items_pagina,
@@ -32,6 +33,16 @@ class TiposController  {
   async listarTodos(req: Request, res: Response) {
     try {
       const todos = await tiposService.listarTodos();
+      res.status(200).json(todos);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+  async listarTodosPorUsuariosId(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.params;
+
+      const todos = await tiposService.listarTodosPorUsuariosId(usuariosId);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
