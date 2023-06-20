@@ -17,11 +17,10 @@ import {
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 import { adicionarItem } from "../../api";
-import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
 import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 
 export const Formulario: React.FC = () => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -52,7 +51,7 @@ export const Formulario: React.FC = () => {
       <CamposFormulario
         onSubmit={handleSubmit((itemFluxocaixa: ItemFluxoCaixaCriado) => {
           const novoItemFluxocaixa = converterValoresItemFluxocaixa(
-            idConvertido!,
+            idUsuario!,
             itemFluxocaixa as any
           );
           mutate(novoItemFluxocaixa as any);

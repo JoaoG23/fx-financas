@@ -1,8 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../../utils/Paginacao";
-import { ISubtiposBuscas } from "./ISubtiposBuscas";
 
-export class SubtiposBuscasServices implements ISubtiposBuscas {
+export class SubtiposBuscasServices {
   prismaService: PrismaClient;
   paginacaoService: Paginacao;
 
@@ -29,31 +28,18 @@ export class SubtiposBuscasServices implements ISubtiposBuscas {
     return subtipos;
   }
 
-  async contarTotalRegistros() {
-    const contagem = await this.prismaService.subtipos.count();
-    return contagem;
+  async listaPorUsuariosId(usuariosId: string) {
+    const subtipos = await this.prismaService.subtipos.findMany({
+      where: { usuariosId },
+    });
+    return subtipos;
   }
 
-  async listarTodosPorPagina(
-    numeroPagina: number,
-    quantidadeItemPagina: number
-  ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
-    const itemsPorPagina = Number(quantidadeItemPagina);
-
-    const totalQuantidadePaginas =
-      await this.paginacaoService.retornaQuantidadePaginas(
-        quantidadeTotalRegistros,
-        itemsPorPagina
-      );
-
-    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
-    const subtipos = await this.prismaService.subtipos.findMany({
-      skip: pularPagina,
-      take: itemsPorPagina,
+  async contarTotalRegistrosPorTiposId(tiposId: string) {
+    const contagem = await this.prismaService.subtipos.count({
+      where: { tiposId },
     });
-
-    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, subtipos];
+    return contagem;
   }
 
   async listarPorTiposPorPagina(
@@ -61,7 +47,9 @@ export class SubtiposBuscasServices implements ISubtiposBuscas {
     quantidadeItemPagina: number,
     tiposId: string
   ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
+    const quantidadeTotalRegistros = await this.contarTotalRegistrosPorTiposId(
+      tiposId
+    );
     const itemsPorPagina = Number(quantidadeItemPagina);
 
     const totalQuantidadePaginas =

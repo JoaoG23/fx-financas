@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-function gerarMuitosElementos() {
+function gerarMuitosSubelementos() {
   let arrayElemento = [];
   for (let i = 0; i < 3; i++) {
     let novoElemento = {
@@ -15,8 +15,8 @@ function gerarMuitosElementos() {
   return arrayElemento;
 }
 
-const array = gerarMuitosElementos();
-const dados = prisma.elementos.createMany({
+const array = gerarMuitosSubelementos();
+const dados = prisma.subelementos.createMany({
   data: array,
 });
 dados.then((res) => console.log(res)).then((data) => console.log(data));

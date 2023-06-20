@@ -1,20 +1,7 @@
 import { Request, Response } from "express";
 import subtiposService from "../subtipos.service/subtipos.service";
 
-class SubtiposController  {
-  async listarTodosPorPagina(req: Request, res: Response) {
-    try {
-      const { numero_pagina, quantidade_items_pagina } = req.query;
-      const pagina = await subtiposService.listarTodosPorPagina(
-        numero_pagina,
-        quantidade_items_pagina
-      );
-      res.status(200).json(pagina);
-    } catch (error) {
-      res.status(400).json(error.message);
-    }
-  }
-
+class SubtiposController {
   async listarPorTiposPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, tiposId } = req.query;
@@ -42,6 +29,16 @@ class SubtiposController  {
     try {
       const { id } = req.params;
       const subtipos = await subtiposService.listaPorId(id);
+      res.status(200).json(subtipos);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async listaPorUsuariosId(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.params;
+      const subtipos = await subtiposService.listaPorUsuariosId(usuariosId);
       res.status(200).json(subtipos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -79,5 +76,3 @@ class SubtiposController  {
 }
 
 export default new SubtiposController();
-
-    

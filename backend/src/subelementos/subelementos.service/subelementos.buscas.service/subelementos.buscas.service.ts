@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../../utils/Paginacao";
 import { ISubelementoBuscas } from "./ISubelementoBuscas";
 
-export class SubelementoBuscasServices implements ISubelementoBuscas {
+export class SubelementoBuscasServices {
   prismaService: PrismaClient;
   paginacaoService: Paginacao;
 
@@ -24,44 +24,37 @@ export class SubelementoBuscasServices implements ISubelementoBuscas {
     return subelemento;
   }
 
-  async listarTodos() {
-    const subelemento = await this.prismaService.subelementos.findMany({});
+  async listarTodosPorElementosId(elementosId: string) {
+    const subelemento = await this.prismaService.subelementos.findMany({
+      where: { elementosId },
+    });
     return subelemento;
   }
 
-  async contarTotalRegistros() {
-    const contagem = await this.prismaService.subelementos.count();
+  async listarTodosPorUsuariosId(usuariosId: string) {
+    const subelemento = await this.prismaService.subelementos.findMany({
+      where: { usuariosId },
+    });
+    return subelemento;
+  }
+
+  async contarTotalRegistrosPorElemento(elementosId: string) {
+    const contagem = await this.prismaService.subelementos.count({
+      where: {
+        elementosId,
+      },
+    });
     return contagem;
   }
 
-  async listarTodosPorPagina(
-    numeroPagina: number,
-    quantidadeItemPagina: number
-  ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
-    const itemsPorPagina = Number(quantidadeItemPagina);
 
-    const totalQuantidadePaginas =
-      await this.paginacaoService.retornaQuantidadePaginas(
-        quantidadeTotalRegistros,
-        itemsPorPagina
-      );
-
-    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
-    const subelementos = await this.prismaService.subelementos.findMany({
-      skip: pularPagina,
-      take: itemsPorPagina,
-    });
-
-    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, subelementos];
-  }
 
   async listarPorElementosPorPagina(
     numeroPagina: number,
     quantidadeItemPagina: number,
-    elementosId: any
+    elementosId: string
   ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
+    const quantidadeTotalRegistros = await this.contarTotalRegistrosPorElemento(elementosId);
     const itemsPorPagina = Number(quantidadeItemPagina);
 
     const totalQuantidadePaginas =
@@ -73,7 +66,7 @@ export class SubelementoBuscasServices implements ISubelementoBuscas {
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
     const subelementos = await this.prismaService.subelementos.findMany({
       where: {
-        elementosId
+        elementosId,
       },
       skip: pularPagina,
       take: itemsPorPagina,

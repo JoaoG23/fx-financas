@@ -8,17 +8,20 @@ datasource db {
 }
 
 model usuarios {
-  id         String       @id @default(uuid())
-  nome       String       @db.VarChar(200)
-  username   String       @db.VarChar(200)
-  senha      String
-  email      String       @db.VarChar(200)
-  telefone   String       @db.VarChar(22)
-  createdAt  DateTime     @default(now())
-  updateAt   DateTime     @updatedAt
-  fluxocaixa fluxocaixa[]
-  elementos  elementos[]
-  locais     locais[]
+  id           String         @id @default(uuid())
+  nome         String         @db.VarChar(200)
+  username     String         @db.VarChar(200)
+  senha        String
+  email        String         @db.VarChar(200)
+  telefone     String         @db.VarChar(22)
+  createdAt    DateTime       @default(now())
+  updateAt     DateTime       @updatedAt
+  fluxocaixa   fluxocaixa[]
+  elementos    elementos[]
+  locais       locais[]
+  subelementos subelementos[]
+  tipos        tipos[]
+  subtipos     subtipos[]
 }
 
 model elementos {
@@ -27,7 +30,7 @@ model elementos {
   fluxocaixa   fluxocaixa[]
   subelementos subelementos[]
   usuarios     usuarios?      @relation(fields: [usuariosId], references: [id], onDelete: Cascade)
-  usuariosId   String?
+  usuariosId   String?        @db.VarChar(36)
 }
 
 model subelementos {
@@ -37,6 +40,8 @@ model subelementos {
   tipos       tipos[]
   elementos   elementos?   @relation(fields: [elementosId], references: [id], onDelete: Cascade)
   fluxocaixa  fluxocaixa[]
+  usuarios    usuarios?    @relation(fields: [usuariosId], references: [id])
+  usuariosId  String?      @db.VarChar(36)
 }
 
 model tipos {
@@ -46,6 +51,8 @@ model tipos {
   subelementosId String?
   subtipos       subtipos[]
   fluxocaixa     fluxocaixa[]
+  usuarios       usuarios?     @relation(fields: [usuariosId], references: [id])
+  usuariosId     String?       @db.VarChar(36)
 }
 
 model subtipos {
@@ -54,6 +61,8 @@ model subtipos {
   tipos      tipos?       @relation(fields: [tiposId], references: [id], onDelete: Cascade)
   tiposId    String?
   fluxocaixa fluxocaixa[]
+  usuarios   usuarios?    @relation(fields: [usuariosId], references: [id])
+  usuariosId String?      @db.VarChar(36)
 }
 
 model fluxocaixa {
@@ -65,7 +74,7 @@ model fluxocaixa {
   valor            Decimal         @db.Decimal(12, 2)
   saldo            Decimal?        @default(0) @db.Decimal(12, 2)
   elementosId      String?         @default("")
-  usuariosId       String?
+  usuariosId       String?         @db.VarChar(36)
   elementos        elementos?      @relation(fields: [elementosId], references: [id])
   usuarios         usuarios?       @relation(fields: [usuariosId], references: [id])
   locais           locais?         @relation(fields: [locaisId], references: [id])
@@ -90,6 +99,6 @@ model locais {
   id         String       @id @default(uuid())
   descricao  String       @db.VarChar(70)
   usuarios   usuarios?    @relation(fields: [usuariosId], references: [id])
-  usuariosId String?      @default("")
+  usuariosId String?      @default("") @db.VarChar(36)
   fluxocaixa fluxocaixa[]
 }

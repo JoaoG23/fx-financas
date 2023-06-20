@@ -28,10 +28,10 @@ export const LocaisSelect: React.FC<Props<any>> = ({
   opcoes = [],
   requirido = true,
 }) => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
   const { isLoading, data } = useQuery(
-    ["todos-locais", idConvertido],
-    () => buscarTodosLocaisPorId(idConvertido!),
+    ["todos-locais", idUsuario],
+    () => buscarTodosLocaisPorId(idUsuario!),
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);

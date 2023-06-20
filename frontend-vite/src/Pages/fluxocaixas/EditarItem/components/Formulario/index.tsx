@@ -6,13 +6,9 @@ import { toast } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-
-
 import { buscarItemPorId, editarItemPorId } from "../../api";
 
-
 import { ItemFluxoCaixaCriado } from "../../../../../types/ItemFluxoCaixa";
-
 
 import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormulario";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
@@ -26,7 +22,7 @@ export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
 
   const { id } = useParams();
 
@@ -73,17 +69,17 @@ export const Formulario: React.FC = () => {
     ...itemFluxoCaixa,
     valor: parseFloat(itemFluxoCaixa?.valor!),
   };
-
+  
   useEffect(() => {
     reset(defaultValues);
-  }, [reset, data]);
+  }, [data]);
 
   return (
     <>
       <CamposFormulario
         onSubmit={handleSubmit((itemFluxoCaixa: ItemFluxoCaixaCriado) => {
           const novoItemFluxocaixa = converterValoresItemFluxocaixa(
-            idConvertido!,
+            idUsuario!,
             itemFluxoCaixa as any
           );
           mutate(novoItemFluxocaixa as object);

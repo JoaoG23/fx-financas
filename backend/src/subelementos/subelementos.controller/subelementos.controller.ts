@@ -2,8 +2,7 @@ import { Request, Response } from "express";
 import { ITodosControllers } from "../../interfaces/ITodosControllers";
 import subelementosService from "../subelementos.service/subelementos.service";
 
-
-class SubelementoController  {
+class SubelementoController {
   async listarPorElementosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, elementosId } = req.query;
@@ -17,22 +16,25 @@ class SubelementoController  {
       res.status(400).json(error.message);
     }
   }
-  async listarTodosPorPagina(req: Request, res: Response) {
+
+  async listarTodosPorElementosId(req: Request, res: Response) {
     try {
-      const { numero_pagina, quantidade_items_pagina } = req.query;
-      const pagina = await subelementosService.listarTodosPorPagina(
-        numero_pagina,
-        quantidade_items_pagina
+      const { elementosId } = req.params;
+      const todos = await subelementosService.listarTodosPorElementosId(
+        elementosId
       );
-      res.status(200).json(pagina);
+      res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
+  async listarTodosPorUsuariosId(req: Request, res: Response) {
     try {
-      const todos = await subelementosService.listarTodos();
+      const { usuariosId } = req.params;
+      const todos = await subelementosService.listarTodosPorUsuariosId(
+        usuariosId
+      );
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -62,7 +64,7 @@ class SubelementoController  {
   async criar(req: Request, res: Response) {
     try {
       const subelemento = await subelementosService.criar(req.body);
-      res.status(200).json(subelemento);
+      res.status(201).json(subelemento);
     } catch (error) {
       res.status(400).json(error.message);
     }

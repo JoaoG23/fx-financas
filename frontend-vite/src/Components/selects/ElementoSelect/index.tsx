@@ -30,17 +30,17 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
   requirido = true,
   opcoes = [],
 }) => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
 
   const selecionarElemento = useElementoStore(
     (state) => state.adicionarElemento
   );
 
   const { isLoading, data } = useQuery(
-    ["elemento-usuario", idConvertido],
+    ["elemento-usuario", idUsuario],
     () =>
       buscarTodosElementos({
-        usuariosId: idConvertido!,
+        usuariosId: idUsuario!,
       }),
     {
       onError: (error: any) => {
@@ -49,7 +49,7 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
     }
   );
 
-  const elementos = data?.data[1] || opcoes;
+  const elementos = data?.data || opcoes;
 
   return (
     <Selects.ContainerInput>

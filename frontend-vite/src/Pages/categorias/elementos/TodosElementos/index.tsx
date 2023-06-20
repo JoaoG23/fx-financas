@@ -20,14 +20,14 @@ import { useNavigate } from "react-router-dom";
 export const TodosElementos: React.FC = () => {
   const navigate = useNavigate();
 
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(
     ["elemento-usuario", pagina],
     () =>
       buscarTodosElementos({
-        usuariosId: idConvertido!,
+        usuariosId: idUsuario!,
         numero_pagina: pagina,
       }),
     {

@@ -6,15 +6,7 @@ type Criterios = {
   elementosId?: string;
 };
 
-export async function buscarTodosSubelementos({
-  elementosId,
-}: Criterios) {
-  const resposta = await endpoint.get(`/subelementos/elementos/paginas`, {
-    params: {
-      numero_pagina:1,
-      quantidade_items_pagina:100,
-      elementosId,
-    },
-  });
+export async function buscarTodosSubelementos(elementosId: string) {
+  const resposta = await endpoint.get(`/subelementos/elemento/${elementosId}`);
   return resposta;
 }

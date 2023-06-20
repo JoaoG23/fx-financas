@@ -5,7 +5,7 @@ import {
 import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
 
 export const converterValoresItemFluxocaixa = (
-  idConvertido: string,
+  idUsuario: string,
   itemFluxocaixa: ItemFluxoCaixa
 ) => {
   const {
@@ -20,7 +20,7 @@ export const converterValoresItemFluxocaixa = (
 
   const novoItemFluxocaixa = {
     ...restanteFluxoCaixa,
-    usuariosId: idConvertido,
+    usuariosId: idUsuario,
     elementosId: converterVazioParaNull(itemFluxocaixa?.elementosId),
     subelementosId: converterVazioParaNull(itemFluxocaixa?.subelementosId),
     tiposId: converterVazioParaNull(itemFluxocaixa?.tiposId),

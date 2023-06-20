@@ -16,7 +16,7 @@ import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAteP
 import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 
 export const Formulario: React.FC = () => {
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
@@ -47,7 +47,7 @@ export const Formulario: React.FC = () => {
         onSubmit={handleSubmit((elemento: Elemento) => {
           const novoElemento = {
             ...elemento,
-            usuariosId: idConvertido,
+            usuariosId: idUsuario,
           };
           mutate(novoElemento as any);
         })}

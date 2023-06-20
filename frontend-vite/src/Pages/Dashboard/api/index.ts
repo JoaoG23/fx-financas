@@ -1,7 +1,7 @@
 import { endpoint } from "../../../services/endpoint";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
-const { idConvertido } = buscaDadoUsuarioNaSessao();
+const { idUsuario } = buscaDadoUsuarioNaSessao();
 
 async function buscarTotalReceitasMes(usuariosId: string) {
   const resposta = await endpoint.get(`/estatisticas/total_ganhos_mes/${usuariosId}`);
@@ -18,9 +18,9 @@ async function buscarSaldoAtual(usuariosId: string) {
 
 export const buscarDadosCabecalho = async () => {
   const resposta = await Promise.all([
-    buscarTotalReceitasMes(idConvertido!),
-    buscarTotalDespesasMes(idConvertido!),
-    buscarSaldoAtual(idConvertido!),
+    buscarTotalReceitasMes(idUsuario!),
+    buscarTotalDespesasMes(idUsuario!),
+    buscarSaldoAtual(idUsuario!),
   ]);
   return resposta;
 };

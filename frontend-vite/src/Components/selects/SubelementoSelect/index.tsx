@@ -1,5 +1,4 @@
 import { Control, FieldValues, UseFormRegister } from "react-hook-form";
-
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
@@ -33,14 +32,11 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
 }) => {
   const selecionarSubElemento = useSubelementoStore(
     (state) => state.adicionarSubelemento
-  );
-
+    );
+    
   const { isLoading, data } = useQuery(
     ["subelemento-usuario", elementosId!],
-    () =>
-      buscarTodosSubelementos({
-        elementosId: elementosId!,
-      }),
+    () => buscarTodosSubelementos(elementosId!),
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);
@@ -48,8 +44,7 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
     }
   );
 
-  const subelementos = data?.data[1] || opcoes;
-  console.log("🚀 ~ file: index.tsx:52 ~ subelementos:", subelementos)
+  const subelementos = data?.data ;
 
   return (
     <Selects.ContainerInput>

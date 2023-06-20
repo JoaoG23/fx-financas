@@ -21,14 +21,15 @@ import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark"
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
-  const { idConvertido } = buscaDadoUsuarioNaSessao();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
+  console.log("🚀 ~ file: index.tsx:25 ~ idUsuario:", idUsuario)
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(
     ["todos-fluxocaixa-usuario", pagina],
     () =>
       buscarFluxoCaixaPorUsuario({
-        usuariosId: idConvertido!,
+        usuariosId: idUsuario!,
         numero_pagina: pagina,
       }),
     {

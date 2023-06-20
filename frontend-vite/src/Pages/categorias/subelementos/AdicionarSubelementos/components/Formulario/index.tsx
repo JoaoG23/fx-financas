@@ -11,6 +11,8 @@ import { ModalSucesso } from "../../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarregando";
 
 import { adicionarSubelementos } from "../../api";
+
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
 import { Subelemento } from "../../../../../../types/Subelemento";
@@ -18,8 +20,11 @@ import { Subelemento } from "../../../../../../types/Subelemento";
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+  
+  const { id } = useParams();
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
 
-  const { id } = useParams()
+
   const { mutate, isLoading, isSuccess } = useMutation(
     async (subelemento: Subelemento) =>
       await adicionarSubelementos(subelemento),
@@ -46,11 +51,12 @@ export const Formulario: React.FC = () => {
     <>
       <CamposFormulario
         onSubmit={handleSubmit((elemento: Subelemento) => {
-          const novosubElemento = {
+          const novoSubElemento = {
             ...elemento,
             elementosId: id,
+            usuariosId: idUsuario,
           };
-          mutate(novosubElemento as any);
+          mutate(novoSubElemento as Subelemento);
         })}
         register={register}
         control={control}
