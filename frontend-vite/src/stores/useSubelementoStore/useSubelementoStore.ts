@@ -1,25 +1,20 @@
 import { create } from "zustand";
 
-type SubelementoSelect = {
-  value?: string;
-  label?: string;
-};
-
 type State = {
-  subelemento: SubelementoSelect;
+  subelemento: string;
 
-  adicionarSubelemento(subelemento: SubelementoSelect): void;
+  adicionarSubelemento(subelemento: string): void;
   limparSubelemento(): void;
 };
 
 export const useSubelementoStore = create<State>((set) => ({
-  subelemento: {},
+  subelemento: "",
 
-  adicionarSubelemento(subelemento: SubelementoSelect) {
-    set((state) => ({ ...state.subelemento, subelemento }));
+  adicionarSubelemento(subelemento: string) {
+    set({ subelemento: subelemento });
   },
 
   limparSubelemento() {
-    set((state) => ({ ...state.subelemento, subelemento: {} }));
+    set({ subelemento: "" });
   },
 }));

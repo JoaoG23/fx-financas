@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ITodosControllers } from "../../interfaces/ITodosControllers";
 import subelementosService from "../subelementos.service/subelementos.service";
 
 class SubelementoController {

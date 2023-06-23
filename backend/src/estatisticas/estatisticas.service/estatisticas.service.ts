@@ -1,3 +1,4 @@
+import { converterNegativoParaAbsoluto } from "../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
 import { converterParaNumero } from "../../utils/conversor-numeros/converterParaNumero/converterParaNumero";
 import { EstatisticaRepositoryInterface } from "../estatisticas.repository/EstatisticaRepositoryInterface";
 import { EstatisticaRepository } from "../estatisticas.repository/estatisticas.repository";
@@ -33,10 +34,22 @@ export class EstatisticasService {
   }
 
   async buscarSaldoAtualPorUsuario(usuariosId: string) {
-    const itemFluxoCaixa =
-      await this.estatisticasRepository.findLastSaldoByUsuariosId(usuariosId);
+    const receitas = await this.estatisticasRepository.sumBiggerThanZero(
+      usuariosId
+    );
+    const receitasTotal = receitas._sum.valor;
 
-    return itemFluxoCaixa.saldo;
+    const despesas = await this.estatisticasRepository.sumLessThanZero(
+      usuariosId
+    );
+    const despesasTotal = despesas._sum.valor;
+
+    const despesasConvertida = converterNegativoParaAbsoluto(
+      Number(despesasTotal)
+    );
+
+    const saldoAtual = Number(receitasTotal) - despesasConvertida;
+    return saldoAtual;
   }
 
   async buscarDespesasReceitas12MesesAnoPorUsuario(

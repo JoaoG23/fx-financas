@@ -28,7 +28,7 @@ export class SubtiposBuscasServices {
     return subtipos;
   }
 
-  async listaPorUsuariosId(usuariosId: string) {
+  async listaPorTodosUsuariosId(usuariosId: string) {
     const subtipos = await this.prismaService.subtipos.findMany({
       where: { usuariosId },
     });

@@ -62,14 +62,10 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
         onChange={(e: any) => {
-          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
+          const idElemento = e.target.value;
+          console.log("🚀 ~ file: index.tsx:66 ~ idElemento:", idElemento)
 
-          const elementoSelecionado = {
-            label: descricao,
-            value: e.target.value,
-          };
-
-          selecionarElemento(elementoSelecionado);
+          selecionarElemento(idElemento);
         }}
       >
         <option value="">Selecione um elemento</option>

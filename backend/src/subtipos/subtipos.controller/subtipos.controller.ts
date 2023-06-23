@@ -38,7 +38,7 @@ class SubtiposController {
   async listaPorUsuariosId(req: Request, res: Response) {
     try {
       const { usuariosId } = req.params;
-      const subtipos = await subtiposService.listaPorUsuariosId(usuariosId);
+      const subtipos = await subtiposService.listaPorTodosUsuariosId(usuariosId);
       res.status(200).json(subtipos);
     } catch (error) {
       res.status(400).json(error.message);

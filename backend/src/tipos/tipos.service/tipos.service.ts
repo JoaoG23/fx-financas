@@ -1,8 +1,7 @@
 import { TiposDto } from "../tipos.dto/tipos.dto";
 import { TiposBuscasServices } from "./tipos.buscas.service/tipos.buscas.service";
-import { ITiposService } from "./ITiposService";
 
-class TiposServices extends TiposBuscasServices implements ITiposService {
+class TiposServices extends TiposBuscasServices  {
   async criar(data: TiposDto) {
     const tipos = await this.prismaService.tipos.create({
       data,

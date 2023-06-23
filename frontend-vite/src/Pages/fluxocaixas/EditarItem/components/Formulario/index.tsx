@@ -18,9 +18,21 @@ import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePagi
 import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
 
+import { useSubelementoStore } from "../../../../../stores/useSubelementoStore/useSubelementoStore";
+import { useElementoStore } from "../../../../../stores/useElementoStore/useElementoStore";
+import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
+
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const selecionarSubElemento = useSubelementoStore(
+    (state) => state.adicionarSubelemento
+  );
+  const selecionarElemento = useElementoStore(
+    (state) => state.adicionarElemento
+  );
+  const selecionarTipo = useTiposStore((state) => state.adicionarTipos);
 
   const { idUsuario } = buscaDadoUsuarioNaSessao();
 
@@ -65,13 +77,16 @@ export const Formulario: React.FC = () => {
     formState: { errors },
   } = useForm();
 
-  const defaultValues = {
+  const dadosCarregados = {
     ...itemFluxoCaixa,
     valor: parseFloat(itemFluxoCaixa?.valor!),
   };
-  
+
+
   useEffect(() => {
-    reset(defaultValues);
+    selecionarTipo(itemFluxoCaixa?.tiposId!)
+    selecionarSubElemento(itemFluxoCaixa?.subelementosId!)
+    reset(dadosCarregados);
   }, [data]);
 
   return (

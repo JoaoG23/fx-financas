@@ -9,6 +9,35 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
     this.prisma = new PrismaClient();
   }
 
+
+  async sumBiggerThanZero(usuariosId: string) {
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        valor: {
+          gt: 0,
+        },
+        usuariosId,
+      },
+    });
+  }
+
+  async sumLessThanZero(usuariosId: string) {
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        valor: {
+          lt: 0,
+        },
+        usuariosId,
+      },
+    });
+  }
+
   async sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
     numberOfMonth: number,
     usuariosId: string,

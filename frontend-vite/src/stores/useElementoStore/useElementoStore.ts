@@ -1,26 +1,20 @@
-import React from "react";
 import { create } from "zustand";
 
-type ElementoSelect = {
-  value?: string;
-  label?: string;
-};
-
 type State = {
-  elemento: ElementoSelect;
+  elemento: string;
 
-  adicionarElemento(elemento: ElementoSelect): void;
+  adicionarElemento(elemento: string): void;
   limparElemento(): void;
 };
 
 export const useElementoStore = create<State>((set) => ({
-  elemento: {},
+  elemento: "",
 
-  adicionarElemento(elemento: ElementoSelect) {
-    set((state) => ({ ...state.elemento, elemento }));
+  adicionarElemento(elemento: string) {
+    set({ elemento: elemento });
   },
 
   limparElemento() {
-    set((state) => ({ ...state.elemento, elemento: {} }));
+    set({ elemento: "" });
   },
 }));

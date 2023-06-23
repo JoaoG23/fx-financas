@@ -6,6 +6,8 @@ export interface EstatisticaRepositoryInterface {
     usuariosId: string,
     years: number
   );
+  sumBiggerThanZero(usuariosId: string);
+  sumLessThanZero(usuariosId: string)
   sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
     numberOfMonth: number,
     usuariosId: string,

@@ -38,7 +38,7 @@ export function buscarSaldoAtualUsuarioSubtests() {
         await limparTabelaUsuarios();
       });
 
-      test("Deverá ser capaz de tirar a diferença entre (gasto e ganho) e retorna (saldo atual)", async () => {
+      test.only("Deverá ser capaz de tirar a diferença entre (gasto e ganho) e retorna (saldo atual)", async () => {
         const usuario = await criarUsuario();
         const idUsuario = usuario.body.id;
 
@@ -70,7 +70,7 @@ export function buscarSaldoAtualUsuarioSubtests() {
         expect(retorno.statusCode).toEqual(200);
 
         expect(resposta).not.toBeNull();
-        expect(resposta).toBe("50");
+        expect(resposta).toBe(50);
       });
     });
   });

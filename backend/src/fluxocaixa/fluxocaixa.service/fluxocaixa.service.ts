@@ -6,7 +6,7 @@ import {
 } from "../fluxocaixa.repository/fluxocaixa.repository";
 
 export class FluxoCaixaServices {
-  public fluxoCaixaRepository: IFluxocaixaRepository;
+  private fluxoCaixaRepository: IFluxocaixaRepository;
 
   constructor(fluxoCaixaRepository) {
     this.fluxoCaixaRepository = fluxoCaixaRepository;
@@ -86,8 +86,9 @@ export class FluxoCaixaServices {
       throw new Error("Não há esse Id para ser excluido");
     }
 
+    const deletado = await this.fluxoCaixaRepository.delete(id);
     await this.atualizarSaldoFinal(id);
-    return this.fluxoCaixaRepository.delete(id);
+    return deletado;
   }
 
   async atualizarSaldoFinal(usuariosId: string) {

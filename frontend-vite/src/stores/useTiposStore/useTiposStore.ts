@@ -1,21 +1,20 @@
 import { create } from "zustand";
-import { ReactSelectOptions } from "../../types/react-select/ReactSelectOptions";
 
 type State = {
-  tipos: ReactSelectOptions;
+  tipos: string;
 
-  adicionarTipos(tipos: ReactSelectOptions): void;
+  adicionarTipos(tipos: string): void;
   limpartipos(): void;
 };
 
 export const useTiposStore = create<State>((set) => ({
-  tipos: {},
+  tipos: "",
 
-  adicionarTipos(tipos: ReactSelectOptions) {
-    set((state) => ({ ...state.tipos, tipos }));
+  adicionarTipos(tipos: string) {
+    set({ tipos: tipos });
   },
 
   limpartipos() {
-    set((state) => ({ ...state.tipos, tipos: {} }));
+    set({ tipos: "" });
   },
 }));
