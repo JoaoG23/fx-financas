@@ -1,21 +1,21 @@
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 import * as tiposStyle from "./styles";
-
 import { useState } from "react";
+
 import { buscarTodosTiposPorPagina } from "./api";
 
-import { SpinnerCarregamento } from "../../../../Components/spinners/SpinnerCarregamento";
-import { TableComum } from "../../../../Components/tables/TableComum";
+import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 
-import { PaginacaoComum } from "../../../../Components/paginacoes/Paginacao";
-import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
-
-import { useNavigate, useParams } from "react-router-dom";
 import { Tipo } from "../../../../types/Tipo";
+
+import { TableComum } from "../../../../Components/tables/TableComum";
+import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
+import { PaginacaoComum } from "../../../../Components/paginacoes/Paginacao";
+import { SpinnerCarregamento } from "../../../../Components/spinners/SpinnerCarregamento";
 import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela";
 import { LinhaTipo } from "../ComponentesParaTodos/tabela/Linha";
-import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 
 export const TodosTipos: React.FC = () => {
   const navigate = useNavigate();
@@ -28,20 +28,22 @@ export const TodosTipos: React.FC = () => {
   const { isLoading, data } = useQuery(
     ["tipos-pagina", pagina],
     () =>
-      buscarTodosTiposPorPagina({
-        subelementosId: id!,
+    buscarTodosTiposPorPagina({
+      subelementosId: id!,
         numero_pagina: pagina,
       }),
-    {
-      onError: (error: any) => {
-        toast.error(`Houve um error: ${error.response.data}`);
-      },
-    }
-  );
+      {
+        onError: (error: any) => {
+          toast.error(`Houve um error: ${error.response.data}`);
+        },
+      }
+      );
+      
+      console.log("🚀 ~ file: index.tsx:29 ~ data:", data)
 
-  const tipos = data?.data[1];
-  const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
-  const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
+  const tipos = data?.data[1]!;
+  const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas!;
+  const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros!;
 
   return (
     <tiposStyle.Container>

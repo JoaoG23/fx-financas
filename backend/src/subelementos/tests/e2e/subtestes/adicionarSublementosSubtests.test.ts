@@ -51,7 +51,7 @@ export function adicionarSubelementosSubtests() {
         await limparTabelaSubelementos();
       });
 
-      test.only("Deverá adicionar um elemento para elemento com dados enviados e retorná-lo com sucesso", async () => {
+      test("Deverá adicionar um elemento para elemento com dados enviados e retorná-lo com sucesso", async () => {
         const elemento = await criarElemento();
         const idElemento = elemento.body.id;
     
@@ -60,10 +60,7 @@ export function adicionarSubelementosSubtests() {
           ...subelementoCriado,
           elementosId: 'TESTEID',
         };
-        console.log(
-          "🚀 ~ file: adicionarSublementosSubtests.test.ts:63 ~ test.only ~ subelementosComElementosId:",
-          subelementosComElementosId
-        );
+    
 
         const retorno = await request(app)
           .post(`/api/v1/subelementos`)

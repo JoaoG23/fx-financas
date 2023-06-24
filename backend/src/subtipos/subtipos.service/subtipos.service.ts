@@ -15,7 +15,7 @@ class SubtiposServices
   }
 
   async atualizarUmPorId(id: string, dadosNovos: SubtiposDto) {
-    const existeIdsubtipos = await this.buscarPorId(id);
+    const existeIdsubtipos = await this.listaUmPorId(id);
     if (!existeIdsubtipos) {
       throw new Error("Não existe esse ID para ser atualizado");
     }
@@ -28,7 +28,7 @@ class SubtiposServices
   }
 
   async deletarUmPorId(id: any) {
-    const existeIdsubtipos = await this.buscarPorId(id);
+    const existeIdsubtipos = await this.listaUmPorId(id);
     if (!existeIdsubtipos) {
       throw new Error("Não há esse Id para ser excluido");
     }

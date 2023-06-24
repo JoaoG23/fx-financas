@@ -28,17 +28,17 @@ class SubtiposController {
   async listaPorId(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const subtipos = await subtiposService.listaPorId(id);
+      const subtipos = await subtiposService.listaUmPorId(id);
       res.status(200).json(subtipos);
     } catch (error) {
       res.status(400).json(error.message);
     }
   }
 
-  async listaPorUsuariosId(req: Request, res: Response) {
+  async listarTodosPorTiposId(req: Request, res: Response) {
     try {
-      const { usuariosId } = req.params;
-      const subtipos = await subtiposService.listaPorTodosUsuariosId(usuariosId);
+      const { tiposId } = req.params;
+      const subtipos = await subtiposService.listarTodosPorTiposId(tiposId);
       res.status(200).json(subtipos);
     } catch (error) {
       res.status(400).json(error.message);

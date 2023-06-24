@@ -25,12 +25,12 @@ import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-
-  const selecionarSubElemento = useSubelementoStore(
-    (state) => state.adicionarSubelemento
-  );
+  
   const selecionarElemento = useElementoStore(
     (state) => state.adicionarElemento
+  );
+  const selecionarSubElemento = useSubelementoStore(
+    (state) => state.adicionarSubelemento
   );
   const selecionarTipo = useTiposStore((state) => state.adicionarTipos);
 
@@ -84,8 +84,9 @@ export const Formulario: React.FC = () => {
 
 
   useEffect(() => {
-    selecionarTipo(itemFluxoCaixa?.tiposId!)
+    selecionarElemento(itemFluxoCaixa?.elementosId!)
     selecionarSubElemento(itemFluxoCaixa?.subelementosId!)
+    selecionarTipo(itemFluxoCaixa?.tiposId!)
     reset(dadosCarregados);
   }, [data]);
 

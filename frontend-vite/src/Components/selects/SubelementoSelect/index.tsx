@@ -37,7 +37,7 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
   );
 
   const { isLoading, data } = useQuery(
-    ["subelemento-usuario", elementosId!],
+    ["subelemento-elementos", elementosId!],
     () => buscarTodosSubelementos(elementosId!),
     {
       onError: (error: any) => {
@@ -58,14 +58,9 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
         onChange={(e: any) => {
-          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
+          const idSubelemento  = e.target.value;
 
-          const subelementoSelecionado = {
-            label: descricao,
-            value: e.target.value,
-          };
-
-          selecionarSubElemento(subelementoSelecionado);
+          selecionarSubElemento(idSubelemento);
         }}
       >
         <option value="">Selecione um subelemento</option>

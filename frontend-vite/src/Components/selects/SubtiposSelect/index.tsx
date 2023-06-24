@@ -1,6 +1,5 @@
 import {
   Control,
-  Controller,
   FieldValues,
   UseFormRegister,
 } from "react-hook-form";
@@ -11,7 +10,7 @@ import { buscarTodosSubTipos } from "./api";
 
 import * as Selects from "./styles";
 
-import { usesubtipoStore } from "../../../stores/useSubtipoStore/useSubtiposStore";
+import { useSubtipoStore } from "../../../stores/useSubtipoStore/useSubtiposStore";
 import { Subtipo } from "../../../types/Subtipo";
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 
@@ -35,14 +34,12 @@ export const SubtiposSelect: React.FC<Props> = ({
   tiposId,
   opcoes = [],
 }) => {
-  const selecionarSubtipo = usesubtipoStore((state) => state.adicionarSubtipo);
+  const selecionarSubtipo = useSubtipoStore((state) => state.adicionarSubtipo);
 
   const { isLoading, data } = useQuery(
-    ["subtipos-usuario", tiposId!],
+    ["subtipos-tipo", tiposId!],
     () =>
-      buscarTodosSubTipos({
-        tiposId: tiposId!,
-      }),
+      buscarTodosSubTipos(tiposId!),
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);
@@ -50,7 +47,7 @@ export const SubtiposSelect: React.FC<Props> = ({
     }
   );
 
-  const subtipos = data?.data[1] || opcoes;
+  const subtipos = data?.data;
 
   return (
     <Selects.ContainerInput>
@@ -63,14 +60,9 @@ export const SubtiposSelect: React.FC<Props> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
         onChange={(e: any) => {
-          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
+          const idSubtipo = e.target.value;
 
-          const tipoSelecionado = {
-            label: descricao,
-            value: e.target.value,
-          };
-
-          selecionarSubtipo(tipoSelecionado);
+          selecionarSubtipo(idSubtipo);
         }}
       >
         <option value="">Selecione um subtipo</option>

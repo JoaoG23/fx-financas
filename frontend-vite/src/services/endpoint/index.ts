@@ -1,10 +1,11 @@
 import axios from 'axios';
 import { buscaDadoUsuarioNaSessao } from '../../utils/buscaDadoUsuarioNaSessao';
 
+const rotaPrincipal = import.meta.env.VITE_SOME_KEY
 
 const { tokenSessao } = buscaDadoUsuarioNaSessao();
 export const endpoint = axios.create({
-    baseURL: "http://localhost:3001/api/v1/",
+    baseURL: rotaPrincipal,
     headers: {
       "Content-type": "application/json",
       'auth':`${tokenSessao}`

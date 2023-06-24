@@ -15,7 +15,6 @@ import { ElementoSelect } from "../../../../../Components/selects/ElementoSelect
 import { AlertCampoVazio } from "../../../../../Components/alerts/AlertCampoVazio";
 import { TiposSelect } from "../../../../../Components/selects/TiposSelect";
 import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
-import { converterNullParaVazio } from "../../../../../utils/conversao/converteNullParaVazio/converteNullParaVazio";
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 
@@ -54,30 +53,30 @@ export const CamposFormulario: React.FC<Props> = ({
               <SublementoSelect
                 requirido={false}
                 register={register}
-                elementosId={elemento?.value!}
+                elementosId={elemento}
                 control={control}
                 name="subelementosId"
-                label={converterNullParaVazio(elemento?.label)}
+                label={'Sublemento'}
               />
             </div>
             <div>
               <TiposSelect
                 requirido={false}
                 register={register}
-                subelementosId={subelemento?.value!}
+                subelementosId={subelemento}
                 control={control}
                 name="tiposId"
-                label={converterNullParaVazio(subelemento?.label)}
+                label={'Tipo'}
               />
             </div>
             <div>
               <SubtiposSelect
                 requirido={false}
                 register={register}
-                tiposId={tipos?.value!}
+                tiposId={tipos}
                 control={control}
                 name="subtiposId"
-                label={converterNullParaVazio(tipos?.label)}
+                label={'Subtipos'}
               />
             </div>
             <div>
@@ -95,13 +94,13 @@ export const CamposFormulario: React.FC<Props> = ({
                 register={register}
                 name="tipos_despesasId"
                 control={control}
-                label="Tipos Despesa"
+                label="Meio de movimentação"
               />
             </div>
             <div>
               <InputDefault
                 name="valor"
-                placeholder="Digite o valor do Item"
+                placeholder="Digite o valor do item"
                 register={register}
                 label="Valor"
               />

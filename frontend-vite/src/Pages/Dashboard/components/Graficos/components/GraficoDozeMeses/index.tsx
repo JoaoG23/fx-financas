@@ -5,6 +5,7 @@ import {
   Area,
   AreaChart,
   CartesianGrid,
+  ResponsiveContainer,
   Tooltip,
   XAxis,
   YAxis,
@@ -26,7 +27,7 @@ export const GraficoDozeMeses: React.FC = () => {
   const receitasDespesas = dataReceitasDespesa?.data;
 
   return (
-    <div>
+    <ResponsiveContainer width="100%" height={300}>
       <AreaChart
         width={900}
         height={250}
@@ -52,6 +53,6 @@ export const GraficoDozeMeses: React.FC = () => {
           fill="#FFA26B"
         />
       </AreaChart>
-    </div>
+    </ResponsiveContainer>
   );
 };

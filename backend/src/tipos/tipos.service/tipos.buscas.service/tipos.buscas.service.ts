@@ -11,12 +11,20 @@ export class TiposBuscasServices {
     this.paginacaoService = new Paginacao();
   }
 
+  async contarTotalRegistros(subelementosId: string) {
+    const contagem = await this.prismaService.tipos.count({
+      where: { subelementosId },
+    });
+    return contagem;
+  }
   async listarPorSubelementosPorPagina(
     numeroPagina: number,
     quantidadeItemPagina: number,
     subelementosId: string
   ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
+    const quantidadeTotalRegistros = await this.contarTotalRegistros(
+      subelementosId
+    );
     const itemsPorPagina = Number(quantidadeItemPagina);
 
     const totalQuantidadePaginas =
@@ -48,45 +56,12 @@ export class TiposBuscasServices {
     const tipos = await this.prismaService.tipos.findMany({});
     return tipos;
   }
-
-  async listarTodosPorUsuariosId(usuariosId: string) {
+  async listarTodosPorSubelementosId(subelementosId: string) {
     const tipos = await this.prismaService.tipos.findMany({
-      where: { usuariosId },
+      where: {
+        subelementosId,
+      },
     });
     return tipos;
-  }
-
-  async listaPorId(id: string) {
-    const tipos = await this.prismaService.tipos.findUnique({
-      where: { id },
-    });
-    return tipos;
-  }
-
-  async contarTotalRegistros() {
-    const contagem = await this.prismaService.tipos.count();
-    return contagem;
-  }
-
-  async listarTodosPorPagina(
-    numeroPagina: number,
-    quantidadeItemPagina: number
-  ) {
-    const quantidadeTotalRegistros = await this.contarTotalRegistros();
-    const itemsPorPagina = Number(quantidadeItemPagina);
-
-    const totalQuantidadePaginas =
-      await this.paginacaoService.retornaQuantidadePaginas(
-        quantidadeTotalRegistros,
-        itemsPorPagina
-      );
-
-    const pularPagina = (numeroPagina - 1) * itemsPorPagina;
-    const tipos = await this.prismaService.tipos.findMany({
-      skip: pularPagina,
-      take: itemsPorPagina,
-    });
-
-    return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, tipos];
   }
 }

@@ -6,10 +6,7 @@ routers.get(
   "/elemento/:elementosId",
   subelementoController.listarTodosPorElementosId
 );
-routers.get(
-  "/usuario/:usuariosId",
-  subelementoController.listarTodosPorElementosId
-);
+
 routers.get(
   "/elementos/paginas",
   subelementoController.listarPorElementosPorPagina

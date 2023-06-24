@@ -10,18 +10,21 @@ export class SubtiposBuscasServices {
     this.paginacaoService = new Paginacao();
   }
 
-  async buscarPorId(id: string) {
-    const subtipos = await this.prismaService.subtipos.findFirst({
-      where: { id },
-    });
-    return subtipos;
-  }
+
 
   async listarTodos() {
     const subtipos = await this.prismaService.subtipos.findMany({});
     return subtipos;
   }
-  async listaPorId(id: string) {
+
+  async listarTodosPorTiposId(tiposId: string) {
+    const subtipos = await this.prismaService.subtipos.findMany({
+      where: { tiposId },
+    });
+    return subtipos;
+  }
+
+  async listaUmPorId(id: string) {
     const subtipos = await this.prismaService.subtipos.findUnique({
       where: { id },
     });

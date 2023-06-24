@@ -12,5 +12,8 @@ export default defineConfig({
   test:{
     globals:true,
     environment:"jsdom"
+  },
+  define: {
+    'process.env': process.env
   }
 });

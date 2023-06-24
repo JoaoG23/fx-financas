@@ -22,7 +22,6 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
   const { idUsuario } = buscaDadoUsuarioNaSessao();
-  console.log("🚀 ~ file: index.tsx:25 ~ idUsuario:", idUsuario)
   const [pagina, setPagina] = useState(1);
 
   const { isLoading, data } = useQuery(

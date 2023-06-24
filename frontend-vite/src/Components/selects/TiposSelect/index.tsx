@@ -33,11 +33,8 @@ export const TiposSelect: React.FC<Props<Tipo>> = ({
   const selecionarTipo = useTiposStore((state) => state.adicionarTipos);
 
   const { isLoading, data } = useQuery(
-    ["tipos-usuario", subelementosId!],
-    () =>
-      buscarTodosTipos({
-        subelementosId: subelementosId!,
-      }),
+    ["tipos-subelementos", subelementosId!],
+    () => buscarTodosTipos(subelementosId!),
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);
@@ -45,7 +42,7 @@ export const TiposSelect: React.FC<Props<Tipo>> = ({
     }
   );
 
-  const tipos = data?.data[1] || opcoes;
+  const tipos = data?.data;
 
   return (
     <Selects.ContainerInput>
@@ -57,14 +54,9 @@ export const TiposSelect: React.FC<Props<Tipo>> = ({
         {...register(name, { required: requirido })}
         disabled={desativar}
         onChange={(e: any) => {
-          const descricao = e.nativeEvent.target[e.target.selectedIndex].text;
+          const idIipo = e.target.value;
 
-          const tipoSelecionado = {
-            label: descricao,
-            value: e.target.value,
-          };
-
-          selecionarTipo(tipoSelecionado);
+          selecionarTipo(idIipo);
         }}
       >
         <option value="">Selecione um tipo</option>
