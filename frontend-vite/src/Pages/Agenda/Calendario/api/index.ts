@@ -1,7 +1,7 @@
 import { endpoint } from "../../../../services/endpoint";
 
-export async function buscarTodosItemFluxoCaixa() {
-  const resposta = await endpoint.get(`/operacaoagendamento`);
+export async function buscarTodosItemFluxoCaixa(usuariosId: string) {
+  const resposta = await endpoint.get(`/fluxocaixa/usuario/${usuariosId}`);
   return resposta;
 }
 

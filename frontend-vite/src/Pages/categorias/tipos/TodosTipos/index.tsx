@@ -28,22 +28,20 @@ export const TodosTipos: React.FC = () => {
   const { isLoading, data } = useQuery(
     ["tipos-pagina", pagina],
     () =>
-    buscarTodosTiposPorPagina({
-      subelementosId: id!,
+      buscarTodosTiposPorPagina({
+        subelementosId: id!,
         numero_pagina: pagina,
       }),
-      {
-        onError: (error: any) => {
-          toast.error(`Houve um error: ${error.response.data}`);
-        },
-      }
-      );
-      
-      console.log("🚀 ~ file: index.tsx:29 ~ data:", data)
+    {
+      onError: (error: any) => {
+        toast.error(`Houve um error: ${error.response.data}`);
+      },
+    }
+  );
 
-  const tipos = data?.data[1]!;
-  const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas!;
-  const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros!;
+  const tipos = data?.data[1] || [];
+  const totalQuantidadePaginas = data?.data[0]?.totalQuantidadePaginas!;
+  const quantidadeTotalRegistros = data?.data[0]?.quantidadeTotalRegistros!;
 
   return (
     <tiposStyle.Container>

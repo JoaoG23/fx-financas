@@ -2,16 +2,16 @@
 //   const dataConvertidaParaPt = new Date(dados);
 //   return new Date();
 // }
-const eventosPadrao = [
+export const eventosPadrao = [
   {
     title: "Big Meeting",
-    start: new Date(2022, 11, 21, 10, 11),
-    end: new Date(2022, 11, 21, 14, 10),
+    start: new Date(2023, 5, 23, 10, 11),
+    end: new Date(2023, 5, 23, 14, 10),
   },
   {
     title: "Big Meeting",
-    start: new Date(2022, 11, 21, 10, 11),
-    end: new Date(2022, 11, 21, 14, 10),
+    start: new Date(2023, 5, 21, 10, 11),
+    end: new Date(2023, 5, 21, 14, 10),
   },
 
   // {
@@ -32,4 +32,4 @@ const eventosPadrao = [
   // 	end: new Date("2022-12-16 12:00:00.000Z"),
   // },
 ];
-export { eventosPadrao };
+

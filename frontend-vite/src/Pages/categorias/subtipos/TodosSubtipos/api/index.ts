@@ -18,5 +18,6 @@ export async function buscarTodosSubtiposPorPagina({
       tiposId,
     },
   });
+  console.log("🚀 ~ file: index.ts:16 ~ resposta:", resposta)
   return resposta;
 }

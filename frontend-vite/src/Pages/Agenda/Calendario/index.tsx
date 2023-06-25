@@ -1,27 +1,30 @@
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 import { useMemo, useCallback, useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
-import moment from "moment";
 
-import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
-import "moment/locale/pt-br.js";
 
 import { buscarTodosItemFluxoCaixa } from "./api";
 import { atualizarHorarioEvento } from "./api/atualizarHorarioEvento/atualizarHorarioEvento";
 
 import { retornaArrayEventosConvertido } from "../utils/retornaArrayConvertido";
-import { eventosPadrao } from "../examples/eventosPadrao";
+import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+
 import { EventoBigCalendar } from "../../../types/EventoBigCalendar";
 
 import { traducaoCabecalhoPortugues } from "../configs/traducaoCabecalhoPortugues";
 import { eventoStyle } from "../configs/eventoStyle";
+import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
+
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 
+
+import "moment/locale/pt-br.js";
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
@@ -33,11 +36,14 @@ export const Calendario = () => {
     []
   );
 
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
   const {
     data,
     isError: isErrorTodosEventos,
     isLoading: isCarregangdoTodosEventos,
-  } = useQuery("listar-todos-item-fluxo-caixa", buscarTodosItemFluxoCaixa);
+  } = useQuery(["listar-todos-item-fluxo-caixa", idUsuario], () =>
+    buscarTodosItemFluxoCaixa(idUsuario!)
+  );
 
   const { mutate, isLoading } = useMutation(
     async (values: any) => await atualizarHorarioEvento(values),
@@ -72,7 +78,7 @@ export const Calendario = () => {
   );
 
   const eventoAoClicarNaTarefaCalendario = useCallback((event: any) => {
-    navigate(`/agendamento/operacao/visualizar/${event.id}`);
+    navigate(`/fluxocaixa/editar/${event.id}`);
   }, []);
 
   const { messages } = useMemo<any>(
@@ -97,9 +103,9 @@ export const Calendario = () => {
         eventPropGetter={eventoStyle}
         onEventDrop={aoMovimentarEvento}
         onEventResize={aoMovimentarEvento}
-        events={eventosPadrao}
+        events={agendamentos}
         style={{ height: 600 }}
-        step={20}
+        step={10}
       />
       {isCarregangdoTodosEventos && <ModalCarregando />}
     </div>

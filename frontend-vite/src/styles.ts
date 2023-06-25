@@ -1,5 +1,15 @@
 import styled from "styled-components";
 
+export const BotaoPorCima = styled.div`
+
+  @media screen and (max-width: 769px) {
+    z-index: 2;
+    position: fixed;
+    top: 2vh;
+    left: 2vw;
+   
+  }
+`
 export const Body = styled.div`
   position: absolute;
 
@@ -17,19 +27,17 @@ export const Body = styled.div`
     justify-content: center;
   }
 `;
+
 export const IconFundo1Flutuante = styled.img`
   z-index: -2;
   position: fixed;
-  top:30vh;
-  right: 10vw;
+  top: 20vh;
+  right: 0vw;
   animation: elevations 6s ease-in infinite alternate forwards;
 
   @media screen and (max-width: 769px) {
     left: 0vw;
-    right: 0vw;
-    width: 80vw;
-    margin: auto;
-    justify-content: center;
+    width: 50vw;
   }
 
   @keyframes elevations {
@@ -46,7 +54,7 @@ export const IconFundo1Flutuante = styled.img`
 export const ImagePesos2Flutuante = styled(IconFundo1Flutuante)`
   animation: elevations 8s 1s ease-in infinite alternate forwards;
 
-  top:10vh;
+  top: 10vh;
   right: 40vw;
   @media screen and (max-width: 769px) {
     left: 0vw;

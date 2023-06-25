@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const BackGround = styled.div`
   display: flex;
   position: fixed;
-  z-index: 2;
+  z-index: 5;
   top: 0;
   left: 0;
   width: 100vw;
@@ -13,15 +13,15 @@ export const BackGround = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: entradaSuave 0.5s forwards;
+  animation: aparecendoModalCarregando 0.5s forwards;
 
-  @keyframes entradaSuave {
+  @keyframes aparecendoModalCarregando {
     0% {
-      transform: translateY(100vh);
+      /* transform: translateY(100vh); */
       opacity: 0;
     }
     100% {
-      transform: translateY(0vh);
+      /* transform: translateY(0vh); */
       opacity: 1;
     }
   }
@@ -43,7 +43,7 @@ export const Body = styled.div`
   background-color: #fff;
 
   border: none;
-  border-radius: 1.5em;
+  border-radius: 1em;
   box-shadow: 2px 2px 5px #00000050;
 
   @media screen and (max-width:769px) {

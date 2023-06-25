@@ -2,6 +2,7 @@ import { separaDadosTempo } from "./utils/separaDadosTempo";
 import { separaDadosData } from "./utils/separaDadosData";
 import { ItemFluxoCaixa } from "../../../../types/ItemFluxoCaixa";
 import { converterUndefinedParaVazio } from "../../../../utils/converterUndefinedParaVazio/converterUndefinedParaVazio";
+import moment from "moment";
 /*
 
 @Autor Joao Guilherme
@@ -13,39 +14,26 @@ bigCalendar
 */
 
 export function converterDataHoraParaEventoTipoBigCalendar(
-	evento: ItemFluxoCaixa
+  evento: ItemFluxoCaixa
 ) {
-	// const dataChegadaNewDate = new Date(evento.data_insersao as any);
-	// const horarioInicialConvertido = new Date(evento.hora_inicio as any);
-	// const horarioSaidaConvertido = new Date(evento.hora_fim as any);
 
-	// const { dia, mes, ano } = separaDadosData(dataChegadaNewDate);
-	// const { hora: horaInicial, minuto: minutoInicial } = separaDadosTempo(
-	// 	horarioInicialConvertido
-	// );
-	// const { hora: horaFim, minuto: minutoFim } = separaDadosTempo(
-	// 	horarioSaidaConvertido
-	// );
 
-	// const horarioChegada = new Date(
-	// 	ano,
-	// 	mes,
-	// 	dia,
-	// 	horaInicial,
-	// 	minutoInicial,
-	// 	0
-	// );
+  const dataInsersao = new Date(evento?.data_insersao!);
 
-	// const fornecedor: string = converterUndefinedParaVazio(evento.fornecedores?.razaoSocial)!
-	// const cliente: string = converterUndefinedParaVazio(evento.clientes?.razaoSocial)!
+  const { dia, mes, ano } = separaDadosData(dataInsersao);
+  const { hora: horaInicial, minuto: minutoInicial } =
+    separaDadosTempo(dataInsersao);
 
-	// const horaioSaida = new Date(ano, mes, dia, horaFim, minutoFim, 0);
-	// const eventoConvetido = {
-	// 	id: evento.codigo_agendamento,
-	// 	title: `TEste`,
-	// 	start: horarioChegada,
-	// 	end: horaioSaida,
-	// };
 
-	// return eventoConvetido;
+  const dataInicial = new Date(ano, mes, dia, horaInicial, minutoInicial, 0);
+  const dataFinal = new Date(ano, mes, dia, horaInicial, minutoInicial + 20, 0);
+
+  const eventoConvetido = {
+    id: evento?.id!,
+    title: evento?.descricao!,
+    start: dataInicial,
+    end: dataFinal,
+  };
+
+  return eventoConvetido;
 }

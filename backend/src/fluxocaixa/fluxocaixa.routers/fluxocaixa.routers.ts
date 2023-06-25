@@ -5,7 +5,7 @@ import { FluxoCaixaController } from "../fluxocaixa.controller/fluxocaixa.contro
 
 const fluxocaixaController = new FluxoCaixaController();
 
-routers.get("/usuario/:id", fluxocaixaController.listarTodosPorUsuariosId);
+routers.get("/usuario/:usuariosId", fluxocaixaController.listarTodosPorUsuariosId);
 routers.get("/paginas", fluxocaixaController.listarTodosPorPaginaUsuario);
 routers.get("/:id", fluxocaixaController.listaPorId);
 

@@ -40,8 +40,8 @@ export const TodosSubElementos: React.FC = () => {
   );
 
   const subelementos = data?.data[1];
-  const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
-  const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
+  const totalQuantidadePaginas = data?.data[0]?.totalQuantidadePaginas!;
+  const quantidadeTotalRegistros = data?.data[0]?.quantidadeTotalRegistros!;
 
 
   

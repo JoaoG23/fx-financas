@@ -1,26 +1,32 @@
 import styled from "styled-components";
 
+
+
 export const Container = styled.div`
-  width: 13vw;
-  height: 100vh;
   padding-left: 5px;
 
-  position: absolute;
+  /* position: absolute; */
   left: 0px;
 
-  display: flex;
-  flex-direction: column;
+  display: none;
   gap: 1em;
   justify-content: center;
 
-  background-color: #1caf82;
-
-
-  box-shadow: 2px 2px 4px #00000027;
-
+  
+  
   @media only screen and (max-width: 768px) {
-    display: none;
-    flex-direction: row;
+    padding: 0px;
+    
+    box-shadow: 2px 2px 4px #00000027;
+    background-color: #1caf82;
+    
+    display: flex;
+    position: fixed;
+    margin: 0px;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    flex-direction: column;
   }
 `;
 
@@ -59,8 +65,5 @@ export const ColecaoElementos = styled.summary`
   :hover {
     transition: 0.3s;
     background-color: #0000003f;
-
   }
-
-
 `;

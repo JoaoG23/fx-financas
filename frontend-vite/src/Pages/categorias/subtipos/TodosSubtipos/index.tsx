@@ -1,21 +1,23 @@
+import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
+
 import * as subtiposStyle from "./styles";
 
-import { useState } from "react";
 import { buscarTodosSubtiposPorPagina } from "./api";
+
+import { Subtipo } from "../../../../types/Subtipo";
+
+
+import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 
 import { SpinnerCarregamento } from "../../../../Components/spinners/SpinnerCarregamento";
 import { TableComum } from "../../../../Components/tables/TableComum";
-
 import { PaginacaoComum } from "../../../../Components/paginacoes/Paginacao";
 import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
-
-import { useNavigate, useParams } from "react-router-dom";
 import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela";
-import { useBuscaTituloPagina } from "../../../../hooks/useBuscaTituloPagina";
 import { LinhaSubtipo } from "../ComponentesParaTodos/tabela/Linha";
-import { Subtipo } from "../../../../types/Subtipo";
 
 export const TodosSubtipos: React.FC = () => {
   const navigate = useNavigate();
@@ -39,9 +41,9 @@ export const TodosSubtipos: React.FC = () => {
     }
   );
 
-  const subtipos = data?.data[1];
-  const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
-  const quantidadeTotalRegistros = data?.data[0].quantidadeTotalRegistros;
+  const subtipos = data?.data[1] || [];
+  const totalQuantidadePaginas = data?.data[0]?.totalQuantidadePaginas!;
+  const quantidadeTotalRegistros = data?.data[0]?.quantidadeTotalRegistros!;
 
   const caminhoAdicionar = `/categorias/elementos/subelementos/tipos/subtipos/adicionar/${id}`;
   return (
