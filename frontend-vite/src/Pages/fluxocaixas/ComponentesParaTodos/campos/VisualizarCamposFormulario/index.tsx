@@ -1,5 +1,4 @@
 import React from "react";
-import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import "react-toastify/dist/ReactToastify.css";
 
 import * as Form from "./styles";
@@ -37,7 +36,6 @@ export const VisualizarCamposFormulario: React.FC<Props> = ({
   const subelemento = useSubelementoStore((state) => state?.subelemento!);
   const tipos = useTiposStore((state) => state?.tipos!);
 
-  const navigate = useNavigate();
   return (
     <Form.Container role="form">
       <Form.Campos>
@@ -59,10 +57,10 @@ export const VisualizarCamposFormulario: React.FC<Props> = ({
               <SublementoSelect
                 desativar
                 register={register}
-                elementosId={elemento?.value!}
+                elementosId={elemento}
                 control={control}
                 name="subelementosId"
-                label={converterNullParaVazio(elemento?.label)}
+                label={'Subelemento'}
               />
               {errors?.subelementosId?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo subelemento vazio! Por gentileza preencher-o!" />
@@ -72,10 +70,10 @@ export const VisualizarCamposFormulario: React.FC<Props> = ({
               <TiposSelect
                 desativar
                 register={register}
-                subelementosId={subelemento?.value!}
+                subelementosId={subelemento}
                 control={control}
                 name="tiposId"
-                label={converterNullParaVazio(subelemento?.label)}
+                label={'Tipo'}
               />
               {errors?.tiposId?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo tipo vazio! Por gentileza preencher-o!" />
@@ -86,10 +84,10 @@ export const VisualizarCamposFormulario: React.FC<Props> = ({
                 desativar
                 register={register}
                 requirido={false}
-                tiposId={tipos?.value!}
+                tiposId={tipos}
                 control={control}
                 name="subtiposId"
-                label={converterNullParaVazio(tipos?.label)}
+                label={'Subtipo'}
               />
               {errors?.subtiposId?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo Subtipo vazio! Por gentileza preencher-o!" />

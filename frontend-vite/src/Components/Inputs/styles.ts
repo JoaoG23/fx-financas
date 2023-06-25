@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const NoBorders = styled.input`
   padding: 6px;
 
-  background-color: transparent;
+  background-color: #f8f8f9ae;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 

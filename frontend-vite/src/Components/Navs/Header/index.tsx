@@ -16,7 +16,7 @@ const Header: React.FC = () => {
   }
   return (
     <Container>
-      <Link to={"/usuario-logado"}>
+      <Link to={"/usuario_logado"}>
         <ImageContainer>
         <FaUser/>
           <TextLimited>{nomeUsuario}</TextLimited>
