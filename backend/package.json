@@ -6,7 +6,8 @@
   "scripts": {
     "prod": "dotenv -e .env node dist/src/server.js ",
     "build": "tsc",
-    "update:db": "dotenv -e .env npx prisma db push",
+    "update:db:dev": "dotenv -e .env npx prisma db push",
+    "update:db:prod": "dotenv -e .env.prod npx prisma db push",
     "update:db:teste": "dotenv -e .env.test npx prisma db push",
     "test:end2end": "dotenv -e .env.test npx vitest api.e2e",
     "unitest": "dotenv -e .env.test npx vitest ",

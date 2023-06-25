@@ -111,7 +111,7 @@ export const Calendario = () => {
         onEventResize={aoMovimentarEvento}
         events={agendamentos}
         style={{ height: 600 }}
-        step={10}
+        step={4}
       />
       {isCarregangdoTodosEventos && <ModalCarregando />}
     </div>
