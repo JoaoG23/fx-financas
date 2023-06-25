@@ -7,6 +7,8 @@ export const RegistarContainer = styled.main`
   width: auto;
   display: grid;
 
+  margin: 20px;
+
   grid-template-columns: auto;
   justify-items: center;
   align-items: center;
@@ -14,11 +16,11 @@ export const RegistarContainer = styled.main`
   height: auto;
   background-color: #f8f8f9;
   border-radius: 1.5em;
+
+  animation: entradaSuave 1s ease alternate both;
   box-shadow: 2px 2px 10px #1ed49d33;
 `;
-export const Bolas = styled.main`
 
-`;
 
 
 export const ContainerMain = styled.main`
@@ -26,7 +28,7 @@ export const ContainerMain = styled.main`
   width: 100vw;
 
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   flex-wrap: wrap;
 
  
@@ -38,8 +40,8 @@ export const ContainerMain = styled.main`
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  overflow-y: auto;
 
+  
   position: fixed;
   top: 0;
   z-index: 2;

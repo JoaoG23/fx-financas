@@ -11,6 +11,8 @@ import { logarUsuario } from "../api";
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
 import { FormularioStyle } from "./styles";
+import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { BsPersonFillAdd } from "react-icons/bs";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
@@ -38,6 +40,10 @@ export const Formulario: React.FC = () => {
         }}
       />
       {isLoading && <ModalCarregando />}
+      <SecondaryButton onClick={() => navigate("/registrar")}>
+        <p>Registrar</p>
+        <BsPersonFillAdd />
+      </SecondaryButton>
     </FormularioStyle>
   );
 };

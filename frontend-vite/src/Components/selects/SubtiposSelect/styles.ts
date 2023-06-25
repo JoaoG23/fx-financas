@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Container = styled.select`
   padding: 6px;
 
-  background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 

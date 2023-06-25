@@ -8,15 +8,9 @@ import { ContainerMain, LoginContainer } from "./styles";
 const Login: React.FC = () => {
   return (
     <ContainerMain>
-      <div></div>
       <LoginContainer>
-        <h4>Login</h4>
+        <h3>Login</h3>
         <Formulario />
-        <Link to={"/registrar"}>
-          <SecondaryButton>
-            <h5>Registra-se</h5>
-          </SecondaryButton>
-        </Link>
       </LoginContainer>
     </ContainerMain>
   );

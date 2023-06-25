@@ -1,5 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+
 import ButtonDefault from "../../../../Components/Buttons/ButtonDefault/ButtonDark";
 import RedFont from "../../../../Components/FontColor/RedFont";
 import { InputDefault } from "../../../../Components/Inputs/InputDefault";
@@ -25,10 +26,17 @@ export const CamposFormulario: React.FC<Props> = ({ funcaoSubmit }) => {
         <RedFont>Usuário vazio ❌</RedFont>
       )}
 
-      <InputDefault name={"senha"} type="password" register={register} placeholder={"Senha"} />
+      <InputDefault
+        name={"senha"}
+        type="password"
+        register={register}
+        placeholder={"Senha"}
+      />
       {errors.senha?.type === "required" && <RedFont>Senha vazio ❌</RedFont>}
-      <ButtonDefault>Logar</ButtonDefault>
 
+      <ButtonDefault>
+        <p>Logar</p>
+      </ButtonDefault>
     </CamposStyle>
   );
 };

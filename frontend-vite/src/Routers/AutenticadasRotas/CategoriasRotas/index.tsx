@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "../../Auth/PrivateRouter";
+
 import { TodosElementos } from "../../../Pages/categorias/elementos/TodosElementos";
 import { AdicionarElemento } from "../../../Pages/categorias/elementos/AdicionarElementos";
 import { EditarElemento } from "../../../Pages/categorias/elementos/EditarElementos";

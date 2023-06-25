@@ -4,7 +4,6 @@ import { ContainerMain, RegistarContainer } from "./styles";
 export const Registrar: React.FC = () => {
   return (
     <ContainerMain>
-      <img src="./assets/login-fundo.png" alt="login-fudo"></img>
       <RegistarContainer>
         <h4>Registrar</h4>
         <h5>Comece já a usar</h5>

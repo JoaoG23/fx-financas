@@ -6,6 +6,8 @@ import {
   BsFillGrid3X2GapFill,
   BsFillPieChartFill,
   BsFillBasket2Fill,
+  BsBank2,
+  BsBoxFill,
 } from "react-icons/bs";
 import { IoLogOut } from "react-icons/io5";
 
@@ -24,6 +26,14 @@ const Sidebar: React.FC = () => {
           <p>Dashboard</p>
         </Link>
       </SideBar.Item>
+
+      <SideBar.Item>
+        <BsBank2 color="#fff" />
+        <Link to={"/locais"}>
+          <p>Locais</p>
+        </Link>
+      </SideBar.Item>
+
       <SideBar.Item>
         <BsFillFileRuledFill color="#fff" />
         <Link to={"/fluxocaixa"}>
@@ -48,7 +58,7 @@ const Sidebar: React.FC = () => {
           <BsFillGrid3X2GapFill color="#fff" />
           <p>Categorias</p>
         </SideBar.ColecaoElementos>
-        <ul>
+        <SideBar.Elementos>
           {categorias.map((paginas) => {
             return (
               <li key={paginas.id}>
@@ -56,7 +66,7 @@ const Sidebar: React.FC = () => {
               </li>
             );
           })}
-        </ul>
+        </SideBar.Elementos>
       </details>
       <SideBar.Item onClick={limparSessaoUsuario}>
         <IoLogOut color="#fff" />

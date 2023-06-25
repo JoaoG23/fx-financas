@@ -3,11 +3,13 @@ import { Route, Routes } from "react-router-dom";
 import PrivateRoute from "../Auth/PrivateRouter";
 
 import { Dashboard } from "../../Pages/Dashboard";
-import { CategoriasRotas } from "./CategoriasRotas";
-import { FluxocaixaRotas } from "./FluxocaixaRotas";
 import { TodosTiposDespesa } from "../../Pages/tiposdespesas/TodosTiposDespesas";
 import { Agenda } from "../../Pages/Agenda";
 import { VisualizarUsuarioLogado } from "../../Pages/usuario/UsuarioLogado";
+
+import { CategoriasRotas } from "./CategoriasRotas";
+import { FluxocaixaRotas } from "./FluxocaixaRotas";
+import { LocaisRotas } from "./LocaisRotas";
 
 const AutenticadasRotas = () => {
   return (
@@ -52,6 +54,7 @@ const AutenticadasRotas = () => {
       </Routes>
       <FluxocaixaRotas />
       <CategoriasRotas />
+      <LocaisRotas />
     </>
   );
 };

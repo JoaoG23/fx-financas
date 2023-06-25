@@ -16,6 +16,8 @@ export const LoginContainer = styled.main`
   height: auto;
   background-color: #f8f8f9;
   border-radius: 1.5em;
+
+  animation: entradaSuave 1s ease alternate both;
   box-shadow: 2px 2px 10px #1ed49d33;
 `;
 export const ImageLateral = styled.img`
@@ -30,7 +32,7 @@ export const ContainerMain = styled.main`
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: end;
   flex-wrap: wrap;
   background-image: url(${imageLogin});
   background-repeat: no-repeat;
@@ -44,7 +46,6 @@ export const ContainerMain = styled.main`
   /* background-color:#6979F8; */
   /* background-color:#FF65A4; */
   
-
   position: fixed;
   top: 0;
   z-index: 2;

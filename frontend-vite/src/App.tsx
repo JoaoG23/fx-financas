@@ -1,6 +1,7 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
 import { useState } from "react";
+import { BsList } from "react-icons/bs";
 
 import AutenticadasRouters from "./Routers/AutenticadasRotas";
 import { ToastContainer } from "react-toastify";
@@ -17,9 +18,9 @@ import { Body, IconFundo1Flutuante, BotaoPorCima } from "./styles";
 
 import Sidebar from "./Components/Navs/Sidebar";
 import Header from "./Components/Navs/Header";
+
 import { MobileSidebar } from "./Components/Navs/MobileSidebar";
 import ButtonDefault from "./Components/Buttons/ButtonDefault/ButtonDark";
-import { BsList } from "react-icons/bs";
 
 const queryClient = new QueryClient();
 
@@ -31,13 +32,12 @@ function App() {
         <ToastContainer></ToastContainer>
         <>
           <IconFundo1Flutuante src={logo} alt="logo" />
-          {/* <ImagePesos2Flutuante src="./assets/pesoBackgroundSmall.svg"></ImagePesos2Flutuante> */}
           <GlobalStyle />
           <Router>
             <Sidebar />
             <BotaoPorCima>
               <ButtonDefault onClick={() => setMostrarSidebar(true)}>
-                <BsList size={20} />
+                <BsList size={27} />
               </ButtonDefault>
             </BotaoPorCima>
             <MobileSidebar

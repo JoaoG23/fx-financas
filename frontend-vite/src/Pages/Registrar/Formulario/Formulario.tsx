@@ -13,6 +13,7 @@ import { FormularioStyle } from "./styles";
 import { registrarUsuario } from "../api";
 
 import { Usuario } from "../../../types/usuario/Usuario";
+import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
@@ -48,6 +49,7 @@ export const Formulario: React.FC = () => {
         errors={errors}
       />
       {isLoading && <ModalCarregando />}
+      <SecondaryButton onClick={ () => navigate('/')}>Voltar</SecondaryButton>
     </FormularioStyle>
   );
 };

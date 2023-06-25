@@ -4,7 +4,6 @@ import Select from 'react-select';
 export const Container = styled.select`
   padding: 5px;
 
-  background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
