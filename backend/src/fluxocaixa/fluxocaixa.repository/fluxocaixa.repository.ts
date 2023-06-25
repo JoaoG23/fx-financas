@@ -103,7 +103,11 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
   async updateLastItemSaldo(valor: number, usuariosId: string) {
     return await this.prisma.$executeRawUnsafe(
-      `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT MAX(orderador) FROM fluxocaixa) AND "usuariosId" = $2`,
+      `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT orderador  
+        FROM public.fluxocaixa 
+        WHERE "usuariosId" = $2
+        ORDER BY data_insersao desc limit 1 
+        ) AND "usuariosId" = $2`,
       valor,
       usuariosId
     );
