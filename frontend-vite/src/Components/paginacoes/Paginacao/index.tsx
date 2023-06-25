@@ -4,7 +4,7 @@ type Props = {
   setPagina: any;
   pagina: number;
   totalPaginas: number;
-  arrayElementos: object[];
+  arrayElementos: any;
   quantidadeTotalItems?: number;
 };
 

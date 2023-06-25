@@ -56,7 +56,7 @@ h1, h2, h3, h4, strong{
         list-style-type: '-';
     }
 
-/* *::-webkit-scrollbar {
+*::-webkit-scrollbar {
   width: 15px;
   border-radius: 10px;
 }
@@ -66,9 +66,32 @@ h1, h2, h3, h4, strong{
 
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-} */
+}
 
 
+@keyframes balancar {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-5deg);
+  }
+  20% {
+    transform: rotateZ(5deg);
+  }
+  25% {
+    transform: rotateZ(-2deg);
+  }
+  30% {
+    transform: rotateZ(3deg);
+  }
+  35% {
+    transform: rotateZ(-1deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
 
 
 @keyframes entradaSuave {

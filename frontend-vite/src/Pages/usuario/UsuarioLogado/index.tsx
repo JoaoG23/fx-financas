@@ -8,7 +8,7 @@ export const VisualizarUsuarioLogado: React.FC = () => {
   const { nomeUsuario } = buscaDadoUsuarioNaSessao();
   return (
     <main>
-        <h2>Seja bem vindo a sua área {nomeUsuario} </h2>
+        <h3>Seja bem vindo a sua área {nomeUsuario} </h3>
         <Formulario />
     </main>
   );

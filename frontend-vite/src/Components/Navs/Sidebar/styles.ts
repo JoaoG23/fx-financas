@@ -43,6 +43,8 @@ export const Item = styled.div`
   }
   :hover {
     transition: 0.3s;
+    animation: balancar 2s linear infinite;
+
     background-color: #0000003f;
   }
 `;

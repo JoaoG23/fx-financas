@@ -1,4 +1,7 @@
 import styled from "styled-components";
+
+
+import imageLogin from "../../assets/login-image.png";
 export const RegistarContainer = styled.main`
   padding: 2em;
   width: auto;
@@ -26,13 +29,10 @@ export const ContainerMain = styled.main`
   justify-content: space-between;
   flex-wrap: wrap;
 
-  background-color:#1CAF82;
+ 
 
-  /* background-color: #f8f8f9; */
-  /* background-color:#FFA26B; */
-  /* background-color:#6979F8; */
-  /* background-color:#FF65A4; */
-  /* background-image:url('./assets/login-fundo.jpg'); */
+  background-image: url(${imageLogin});
+
   
   background-repeat: no-repeat;
   background-attachment: fixed;

@@ -33,10 +33,9 @@ export const ContainerMain = styled.main`
   justify-content: space-between;
   flex-wrap: wrap;
   background-image: url(${imageLogin});
-  /* background-repeat: no-repeat; */
+  background-repeat: no-repeat;
   background-attachment:fixed;
-  /* background-size: cover; */
-  /* overflow-y: auto; */
+  background-size: cover;
 
   background-color:#1CAF82;
 
@@ -44,7 +43,6 @@ export const ContainerMain = styled.main`
   /* background-color:#FFA26B; */
   /* background-color:#6979F8; */
   /* background-color:#FF65A4; */
-  /* background-image:url('./assets/login-fundo.jpg'); */
   
 
   position: fixed;
