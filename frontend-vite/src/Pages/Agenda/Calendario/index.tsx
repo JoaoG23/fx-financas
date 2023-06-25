@@ -24,7 +24,9 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 
 
-import "moment/locale/pt-br.js";
+import 'moment/locale/pt-br.js'
+
+
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(Calendar);
 
@@ -39,10 +41,14 @@ export const Calendario = () => {
   const { idUsuario } = buscaDadoUsuarioNaSessao();
   const {
     data,
-    isError: isErrorTodosEventos,
     isLoading: isCarregangdoTodosEventos,
   } = useQuery(["listar-todos-item-fluxo-caixa", idUsuario], () =>
-    buscarTodosItemFluxoCaixa(idUsuario!)
+    buscarTodosItemFluxoCaixa(idUsuario!),
+    {
+      onError: (error: any) => {
+        toast.error(`Ops! : ${error.response.data}`);
+      },
+    }
   );
 
   const { mutate, isLoading } = useMutation(
