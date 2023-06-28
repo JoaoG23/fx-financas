@@ -6,24 +6,18 @@ export const Container = styled.main`
   animation: entradaSuave 0.8s;
 `;
 
-export const ConteinerAumentoPeso = styled.section`
-  display: flex;
-  flex-direction: row;
-  justify-content: stretch;
-  gap: 0.2em;
-  div {
-    display: block;
-  }
 
-  @media screen and (max-width: 320px) {
-  }
-`;
 
 export const Cabecalho = styled.div`
   padding: 10px;
   justify-content: space-around;
   display: flex;
   gap: 10px;
+
+  @media screen and (max-width: 764px) {
+    padding:20px;
+    display: block;
+  }
 `;
 
 export const Caixa = styled.div`

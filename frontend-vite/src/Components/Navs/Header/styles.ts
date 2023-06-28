@@ -24,6 +24,9 @@ export const Container = styled.div`
   a {
     color: #fff;
   }
+  @media only screen and (max-width: 768px) {
+    height: 40px;
+  }
 `;
 
 export const TextLimited = styled.p`

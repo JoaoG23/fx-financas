@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const Container = styled.div`
   padding-left: 5px;
 
-  /* position: absolute; */
   left: 0px;
 
   display: none;
@@ -26,7 +25,7 @@ export const Container = styled.div`
     padding: 10px;
     width: 100vw;
     height: 100vh;
-    z-index: 1;
+    z-index: 5;
     flex-direction: column;
   }
 `;

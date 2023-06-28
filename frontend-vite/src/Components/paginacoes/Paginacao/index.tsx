@@ -1,3 +1,4 @@
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import * as Paginacao from "./styles";
 
 type Props = {
@@ -15,17 +16,17 @@ export const PaginacaoComum: React.FC<Props> = ({
   arrayElementos,
   quantidadeTotalItems = 0,
 }) => {
-  const criarTodosBotaoPaginar = (totalPaginas: number) => {
-    let arrayBotoes: any = [];
-    for (let i = 0; i < totalPaginas; i++) {
-      arrayBotoes.push(
-        <Paginacao.Button key={i} onClick={() => setPagina(() => i + 1)}>
-          {i + 1}
-        </Paginacao.Button>
-      );
-    }
-    return arrayBotoes;
-  };
+  // const criarTodosBotaoPaginar = (totalPaginas: number) => {
+  //   let arrayBotoes: any = [];
+  //   for (let i = 0; i < totalPaginas; i++) {
+  //     arrayBotoes.push(
+  //       <Paginacao.Button key={i} onClick={() => setPagina(() => i + 1)}>
+  //         {i + 1}
+  //       </Paginacao.Button>
+  //     );
+  //   }
+  //   return arrayBotoes;
+  // };
 
   return (
     <Paginacao.Container>
@@ -35,20 +36,20 @@ export const PaginacaoComum: React.FC<Props> = ({
         }
         disabled={pagina === 1}
       >
-        Voltar
+        <IoIosArrowBack size={20} />
       </Paginacao.Button>
       <div>
         Páginas : {pagina} até {totalPaginas} Qtd de items:{" "}
         {quantidadeTotalItems}
       </div>
-      <Paginacao.NumeroPaginas>
+      {/* <Paginacao.NumeroPaginas>
         {criarTodosBotaoPaginar(totalPaginas)}
-      </Paginacao.NumeroPaginas>
+      </Paginacao.NumeroPaginas> */}
       <Paginacao.Button
         onClick={() => setPagina((paginaAntiga: any) => paginaAntiga + 1)}
         disabled={pagina >= totalPaginas}
       >
-        Avançar
+        <IoIosArrowForward size={20} />
       </Paginacao.Button>
     </Paginacao.Container>
   );

@@ -16,6 +16,7 @@ import { categorias } from "./data/listLinks";
 import * as SideBar from "./styles";
 
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
+import { IoIosArrowDown } from "react-icons/io";
 
 const Sidebar: React.FC = () => {
   return (
@@ -57,6 +58,7 @@ const Sidebar: React.FC = () => {
         <SideBar.ColecaoElementos>
           <BsFillGrid3X2GapFill color="#fff" />
           <p>Categorias</p>
+          <IoIosArrowDown />
         </SideBar.ColecaoElementos>
         <SideBar.Elementos>
           {categorias.map((paginas) => {

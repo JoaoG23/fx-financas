@@ -56,7 +56,6 @@ export const Elementos = styled.ul`
     padding: 3px;
     display: flex;
     gap: 1em;
-
   }
   a {
     text-decoration: none;
@@ -76,7 +75,7 @@ export const ColecaoElementos = styled.summary`
   border-radius: 12px;
 
   align-items: center;
-  gap: 1em;
+  gap: 0.9em;
   color: #fff;
   text-decoration: none;
 
