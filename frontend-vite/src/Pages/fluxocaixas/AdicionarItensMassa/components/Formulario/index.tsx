@@ -1,4 +1,4 @@
-import { BsCartCheckFill } from "react-icons/bs";
+import { BsCartCheckFill, BsPlusCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import React, { useState } from "react";
@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
+
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
 
 import { adicionarItemEmMassa } from "../../api";
@@ -17,10 +18,8 @@ import * as Form from "./styles";
 
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
-import { ElementoSelect } from "../../../../../Components/selects/ElementoSelect";
 import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import { AlertCampoVazio } from "../../../../../Components/alerts/AlertCampoVazio";
-
 import ButtonDefault from "../../../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { TableComum } from "../../../../../Components/tables/TableComum";
 import { CabecalhoTabela } from "../CabecalhoTabela";
@@ -101,7 +100,10 @@ export const Formulario: React.FC = () => {
             <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
           )}
         </div>
-        <ButtonDefault>Adicionar</ButtonDefault>
+        <ButtonDefault>
+          <p>Adicionar</p>
+          <BsPlusCircleFill></BsPlusCircleFill>
+        </ButtonDefault>
       </Form.Form>
       <Form.Tabela>
         <TableComum>

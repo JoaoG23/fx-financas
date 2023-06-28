@@ -4,7 +4,6 @@ export const CabecalhoTabela: React.FC = () => {
   return (
     <tr>
       <th>Data Insersão</th>
-      <th>Hora Insersão</th>
       <th>Elemento</th>
       <th>Subelemento</th>
       <th>Tipo</th>

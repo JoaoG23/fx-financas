@@ -33,7 +33,7 @@ export const IconFundo1Flutuante = styled.img`
   position: fixed;
   top: 20vh;
   right: 0vw;
-  animation: elevations 6s ease-in infinite alternate forwards;
+  animation: elevations 4s ease-in infinite alternate forwards;
 
   @media screen and (max-width: 769px) {
     left: 0vw;
@@ -42,11 +42,11 @@ export const IconFundo1Flutuante = styled.img`
 
   @keyframes elevations {
     0% {
-      transform: rotateY(0deg);
+      transform: rotateZ(0deg);
       /* transform: translateY(0vh); */
     }
     100% {
-      transform: rotateY(360deg);
+      transform: rotateZ(360deg);
       /* transform: translateY(20vh); */
     }
   }

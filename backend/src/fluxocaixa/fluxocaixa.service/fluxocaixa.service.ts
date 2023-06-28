@@ -68,8 +68,6 @@ export class FluxoCaixaServices {
     return fluxocaixa;
   }
 
-  
-
   async criarVarios(itemsFluxocaixa: FluxocaixaDto[]) {
     for (const item of itemsFluxocaixa) {
       const valorExtraido = item?.valor;
@@ -77,13 +75,9 @@ export class FluxoCaixaServices {
       const dataAgora = moment().utc(true).format();
       const horaAgora = moment().utc(true).format();
 
-      const ultimoItemAdicionado =
-        await this.fluxoCaixaRepository.findLastItemByUsuariosId(
-          item.usuariosId
-        );
-
       const saldoFinal =
-        Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
+        (await this.calcularSaldoAtual(item?.usuariosId)) +
+        Number(valorExtraido);
 
       const itemSalvo = {
         data_insersao: dataAgora,
@@ -95,8 +89,9 @@ export class FluxoCaixaServices {
       await this.fluxoCaixaRepository.save(itemSalvo);
     }
 
-    return `${itemsFluxocaixa?.length} itens foram cadastrados com sucesso`
+    return `${itemsFluxocaixa?.length} itens foram cadastrados com sucesso`;
   }
+
 
   async atualizarUmPorId(id: string, dadosNovos: FluxocaixaDto) {
     const existeIdfluxocaixa: FluxocaixaDto =
@@ -110,18 +105,18 @@ export class FluxoCaixaServices {
     return fluxocaixa;
   }
 
-  async deletarUmPorId(id: any) {
+  async deletarUmPorId(id: string) {
     const existeIdfluxocaixa = await this.fluxoCaixaRepository.findById(id);
     if (!existeIdfluxocaixa) {
       throw new Error("Não há esse Id para ser excluido");
     }
 
     const deletado = await this.fluxoCaixaRepository.delete(id);
-    await this.atualizarSaldoFinal(id);
+    await this.atualizarSaldoFinal(existeIdfluxocaixa.usuariosId);
     return deletado;
   }
 
-  async atualizarSaldoFinal(usuariosId: string) {
+  async calcularSaldoAtual(usuariosId: string): Promise<number> {
     const lucroRetornoDb = await this.fluxoCaixaRepository.sumBiggerThanZero(
       usuariosId
     );
@@ -136,9 +131,14 @@ export class FluxoCaixaServices {
       _sum: { valor: gastosSomaTotal },
     } = gastoRetornoDb;
 
-    const somaSaldo = Number(lucrosSomaTotal) + Number(gastosSomaTotal);
+    return Number(lucrosSomaTotal) + Number(gastosSomaTotal);
+  }
+
+  async atualizarSaldoFinal(usuariosId: string) {
+    const saldoAtual = await this.calcularSaldoAtual(usuariosId);
+
     const saldoAtualizado = await this.fluxoCaixaRepository.updateLastItemSaldo(
-      somaSaldo,
+      saldoAtual,
       usuariosId
     );
 

@@ -8,7 +8,7 @@ import { ToastContainer } from "react-toastify";
 
 import "react-toastify/dist/ReactToastify.css";
 
-import logo from "./assets/triangulo.svg";
+import calculadora from "./assets/calculadora.svg";
 
 import InicialRouters from "./Routers/InicialRouters";
 
@@ -31,7 +31,7 @@ function App() {
       <>
         <ToastContainer></ToastContainer>
         <>
-          <IconFundo1Flutuante src={logo} alt="logo" />
+          <IconFundo1Flutuante src={calculadora} alt="fundo" />
           <GlobalStyle />
           <Router>
             <Sidebar />

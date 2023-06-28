@@ -36,7 +36,7 @@ export function adicionarEmMassaFluxoCaixaSubtests() {
         await limparTabelaFluxoCaixa();
       });
 
-      test.only("Deverá adicionar um array com 4 item de uma só vez", async () => {
+      test("Deverá adicionar um array com 4 item de uma só vez", async () => {
         const usuario = await criarUsuario();
 
         const idUsuario = usuario.body.id;

@@ -1,10 +1,9 @@
-import { GreenColor } from "../../../../../Components/Badges/GreenBadge/styles";
-import { RedColor } from "../../../../../Components/Badges/RedBadge/styles";
+import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
+
 import { AcoesItems } from "../../../../../Components/acoes/AcoesItems";
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
-import { formataDataPadraoBR } from "../../../../../utils/formatadoresDatahora/formatarDataPadraoBR";
-import { formataHoraPadraoBR } from "../../../../../utils/formatadoresDatahora/formatarHoraPadraoBR";
+import { formatarDataHoraPadraoBR } from "../../../../../utils/formatadoresDatahora/formatarDataHoraPadraoBR/formatarDataHoraBR";
 
 type Props = {
   item: ItemFluxoCaixa;
@@ -13,8 +12,7 @@ type Props = {
 export const LinhaItemFluxocaixa: React.FC<Props> = ({ item }) => {
   return (
     <tr aria-label="linha">
-      <td>{formataDataPadraoBR(item?.data_insersao?.toString()!)}</td>
-      <td>{formataHoraPadraoBR(item?.hora_insersao?.toString()!)}</td>
+      <td>{formatarDataHoraPadraoBR(item?.data_insersao?.toString()!)}</td>
       <td>{item?.elementos?.descricao}</td>
       <td>{item?.subelementos?.descricao}</td>
       <td>{item?.tipos?.descricao}</td>
@@ -22,7 +20,11 @@ export const LinhaItemFluxocaixa: React.FC<Props> = ({ item }) => {
       <td>{item?.descricao}</td>
       <td>{item?.locais?.descricao}</td>
       <td>
-        {item?.valor! < 0 ? <RedFont>{item?.valor}</RedFont> : item?.valor}
+        {item?.valor! < 0 ? (
+          <RedFont>{item?.valor}</RedFont>
+        ) : (
+          <GreenFont>{item?.valor}</GreenFont>
+        )}
       </td>
       <td>{item?.saldo}</td>
       <td>

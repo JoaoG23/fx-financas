@@ -22,7 +22,7 @@ const Header: React.FC = () => {
           <TextLimited>{nomeUsuario}</TextLimited>
         </ImageContainer>
       </Link>
-      <p>Wow</p>
+      <p>Fluxos</p>
       <ImageContainer
         role={"button"}
         onClick={() => {

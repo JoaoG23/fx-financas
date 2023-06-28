@@ -14,13 +14,13 @@ const GlobalStyle = createGlobalStyle`
     outline: none;
 }
 
-h1, h2, h3, h4, strong{
+h1, h2, h3, h4, h5,strong{
   color:#667387;
 }
   
 
     *{
-      font-family: 'Roboto', sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         margin:0;
         padding:0;
         box-sizing: border-box;

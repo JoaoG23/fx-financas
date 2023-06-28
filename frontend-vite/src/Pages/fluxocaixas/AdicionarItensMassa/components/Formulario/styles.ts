@@ -5,6 +5,10 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 10px;
+
+  @media only screen and (max-width: 768px) {
+    width: 95%;
+  }
 `;
 
 export const Form = styled.form`

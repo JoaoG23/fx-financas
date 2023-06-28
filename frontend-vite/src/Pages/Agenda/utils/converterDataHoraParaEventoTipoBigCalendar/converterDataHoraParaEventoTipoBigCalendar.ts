@@ -1,8 +1,6 @@
 import { separaDadosTempo } from "./utils/separaDadosTempo";
 import { separaDadosData } from "./utils/separaDadosData";
 import { ItemFluxoCaixa } from "../../../../types/ItemFluxoCaixa";
-import { converterUndefinedParaVazio } from "../../../../utils/converterUndefinedParaVazio/converterUndefinedParaVazio";
-import moment from "moment";
 /*
 
 @Autor Joao Guilherme
@@ -27,7 +25,7 @@ export function converterDataHoraParaEventoTipoBigCalendar(
 
   const eventoConvetido = {
     id: evento?.id!,
-    title: `${evento?.descricao} - ${evento?.elementos?.descricao!}`,
+    title: `${evento?.descricao || ''} - ${evento?.elementos?.descricao || ''}`,
     start: dataInicial,
     end: dataFinal,
   };

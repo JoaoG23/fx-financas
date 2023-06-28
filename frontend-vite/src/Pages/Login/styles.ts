@@ -9,7 +9,6 @@ export const LoginContainer = styled.main`
   width: auto;
   display: grid;
 
-  gap: 10px;
   grid-template-columns: auto;
   justify-items: center;
   align-items: center;
