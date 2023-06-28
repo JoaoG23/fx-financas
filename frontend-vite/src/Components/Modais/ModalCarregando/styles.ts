@@ -13,15 +13,13 @@ export const BackGround = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: aparecendoModalCarregando 0.5s forwards;
+  animation: aparecendoModalCarregando 0.2s forwards;
 
   @keyframes aparecendoModalCarregando {
     0% {
-      /* transform: translateY(100vh); */
       opacity: 0;
     }
     100% {
-      /* transform: translateY(0vh); */
       opacity: 1;
     }
   }

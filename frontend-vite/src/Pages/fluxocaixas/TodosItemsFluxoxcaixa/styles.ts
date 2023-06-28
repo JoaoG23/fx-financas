@@ -11,15 +11,16 @@ export const Container = styled.main`
   display: block;
   color: #424651;
   @media screen and (max-width: 769px) {
-    
     overflow-x: auto;
     justify-content: center;
   }
-
 `;
 export const Header = styled.header`
-
   display: flex;
   justify-content: space-between;
-  margin: .3em;
+  margin: 0.3em;
+`;
+export const ContainerButtons = styled.header`
+  display: flex;
+  gap: 6px;
 `;

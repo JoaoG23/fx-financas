@@ -9,6 +9,7 @@ routers.get("/usuario/:usuariosId", fluxocaixaController.listarTodosPorUsuariosI
 routers.get("/paginas", fluxocaixaController.listarTodosPorPaginaUsuario);
 routers.get("/:id", fluxocaixaController.listaPorId);
 
+routers.post("/massa", fluxocaixaController.criarVarios);
 routers.post("/", fluxocaixaController.criar);
 
 routers.put("/:id", fluxocaixaController.atualizarPorId);

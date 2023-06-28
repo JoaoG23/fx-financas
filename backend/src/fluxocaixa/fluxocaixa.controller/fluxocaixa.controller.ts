@@ -55,6 +55,15 @@ export class FluxoCaixaController {
       res.status(400).json(error.message);
     }
   }
+  
+  async criarVarios(req: Request, res: Response) {
+    try {
+      const fluxocaixa = await fluxocaixaService.criarVarios(req.body);
+      res.status(201).json(fluxocaixa);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
 
   async atualizarPorId(req: Request, res: Response) {
     const { id } = req.params;

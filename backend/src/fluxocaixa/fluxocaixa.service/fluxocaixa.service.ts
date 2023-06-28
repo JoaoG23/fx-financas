@@ -68,6 +68,36 @@ export class FluxoCaixaServices {
     return fluxocaixa;
   }
 
+  
+
+  async criarVarios(itemsFluxocaixa: FluxocaixaDto[]) {
+    for (const item of itemsFluxocaixa) {
+      const valorExtraido = item?.valor;
+
+      const dataAgora = moment().utc(true).format();
+      const horaAgora = moment().utc(true).format();
+
+      const ultimoItemAdicionado =
+        await this.fluxoCaixaRepository.findLastItemByUsuariosId(
+          item.usuariosId
+        );
+
+      const saldoFinal =
+        Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
+
+      const itemSalvo = {
+        data_insersao: dataAgora,
+        hora_insersao: horaAgora,
+        saldo: saldoFinal,
+        ...item,
+      };
+
+      await this.fluxoCaixaRepository.save(itemSalvo);
+    }
+
+    return `${itemsFluxocaixa?.length} itens foram cadastrados com sucesso`
+  }
+
   async atualizarUmPorId(id: string, dadosNovos: FluxocaixaDto) {
     const existeIdfluxocaixa: FluxocaixaDto =
       await this.fluxoCaixaRepository.findById(id);

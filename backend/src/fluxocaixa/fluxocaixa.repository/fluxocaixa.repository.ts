@@ -5,6 +5,7 @@ import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
 
 export interface IFluxocaixaRepository {
   save(data: FluxocaixaDto);
+  saveMany(fluxocaixaDto: FluxocaixaDto[]);
   update(id: string, newData: FluxocaixaDto);
   delete(id: string);
   findById(id: string);
@@ -34,6 +35,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
+
 
   describeAllFields() {
     return {
@@ -103,10 +105,9 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
   async updateLastItemSaldo(valor: number, usuariosId: string) {
     return await this.prisma.$executeRawUnsafe(
-      `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT orderador  
+      `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT MAX(orderador)  
         FROM public.fluxocaixa 
         WHERE "usuariosId" = $2
-        ORDER BY data_insersao desc limit 1 
         ) AND "usuariosId" = $2`,
       valor,
       usuariosId
@@ -138,6 +139,12 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
         },
         usuariosId,
       },
+    });
+  }
+
+  async saveMany(fluxocaixaDto: FluxocaixaDto[]) {
+    return await this.prisma.fluxocaixa.createMany({
+      data:fluxocaixaDto
     });
   }
 

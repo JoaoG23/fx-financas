@@ -6,6 +6,7 @@ import { AdicionarItem } from "../../../Pages/fluxocaixas/AdicionarItem";
 import { EditarItem } from "../../../Pages/fluxocaixas/EditarItem";
 import { DeletarItem } from "../../../Pages/fluxocaixas/DeletarItem";
 import { VisualizarItem } from "../../../Pages/fluxocaixas/VisualizarItem";
+import { AdicaoItensEmMassa } from "../../../Pages/fluxocaixas/AdicionarItensMassa";
 
 export const FluxocaixaRotas: React.FC = () => {
   return (
@@ -23,6 +24,14 @@ export const FluxocaixaRotas: React.FC = () => {
         element={
           <PrivateRoute redirectTo={"/"}>
             <AdicionarItem />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/fluxocaixa/adicionar/massa"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <AdicaoItensEmMassa />
           </PrivateRoute>
         }
       />

@@ -63,7 +63,6 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
         disabled={desativar}
         onChange={(e: any) => {
           const idElemento = e.target.value;
-          console.log("🚀 ~ file: index.tsx:66 ~ idElemento:", idElemento)
 
           selecionarElemento(idElemento);
         }}

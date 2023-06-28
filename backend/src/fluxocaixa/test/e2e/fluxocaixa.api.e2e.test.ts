@@ -6,6 +6,7 @@ import { adicionarItemFluxoCaixaSubtests } from "./subtestes/adicionarItemFluxoC
 import { buscarTodosFluxocaixaSubtests } from "./subtestes/buscarTodosItemFluxocaixaSubtests.test";
 import { editarItemSubtests } from "./subtestes/editarItemSubtests.test";
 import { deletarItemSubTests } from "./subtestes/deletarItemSubtests.test";
+import { adicionarEmMassaFluxoCaixaSubtests } from "./subtestes/adicionarEmMassaFluxoCaixaSubtests.test";
 
 describe("ROTAS de manipulação /fluxocaixa", () => {
   beforeAll(async () => {
@@ -15,4 +16,5 @@ describe("ROTAS de manipulação /fluxocaixa", () => {
   buscarTodosFluxocaixaSubtests();
   adicionarItemFluxoCaixaSubtests();
   deletarItemSubTests();
+  adicionarEmMassaFluxoCaixaSubtests()
 });
