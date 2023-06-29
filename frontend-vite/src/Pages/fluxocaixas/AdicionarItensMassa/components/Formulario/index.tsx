@@ -25,6 +25,7 @@ import { TableComum } from "../../../../../Components/tables/TableComum";
 import { CabecalhoTabela } from "../CabecalhoTabela";
 import { LinhaItemFluxocaixa } from "../Linha";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { DecimalInput } from "../../../../../Components/Inputs/DecimalInput";
 
 export const Formulario: React.FC = () => {
   const { idUsuario } = buscaDadoUsuarioNaSessao();
@@ -89,12 +90,11 @@ export const Formulario: React.FC = () => {
           )}
         </div>
         <div>
-          <InputDefault
+          <DecimalInput
             name="valor"
-            type="number"
-            placeholder="Digite o valor do item"
+            placeholder="R$ 0000,00"
             register={register}
-            label="Valor"
+            label="Adicione um valor"
           />
           {errors?.valor?.type === "required" && (
             <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />

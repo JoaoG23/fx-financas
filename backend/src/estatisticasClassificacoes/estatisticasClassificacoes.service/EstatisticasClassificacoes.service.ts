@@ -24,7 +24,6 @@ export class ElementosClassificacoesServices {
       //     usuariosId,
       //     elementosId
       //   );
-      console.log("🚀 ~ file: EstatisticasClassificacoes.service.ts:28 ~ ElementosClassificacoesServices ~ elementos.forEach ~ elemento:", elemento)
     });
   }
 }

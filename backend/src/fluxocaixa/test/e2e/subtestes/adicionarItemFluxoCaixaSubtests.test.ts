@@ -57,6 +57,40 @@ export function adicionarItemFluxoCaixaSubtests() {
       });
     });
 
+    describe("(SUCESSO) Quando dados forem enviados", () => {
+      beforeEach(async () => {
+        await limparTabelaFluxoCaixa();
+      });
+
+      test("Deverá adicionar um item fluxo de caixa e validar valor e saldo adicionado é decimal", async () => {
+        const usuario = await criarUsuario();
+        const idUsuario = usuario.body.id;
+
+        const item1ComUsuariosId = {
+          ...itemFluxocaixaCriado,
+          usuariosId: idUsuario,
+          valor: 10.34,
+        };
+
+        const retornoItemCriado = await request(app)
+          .post(`/api/v1/fluxocaixa`)
+          .set("auth", token)
+          .send(item1ComUsuariosId);
+        const criado = retornoItemCriado.body;
+        const idItem = retornoItemCriado.body.id;
+        expect(retornoItemCriado.statusCode).toEqual(201);
+        expect(criado).toHaveProperty("valor", "10.34");
+
+
+        const itemBuscado = await request(app)
+        .get(`/api/v1/fluxocaixa/${idItem}`)
+        .set("auth", token);
+        
+        expect(itemBuscado.statusCode).toEqual(200);
+        expect(itemBuscado.body).toHaveProperty("valor", "10.34");
+      });
+    });
+
     describe("(SUCESSO) Quando dados forem enviados com usuario previamente criado", () => {
       beforeEach(async () => {
         await limparTabelaUsuarios();

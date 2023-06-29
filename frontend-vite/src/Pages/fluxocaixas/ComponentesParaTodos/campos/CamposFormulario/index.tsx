@@ -17,6 +17,7 @@ import { TiposSelect } from "../../../../../Components/selects/TiposSelect";
 import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
+import { DecimalInput } from "../../../../../Components/Inputs/DecimalInput";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -56,7 +57,7 @@ export const CamposFormulario: React.FC<Props> = ({
                 elementosId={elemento}
                 control={control}
                 name="subelementosId"
-                label={'Sublemento'}
+                label={"Sublemento"}
               />
             </div>
             <div>
@@ -66,7 +67,7 @@ export const CamposFormulario: React.FC<Props> = ({
                 subelementosId={subelemento}
                 control={control}
                 name="tiposId"
-                label={'Tipo'}
+                label={"Tipo"}
               />
             </div>
             <div>
@@ -76,7 +77,7 @@ export const CamposFormulario: React.FC<Props> = ({
                 tiposId={tipos}
                 control={control}
                 name="subtiposId"
-                label={'Subtipos'}
+                label={"Subtipos"}
               />
             </div>
             <div>
@@ -98,11 +99,11 @@ export const CamposFormulario: React.FC<Props> = ({
               />
             </div>
             <div>
-              <InputDefault
+              <DecimalInput
                 name="valor"
-                placeholder="Digite o valor do item"
+                placeholder="R$ 0000,00"
                 register={register}
-                label="Valor"
+                label="Digite o valor"
               />
               {errors?.valor?.type === "required" && (
                 <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
@@ -124,7 +125,7 @@ export const CamposFormulario: React.FC<Props> = ({
         </Form.ObservacoesLinha>
       </Form.Campos>
       <footer>
-        <SecondaryButton>Salvar + </SecondaryButton>
+        <SecondaryButton>Salvar </SecondaryButton>
       </footer>
     </Form.Container>
   );
