@@ -6,3 +6,17 @@ export const categorias = [
     path: "/categorias/elementos",
   },
 ];
+export const tiposFluxosCaixa = [
+  {
+    id: 0,
+    descricao: "Todos Items Mês",
+    icon: "",
+    path: "/fluxocaixa/mes",
+  },
+  {
+    id: 1,
+    descricao: "Todos Items",
+    icon: "",
+    path: "/fluxocaixa",
+  },
+];

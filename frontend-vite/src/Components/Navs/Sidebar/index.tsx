@@ -13,7 +13,7 @@ import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 
-import { categorias } from "./data/listLinks";
+import { tiposFluxosCaixa, categorias } from "./data/listLinks";
 
 import * as SideBar from "./styles";
 
@@ -47,18 +47,22 @@ const Sidebar: React.FC = () => {
         </Link>
       </SideBar.Item>
 
-      <SideBar.Item>
-        <BsFillCalendarMonthFill color="#fff" />
-        <Link to={"/fluxocaixa/mes"}>
-          <p>Fluxo caixa mês</p>
-        </Link>
-      </SideBar.Item>
-      <SideBar.Item>
-        <BsFillFileRuledFill color="#fff" />
-        <Link to={"/fluxocaixa"}>
+      <details>
+        <SideBar.ColecaoElementos>
+          <BsFillGrid3X2GapFill color="#fff" />
           <p>Fluxo de caixa</p>
-        </Link>
-      </SideBar.Item>
+        </SideBar.ColecaoElementos>
+        <SideBar.Elementos>
+          {tiposFluxosCaixa.map((paginas) => {
+            return (
+              <li key={paginas.id}>
+                <Link to={paginas.path}>{paginas.descricao}</Link>
+              </li>
+            );
+          })}
+        </SideBar.Elementos>
+      </details>
+
       <SideBar.Item>
         <BsFillBasket2Fill color="#fff" />
         <Link to={"/tipos_despesas"}>

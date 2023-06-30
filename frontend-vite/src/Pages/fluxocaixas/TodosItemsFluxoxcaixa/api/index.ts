@@ -1,21 +1,22 @@
 import { endpoint } from "../../../../services/endpoint";
 
-type Criterios = {
-  numero_pagina?: number;
-  quantidade_items_pagina?: number;
-  usuariosId: string;
-};
+import { CriteriosPesquisaItemFluxoCaixa } from "../../../../types/CriteriosPesquisa";
 
-export async function buscarFluxoCaixaPorUsuario({
-  numero_pagina,
-  quantidade_items_pagina = 12,
-  usuariosId,
-}: Criterios) {
-  const resposta = await endpoint.get(`/fluxocaixa/paginas`, {
+import { buscaDadoUsuarioNaSessao } from "../../../../utils/buscaDadoUsuarioNaSessao";
+
+
+export async function pesquisarItemsFluxoCaixaPaginaPorCriterio(
+  numero_pagina: number,
+  criteriosBusca: CriteriosPesquisaItemFluxoCaixa
+) {
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
+  const { descricao } = criteriosBusca;
+  const resposta = await endpoint.get(`/fluxocaixa/usuario/pesquisar`, {
     params: {
       numero_pagina,
-      quantidade_items_pagina,
-      usuariosId,
+      quantidade_items_pagina: 10,
+      usuariosId: idUsuario,
+      descricao,
     },
   });
   return resposta;

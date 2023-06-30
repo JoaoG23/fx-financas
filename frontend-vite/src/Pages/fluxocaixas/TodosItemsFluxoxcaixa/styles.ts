@@ -15,6 +15,9 @@ export const Container = styled.main`
     justify-content: center;
   }
 `;
+export const Formulario = styled.div`
+  margin-bottom: 1.5em;
+`;
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;

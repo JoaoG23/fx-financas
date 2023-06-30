@@ -10,7 +10,7 @@ import { buscarItemPorId, editarItemPorId } from "../../api";
 
 import { ItemFluxoCaixaCriado } from "../../../../../types/ItemFluxoCaixa";
 
-import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormulario";
+import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFormularioAdicionarEditar";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 
@@ -25,7 +25,7 @@ import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  
+
   const selecionarElemento = useElementoStore(
     (state) => state.adicionarElemento
   );
@@ -82,11 +82,10 @@ export const Formulario: React.FC = () => {
     valor: parseFloat(itemFluxoCaixa?.valor!),
   };
 
-
   useEffect(() => {
-    selecionarElemento(itemFluxoCaixa?.elementosId!)
-    selecionarSubElemento(itemFluxoCaixa?.subelementosId!)
-    selecionarTipo(itemFluxoCaixa?.tiposId!)
+    selecionarElemento(itemFluxoCaixa?.elementosId!);
+    selecionarSubElemento(itemFluxoCaixa?.subelementosId!);
+    selecionarTipo(itemFluxoCaixa?.tiposId!);
     reset(dadosCarregados);
   }, [data]);
 

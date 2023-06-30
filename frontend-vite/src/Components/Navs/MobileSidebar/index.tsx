@@ -8,17 +8,17 @@ import {
   BsFillBasket2Fill,
   BsBoxArrowInLeft,
   BsBank2,
-  BsBoxFill,
 } from "react-icons/bs";
-
+import { FaUserAlt } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 
-import { categorias } from "./data/listLinks";
+import { tiposFluxosCaixa, categorias } from "./data/listLinks";
 
 import * as SideBar from "./styles";
 
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 import { SecondaryButton } from "../../Buttons/SecondaryButton/ButtonDark";
+import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 type Props = {
   setMostrarSidebar: any;
@@ -29,11 +29,19 @@ export const MobileSidebar: React.FC<Props> = ({
   mostrarSidebar,
   setMostrarSidebar,
 }) => {
+  const { nomeUsuario } = buscaDadoUsuarioNaSessao();
   const esconderSidebar = () => setMostrarSidebar(false);
   return (
     <>
       {mostrarSidebar && (
         <SideBar.Container>
+          <SideBar.Item>
+            <FaUserAlt color="#fff" size={20} />
+            <Link to={"/usuario_logado"}>
+              <p>Olá {nomeUsuario}!</p>
+            </Link>
+          </SideBar.Item>
+
           <SideBar.Item onClick={esconderSidebar}>
             <BsFillPieChartFill color="#fff" />
             <Link to={"/dashboard"}>
@@ -48,12 +56,23 @@ export const MobileSidebar: React.FC<Props> = ({
             </Link>
           </SideBar.Item>
 
-          <SideBar.Item onClick={esconderSidebar}>
-            <BsFillFileRuledFill color="#fff" />
-            <Link to={"/fluxocaixa"}>
+          <details>
+            <SideBar.ColecaoElementos>
+              <BsFillGrid3X2GapFill color="#fff" />
               <p>Fluxo de caixa</p>
-            </Link>
-          </SideBar.Item>
+            </SideBar.ColecaoElementos>
+            <SideBar.Elementos>
+              {tiposFluxosCaixa.map((paginas) => {
+                return (
+                  <li key={paginas.id}>
+                    <Link to={paginas.path} onClick={esconderSidebar}>
+                      {paginas.descricao}
+                    </Link>
+                  </li>
+                );
+              })}
+            </SideBar.Elementos>
+          </details>
 
           <SideBar.Item onClick={esconderSidebar}>
             <BsFillBasket2Fill color="#fff" />

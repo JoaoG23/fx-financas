@@ -61,14 +61,14 @@ export const Elementos = styled.ul`
     padding: 3px;
     display: flex;
     gap: 1em;
-
+    border-radius: 0.7em;
   }
   a {
     text-decoration: none;
     color: #fff;
   }
 
-  :hover {
+  li:hover {
     transition: 0.3s;
     animation: balancar 2s linear infinite;
 

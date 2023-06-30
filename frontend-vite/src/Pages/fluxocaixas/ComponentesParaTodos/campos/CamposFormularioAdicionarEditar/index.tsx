@@ -18,7 +18,6 @@ import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 import { DecimalInput } from "../../../../../Components/Inputs/DecimalInput";
-import { BsPlusCircleFill } from "react-icons/bs";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -126,10 +125,7 @@ export const CamposFormulario: React.FC<Props> = ({
         </Form.ObservacoesLinha>
       </Form.Campos>
       <footer>
-        <SecondaryButton>
-          <p>Salvar</p>
-          <BsPlusCircleFill />
-        </SecondaryButton>
+        <SecondaryButton>Salvar </SecondaryButton>
       </footer>
     </Form.Container>
   );
