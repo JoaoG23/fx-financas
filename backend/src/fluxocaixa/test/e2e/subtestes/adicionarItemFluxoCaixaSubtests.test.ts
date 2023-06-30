@@ -47,7 +47,6 @@ export function adicionarItemFluxoCaixaSubtests() {
         expect(resposta).toHaveProperty("descricao", "Item de teste");
         expect(resposta).toHaveProperty("valor", "100");
         expect(resposta).toHaveProperty("data_insersao");
-        expect(resposta).toHaveProperty("hora_insersao");
         expect(resposta).toHaveProperty("elementosId", null);
         expect(resposta).toHaveProperty("usuariosId", null);
         expect(resposta).toHaveProperty("locaisId", null);
@@ -131,7 +130,6 @@ export function adicionarItemFluxoCaixaSubtests() {
         expect(retorno.statusCode).toEqual(200);
 
         expect(resposta).toHaveProperty("data_insersao");
-        expect(resposta).toHaveProperty("hora_insersao");
         expect(resposta).toHaveProperty("elementosId", null);
         expect(resposta).toHaveProperty("usuariosId", idUsuario);
         expect(resposta).toHaveProperty("saldo", saldoAtualEsperado);

@@ -5,7 +5,6 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import { toast } from "react-toastify";
 import { useMutation, useQuery } from "react-query";
 
-
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import "react-big-calendar/lib/addons/dragAndDrop/styles.css";
 
@@ -23,9 +22,8 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 
-
-import 'moment/locale/pt-br.js'
-
+import "moment/locale/pt-br.js";
+import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(Calendar);
@@ -39,11 +37,9 @@ export const Calendario = () => {
   );
 
   const { idUsuario } = buscaDadoUsuarioNaSessao();
-  const {
-    data,
-    isLoading: isCarregangdoTodosEventos,
-  } = useQuery(["listar-todos-item-fluxo-caixa", idUsuario], () =>
-    buscarTodosItemFluxoCaixa(idUsuario!),
+  const { data, isLoading: isCarregangdoTodosEventos } = useQuery(
+    ["listar-todos-item-fluxo-caixa", idUsuario],
+    () => buscarTodosItemFluxoCaixa(idUsuario!),
     {
       onError: (error: any) => {
         toast.error(`Ops! : ${error.response.data}`);
@@ -51,7 +47,7 @@ export const Calendario = () => {
     }
   );
 
-  const { mutate, isLoading } = useMutation(
+  const { mutate: atualizarDataItemMutate, isLoading } = useMutation(
     async (values: any) => await atualizarHorarioEvento(values),
     {
       onError: (error: any) => {
@@ -72,7 +68,7 @@ export const Calendario = () => {
   // Muda os eventos de lugar
   const aoMovimentarEvento = useCallback(
     ({ event, start, end }: any) => {
-      mutate({ id: event.id, start: start, end: end });
+      atualizarDataItemMutate({ id: event.id, start: start, end: end });
       setAgendamento((prev: any) => {
         const existing = prev.find((ev: any) => ev.id === event.id) ?? {};
         const filtered = prev.filter((ev: any) => ev.id !== event.id);
@@ -96,7 +92,7 @@ export const Calendario = () => {
 
   return (
     <div>
-      {isLoading && <ModalCarregando />}
+      {isLoading && <SpinnerCarregamento />}
       <DragAndDropCalendar
         defaultDate={moment().toDate()}
         selectable

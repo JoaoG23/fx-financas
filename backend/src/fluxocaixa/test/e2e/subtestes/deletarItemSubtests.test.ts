@@ -71,7 +71,6 @@ export function deletarItemSubTests() {
         expect(resposta).toHaveProperty("valor", "0");
         expect(resposta).toHaveProperty("saldo", "0");
         expect(resposta).toHaveProperty("data_insersao");
-        expect(resposta).toHaveProperty("hora_insersao");
         expect(resposta).toHaveProperty("elementosId", null);
         expect(resposta).toHaveProperty("usuariosId", idUsuario);
         expect(resposta).toHaveProperty("locaisId", null);

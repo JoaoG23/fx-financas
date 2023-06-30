@@ -1,7 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
+
 import { Paginacao } from "../../utils/Paginacao";
-import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
+
+import { buscarPrimeiroDiaMes } from "../../utils/datetime/buscarPrimeiroDiaMes/buscarPrimeiroDiaMes";
+import { buscarUltimoDiaMes } from "../../utils/datetime/buscarUltimoDiaMes/buscarUltimoDiaMes";
+
+import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
+import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
 
 export interface IFluxocaixaRepository {
   save(data: FluxocaixaDto);
@@ -26,6 +32,9 @@ export interface IFluxocaixaRepository {
     quantidadeItemPagina: number,
     usuariosId: string
   );
+  findAllByCriterios(
+    criterios: CriteriosPesquisa
+  );
 }
 
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
@@ -35,7 +44,6 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
-
 
   describeAllFields() {
     return {
@@ -144,7 +152,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
   async saveMany(fluxocaixaDto: FluxocaixaDto[]) {
     return await this.prisma.fluxocaixa.createMany({
-      data:fluxocaixaDto
+      data: fluxocaixaDto,
     });
   }
 
@@ -245,20 +253,31 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
       );
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
+
+    const firstDayOfMonth = buscarPrimeiroDiaMes();
+    const lastDayOfMonth = buscarUltimoDiaMes();
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
       orderBy: [
         {
           orderador: "desc",
         },
       ],
-
       where: {
+        data_insersao: {
+          gte: firstDayOfMonth,
+          lt: lastDayOfMonth,
+        },
         usuariosId,
       },
+      include: this.describeAllFields(),
       skip: pularPagina,
       take: itemsPorPagina,
     });
 
     return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, fluxocaixa];
+  }
+
+  async findAllByCriterios(criterios: CriteriosPesquisa) {
+    return await pesquisarSemData(criterios);
   }
 }

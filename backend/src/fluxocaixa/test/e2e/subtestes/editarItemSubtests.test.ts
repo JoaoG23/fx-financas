@@ -65,7 +65,6 @@ export function editarItemSubtests() {
         expect(resposta).toHaveProperty("descricao", "EDITADO");
         expect(resposta).toHaveProperty("valor", "40");
         expect(resposta).toHaveProperty("data_insersao");
-        expect(resposta).toHaveProperty("hora_insersao");
         expect(resposta).toHaveProperty("elementosId", null);
         expect(resposta).toHaveProperty("usuariosId", idUsuario);
         expect(resposta).toHaveProperty("locaisId", null);
@@ -113,7 +112,6 @@ export function editarItemSubtests() {
         expect(resposta).toHaveProperty("valor", "40");
         expect(resposta).toHaveProperty("saldo", "40");
         expect(resposta).toHaveProperty("data_insersao");
-        expect(resposta).toHaveProperty("hora_insersao");
       });
     });
   });

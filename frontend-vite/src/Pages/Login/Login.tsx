@@ -1,6 +1,3 @@
-import { Link } from "react-router-dom";
-
-import { SecondaryButton } from "../../Components/Buttons/SecondaryButton/ButtonDark";
 import { Formulario } from "./Formulario/Formulario";
 
 import { ContainerMain, LoginContainer } from "./styles";

@@ -1,3 +1,4 @@
+import { BsPersonFillAdd } from "react-icons/bs";
 import React from "react";
 import { useMutation } from "react-query";
 import { useNavigate } from "react-router-dom";
@@ -8,17 +9,17 @@ import { pegarUsuarioSessao } from "../../../utils/pegarUsuarioSessao";
 
 import { logarUsuario } from "../api";
 
-import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
-import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
 import { FormularioStyle } from "./styles";
+
+import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
 import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { BsPersonFillAdd } from "react-icons/bs";
+import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
 
   const { mutate, isLoading } = useMutation(
-    async (value: any) => await logarUsuario(value),
+    async (dadosUsuario: any) => await logarUsuario(dadosUsuario),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -35,11 +36,11 @@ export const Formulario: React.FC = () => {
   return (
     <FormularioStyle>
       <CamposFormulario
-        funcaoSubmit={(values: any) => {
-          mutate(values);
+        funcaoSubmit={(usuario: any) => {
+          mutate(usuario);
         }}
       />
-      {isLoading && <ModalCarregando />}
+      {isLoading && <SpinnerCarregamento />}
       <SecondaryButton onClick={() => navigate("/registrar")}>
         <p>Registrar</p>
         <BsPersonFillAdd />

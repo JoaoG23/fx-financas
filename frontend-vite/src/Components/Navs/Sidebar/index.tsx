@@ -7,20 +7,32 @@ import {
   BsFillPieChartFill,
   BsFillBasket2Fill,
   BsBank2,
-  BsBoxFill,
+  BsFillCalendarMonthFill,
 } from "react-icons/bs";
+import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
+import { FaUserAlt } from "react-icons/fa";
 
 import { categorias } from "./data/listLinks";
 
 import * as SideBar from "./styles";
 
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
-import { IoIosArrowDown } from "react-icons/io";
+
+import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 const Sidebar: React.FC = () => {
+  const { nomeUsuario } = buscaDadoUsuarioNaSessao();
+
   return (
     <SideBar.Container>
+      <SideBar.Item>
+        <FaUserAlt color="#fff" size={20} />
+        <Link to={"/usuario_logado"}>
+          <p>Olá {nomeUsuario}!</p>
+        </Link>
+      </SideBar.Item>
+
       <SideBar.Item>
         <BsFillPieChartFill color="#fff" />
         <Link to={"/dashboard"}>
@@ -35,6 +47,12 @@ const Sidebar: React.FC = () => {
         </Link>
       </SideBar.Item>
 
+      <SideBar.Item>
+        <BsFillCalendarMonthFill color="#fff" />
+        <Link to={"/fluxocaixa/mes"}>
+          <p>Fluxo caixa mês</p>
+        </Link>
+      </SideBar.Item>
       <SideBar.Item>
         <BsFillFileRuledFill color="#fff" />
         <Link to={"/fluxocaixa"}>

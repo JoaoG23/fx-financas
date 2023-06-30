@@ -1,13 +1,13 @@
 import React from "react";
-import { AnimationLoading } from "./styles";
+import { Container, AnimationLoading } from "./styles";
 
 import image from "../../../assets/loading-icon.svg";
 
 export const SpinnerCarregamento: React.FC = () => (
   <>
-    <div>
-      <AnimationLoading src={image} alt="Carregando"></AnimationLoading>
-      <p>Carregando .... </p>
-    </div>
+    <Container>
+      <AnimationLoading src={image} alt="Carregando" />
+      <p>Carregando .. </p>
+    </Container>
   </>
 );

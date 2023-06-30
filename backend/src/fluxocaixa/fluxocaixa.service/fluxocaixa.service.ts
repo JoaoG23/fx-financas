@@ -1,9 +1,11 @@
-import moment from "moment";
 import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 import {
   FluxoCaixaRepository,
   IFluxocaixaRepository,
 } from "../fluxocaixa.repository/fluxocaixa.repository";
+
+import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
+import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
 
 export class FluxoCaixaServices {
   private fluxoCaixaRepository: IFluxocaixaRepository;
@@ -16,7 +18,7 @@ export class FluxoCaixaServices {
     return await this.fluxoCaixaRepository.findById(id);
   }
 
-  async listarTodosPorUsuariosId(usuariosId) {
+  async listarTodosPorUsuariosId(usuariosId: string) {
     return await this.fluxoCaixaRepository.findAllByUsuariosId(usuariosId);
   }
 
@@ -31,6 +33,7 @@ export class FluxoCaixaServices {
       usuariosId
     );
   }
+
   async listarTodosPorPaginaUsuarioMes(
     numeroPagina: number,
     quantidadeItemPagina: number,
@@ -43,11 +46,14 @@ export class FluxoCaixaServices {
     );
   }
 
+  async pesquisarPorCriterios(criterios: CriteriosPesquisa) {
+    return await this.fluxoCaixaRepository.findAllByCriterios(criterios);
+  }
+
   async criar(dados: FluxocaixaDto) {
     const valorExtraido = dados?.valor;
 
-    const dataAgora = moment().utc(true).format();
-    const horaAgora = moment().utc(true).format();
+    const dataAgora = buscaDatahoraAtual();
 
     const ultimoItemAdicionado =
       await this.fluxoCaixaRepository.findLastItemByUsuariosId(
@@ -58,13 +64,11 @@ export class FluxoCaixaServices {
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
     const data = {
       data_insersao: dataAgora,
-      hora_insersao: horaAgora,
       saldo: saldoFinal,
       ...dados,
     };
 
     const fluxocaixa = await this.fluxoCaixaRepository.save(data);
-
     return fluxocaixa;
   }
 
@@ -72,8 +76,7 @@ export class FluxoCaixaServices {
     for (const item of itemsFluxocaixa) {
       const valorExtraido = item?.valor;
 
-      const dataAgora = moment().utc(true).format();
-      const horaAgora = moment().utc(true).format();
+      const dataAgora = buscaDatahoraAtual();
 
       const saldoFinal =
         (await this.calcularSaldoAtual(item?.usuariosId)) +
@@ -81,7 +84,6 @@ export class FluxoCaixaServices {
 
       const itemSalvo = {
         data_insersao: dataAgora,
-        hora_insersao: horaAgora,
         saldo: saldoFinal,
         ...item,
       };
@@ -92,7 +94,6 @@ export class FluxoCaixaServices {
     return `${itemsFluxocaixa?.length} itens foram cadastrados com sucesso`;
   }
 
-
   async atualizarUmPorId(id: string, dadosNovos: FluxocaixaDto) {
     const existeIdfluxocaixa: FluxocaixaDto =
       await this.fluxoCaixaRepository.findById(id);
@@ -102,6 +103,27 @@ export class FluxoCaixaServices {
 
     const fluxocaixa = await this.fluxoCaixaRepository.update(id, dadosNovos);
     await this.atualizarSaldoFinal(existeIdfluxocaixa.usuariosId);
+    return fluxocaixa;
+  }
+
+  async atualizarDataInsersaoPorId(
+    id: string,
+    data_insersao: Pick<FluxocaixaDto, "data_insersao">
+  ) {
+    const existeIdfluxocaixa: FluxocaixaDto =
+      await this.fluxoCaixaRepository.findById(id);
+    if (!existeIdfluxocaixa) {
+      throw new Error("Não existe esse ID para ser atualizado");
+    }
+
+    const somenteDataInsersaoAtualizada = {
+      ...data_insersao,
+    };
+
+    const fluxocaixa = await this.fluxoCaixaRepository.update(
+      id,
+      somenteDataInsersaoAtualizada as FluxocaixaDto
+    );
     return fluxocaixa;
   }
 

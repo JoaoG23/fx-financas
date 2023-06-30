@@ -49,12 +49,29 @@ h1, h2, h3, h4, h5,strong{
     list-style-type: '+';
     
 }
-    
 
-    details[open] summary{
-      transition: 1s;
-        list-style-type: '-';
-    }
+details {
+  overflow: hidden;
+  animation-name: showDetails;
+  animation-duration: 1s;
+}
+
+details[open] summary ~ * {
+  animation-name: showDetails;
+  animation-duration: 1s;
+}
+
+@keyframes showDetails {
+  0% {
+    opacity: 0;
+    max-height: 0;
+  }
+  100% {
+    opacity: 1;
+    max-height: 100%;
+  }
+}
+
 
 *::-webkit-scrollbar {
   width: 15px;
@@ -108,6 +125,10 @@ h1, h2, h3, h4, h5,strong{
     width: 300px;
     max-width: 300px;
   }
+
+
+
+
 
 `;
 

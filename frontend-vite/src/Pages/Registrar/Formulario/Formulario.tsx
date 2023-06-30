@@ -6,14 +6,17 @@ import { toast } from "react-toastify";
 
 import { navegarAtePaginaDepoisTempo } from "../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
-import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
-import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
 import { FormularioStyle } from "./styles";
+
+import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
+import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
+import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
 
 import { registrarUsuario } from "../api";
 
 import { Usuario } from "../../../types/usuario/Usuario";
-import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
+
+import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
@@ -22,6 +25,7 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm();
 
@@ -47,9 +51,14 @@ export const Formulario: React.FC = () => {
         })}
         register={register}
         errors={errors}
+        control={control}
       />
-      {isLoading && <ModalCarregando />}
-      <SecondaryButton onClick={ () => navigate('/')}>Voltar</SecondaryButton>
+      {isLoading && <SpinnerCarregamento />}
+
+      <SecondaryButton onClick={() => navigate("/")}>
+        <BsArrowLeftCircleFill />
+        <p>Voltar</p>
+      </SecondaryButton>
     </FormularioStyle>
   );
 };

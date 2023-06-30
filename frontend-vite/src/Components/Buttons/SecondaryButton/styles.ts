@@ -5,6 +5,7 @@ export const DefaultStyle = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 5px;
 
   background-image: linear-gradient(
     to right,

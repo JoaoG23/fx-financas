@@ -3,15 +3,16 @@ import styled from "styled-components";
 export const Container = styled.div`
   width: 13vw;
   height: 100vh;
-  padding-left: 5px;
 
   position: absolute;
   left: 0px;
+  padding-top: 7em;
+  padding-left: 1em;
+  padding-right: 1em;
 
   display: flex;
   flex-direction: column;
   gap: 1em;
-  justify-content: center;
 
   background-color: #1caf82;
 

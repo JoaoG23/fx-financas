@@ -6,15 +6,23 @@ import { adicionarItemFluxoCaixaSubtests } from "./subtestes/adicionarItemFluxoC
 import { buscarTodosFluxocaixaSubtests } from "./subtestes/buscarTodosItemFluxocaixaSubtests.test";
 import { editarItemSubtests } from "./subtestes/editarItemSubtests.test";
 import { deletarItemSubTests } from "./subtestes/deletarItemSubtests.test";
+import { atualizarDataInsersaoItemSubtests } from "./subtestes/atualizarDataInsersaoItemSubtests.test";
 import { adicionarEmMassaFluxoCaixaSubtests } from "./subtestes/adicionarEmMassaFluxoCaixaSubtests.test";
+import { pesquisarItemFluxoCaixaPorCriterioSubtestes } from "./subtestes/pesquisarItemCriterioFluxoCaixaSubtestes.test";
 
 describe("ROTAS de manipulação /fluxocaixa", () => {
   beforeAll(async () => {
     await limparTabelaFluxoCaixa();
   });
+
   editarItemSubtests();
+  atualizarDataInsersaoItemSubtests();
+
   buscarTodosFluxocaixaSubtests();
-  adicionarItemFluxoCaixaSubtests();
+  pesquisarItemFluxoCaixaPorCriterioSubtestes()
+
   deletarItemSubTests();
-  adicionarEmMassaFluxoCaixaSubtests()
+
+  adicionarItemFluxoCaixaSubtests();
+  adicionarEmMassaFluxoCaixaSubtests();
 });

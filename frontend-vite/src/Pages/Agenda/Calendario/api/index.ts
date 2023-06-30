@@ -10,7 +10,7 @@ export async function atualizarHorariosUmAgendamento<T = unknown>(
   dataHorarioInicialEFim: T
 ) {
   const resposta = await endpoint.patch(
-    `/operacaoagendamento/horario/${id}`,
+    `/fluxocaixa/${id}`,
     dataHorarioInicialEFim
   );
   return resposta;

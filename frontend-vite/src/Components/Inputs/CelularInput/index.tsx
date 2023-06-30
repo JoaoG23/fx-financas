@@ -15,7 +15,8 @@ type Props = {
   valorPadrao?: string;
   desativar?: boolean;
   requirido?: boolean;
-  control?: Control<FieldValues>;
+  placeholder?: string;
+  control: Control<FieldValues>;
 };
 
 export const CelularInput: React.FC<Props> = ({
@@ -24,6 +25,7 @@ export const CelularInput: React.FC<Props> = ({
   label,
   desativar = false,
   requirido = true,
+  placeholder,
 }) => {
   return (
     <Controller
@@ -37,6 +39,7 @@ export const CelularInput: React.FC<Props> = ({
             onChange={onChange}
             value={value}
             disabled={desativar}
+            placeholder={placeholder}
           />
         </Input.ContainerInput>
       )}

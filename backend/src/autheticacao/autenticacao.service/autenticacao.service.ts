@@ -1,9 +1,12 @@
+import { ConflictError } from "rest-api-errors";
 import { PrismaClient } from "@prisma/client";
+
 import autenticacao from "../../utils/Autenticacao";
 import criptografia from "../../utils/Criptografia";
+
 import { AutenticacaoUsuarioDto } from "../AutenticacaoUsuarioDto";
 import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/fluxocaixa.repository";
-import { ConflictError } from "rest-api-errors";
+import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
 export class AuthenticacaoService {
   public prisma: PrismaClient;
   public fluxocaixaRepository: FluxoCaixaRepository;
@@ -100,8 +103,7 @@ export class AuthenticacaoService {
       subelementosId: null,
       tiposId: null,
       subtiposId: null,
-      data_insersao: new Date(),
-      hora_insersao: new Date(),
+      data_insersao: buscaDatahoraAtual(),
       saldo: 0,
     });
 

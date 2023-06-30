@@ -63,7 +63,6 @@ export function buscarTodosFluxocaixaSubtests() {
         expect(segundoItem).toHaveProperty("descricao", "Item de teste");
         expect(segundoItem).toHaveProperty("valor", "100");
         expect(segundoItem).toHaveProperty("data_insersao");
-        expect(segundoItem).toHaveProperty("hora_insersao");
         expect(segundoItem).toHaveProperty("elementosId", null);
         expect(segundoItem).toHaveProperty("usuariosId", idUsuario);
         expect(segundoItem).toHaveProperty("locaisId", null);
