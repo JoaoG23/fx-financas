@@ -23,7 +23,8 @@ import { CriteriosPesquisaItemFluxoCaixa } from "../../../types/CriteriosPesquis
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
-  const [criteriosBusca, setCriteriosBusca] = useState({});
+  const [criteriosBusca, setCriteriosBusca] =
+    useState<CriteriosPesquisaItemFluxoCaixa>({});
   const [pagina, setPagina] = useState<number>(1);
   const comecarPelaPrimeiraPagina = () => setPagina(1);
 

@@ -12,6 +12,7 @@ export const retornarSemDataParametrosPesquisa = (
   criteriosProgramacao: CriteriosProgramacao
 ): object[] => {
   const {
+    usuariosId,
     elementosId,
     subelementosId,
     tiposId,
@@ -21,6 +22,11 @@ export const retornarSemDataParametrosPesquisa = (
   } = criteriosProgramacao;
 
   return [
+    {
+      usuariosId: {
+        contains: usuariosId,
+      },
+    },
     {
       elementosId: {
         contains: elementosId,

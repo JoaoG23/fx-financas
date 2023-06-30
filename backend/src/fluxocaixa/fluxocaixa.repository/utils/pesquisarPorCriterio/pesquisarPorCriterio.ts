@@ -14,15 +14,43 @@ export async function pesquisarSemData(
 
   const itemsPorPagina = parseInt(quantidade_items_pagina);
 
-  const quantidadeTotalItems = await contarQuantidadeRegistros(criterios);
+  const quantidadeTotalRegistros = await contarQuantidadeRegistros(criterios);
   const pularPagina = (numero_pagina - 1) * itemsPorPagina;
 
-  const quantidadePaginas = await paginacao.retornaQuantidadePaginas(
-    quantidadeTotalItems,
+  const totalQuantidadePaginas = await paginacao.retornaQuantidadePaginas(
+    quantidadeTotalRegistros,
     itemsPorPagina
   );
 
   const itemsDaPagina = await prisma.fluxocaixa.findMany({
+    include: {
+      elementos: {
+        select: {
+          descricao: true,
+        },
+      },
+      subelementos: {
+        select: {
+          descricao: true,
+        },
+      },
+      locais: {
+        select: {
+          id: true,
+          descricao: true,
+        },
+      },
+      tipos: {
+        select: {
+          descricao: true,
+        },
+      },
+      subtipos: {
+        select: {
+          descricao: true,
+        },
+      },
+    },
     where: {
       AND: retornarSemDataParametrosPesquisa(criterios),
     },
@@ -30,5 +58,5 @@ export async function pesquisarSemData(
     take: itemsPorPagina,
   });
 
-  return [{ quantidadePaginas, quantidadeTotalItems }, itemsDaPagina];
+  return [{ totalQuantidadePaginas, quantidadeTotalRegistros }, itemsDaPagina];
 }

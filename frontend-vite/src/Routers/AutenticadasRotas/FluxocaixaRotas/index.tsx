@@ -1,7 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import React from "react";
-import { TodosItemsFluxoCaixa } from "../../../Pages/fluxocaixas/TodosItemsFluxoxcaixa";
+
 import PrivateRoute from "../../Auth/PrivateRouter";
+
+import { TodosItemsFluxoCaixa } from "../../../Pages/fluxocaixas/TodosItemsFluxoxcaixa";
 import { AdicionarItem } from "../../../Pages/fluxocaixas/AdicionarItem";
 import { EditarItem } from "../../../Pages/fluxocaixas/EditarItem";
 import { DeletarItem } from "../../../Pages/fluxocaixas/DeletarItem";
