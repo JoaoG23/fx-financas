@@ -224,7 +224,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
       orderBy: [
         {
-          orderador: "desc",
+          data_insersao: "desc",
         },
       ],
       where: {
@@ -259,7 +259,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
       orderBy: [
         {
-          orderador: "desc",
+          data_insersao: "desc",
         },
       ],
       where: {

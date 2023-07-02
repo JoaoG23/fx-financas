@@ -10,7 +10,7 @@ import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
 export class FluxoCaixaServices {
   private fluxoCaixaRepository: IFluxocaixaRepository;
 
-  constructor(fluxoCaixaRepository) {
+  constructor(fluxoCaixaRepository:IFluxocaixaRepository) {
     this.fluxoCaixaRepository = fluxoCaixaRepository;
   }
 

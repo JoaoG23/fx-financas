@@ -23,6 +23,11 @@ export async function pesquisarSemData(
   );
 
   const itemsDaPagina = await prisma.fluxocaixa.findMany({
+    orderBy: [
+      {
+        data_insersao: "desc",
+      },
+    ],
     include: {
       elementos: {
         select: {

@@ -1,5 +1,18 @@
 import { Request, Response } from "express";
 import fluxocaixaService from "../fluxocaixa.service/fluxocaixa.service";
+
+import { CriacaoFluxocaixaService } from "../fluxocaixa.service/CriacaoFluxocaixaService/CriacaoFluxocaixaService";
+
+
+import { FluxoCaixaRepository } from "../fluxocaixa.repository/fluxocaixa.repository";
+
+import { CalculoFluxocaixaService } from "../fluxocaixa.service/CalculoFluxocaixaService/CalculoFluxocaixaService";
+
+const criacaoFluxocaixaService = new CriacaoFluxocaixaService(
+  new FluxoCaixaRepository(),
+  new CalculoFluxocaixaService(new FluxoCaixaRepository())
+);
+
 export class FluxoCaixaController {
   async pesquisarPorCriterios(req: Request, res: Response) {
     try {
@@ -71,7 +84,7 @@ export class FluxoCaixaController {
 
   async criar(req: Request, res: Response) {
     try {
-      const fluxocaixa = await fluxocaixaService.criar(req.body);
+      const fluxocaixa = await criacaoFluxocaixaService.criar(req.body);
       res.status(201).json(fluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
@@ -80,7 +93,7 @@ export class FluxoCaixaController {
 
   async criarVarios(req: Request, res: Response) {
     try {
-      const fluxocaixa = await fluxocaixaService.criarVarios(req.body);
+      const fluxocaixa = await criacaoFluxocaixaService.criarVarios(req.body);
       res.status(201).json(fluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
