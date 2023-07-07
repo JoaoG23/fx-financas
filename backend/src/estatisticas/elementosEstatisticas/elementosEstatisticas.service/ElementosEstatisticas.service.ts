@@ -27,9 +27,11 @@ export class ElementosEstatisticasServices {
           usuariosId
         );
 
+      const despesas = somaElemento._sum.valor;
+
       somaDespesasPorElementoId.push({
         elemento: elemento.descricao,
-        despesas: somaElemento,
+        despesas,
       });
     }
 
