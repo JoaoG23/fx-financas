@@ -24,9 +24,13 @@ export const Dashboard = () => {
     }
   );
 
-  const totalReceitasEsteMes = dataCabecalho?.[0].data;
-  const totalDespesasEsteMes = dataCabecalho?.[1].data;
-  const saldoAtual = dataCabecalho?.[2].data;
+  const totalReceitasEsteMes = dataCabecalho?.[0].data || 0;
+  const totalDespesasEsteMes = dataCabecalho?.[1].data || 0;
+  const saldoAtual = dataCabecalho?.[2].data || 0;
+
+  const receitasConvertida = parseFloat(totalReceitasEsteMes).toFixed(2)
+  const despesasConvertida = parseFloat(totalDespesasEsteMes).toFixed(2);
+  const saldoAtualConvertida = parseFloat(saldoAtual).toFixed(2) ;
 
   return (
     <DashboardStyle.Container>
@@ -36,7 +40,7 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Total receitas mês</h3>
-              <h2>{totalReceitasEsteMes}</h2>
+              <h2>{receitasConvertida}</h2>
             </div>
             <RiMoneyDollarCircleFill size={40} color="#FFA26B" />
           </DashboardStyle.Caixa>
@@ -46,7 +50,7 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Total despesas mês</h3>
-              <h2>{totalDespesasEsteMes}</h2>
+              <h2>{despesasConvertida}</h2>
             </div>
             <IoBagHandle size={40} color="#6979F8" />
           </DashboardStyle.Caixa>
@@ -56,7 +60,7 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Saldo atual</h3>
-              <h2>{saldoAtual}</h2>
+              <h2>{saldoAtualConvertida}</h2>
             </div>
             <GiReceiveMoney size={40} color="#1CAF82" />
           </DashboardStyle.Caixa>

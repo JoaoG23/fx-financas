@@ -45,6 +45,11 @@ export async function pesquisarSemData(
           descricao: true,
         },
       },
+      tipos_despesas: {
+        select: {
+          descricao: true,
+        },
+      },
       tipos: {
         select: {
           descricao: true,

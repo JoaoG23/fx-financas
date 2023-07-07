@@ -10,6 +10,7 @@ export const CabecalhoTabela: React.FC = () => {
       <th>Subtipo</th>
       <th>Descrição</th>
       <th>Local</th>
+      <th>Via</th>
       <th>Valor</th>
       <th>Saldo Atual</th>
       <th>Acoes</th>

@@ -32,9 +32,7 @@ export interface IFluxocaixaRepository {
     quantidadeItemPagina: number,
     usuariosId: string
   );
-  findAllByCriterios(
-    criterios: CriteriosPesquisa
-  );
+  findAllByCriterios(criterios: CriteriosPesquisa);
 }
 
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
@@ -64,6 +62,11 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
         },
       },
       tipos: {
+        select: {
+          descricao: true,
+        },
+      },
+      tipos_despesas: {
         select: {
           descricao: true,
         },
@@ -99,6 +102,11 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
       tipos: {
         select: {
           id: true,
+          descricao: true,
+        },
+      },
+      tipos_despesas: {
+        select: {
           descricao: true,
         },
       },
