@@ -14,7 +14,6 @@ export class ElementosEstatisticasServices {
 
   async despesasTotalPorElementoEUsuarioMes(
     usuariosId: string,
-    elementosId: string
   ) {
     const somaDespesasPorElementoId = [];
     const elementosDoUsuario =

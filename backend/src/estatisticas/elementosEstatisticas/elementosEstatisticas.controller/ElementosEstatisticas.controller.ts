@@ -5,11 +5,10 @@ import elementosEstatisticasService from "../elementosEstatisticas.service/Eleme
 class ElementosEstatisticasController {
   async despesasTotalPorElementoEUsuarioMes(req: Request, res: Response) {
     try {
-      const { usuariosId, elementosId } = req.query;
+      const { usuariosId } = req.params;
       const totalDespesa =
         await elementosEstatisticasService.despesasTotalPorElementoEUsuarioMes(
           usuariosId,
-          elementosId
         );
 
       res.status(200).json(totalDespesa);
