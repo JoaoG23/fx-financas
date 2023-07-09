@@ -11,10 +11,12 @@ export const Graficos: React.FC = () => {
         <h4>Ganho e gastos dos ultimos 12 meses</h4>
         <GraficoDozeMeses />
       </>
-      <>
-        {/* <h4>Ganho e gastos dos ultimos 12 meses</h4> */}
+      <Grafico.Linha>
         <DespesasElementosMesGrafico />
-      </>
+        <DespesasElementosMesGrafico />
+        <DespesasElementosMesGrafico />
+        {/* <DespesasElementosMesGrafico /> */}
+      </Grafico.Linha>
     </Grafico.Container>
   );
 };

@@ -21,7 +21,6 @@ export class ElementosEstatisticasRepository
     elementosId: string,
     usuariosId: string
   ) {
-    // const { idelementosEstatisticas, descricao } = criterios;
 
     
 
@@ -40,7 +39,6 @@ export class ElementosEstatisticasRepository
         valor: {
           lt: 0,
         },
-        usuariosId,
         elementosId,
       },
     });
