@@ -41,29 +41,12 @@ describe("GET /api/v1/estatisticas/saldo_atual", async () => {
       const usuario = await criarUsuario();
       const idUsuario = usuario.body.id;
 
-    //   const item1FluxocaixaComUsuariosId = {
-    //     ...item1FluxocaixaCriado,
-    //     usuariosId: idUsuario,
-    //   };
+      // Passos --------------------------
 
-    //   const item2FluxocaixaComUsuariosId = {
-    //     ...item2FluxocaixaCriado,
-    //     usuariosId: idUsuario,
-    //   };
-
-    //   const criarUmItem = await request(app)
-    //     .post(`/api/v1/fluxocaixa`)
-    //     .set("auth", token)
-    //     .send(item1FluxocaixaComUsuariosId);
-
-    //   const criarDoisItem = await request(app)
-    //     .post(`/api/v1/fluxocaixa`)
-    //     .set("auth", token)
-    //     .send(item2FluxocaixaComUsuariosId);
-
-    //   const retorno = await request(app)
-    //     .get(`/api/v1/estatisticas/saldo_atual/${idUsuario}`)
-    //     .set("auth", token);
+      // 1- Criar um Usuario.
+      // 2- Criar elemento.
+      // 3- Criar item fluxo de caixa valor abaixo de 0.
+      // 4- Busca valores baixo de 0 por elemento.
 
     //   const resposta = retorno.body;
     //   expect(retorno.statusCode).toEqual(200);

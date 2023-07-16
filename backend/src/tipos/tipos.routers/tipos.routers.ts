@@ -8,12 +8,15 @@ routers.get(
   tiposController.listarPorSubelementosPorPagina
 );
 routers.get(
-  "/subelementos/:usuariosId",
+  "/subelementos/usuario/:usuariosId",
+  tiposController.listarTodosPorUsuariosId
+);
+routers.get(
+  "/subelementos/:subelementosId",
   tiposController.listarTodosPorSubelementosId
 );
-routers.get("/", tiposController.listarTodos);
-
 routers.get("/:id", tiposController.listaPorId);
+
 routers.post("/", tiposController.criar);
 
 routers.put("/:id", tiposController.atualizarPorId);

@@ -43,7 +43,8 @@ export const PizzaGrafico: React.FC<Props> = ({ titulo, series, labels }) => {
         options={configuracoes.options as object}
         series={configuracoes.series}
         type="pie"
-        width={380}
+        width={360}
+        height={360}
       />
     </>
   );

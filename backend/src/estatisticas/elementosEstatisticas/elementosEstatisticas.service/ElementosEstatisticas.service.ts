@@ -1,6 +1,5 @@
 import { IElementosRepository } from "../../../elementos/elementos.repository/InterfaceElementosRepository";
 import { ElementosRepository } from "../../../elementos/elementos.repository/elementos.repository";
-import { ElementosEstatisticasDto } from "../elementosEstatisticas.dto/ElementosEstatisticas.dto";
 import {
   ElementosEstatisticasRepository,
   IElementosEstatisticasRepository,

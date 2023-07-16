@@ -1,8 +1,10 @@
 import { Request, Response } from "express";
-import tiposService from "../tipos.service/tipos.service";
+import { TiposServices } from "../tipos.service/tipos.service";
+import { TiposRepository } from "../tipos.repository/tipos.repository";
+
+const tiposService = new TiposServices(new TiposRepository());
 
 class TiposController {
-
   async listarPorSubelementosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina, subelementosId } =
@@ -18,19 +20,21 @@ class TiposController {
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
+  async listarTodosPorUsuariosId(req: Request, res: Response) {
     try {
-      const todos = await tiposService.listarTodos();
+      const usuariosId = req.params.usuariosId
+      const todos = await tiposService.listarTodosPorUsuariosId(usuariosId);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
     }
   }
+
+
   async listarTodosPorSubelementosId(req: Request, res: Response) {
     try {
-      const { usuariosId } = req.params;
-
-      const todos = await tiposService.listarTodosPorSubelementosId(usuariosId);
+      const subelementosId = req.params.subelementosId
+      const todos = await tiposService.listarTodosPorSubelementosId(subelementosId);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
