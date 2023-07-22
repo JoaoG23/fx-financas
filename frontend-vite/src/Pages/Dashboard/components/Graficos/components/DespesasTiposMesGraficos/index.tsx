@@ -34,7 +34,7 @@ export const DespesasTiposMesGrafico: React.FC = () => {
         goals: [
           {
             name: "Limite Gastos",
-            value: 300,
+            value: despesa.limiteGasto,
             strokeWidth: 4,
             strokeHeight: 17,
             strokeColor: "#FFAB7A",

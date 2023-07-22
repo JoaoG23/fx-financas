@@ -1,3 +1,4 @@
+import { BlueFont } from "../../../../../Components/FontColor/BlueFont";
 import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
 
@@ -17,7 +18,9 @@ export const LinhaItemFluxocaixa: React.FC<Props> = ({ item }) => {
       <td>{item?.subelementos?.descricao}</td>
       <td>{item?.tipos?.descricao}</td>
       <td>{item?.subtipos?.descricao}</td>
-      <td>{item?.descricao}</td>
+      <td>
+        <BlueFont>{item?.descricao}</BlueFont>
+      </td>
       <td>{item?.locais?.descricao}</td>
       <td>{item?.tipos_despesas?.descricao}</td>
       <td>

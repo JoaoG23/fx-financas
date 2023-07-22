@@ -35,10 +35,11 @@ export const Tabela = styled.table`
     
     border: none;
     width: 100%;
-    background-color: ${(props: Colors) => props.bodyColor || "#f8fafc7e"};
+    background-color: ${(props: Colors) => props.bodyColor || "#f8f8f9d5"};
   }
   
   td {
+    border-radius: 10px;
     border-bottom: 1px solid #f8fafc7e;
     font-weight: 500;
   }

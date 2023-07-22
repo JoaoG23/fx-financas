@@ -19,6 +19,7 @@ export interface IFluxocaixaRepository {
   findAllByUsuariosId(usuariosId: string);
   describeAllFields();
   countAllByIdUsuario(usuariosId: string);
+  countAllByIdUsuarioThisMonth(usuariosId: string);
   updateLastItemSaldo(valor: number, usuariosId: string);
   sumBiggerThanZero(usuariosId: string);
   sumLessThanZero(usuariosId: string);
@@ -214,6 +215,22 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     return contagem;
   }
 
+  async countAllByIdUsuarioThisMonth(usuariosId: string) {
+    const firstDayOfMonth = buscarPrimeiroDiaMes();
+    const lastDayOfMonth = buscarUltimoDiaMes();
+
+    const contagem = await this.prisma.fluxocaixa.count({
+      where: {
+        data_insersao: {
+          gte: firstDayOfMonth,
+          lt: lastDayOfMonth,
+        },
+        usuariosId,
+      },
+    });
+    return contagem;
+  }
+
   async findAllByPageAndUsuariosId(
     numeroPagina: number,
     quantidadeItemPagina: number,
@@ -251,7 +268,9 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     quantidadeItemPagina: number,
     usuariosId: string
   ) {
-    const quantidadeTotalRegistros = await this.countAllByIdUsuario(usuariosId);
+    const quantidadeTotalRegistros = await this.countAllByIdUsuarioThisMonth(
+      usuariosId
+    );
     const itemsPorPagina = Number(quantidadeItemPagina);
 
     const totalQuantidadePaginas =

@@ -1,7 +1,8 @@
-
-
 import { TiposRepository } from "../../../tipos/tipos.repository/tipos.repository";
-import { ITiposEstatisticasRepository, TiposEstatisticasRepository } from "../tiposEstatisticas.repository/TiposEstatisticas.repository";
+import {
+  ITiposEstatisticasRepository,
+  TiposEstatisticasRepository,
+} from "../tiposEstatisticas.repository/TiposEstatisticas.repository";
 
 export class TiposEstatisticasServices {
   constructor(
@@ -9,12 +10,11 @@ export class TiposEstatisticasServices {
     private tiposRepository: TiposRepository
   ) {}
 
-  async despesasTotalPorTipoEUsuarioMes(
-    usuariosId: string,
-  ) {
+  async despesasTotalPorTipoEUsuarioMes(usuariosId: string) {
     const somaDespesasPorElementoId = [];
-    const tiposDoUsuario =
-      await this.tiposRepository.findAllByUsuariosId(usuariosId);
+    const tiposDoUsuario = await this.tiposRepository.findAllByUsuariosId(
+      usuariosId
+    );
 
     for (const tipo of tiposDoUsuario) {
       const somaElemento =
@@ -24,10 +24,12 @@ export class TiposEstatisticasServices {
         );
 
       const despesas = somaElemento._sum.valor;
+      const limiteGasto = tipo.limiteGasto;
 
       somaDespesasPorElementoId.push({
         tipo: tipo.descricao,
         despesas,
+        limiteGasto,
       });
     }
 
