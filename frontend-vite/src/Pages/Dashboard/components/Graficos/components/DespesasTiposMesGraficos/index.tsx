@@ -29,14 +29,14 @@ export const DespesasTiposMesGrafico: React.FC = () => {
 
       const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
       const serieDespesa = {
-        x: despesa.tipo, // Label
+        x: despesa?.tipo, // Label
         y: gastoMes, // valor
         goals: [
           {
             name: "Limite Gastos",
-            value: despesa.limiteGasto,
-            strokeWidth: 4,
-            strokeHeight: 17,
+            value: despesa?.limiteGasto || 0,
+            strokeWidth: 8,
+            strokeHeight: 15,
             strokeColor: "#FFAB7A",
           },
         ],

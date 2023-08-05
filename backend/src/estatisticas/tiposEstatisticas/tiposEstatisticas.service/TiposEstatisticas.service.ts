@@ -23,8 +23,8 @@ export class TiposEstatisticasServices {
           usuariosId
         );
 
-      const despesas = somaElemento._sum.valor;
-      const limiteGasto = tipo.limiteGasto;
+      const despesas = somaElemento._sum.valor || "0";
+      const limiteGasto = tipo.limiteGasto || "0";
 
       somaDespesasPorElementoId.push({
         tipo: tipo.descricao,

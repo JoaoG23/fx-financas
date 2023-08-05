@@ -22,8 +22,6 @@ export class TiposEstatisticasRepository
     usuariosId: string
   ) {
 
-    
-
     const firstDayOfMonth = buscarPrimeiroDiaMes();
     const lastDayOfMonth = buscarUltimoDiaMes();
 
