@@ -1,9 +1,8 @@
+import { Request, Response } from "express";
 
-
-    import { Request, Response } from "express";
-
-
-class {Classe}Controller implements I{Classe}Controller {
+import programacaofluxocaixaService from "../programacaofluxocaixa.service/Programacaofluxocaixa.service";
+import { ProgramacaoFluxocaixaVisualizarDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
+class ProgramacaoFluxocaixaController {
   async listarTodosPorPagina(req: Request, res: Response) {
     try {
       const { numero_pagina, quantidade_items_pagina } = req.query;
@@ -16,7 +15,6 @@ class {Classe}Controller implements I{Classe}Controller {
       res.status(400).json(error.message);
     }
   }
-  
 
   async listarTodos(req: Request, res: Response) {
     try {
@@ -30,19 +28,21 @@ class {Classe}Controller implements I{Classe}Controller {
   async listaPorId(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const programacaofluxocaixa = await programacaofluxocaixaService.buscarPorId(id);
+      const programacaofluxocaixa =
+        await programacaofluxocaixaService.buscarPorId(id);
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
     }
   }
 
-
   async pesquisarPorCriterio(req: Request, res: Response) {
     try {
-      const criterios: Omit<{Classe}Dto, "ativo"> = req.query;
+      const criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo"> = req.query;
 
-      const todos = await programacaofluxocaixaService.pesquisarPorCriterio(criterios);
+      const todos = await programacaofluxocaixaService.pesquisarPorCriterio(
+        criterios
+      );
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -52,7 +52,8 @@ class {Classe}Controller implements I{Classe}Controller {
   async deletarPorId(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const programacaofluxocaixa = await programacaofluxocaixaService.deletarUmPorId(id);
+      const programacaofluxocaixa =
+        await programacaofluxocaixaService.deletarUmPorId(id);
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
@@ -61,7 +62,9 @@ class {Classe}Controller implements I{Classe}Controller {
 
   async criar(req: Request, res: Response) {
     try {
-      const programacaofluxocaixa = await programacaofluxocaixaService.criar(req.body);
+      const programacaofluxocaixa = await programacaofluxocaixaService.criar(
+        req.body
+      );
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
@@ -71,7 +74,8 @@ class {Classe}Controller implements I{Classe}Controller {
   async atualizarPorId(req: Request, res: Response) {
     const { id } = req.params;
     try {
-      const programacaofluxocaixa = await programacaofluxocaixaService.atualizarUmPorId(id, req.body);
+      const programacaofluxocaixa =
+        await programacaofluxocaixaService.atualizarUmPorId(id, req.body);
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
@@ -79,6 +83,4 @@ class {Classe}Controller implements I{Classe}Controller {
   }
 }
 
-export default new {Classe}Controller();
-
-    
+export default new ProgramacaoFluxocaixaController();

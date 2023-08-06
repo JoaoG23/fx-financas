@@ -1,9 +1,6 @@
-
-  
-  import { Router } from "express";
+import { Router } from "express";
 const routers = Router();
-import programacaofluxocaixaController from '../programacaofluxocaixa.controller/{Classe}.controller';
-
+import programacaofluxocaixaController from "../programacaofluxocaixa.controller/Programacaofluxocaixa.controller";
 
 routers.get("/", programacaofluxocaixaController.listarTodos);
 routers.get("/paginas", programacaofluxocaixaController.listarTodosPorPagina);
@@ -17,5 +14,3 @@ routers.put("/:id", programacaofluxocaixaController.atualizarPorId);
 routers.delete("/:id", programacaofluxocaixaController.deletarPorId);
 
 export default routers;
-  
-  
