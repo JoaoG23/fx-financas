@@ -16,6 +16,44 @@ export class ProgramacaoFluxocaixaRepository
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
+  async buscarTodosPorUsuarioId(usuariosId: string) {
+    return await this.prisma.programacao_fluxocaixa.findMany({
+      where: { usuariosId },
+    });
+  }
+  async buscarTodosPorUsuarioIdComDescricao(usuariosId: string) {
+    return await this.prisma.programacao_fluxocaixa.findMany({
+      where: { usuariosId },
+      include: {
+        locais: {
+          select: {
+            descricao: true,
+          },
+        },
+        elementos: {
+          select: {
+            descricao: true,
+          },
+        },
+        tipos: {
+          select: {
+            descricao: true,
+          },
+        },
+        subelementos: {
+          select: {
+            descricao: true,
+          },
+        },
+        subtipos: {
+          select: {
+            descricao: true,
+          },
+        },
+      },
+    });
+  }
+
   pesquisarPorCriterios(
     criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo">
   ) {

@@ -10,6 +10,7 @@ import { VisualizarUsuarioLogado } from "../../Pages/usuario/UsuarioLogado";
 import { CategoriasRotas } from "./CategoriasRotas";
 import { FluxocaixaRotas } from "./FluxocaixaRotas";
 import { LocaisRotas } from "./LocaisRotas";
+import { ProgramacaoRotas } from "./ProgramacaoRotas";
 
 const AutenticadasRotas = () => {
   return (
@@ -55,6 +56,7 @@ const AutenticadasRotas = () => {
       <FluxocaixaRotas />
       <CategoriasRotas />
       <LocaisRotas />
+      <ProgramacaoRotas />
     </>
   );
 };

@@ -1,8 +1,15 @@
 # Fx Fluxos Segunda Versão 💵- Em desenvolvimento 🤰🏽
 
+
+<img align='right' src='./assets/calculadora.svg'  width="200px"/>
+
 ## 1. Introdução 💹
 
 Este projeto **(em desenvolvimento) 🤰🏽** se trata de um sistema financeiro de fluxo de caixa, que permite a gestão financeira de empresas de pequeno, médio e grande porte. Com ele, é possível realizar o controle de receitas, despesas, contas a pagar e a receber, além de gerar relatórios e gráficos de análise financeira.
+
+<img src='./assets/introducao.gif' width="800px"/>
+
+
 
 ## 2. Tecnologias Utilizadas 📲
 
@@ -36,6 +43,9 @@ JWT_SECRET=segredo
 Substitua `usuario`, `senha`, `endereco-do-banco` e `nome-do-banco` pelos valores corretos de acordo com a configuração do seu banco de dados. 4. Execute as migrations do banco de dados com o comando `npx prisma migrate dev` ou `yarn prisma migrate dev` 5. Inicie o servidor com o comando `npm run dev` ou `yarn dev` 6. Acesse o sistema em `http://localhost:3001`
 
 ## 4. Como Usar 😐
+
+
+
 
 O sistema possui as seguintes telas:
 

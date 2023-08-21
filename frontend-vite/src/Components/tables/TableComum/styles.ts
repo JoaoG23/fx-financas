@@ -35,7 +35,7 @@ export const Tabela = styled.table`
     
     border: none;
     width: 100%;
-    background-color: ${(props: Colors) => props.bodyColor || "#f8f8f9d5"};
+    background-color: ${(props: Colors) => props.bodyColor || "rgb(255, 255, 255,0.6)"};
   }
   
   td {

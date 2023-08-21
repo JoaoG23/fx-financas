@@ -6,11 +6,12 @@ import {
 
 import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
 import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
+import { IFluxoCaixaService } from "./fluxocaixa.interface.service";
 
-export class FluxoCaixaServices {
+export class FluxoCaixaServices implements IFluxoCaixaService {
   private fluxoCaixaRepository: IFluxocaixaRepository;
 
-  constructor(fluxoCaixaRepository:IFluxocaixaRepository) {
+  constructor(fluxoCaixaRepository: IFluxocaixaRepository) {
     this.fluxoCaixaRepository = fluxoCaixaRepository;
   }
 

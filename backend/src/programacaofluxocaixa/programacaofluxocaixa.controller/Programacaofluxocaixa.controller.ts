@@ -16,9 +16,27 @@ class ProgramacaoFluxocaixaController {
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
+  async listarTodosPorUsuarioId(req: Request, res: Response) {
     try {
-      const todos = await programacaofluxocaixaService.listarTodos();
+      const { usuariosId } = req.params;
+      const idUsuario = usuariosId;
+      const todos = await programacaofluxocaixaService.listarTodosPorUsuarioId(
+        idUsuario
+      );
+      res.status(200).json(todos);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async listarTodosPorUsuarioIdComDescricao(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.params;
+      const idUsuario = usuariosId;
+      const todos =
+        await programacaofluxocaixaService.buscarTodosPorUsuarioIdComDescricao(
+          idUsuario
+        );
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -38,7 +56,8 @@ class ProgramacaoFluxocaixaController {
 
   async pesquisarPorCriterio(req: Request, res: Response) {
     try {
-      const criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo"> = req.query;
+      const criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo"> =
+        req.query;
 
       const todos = await programacaofluxocaixaService.pesquisarPorCriterio(
         criterios
@@ -65,6 +84,20 @@ class ProgramacaoFluxocaixaController {
       const programacaofluxocaixa = await programacaofluxocaixaService.criar(
         req.body
       );
+      res.status(200).json(programacaofluxocaixa);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async capturarEInserirEmFluxoCaixa(req: Request, res: Response) {
+    const { usuariosId } = req.params;
+    const idUsuario = usuariosId;
+    try {
+      const programacaofluxocaixa =
+        await programacaofluxocaixaService.capturarProgramacaoEInserirEmFluxoCaixa(
+          idUsuario
+        );
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);

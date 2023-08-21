@@ -19,4 +19,10 @@ export const tiposFluxosCaixa = [
     icon: "",
     path: "/fluxocaixa",
   },
+  {
+    id: 2,
+    descricao: "Todas programações",
+    icon: "",
+    path: "/programacao",
+  },
 ];

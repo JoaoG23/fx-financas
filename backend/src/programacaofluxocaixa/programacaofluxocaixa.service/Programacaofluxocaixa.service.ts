@@ -1,14 +1,34 @@
+import { FluxocaixaDto } from "../../fluxocaixa/fluxocaixa.dto/fluxocaixa.dto";
+import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/fluxocaixa.repository";
+
+import { IFluxoCaixaService } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.interface.service";
+import { FluxoCaixaServices } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.service";
+
 import {
   ProgramacaoFluxocaixaCriadoDto,
   ProgramacaoFluxocaixaVisualizarDto,
 } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
+
 import { ProgramacaoFluxocaixaRepository } from "../programacaofluxocaixa.repository/Programacaofluxocaixa.repository";
 import { IProgramacaoFluxocaixaRepository } from "../programacaofluxocaixa.repository/Programacaofluxocaixa.repository.Interface";
 
 export class ProgramacaoFluxocaixaServices {
   constructor(
-    private programacaofluxocaixaRepository: IProgramacaoFluxocaixaRepository
+    private programacaofluxocaixaRepository: IProgramacaoFluxocaixaRepository,
+    private fluxocaixaService: IFluxoCaixaService
   ) {}
+
+  async validarNaoExisteProgramacoes(usuariosId: string) {
+    const programacoes =
+      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+        usuariosId
+      );
+
+    const isExisteProgramacoes = programacoes.length;
+    if (!isExisteProgramacoes) {
+      throw new Error("Não existe programações para efetuar a captura");
+    }
+  }
 
   async buscarPorId(id: string) {
     return await this.programacaofluxocaixaRepository.buscarPorId(id);
@@ -22,8 +42,19 @@ export class ProgramacaoFluxocaixaServices {
     );
   }
 
-  async listarTodos() {
-    return await this.programacaofluxocaixaRepository.buscarTodos();
+  async listarTodosPorUsuarioId(usuariosId:string) {
+    const programacoes =
+      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+        usuariosId
+      );
+    return programacoes;
+  }
+  async buscarTodosPorUsuarioIdComDescricao(usuariosId:string) {
+    const programacoes =
+      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioIdComDescricao(
+        usuariosId
+      );
+    return programacoes;
   }
 
   async listarTodosPorPagina(
@@ -36,10 +67,35 @@ export class ProgramacaoFluxocaixaServices {
     );
   }
 
-  async criar(dados: ProgramacaoFluxocaixaCriadoDto) {
+  async criar(programacaofluxocaixaDto: ProgramacaoFluxocaixaCriadoDto) {
     const programacaofluxocaixa =
-      await this.programacaofluxocaixaRepository.salvar(dados);
+      await this.programacaofluxocaixaRepository.salvar({
+        ...programacaofluxocaixaDto,
+      });
     return programacaofluxocaixa;
+  }
+
+  async capturarProgramacaoEInserirEmFluxoCaixa(usuariosId: string) {
+    await this.validarNaoExisteProgramacoes(usuariosId);
+
+    const programacoes =
+      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+        usuariosId
+      );
+
+    const itemsProgramados: FluxocaixaDto[] = [];
+
+    for (const programacao of programacoes) {
+      const { createdAt, id, ...restanteProgramacao } = programacao;
+
+      const fluxocaixa = {
+        ...restanteProgramacao,
+        inserido_via_programacao: programacao.id,
+      };
+      itemsProgramados.push(fluxocaixa);
+    }
+
+    return await this.fluxocaixaService.criarVarios(itemsProgramados);
   }
 
   async atualizarUmPorId(
@@ -67,6 +123,10 @@ export class ProgramacaoFluxocaixaServices {
   }
 }
 
+const programacaofluxocaixaRepository = new ProgramacaoFluxocaixaRepository();
+const fluxocaixaService = new FluxoCaixaServices(new FluxoCaixaRepository());
+
 export default new ProgramacaoFluxocaixaServices(
-  new ProgramacaoFluxocaixaRepository()
+  programacaofluxocaixaRepository,
+  fluxocaixaService
 );

@@ -5,6 +5,7 @@ import auth from "./Auth";
 import usuariosRouters from "../usuarios/usuario.routers/usuarios.routers";
 import elementosRouters from "../elementos/elementos.routers/elementos.routers";
 import fluxocaixaRouters from "../fluxocaixa/fluxocaixa.routers/fluxocaixa.routers";
+import programacaoRouters from "../programacaofluxocaixa/programacaofluxocaixa.routers/Programacaofluxocaixa.routers";
 import autenticacaoRouters from "../autheticacao/autenticacao.routers/autenticacao.routers";
 import subelementoRouters from "../subelementos/subelementos.routers/subelementos.routers";
 import tipoRouters from "../tipos/tipos.routers/tipos.routers";
@@ -27,9 +28,8 @@ routers.use("/tipos_despesas", auth.comum, tipoDespesaRouters);
 routers.use("/estatisticas", auth.comum, estatisticasPrincipais);
 routers.use("/estatistica/elementos", auth.comum, elementosEstatisitcas);
 routers.use("/estatistica/tipos", auth.comum, tiposEstatisticasRouters);
-
-
 routers.use("/fluxocaixa", auth.comum, fluxocaixaRouters);
+routers.use("/programacao", auth.comum, programacaoRouters);
 routers.use("/", autenticacaoRouters);
 
 export default routers;

@@ -11,7 +11,8 @@ export interface IProgramacaoFluxocaixaRepository {
   atualizarPorId(id: string, newData: ProgramacaoFluxocaixaCriadoDto);
   deletarPorId(id: string);
   buscarPorId(iddepartamento: string);
-  buscarTodos();
+  buscarTodosPorUsuarioId(usuariosId:string);
+  buscarTodosPorUsuarioIdComDescricao(usuariosId:string);
   contarTodosPorCriterio(criterios: object);
   buscarTodosPorPagina(numeroPagina: number, quantidadeItemPagina: number);
 }
