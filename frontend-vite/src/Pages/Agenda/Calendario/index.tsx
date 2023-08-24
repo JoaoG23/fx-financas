@@ -1,4 +1,5 @@
 import moment from "moment";
+
 import { useNavigate } from "react-router-dom";
 import { useMemo, useCallback, useState, useEffect } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -22,8 +23,9 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 
 import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
 
-import "moment/locale/pt-br.js";
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
+
+import 'moment/dist/locale/pt-br'
 
 const localizer = momentLocalizer(moment);
 const DragAndDropCalendar = withDragAndDrop(Calendar);
@@ -107,7 +109,7 @@ export const Calendario = () => {
         onEventResize={aoMovimentarEvento}
         events={agendamentos}
         style={{ height: 600 }}
-        step={4}
+        step={5}
       />
       {isCarregangdoTodosEventos && <ModalCarregando />}
     </div>
