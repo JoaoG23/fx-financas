@@ -2,25 +2,27 @@ import { PrismaClient } from "@prisma/client";
 import { buscarPrimeiroDiaMesAtual } from "../../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
 import { buscarUltimoDiaMesAtual } from "../../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 
-export interface ITiposEstatisticasRepository {
-  sumAllValorOfMonthLessThanZeroByUsuarioIdAndTiposId(
-    tiposId: string,
+export interface IElementosEstatisticasRepository {
+  sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
+    elementosId: string,
     usuariosId: string
   );
 }
 
-export class TiposEstatisticasRepository
-  implements ITiposEstatisticasRepository
+export class ElementosEstatisticasRepository
+  implements IElementosEstatisticasRepository
 {
   private prisma: PrismaClient;
   constructor() {
     this.prisma = new PrismaClient();
   }
 
-  async sumAllValorOfMonthLessThanZeroByUsuarioIdAndTiposId(
-    tiposId: string,
+  async sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
+    elementosId: string,
     usuariosId: string
   ) {
+
+    
 
     const firstDayOfMonth = buscarPrimeiroDiaMesAtual();
     const lastDayOfMonth = buscarUltimoDiaMesAtual();
@@ -37,8 +39,7 @@ export class TiposEstatisticasRepository
         valor: {
           lt: 0,
         },
-        tiposId,
-        usuariosId
+        elementosId,
       },
     });
   }

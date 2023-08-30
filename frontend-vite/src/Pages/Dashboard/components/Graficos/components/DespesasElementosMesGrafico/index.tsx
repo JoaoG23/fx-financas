@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
@@ -10,11 +10,18 @@ import { converteValorNegativoParaAbsoluto } from "../../../../../../utils/conve
 
 import { SpinnerCarregamento } from "../../../../../../Components/spinners/SpinnerCarregamento";
 import { PizzaGrafico } from "../graficos-padroes/PizzaGrafico";
+import { MesSelect } from "../../../../../../Components/selects/MesSelect";
 
 export const DespesasElementosMesGrafico: React.FC = () => {
+  const mesAtual = new Date().getMonth() + 1;
+  const [mes, setMes] = useState<number>(8);
+
+  // useEffect(() => {
+  //   setMes(mesAtual);
+  // }, [mes]);
   const { data, isLoading } = useQuery(
-    "despesas-elemento-mes",
-    buscarDespesaMesPorElementoUsuarios,
+    ["despesas-elemento-mes", mes],
+    () => buscarDespesaMesPorElementoUsuarios(mes),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -32,10 +39,10 @@ export const DespesasElementosMesGrafico: React.FC = () => {
       const valorString = parseFloat(despesa.despesas!);
       return converteValorNegativoParaAbsoluto(valorString);
     }) || [];
-
   return (
     <div>
       {isLoading && <SpinnerCarregamento />}
+      <MesSelect setValue={setMes} mes={mes}/>
       <PizzaGrafico
         titulo="Total Receitas por elemento mês"
         labels={elementos}

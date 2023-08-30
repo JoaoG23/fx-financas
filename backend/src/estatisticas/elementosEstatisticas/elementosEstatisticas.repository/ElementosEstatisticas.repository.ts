@@ -1,11 +1,13 @@
 import { PrismaClient } from "@prisma/client";
-import { buscarPrimeiroDiaMes } from "../../../utils/datetime/buscarPrimeiroDiaMes/buscarPrimeiroDiaMes";
-import { buscarUltimoDiaMes } from "../../../utils/datetime/buscarUltimoDiaMes/buscarUltimoDiaMes";
+import { buscarPrimeiroDiaMesAtual } from "../../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
+import { buscarUltimoDiaMesAtual } from "../../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
+import { buscarPrimeiroDiaDoMesSelecionado } from "../../../utils/datetime/buscarPrimeiroDiaDoMesSelecionado/buscarPrimeiroDiaDoMesSelecionado";
+import { buscarUltimoDiaDoMesSelecionado } from "../../../utils/datetime/buscarUltimoDiaDoMesSelecionado/buscarUltimoDiaDoMesSelecionado";
 
 export interface IElementosEstatisticasRepository {
   sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
     elementosId: string,
-    usuariosId: string
+    mes: number
   );
 }
 
@@ -19,13 +21,13 @@ export class ElementosEstatisticasRepository
 
   async sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
     elementosId: string,
-    usuariosId: string
+    mes: number
   ) {
 
     
 
-    const firstDayOfMonth = buscarPrimeiroDiaMes();
-    const lastDayOfMonth = buscarUltimoDiaMes();
+    const firstDayOfMonth = buscarPrimeiroDiaDoMesSelecionado(mes);
+    const lastDayOfMonth = buscarUltimoDiaDoMesSelecionado(mes);
 
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {

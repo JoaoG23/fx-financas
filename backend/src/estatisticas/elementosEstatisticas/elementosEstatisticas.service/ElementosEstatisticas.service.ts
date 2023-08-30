@@ -11,9 +11,7 @@ export class ElementosEstatisticasServices {
     private elementosRepository: IElementosRepository
   ) {}
 
-  async despesasTotalPorElementoEUsuarioMes(
-    usuariosId: string,
-  ) {
+  async despesasTotalPorElementoEUsuarioMes(usuariosId: string, mes: number) {
     const somaDespesasPorElementoId = [];
     const elementosDoUsuario =
       await this.elementosRepository.findAllByUsuariosId(usuariosId);
@@ -22,7 +20,7 @@ export class ElementosEstatisticasServices {
       const somaElemento =
         await this.elementosEstatisticasRepository.sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
           elemento.id,
-          usuariosId
+          mes
         );
 
       const despesas = somaElemento._sum.valor;

@@ -3,9 +3,14 @@ import { buscaDadoUsuarioNaSessao } from "../../../../../../../utils/buscaDadoUs
 
 const { idUsuario } = buscaDadoUsuarioNaSessao();
 
-export const buscarDespesaMesPorElementoUsuarios = async () => {
+export const buscarDespesaMesPorElementoUsuarios = async (mes: number) => {
   const resposta = await endpoint.get(
-    `/estatistica/elementos/despesas_elemento/${idUsuario}`
+    `/estatistica/elementos/despesas_elemento`,{
+      params: {
+        mes,
+        usuariosId:idUsuario
+      }
+    }
   );
   return resposta;
 };

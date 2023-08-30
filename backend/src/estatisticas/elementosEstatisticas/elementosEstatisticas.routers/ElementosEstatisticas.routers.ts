@@ -3,7 +3,7 @@ const routers = Router();
 import elementosEstatisticasController from "../elementosEstatisticas.controller/ElementosEstatisticas.controller";
 
 routers.get(
-  "/despesas_elemento/:usuariosId",
+  "/despesas_elemento",
   elementosEstatisticasController.despesasTotalPorElementoEUsuarioMes
 );
 

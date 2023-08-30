@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { EstatisticaRepositoryInterface } from "./EstatisticaRepositoryInterface";
-import { buscarUltimoDiaMes } from "../../utils/datetime/buscarUltimoDiaMes/buscarUltimoDiaMes";
-import { buscarPrimeiroDiaMes } from "../../utils/datetime/buscarPrimeiroDiaMes/buscarPrimeiroDiaMes";
+import { buscarPrimeiroDiaMesAtual } from "../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
+import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 
 export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   private prisma: PrismaClient;
@@ -91,8 +91,8 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   }
 
   async sumAllValorOfMonthMoreThanZeroByUsuarioId(usuariosId: string) {
-    const firstDayOfMonth = buscarPrimeiroDiaMes();
-    const lastDayOfMonth = buscarUltimoDiaMes();
+    const firstDayOfMonth = buscarPrimeiroDiaMesAtual();
+    const lastDayOfMonth = buscarUltimoDiaMesAtual();
 
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {
@@ -112,8 +112,8 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   }
 
   async sumAllValorOfMonthLessThanZeroByUsuarioId(usuariosId: string) {
-    const firstDayOfMonth = buscarPrimeiroDiaMes();
-    const lastDayOfMonth = buscarUltimoDiaMes();
+    const firstDayOfMonth = buscarPrimeiroDiaMesAtual();
+    const lastDayOfMonth = buscarUltimoDiaMesAtual();
 
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {

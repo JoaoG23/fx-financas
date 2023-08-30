@@ -3,11 +3,11 @@ import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 
 import { Paginacao } from "../../utils/Paginacao";
 
-import { buscarPrimeiroDiaMes } from "../../utils/datetime/buscarPrimeiroDiaMes/buscarPrimeiroDiaMes";
-import { buscarUltimoDiaMes } from "../../utils/datetime/buscarUltimoDiaMes/buscarUltimoDiaMes";
 
 import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
 import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
+import { buscarPrimeiroDiaMesAtual } from "../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
+import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 
 export interface IFluxocaixaRepository {
   save(data: FluxocaixaDto);
@@ -216,8 +216,8 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
   }
 
   async countAllByIdUsuarioThisMonth(usuariosId: string) {
-    const firstDayOfMonth = buscarPrimeiroDiaMes();
-    const lastDayOfMonth = buscarUltimoDiaMes();
+    const firstDayOfMonth = buscarPrimeiroDiaMesAtual();
+    const lastDayOfMonth = buscarUltimoDiaMesAtual();
 
     const contagem = await this.prisma.fluxocaixa.count({
       where: {
@@ -281,8 +281,8 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
 
     const pularPagina = (numeroPagina - 1) * itemsPorPagina;
 
-    const firstDayOfMonth = buscarPrimeiroDiaMes();
-    const lastDayOfMonth = buscarUltimoDiaMes();
+    const firstDayOfMonth = buscarPrimeiroDiaMesAtual();
+    const lastDayOfMonth = buscarUltimoDiaMesAtual();
     const fluxocaixa = await this.prisma.fluxocaixa.findMany({
       orderBy: [
         {
