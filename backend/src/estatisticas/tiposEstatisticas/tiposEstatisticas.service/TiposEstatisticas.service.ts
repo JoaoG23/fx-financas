@@ -10,7 +10,7 @@ export class TiposEstatisticasServices {
     private tiposRepository: TiposRepository
   ) {}
 
-  async despesasTotalPorTipoEUsuarioMes(usuariosId: string) {
+  async despesasTotalPorTipoEUsuarioMes(usuariosId: string, mes: number) {
     const somaDespesasPorElementoId = [];
     const tiposDoUsuario = await this.tiposRepository.findAllByUsuariosId(
       usuariosId
@@ -20,7 +20,8 @@ export class TiposEstatisticasServices {
       const somaElemento =
         await this.tiposEstatisticasRepository.sumAllValorOfMonthLessThanZeroByUsuarioIdAndTiposId(
           tipo.id,
-          usuariosId
+          usuariosId,
+          mes
         );
 
       const despesas = somaElemento._sum.valor || "0";

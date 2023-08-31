@@ -10,15 +10,10 @@ import { converteValorNegativoParaAbsoluto } from "../../../../../../utils/conve
 
 import { SpinnerCarregamento } from "../../../../../../Components/spinners/SpinnerCarregamento";
 import { PizzaGrafico } from "../graficos-padroes/PizzaGrafico";
-import { MesSelect } from "../../../../../../Components/selects/MesSelect";
+import { useMesStore } from "../../../../../../stores/useMesStore/useMesStore";
 
 export const DespesasElementosMesGrafico: React.FC = () => {
-  const mesAtual = new Date().getMonth() + 1;
-  const [mes, setMes] = useState<number>(8);
-
-  // useEffect(() => {
-  //   setMes(mesAtual);
-  // }, [mes]);
+  const mes = useMesStore((state) => state?.mes!);
   const { data, isLoading } = useQuery(
     ["despesas-elemento-mes", mes],
     () => buscarDespesaMesPorElementoUsuarios(mes),
@@ -42,7 +37,6 @@ export const DespesasElementosMesGrafico: React.FC = () => {
   return (
     <div>
       {isLoading && <SpinnerCarregamento />}
-      <MesSelect setValue={setMes} mes={mes}/>
       <PizzaGrafico
         titulo="Total Receitas por elemento mês"
         labels={elementos}

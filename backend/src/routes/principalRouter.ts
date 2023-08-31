@@ -12,9 +12,11 @@ import tipoRouters from "../tipos/tipos.routers/tipos.routers";
 import subtiposRouters from "../subtipos/subtipos.routers/subtipos.routers";
 import locaisRouters from "../locais/locais.routers/locais.routers";
 import tipoDespesaRouters from "../tiposDespesas/tiposDespesas.routers/tiposDespesas.routers";
+
 import estatisticasPrincipais from "../estatisticasPrincipais/estatisticas.routers/estatisticas.routers";
 import elementosEstatisitcas from "../estatisticas/elementosEstatisticas/elementosEstatisticas.routers/ElementosEstatisticas.routers";
 import tiposEstatisticasRouters from "../estatisticas/tiposEstatisticas/tiposEstatisticas.routers/TiposEstatisticas.routers";
+import subelementosEstatisticasRouters from "../estatisticas/subelementosEstatisticas/subelementosEstatisticas.routers/SubelementosEstatisticas.routers";
 
 const routers = Router();
 
@@ -25,9 +27,16 @@ routers.use("/tipos", auth.comum, tipoRouters);
 routers.use("/subtipos", auth.comum, subtiposRouters);
 routers.use("/locais", auth.comum, locaisRouters);
 routers.use("/tipos_despesas", auth.comum, tipoDespesaRouters);
+
 routers.use("/estatisticas", auth.comum, estatisticasPrincipais);
 routers.use("/estatistica/elementos", auth.comum, elementosEstatisitcas);
+routers.use(
+  "/estatistica/subelementos",
+  auth.comum,
+  subelementosEstatisticasRouters
+);
 routers.use("/estatistica/tipos", auth.comum, tiposEstatisticasRouters);
+
 routers.use("/fluxocaixa", auth.comum, fluxocaixaRouters);
 routers.use("/programacao", auth.comum, programacaoRouters);
 routers.use("/", autenticacaoRouters);

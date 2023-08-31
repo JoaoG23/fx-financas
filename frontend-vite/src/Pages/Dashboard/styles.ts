@@ -4,9 +4,12 @@ export const Container = styled.main`
   width: 60vw;
   margin: auto;
   animation: entradaSuave 0.8s;
+ 
+  @media screen and (max-width: 764px) {
+    width: 95%;
+    /* display: grid; */
+  }
 `;
-
-
 
 export const Cabecalho = styled.div`
   padding: 10px;
@@ -15,7 +18,7 @@ export const Cabecalho = styled.div`
   gap: 10px;
 
   @media screen and (max-width: 764px) {
-    padding:20px;
+    padding: 20px;
     display: block;
   }
 `;

@@ -4,7 +4,7 @@ const routers = Router();
 import tiposEstatisticasController from "../tiposEstatisticas.controller/TiposEstatisticas.controller";
 
 routers.get(
-  "/despesas_tipos/:usuariosId",
+  "/despesas_tipos",
   tiposEstatisticasController.despesasTotalPorTipoEUsuarioMes
 );
 

@@ -1,6 +1,4 @@
 import { PrismaClient } from "@prisma/client";
-import { buscarPrimeiroDiaMesAtual } from "../../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
-import { buscarUltimoDiaMesAtual } from "../../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 import { buscarPrimeiroDiaDoMesSelecionado } from "../../../utils/datetime/buscarPrimeiroDiaDoMesSelecionado/buscarPrimeiroDiaDoMesSelecionado";
 import { buscarUltimoDiaDoMesSelecionado } from "../../../utils/datetime/buscarUltimoDiaDoMesSelecionado/buscarUltimoDiaDoMesSelecionado";
 

@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import tiposEstatisticasService from '../tiposEstatisticas.service/TiposEstatisticas.service'
 
-class TiposEstatisticasController {
+import subelementosEstatisticasService from "../subelementosEstatisticas.service/SubelementosEstatisticas.service";
+class SubelementosEstatisticasController {
   async despesasTotalPorTipoEUsuarioMes(req: Request, res: Response) {
     try {
       const { usuariosId, mes } = req.query;
       const totalDespesa =
-        await tiposEstatisticasService.despesasTotalPorTipoEUsuarioMes(
+        await subelementosEstatisticasService.despesasTotalPorsubelementoEUsuarioMes(
           usuariosId,
           mes
         );
@@ -18,4 +18,4 @@ class TiposEstatisticasController {
   }
 }
 
-export default new TiposEstatisticasController();
+export default new SubelementosEstatisticasController();

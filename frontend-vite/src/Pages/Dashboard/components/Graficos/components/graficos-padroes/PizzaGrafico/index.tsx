@@ -15,7 +15,7 @@ export const PizzaGrafico: React.FC<Props> = ({ titulo, series, labels }) => {
         width: 380,
         type: "pie",
       },
-      colors: ["#FFA26B", "#1CAF82"],
+      colors: ["#FFA26B", "#6979F8"],
       legend: {
         position: "bottom",
       },

@@ -20,6 +20,19 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
       },
     ],
     options: {
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: {
+              width: 200,
+            },
+            legend: {
+              position: "bottom",
+            },
+          },
+        },
+      ],
       chart: {
         type: "bar",
       },
@@ -28,7 +41,7 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
           horizontal: true,
         },
       },
-      colors: ["#1CAF82"],
+      colors: ["#6979F8"],
       dataLabels: {
         formatter: function (val: any, opt: any) {
           const goals =
@@ -46,7 +59,7 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
         showForSingleSeries: true,
         customLegendItems: ["Despesa atual", "Limite Gastos"],
         markers: {
-          fillColors: ["#1CAF82", "#FFAB7A"],
+          fillColors: ["#6979F8", "#FFAB7A"],
         },
       },
     },

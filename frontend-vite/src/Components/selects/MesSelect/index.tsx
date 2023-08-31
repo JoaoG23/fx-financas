@@ -1,13 +1,16 @@
 import { ChangeEvent, useEffect } from "react";
 import * as Selects from "./styles";
+import { useMesStore } from "../../../stores/useMesStore/useMesStore";
 
 type Props = {
   label?: string;
-  setValue: any;
-  mes: number;
+  setValue?: any;
 };
 
-export const MesSelect: React.FC<Props> = ({ label, setValue, mes }) => {
+export const MesSelect: React.FC<Props> = ({ label }) => {
+  const selecionarMes = useMesStore((state) => state.adicionarMes);
+  const mes = useMesStore((state) => state?.mes!);
+
   const meses = [
     { value: 1, nome: "Janeiro" },
     { value: 2, nome: "Fevereiro" },
@@ -24,13 +27,13 @@ export const MesSelect: React.FC<Props> = ({ label, setValue, mes }) => {
   ];
 
   const handleSelectChange = (event: ChangeEvent<HTMLSelectElement>) => {
-    setValue(event.target.value);
+    selecionarMes(Number(event.target.value));
   };
+
   return (
     <Selects.ContainerInput>
       <label>{label}</label>
       <Selects.Container
-      
         defaultValue={mes as any}
         onChange={(e) => {
           handleSelectChange(e);
