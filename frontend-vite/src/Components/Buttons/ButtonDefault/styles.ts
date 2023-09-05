@@ -37,7 +37,7 @@ export const DefaultStyle = styled.button`
 
     to {
     transform: translateY(-4px);
-      background-position: 200% 100%;
+      background-position: 100% 100%;
     }
   }
 `;

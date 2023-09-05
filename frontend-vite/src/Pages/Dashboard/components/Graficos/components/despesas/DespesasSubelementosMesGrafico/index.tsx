@@ -4,17 +4,23 @@ import { toast } from "react-toastify";
 
 import { buscarDespesaMesPorSubelementosUsuarios } from "./api";
 
-import { SpinnerCarregamento } from "../../../../../../Components/spinners/SpinnerCarregamento";
-import { converteValorNegativoParaAbsoluto } from "../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
-import { BarraHorizontalMarcadoresGrafico } from "../graficos-padroes/BarraHorizontalMarcadoresGrafico";
-
 import { SubelementosDespesa } from "./types/TipoDespesa";
+import { SeriesLabel } from "../../graficos-padroes/BarraHorizontalMarcadoresGrafico/types/SeriesLabel";
+import { BarraHorizontalMarcadoresGrafico } from "../../graficos-padroes/BarraHorizontalMarcadoresGrafico";
 
-import { SeriesLabel } from "../graficos-padroes/BarraHorizontalMarcadoresGrafico/types/SeriesLabel";
-import { useMesStore } from "../../../../../../stores/useMesStore/useMesStore";
+import { converteValorNegativoParaAbsoluto } from "../../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
 
-export const DespesasSubelementosMesGrafico: React.FC = () => {
-  const mes = useMesStore((state) => state?.mes!);
+import { SpinnerCarregamento } from "../../../../../../../Components/spinners/SpinnerCarregamento";
+import { Container } from "./styles";
+
+type Props = {
+  mesSelecionado: number;
+};
+
+export const DespesasSubelementosMesGrafico: React.FC<Props> = ({
+  mesSelecionado,
+}) => {
+  const mes = mesSelecionado;
   const { data, isLoading } = useQuery(
     ["despesas-subelementos-mes", mes],
     () => buscarDespesaMesPorSubelementosUsuarios(mes),
@@ -48,12 +54,12 @@ export const DespesasSubelementosMesGrafico: React.FC = () => {
     }) || [];
 
   return (
-    <div>
+    <Container>
       {isLoading && <SpinnerCarregamento />}
       <BarraHorizontalMarcadoresGrafico
         titulo={"Despesas por subelementos mês"}
         data={despesas}
       />
-    </div>
+    </Container>
   );
 };

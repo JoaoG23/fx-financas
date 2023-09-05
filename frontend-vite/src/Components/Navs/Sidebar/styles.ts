@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
+export const Container = styled.ul`
   width: 13vw;
   height: 100vh;
 
@@ -16,7 +16,7 @@ export const Container = styled.div`
 
   background-color: #1caf82;
 
-  box-shadow: 2px 2px 4px #00000027;
+  box-shadow: 2px 2px 2px #00000027;
 
   @media only screen and (max-width: 768px) {
     display: none;
@@ -30,23 +30,29 @@ export const Image = styled.img`
   }
 `;
 
-export const Item = styled.div`
+export const Item = styled.li`
   display: flex;
   border-radius: 8px;
-  padding: 2px;
+  padding: 5px;
 
   align-items: center;
   gap: 1em;
+  color: #fff;
 
   a {
-    text-decoration: none;
+
     color: #fff;
+  }
+  a :hover {
+    transition: 0.3s;
+    background-color: #fff;
+    color: #1caf82;
   }
   :hover {
     transition: 0.3s;
     animation: balancar 2s linear infinite;
-
-    background-color: #0000003f;
+    background-color: #fff;
+    color: #1caf82;
   }
 `;
 
@@ -54,7 +60,7 @@ export const Elementos = styled.ul`
   border-radius: 8px;
 
   li {
-    padding: 3px;
+    padding: 5px;
     display: flex;
     gap: 1em;
     border-radius: 0.7em;
@@ -67,8 +73,12 @@ export const Elementos = styled.ul`
   li:hover {
     transition: 0.3s;
     animation: balancar 2s linear infinite;
-
-    background-color: #0000003f;
+    background-color: #fff;
+    color: #1caf82;
+  }
+  a:hover {
+    background-color: #fff;
+    color: #1caf82;
   }
 `;
 
@@ -83,6 +93,7 @@ export const ColecaoElementos = styled.summary`
 
   :hover {
     transition: 0.3s;
-    background-color: #0000003f;
+    background-color: #fff;
+    color: #1caf82;
   }
 `;

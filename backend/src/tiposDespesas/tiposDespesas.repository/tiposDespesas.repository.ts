@@ -5,8 +5,9 @@ import { Paginacao } from "../../utils/Paginacao";
 import { TipoDespesaDto } from "../tiposDespesas.dto/tiposDespesas.dto";
 import { TiposDespesasRepositoryInteface } from "./tiposDespesas.repositoryInterface";
 
-
-export class TiposDespesasRepository implements TiposDespesasRepositoryInteface {
+export class TiposDespesasRepository
+  implements TiposDespesasRepositoryInteface
+{
   private paginacao: Paginacao;
   private prisma: PrismaClient;
 
@@ -32,6 +33,17 @@ export class TiposDespesasRepository implements TiposDespesasRepositoryInteface 
     return await this.prisma.tipos_despesas.count({});
   }
 
+  async findAll() {
+    return await this.prisma.tipos_despesas.findMany({});
+  }
+
+  async findById(id: string) {
+    const TipoDespesa = await this.prisma.tipos_despesas.findFirst({
+      where: { id },
+    });
+    return TipoDespesa;
+  }
+
   async findAllByPage(numeroPagina: number, quantidadeItemPagina: number) {
     const quantidadeTotalRegistros = await this.countAll();
 
@@ -54,14 +66,7 @@ export class TiposDespesasRepository implements TiposDespesasRepositoryInteface 
 
   async save(tipoDespesa: TipoDespesaDto) {
     return await this.prisma.tipos_despesas.create({
-      data:tipoDespesa
+      data: tipoDespesa,
     });
-  }
-
-  async findById(id: string) {
-    const TipoDespesa = await this.prisma.tipos_despesas.findFirst({
-      where: { id },
-    });
-    return TipoDespesa;
   }
 }

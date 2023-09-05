@@ -1,19 +1,11 @@
 import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
-import {
-  Area,
-  AreaChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 
 import { buscarReceitasEDespesas12MesesAno } from "./api";
 
 import { SpinnerCarregamento } from "../../../../../../Components/spinners/SpinnerCarregamento";
+import { AreaGrafico } from "../graficos-padroes/AreaGrafico";
 
 export const GraficoDozeMeses: React.FC = () => {
   const { data: dataReceitasDespesa, isLoading: isLoadingCabecalho } = useQuery(
@@ -28,36 +20,27 @@ export const GraficoDozeMeses: React.FC = () => {
 
   const receitasDespesas = dataReceitasDespesa?.data;
 
+  const receitas = receitasDespesas?.map((element: any) => {
+    return parseFloat(element.receita);
+  });
+  const despesas = receitasDespesas?.map((element: any) => {
+    return Math.abs(parseFloat(element.despesa));
+  });
+  const mes = receitasDespesas?.map((element: any) => {
+    return element.mes;
+  });
+
   return (
-    <>
+    <div>
+      <h5>Despesas e Receitas do 12 meses do ano</h5>
       {isLoadingCabecalho && <SpinnerCarregamento />}
-      <ResponsiveContainer width="100%" height={300}>
-        <AreaChart
-          width={900}
-          height={250}
-          data={receitasDespesas}
-          margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
-        >
-          <XAxis dataKey="mes" />
-          <YAxis />
-          <CartesianGrid strokeDasharray="3 3" />
-          <Tooltip />
-          <Area
-            type="monotone"
-            dataKey="despesa"
-            stroke="#1CAF82"
-            fillOpacity={0.9}
-            fill="#1CAF82"
-          />
-          <Area
-            type="monotone"
-            dataKey="receita"
-            stroke="#FFA26B"
-            fillOpacity={0.9}
-            fill="#FFA26B"
-          />
-        </AreaChart>
-      </ResponsiveContainer>
-    </>
+      <AreaGrafico
+        labels={mes}
+        secondLabel="Receitas"
+        firstLabel="Despesas"
+        firstSerie={receitas}
+        secondSerie={despesas}
+      />
+    </div>
   );
 };

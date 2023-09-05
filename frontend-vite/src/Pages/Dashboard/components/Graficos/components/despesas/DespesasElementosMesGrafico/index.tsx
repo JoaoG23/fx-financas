@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
@@ -6,14 +6,22 @@ import { buscarDespesaMesPorElementoUsuarios } from "./api";
 
 import { ElementosDespesas } from "./types/ElementosDespesas";
 
-import { converteValorNegativoParaAbsoluto } from "../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
+import { PizzaGrafico } from "../../graficos-padroes/PizzaGrafico";
+import { SpinnerCarregamento } from "../../../../../../../Components/spinners/SpinnerCarregamento";
 
-import { SpinnerCarregamento } from "../../../../../../Components/spinners/SpinnerCarregamento";
-import { PizzaGrafico } from "../graficos-padroes/PizzaGrafico";
-import { useMesStore } from "../../../../../../stores/useMesStore/useMesStore";
+import { converteValorNegativoParaAbsoluto } from "../../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
+import { Container } from "./styles";
+import { DonutGrafico } from "../../graficos-padroes/DonutGrafico";
 
-export const DespesasElementosMesGrafico: React.FC = () => {
-  const mes = useMesStore((state) => state?.mes!);
+type Props = {
+  mesSelecionado: number;
+};
+
+export const DespesasElementosMesGrafico: React.FC<Props> = ({
+  mesSelecionado,
+}) => {
+  const mes = mesSelecionado;
+
   const { data, isLoading } = useQuery(
     ["despesas-elemento-mes", mes],
     () => buscarDespesaMesPorElementoUsuarios(mes),
@@ -35,13 +43,13 @@ export const DespesasElementosMesGrafico: React.FC = () => {
       return converteValorNegativoParaAbsoluto(valorString);
     }) || [];
   return (
-    <div>
+    <Container>
       {isLoading && <SpinnerCarregamento />}
-      <PizzaGrafico
-        titulo="Total Receitas por elemento mês"
+      <DonutGrafico
+        titulo="Total Despesas por elemento mês"
         labels={elementos}
         series={despesas}
       />
-    </div>
+    </Container>
   );
 };

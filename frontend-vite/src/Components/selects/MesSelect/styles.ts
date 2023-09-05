@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Select from 'react-select';
+import Select from "react-select";
 
 export const Container = styled.select`
   padding: 5px;
@@ -7,7 +7,8 @@ export const Container = styled.select`
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:.8em;
+  border-radius: 0.8em;
+  
 
   :hover {
     animation-name: toRight;
@@ -24,15 +25,12 @@ export const Container = styled.select`
     }
 
     100% {
-      transform: translateX(.3vw);
+      transform: translateX(0.3vw);
     }
   }
 `;
 export const ContainerInput = styled.label`
   display: grid;
-  gap: .5em;
-  margin-bottom:.5em;
+  gap: 0.5em;
+  margin-bottom: 0.5em;
 `;
-
-
-

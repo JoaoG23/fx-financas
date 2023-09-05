@@ -9,10 +9,10 @@ export const DefaultStyle = styled.button`
 
   background-image: linear-gradient(
     to right,
-    #fe9a60 0%,
-    #ffa26b 50%,
-    #feaa7a 80%,
-    #fbae82 100%
+    #ef5d28 0%,
+    #f28043 50%,
+    #f9792f 80%,
+    #ea5a20 100%
   );
   border-radius: 1em;
 
@@ -22,6 +22,8 @@ export const DefaultStyle = styled.button`
 
   box-shadow: 0 0 2px #fbae82;
 
+  
+  font-weight: 500;
   :hover {
     animation: changeColor 0.5s ease alternate both;
   }
@@ -34,7 +36,7 @@ export const DefaultStyle = styled.button`
 
     to {
       transform: translateY(-5px);
-      background-position: 200% 100%;
+      background-position: 100% 200%;
     }
   }
 `;

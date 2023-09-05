@@ -9,7 +9,7 @@ type Props = {
 export const ModalSucesso: React.FC<Props> = ({ children }) => (
   <Modal.BackGround>
     <Modal.Body>
-      <BsCheckCircleFill size="150" color="#2ecc71" />
+      <BsCheckCircleFill size="150" color="#1CAF82" />
       <h3>Operação concluida com sucesso</h3>
       {children}
     </Modal.Body>

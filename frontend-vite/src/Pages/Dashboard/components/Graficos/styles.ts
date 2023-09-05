@@ -1,49 +1,42 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  background-color: #fff;
-  border-radius: 20px;
-  padding: 15px;
+  gap: 0.5em;
+  display: grid;
 
-  box-shadow: 2px 2px 5px #b2b2b240;
-
-  aside {
-    background-color: #1caf82;
-    border-radius: 20px;
-    padding: 15px;
-    color: #fff;
-
-    box-shadow: 2px 2px 5px #4444444f;
-
-    display: flex;
-    position: absolute;
-    right: 12%;
-    z-index: 5;
-    flex-direction: row-reverse;
-  }
-
-  
   @media (max-width: 1000px) {
-    flex-direction: column;
     gap: 0.5em;
   }
 `;
-export const Titulo = styled.h2`
-  margin-top: 1em;
-  margin-bottom: 1em;
-`;
-export const Linha = styled.div`
-  display: flex;
-  gap: 1em;
+
+export const PrimeiraLinha = styled.div`
+  display: grid;
   text-align: center;
-  margin: 1em;
+  gap: 1em;
+  grid-template-columns: 3fr 1fr;
 
   @media (max-width: 1000px) {
-    flex-direction: column;
+    grid-template-columns: auto;
     gap: 0.5em;
   }
   @media (max-width: 764px) {
-    flex-direction: column;
+    grid-template-columns: auto;
+    gap: 0.5em;
+  }
+`;
+
+export const SegundaLinha = styled.div`
+  display: grid;
+  text-align: center;
+  gap: 1em;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: auto;
+    gap: 0.5em;
+  }
+  @media (max-width: 764px) {
+    grid-template-columns: auto;
     gap: 0.5em;
   }
 `;

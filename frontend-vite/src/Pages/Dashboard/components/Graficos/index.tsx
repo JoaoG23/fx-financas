@@ -1,36 +1,41 @@
 import React from "react";
 
 import * as Grafico from "./styles";
-import { GraficoDozeMeses } from "./components/GraficoDozeMeses";
-import { DespesasElementosMesGrafico } from "./components/DespesasElementosMesGrafico";
-import { DespesasTiposMesGrafico } from "./components/DespesasTiposMesGraficos";
 
-import { MesSelect } from "../../../../Components/selects/MesSelect";
-import { DespesasSubelementosMesGrafico } from "./components/DespesasSubelementosMesGrafico";
+import { GraficoDozeMeses } from "./components/GraficoDozeMeses";
+
+import { useMesStore } from "../../../../stores/useMesStore/useMesStore";
+
+import { DespesasElementosMesGrafico } from "./components/despesas/DespesasElementosMesGrafico";
+import { DespesasTiposMesGrafico } from "./components/despesas/DespesasTiposMesGraficos";
+import { DespesasSubelementosMesGrafico } from "./components/despesas/DespesasSubelementosMesGrafico";
+import { DespesasTiposDespesasMesGrafico } from "./components/despesas/DespesasTipoDespesaGrafico";
+import { Card } from "../../../../Components/Card";
 
 export const Graficos: React.FC = () => {
+  const mes = useMesStore((state) => state?.mes!);
+
   return (
     <Grafico.Container>
-      <Grafico.Titulo>Gráficos referente aos meses</Grafico.Titulo>
-      <aside>
-        <div>
-          <p>Selecione um mês</p>
-          <MesSelect />
-        </div>
-      </aside>
-      <div>
-        <h5>Ganho e gastos dos ultimos 12 meses</h5>
-        <GraficoDozeMeses />
-      </div>
-
-      <Grafico.Titulo>Despesas</Grafico.Titulo>
-      <Grafico.Linha>
-        <DespesasElementosMesGrafico />
-        <DespesasTiposMesGrafico />
-      </Grafico.Linha>
-      <Grafico.Linha>
-        <DespesasSubelementosMesGrafico />
-      </Grafico.Linha>
+      <Grafico.PrimeiraLinha>
+        <Card light>
+          <GraficoDozeMeses />
+        </Card>
+        <Card light>
+          <DespesasTiposDespesasMesGrafico mesSelecionado={mes} />
+        </Card>
+      </Grafico.PrimeiraLinha>
+      <Grafico.SegundaLinha>
+        <Card light>
+          <DespesasElementosMesGrafico mesSelecionado={mes} />
+        </Card>
+        <Card light>
+          <DespesasSubelementosMesGrafico mesSelecionado={mes} />
+        </Card>
+        <Card light>
+          <DespesasTiposMesGrafico mesSelecionado={mes} />
+        </Card>
+      </Grafico.SegundaLinha>
     </Grafico.Container>
   );
 };

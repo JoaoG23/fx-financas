@@ -17,6 +17,7 @@ import estatisticasPrincipais from "../estatisticasPrincipais/estatisticas.route
 import elementosEstatisitcas from "../estatisticas/elementosEstatisticas/elementosEstatisticas.routers/ElementosEstatisticas.routers";
 import tiposEstatisticasRouters from "../estatisticas/tiposEstatisticas/tiposEstatisticas.routers/TiposEstatisticas.routers";
 import subelementosEstatisticasRouters from "../estatisticas/subelementosEstatisticas/subelementosEstatisticas.routers/SubelementosEstatisticas.routers";
+import tiposDespesasEstatisticasRouters from "../estatisticas/tiposDespesasEstatisticas/tiposDespesasEstatisticas.routers/TiposDespesasEstatisticas.routers";
 
 const routers = Router();
 
@@ -36,6 +37,7 @@ routers.use(
   subelementosEstatisticasRouters
 );
 routers.use("/estatistica/tipos", auth.comum, tiposEstatisticasRouters);
+routers.use("/estatistica/tipos_despesas", auth.comum, tiposDespesasEstatisticasRouters);
 
 routers.use("/fluxocaixa", auth.comum, fluxocaixaRouters);
 routers.use("/programacao", auth.comum, programacaoRouters);

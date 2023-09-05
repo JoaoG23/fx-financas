@@ -4,6 +4,7 @@ import { useQuery } from "react-query";
 import { IoBagHandle } from "react-icons/io5";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { GiReceiveMoney } from "react-icons/gi";
+import { MdOutlineCalendarMonth } from "react-icons/md";
 
 import * as DashboardStyle from "./styles";
 
@@ -12,6 +13,7 @@ import { buscarDadosCabecalho } from "./api";
 import { Card } from "../../Components/Card";
 import { ModalCarregando } from "../../Components/Modais/ModalCarregando";
 import { Graficos } from "./components/Graficos";
+import { MesSelect } from "../../Components/selects/MesSelect";
 
 export const Dashboard = () => {
   const { data: dataCabecalho, isLoading: isLoadingCabecalho } = useQuery(
@@ -28,44 +30,55 @@ export const Dashboard = () => {
   const totalDespesasEsteMes = dataCabecalho?.[1].data || 0;
   const saldoAtual = dataCabecalho?.[2].data || 0;
 
-  const receitasConvertida = parseFloat(totalReceitasEsteMes).toFixed(2)
+  const receitasConvertida = parseFloat(totalReceitasEsteMes).toFixed(2);
   const despesasConvertida = parseFloat(totalDespesasEsteMes).toFixed(2);
-  const saldoAtualConvertida = parseFloat(saldoAtual).toFixed(2) ;
+  const saldoAtualConvertida = parseFloat(saldoAtual).toFixed(2);
 
+  const tamanhoIcones = 60;
   return (
     <DashboardStyle.Container>
       {isLoadingCabecalho && <ModalCarregando />}
       <DashboardStyle.Cabecalho>
-        <Card>
+        <Card light>
           <DashboardStyle.Caixa>
             <div>
-              <h3>Total receitas mês</h3>
-              <h2>{receitasConvertida}</h2>
+              <h3>Receitas mês</h3>
+              <h2>{receitasConvertida} R$</h2>
             </div>
-            <RiMoneyDollarCircleFill size={40} color="#FFA26B" />
+            <RiMoneyDollarCircleFill size={tamanhoIcones} color="#FFA26B" />
           </DashboardStyle.Caixa>
         </Card>
 
-        <Card>
+        <Card light>
           <DashboardStyle.Caixa>
             <div>
-              <h3>Total despesas mês</h3>
-              <h2>{despesasConvertida}</h2>
+              <h3>Despesas mês</h3>
+              <h2>{despesasConvertida} R$</h2>
             </div>
-            <IoBagHandle size={40} color="#6979F8" />
+            <IoBagHandle size={tamanhoIcones} color="#6979F8" />
           </DashboardStyle.Caixa>
         </Card>
 
-        <Card>
+        <Card light>
           <DashboardStyle.Caixa>
             <div>
               <h3>Saldo atual</h3>
-              <h2>{saldoAtualConvertida}</h2>
+              <h2>{saldoAtualConvertida} R$</h2>
             </div>
-            <GiReceiveMoney size={40} color="#1CAF82" />
+            <GiReceiveMoney size={tamanhoIcones} color="#1CAF82" />
+          </DashboardStyle.Caixa>
+        </Card>
+        <Card light>
+          <DashboardStyle.Caixa>
+            <div>
+              <strong>Selecione um mês</strong>
+              <MesSelect />
+            </div>
+            <MdOutlineCalendarMonth size={tamanhoIcones} color="#F78187" />
           </DashboardStyle.Caixa>
         </Card>
       </DashboardStyle.Cabecalho>
+      <DashboardStyle.Titulo>Despesas</DashboardStyle.Titulo>
       <Graficos />
     </DashboardStyle.Container>
   );

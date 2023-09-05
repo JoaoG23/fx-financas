@@ -2,12 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   BsFillCalendarWeekFill,
-  BsFillFileRuledFill,
   BsFillGrid3X2GapFill,
   BsFillPieChartFill,
   BsFillBasket2Fill,
   BsBank2,
-  BsFillCalendarMonthFill,
 } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
@@ -27,21 +25,21 @@ const Sidebar: React.FC = () => {
   return (
     <SideBar.Container>
       <SideBar.Item>
-        <FaUserAlt color="#fff" size={20} />
+        <FaUserAlt size={20} />
         <Link to={"/usuario_logado"}>
           <p>Olá {nomeUsuario}!</p>
         </Link>
       </SideBar.Item>
 
       <SideBar.Item>
-        <BsFillPieChartFill color="#fff" />
+        <BsFillPieChartFill />
         <Link to={"/dashboard"}>
           <p>Dashboard</p>
         </Link>
       </SideBar.Item>
 
       <SideBar.Item>
-        <BsBank2 color="#fff" />
+        <BsBank2  />
         <Link to={"/locais"}>
           <p>Locais</p>
         </Link>
@@ -49,7 +47,7 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill color="#fff" />
+          <BsFillGrid3X2GapFill  />
           <p>Fluxo de caixa</p>
         </SideBar.ColecaoElementos>
         <SideBar.Elementos>
@@ -64,13 +62,13 @@ const Sidebar: React.FC = () => {
       </details>
 
       <SideBar.Item>
-        <BsFillBasket2Fill color="#fff" />
+        <BsFillBasket2Fill  />
         <Link to={"/tipos_despesas"}>
           <p>Tipos de Despesas</p>
         </Link>
       </SideBar.Item>
       <SideBar.Item>
-        <BsFillCalendarWeekFill color="#fff" />
+        <BsFillCalendarWeekFill  />
         <Link to={"/agenda"}>
           <p>Agenda</p>
         </Link>
@@ -78,7 +76,7 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill color="#fff" />
+          <BsFillGrid3X2GapFill  />
           <p>Categorias</p>
           <IoIosArrowDown />
         </SideBar.ColecaoElementos>
@@ -93,7 +91,7 @@ const Sidebar: React.FC = () => {
         </SideBar.Elementos>
       </details>
       <SideBar.Item onClick={limparSessaoUsuario}>
-        <IoLogOut color="#fff" />
+        <IoLogOut  />
         <Link to={"/"}>
           <p>Sair</p>
         </Link>
