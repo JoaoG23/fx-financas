@@ -26,7 +26,7 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
           breakpoint: 480,
           options: {
             chart: {
-              // width: 100,
+              width: 90,
             },
             legend: {
               position: "bottom",
@@ -72,7 +72,7 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
         options={dados.options as any}
         series={dados.series}
         type="bar"
-        height={340}
+        height={380}
       />
     </div>
   );

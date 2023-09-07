@@ -18,8 +18,8 @@ export const Body = styled.div`
   overflow: auto;
 
   top: 15vh;
-  width: 77vw;
-  left: 20vw;
+  width: 80vw;
+  left: 15vw;
   @media screen and (max-width: 769px) {
     left: 0vw;
     right: 0vw;

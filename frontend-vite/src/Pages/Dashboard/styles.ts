@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.main`
-width: 73vw;
+width: auto;
   margin: auto;
   animation: entradaSuave 0.8s;
   align-items: center;
