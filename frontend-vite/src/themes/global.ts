@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5,strong{
 }
 
 details {
-  overflow: hidden;
+  overflow-y: scroll;
   animation-name: showDetails;
   animation-duration: 1s;
 }
@@ -79,10 +79,14 @@ details[open] summary ~ * {
 }
 
 *::-webkit-scrollbar-track {
+  background-color: #ffa16b3a;
+  border-radius: 1em;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
+  background-color: #f47e3fbb;
+  border:1px solid #f2b798;
 }
 
 

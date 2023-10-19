@@ -13,9 +13,9 @@ export const BackGround = styled.div`
   align-items: center;
   justify-content: center;
 
-  animation: entradaSuave 0.5s forwards;
+  animation: entradaSuaveModal 0.5s forwards;
 
-  @keyframes entradaSuave {
+  @keyframes entradaSuaveModal {
     0% {
       transform: translateY(100vh);
       opacity: 0;

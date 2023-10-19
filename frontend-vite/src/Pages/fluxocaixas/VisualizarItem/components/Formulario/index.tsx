@@ -12,9 +12,7 @@ import { ItemFluxoCaixaCriado } from "../../../../../types/ItemFluxoCaixa";
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
-import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
 import { VisualizarCamposFormulario } from "../../../ComponentesParaTodos/campos/VisualizarCamposFormulario";
-import { LightButton } from "../../../../../Components/Buttons/LightButton";
 
 export const Formulario: React.FC = () => {
   const { id } = useParams();
@@ -33,7 +31,6 @@ export const Formulario: React.FC = () => {
 
   const {
     register,
-    handleSubmit,
     control,
     reset,
     formState: { errors },

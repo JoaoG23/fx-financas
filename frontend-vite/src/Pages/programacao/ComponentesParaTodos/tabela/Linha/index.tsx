@@ -2,9 +2,7 @@ import { BlueFont } from "../../../../../Components/FontColor/BlueFont";
 import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
 
-import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
 import { Programacao } from "../../../../../types/Programacao";
-import { formatarDataHoraPadraoBR } from "../../../../../utils/formatadoresDatahora/formatarDataHoraPadraoBR/formatarDataHoraBR";
 import { AcoesItems } from "../../AcoesItems";
 
 type Props = {

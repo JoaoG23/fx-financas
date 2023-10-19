@@ -4,7 +4,7 @@ export type ItemFluxoCaixa = {
   data_insersao?: Date | string;
   hora_insersao?: Date | string;
   descricao?: string;
-  entradaSaida?: boolean;
+  entradaSaida?: boolean | string;
   valor?: number;
   saldo?: number;
   elementosId?: string;
@@ -36,7 +36,7 @@ export type ItemFluxoCaixa = {
 
 export type ItemFluxoCaixaCriado = {
   descricao?: string;
-  entradaSaida?: boolean;
+  entradaSaida?: string;
   valor?: string;
   saldo?: number;
   elementosId?: string;

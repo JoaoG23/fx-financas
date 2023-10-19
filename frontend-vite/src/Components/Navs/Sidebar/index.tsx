@@ -39,7 +39,7 @@ const Sidebar: React.FC = () => {
       </SideBar.Item>
 
       <SideBar.Item>
-        <BsBank2  />
+        <BsBank2 />
         <Link to={"/locais"}>
           <p>Locais</p>
         </Link>
@@ -47,8 +47,9 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill  />
+          <BsFillGrid3X2GapFill />
           <p>Fluxo de caixa</p>
+          <IoIosArrowDown />
         </SideBar.ColecaoElementos>
         <SideBar.Elementos>
           {tiposFluxosCaixa.map((paginas) => {
@@ -62,13 +63,13 @@ const Sidebar: React.FC = () => {
       </details>
 
       <SideBar.Item>
-        <BsFillBasket2Fill  />
+        <BsFillBasket2Fill />
         <Link to={"/tipos_despesas"}>
           <p>Tipos de Despesas</p>
         </Link>
       </SideBar.Item>
       <SideBar.Item>
-        <BsFillCalendarWeekFill  />
+        <BsFillCalendarWeekFill />
         <Link to={"/agenda"}>
           <p>Agenda</p>
         </Link>
@@ -76,7 +77,7 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill  />
+          <BsFillGrid3X2GapFill />
           <p>Categorias</p>
           <IoIosArrowDown />
         </SideBar.ColecaoElementos>
@@ -91,7 +92,7 @@ const Sidebar: React.FC = () => {
         </SideBar.Elementos>
       </details>
       <SideBar.Item onClick={limparSessaoUsuario}>
-        <IoLogOut  />
+        <IoLogOut />
         <Link to={"/"}>
           <p>Sair</p>
         </Link>

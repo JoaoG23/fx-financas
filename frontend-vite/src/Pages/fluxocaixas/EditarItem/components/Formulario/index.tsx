@@ -21,6 +21,8 @@ import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioN
 import { useSubelementoStore } from "../../../../../stores/useSubelementoStore/useSubelementoStore";
 import { useElementoStore } from "../../../../../stores/useElementoStore/useElementoStore";
 import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
+import { removerSimboloMenosDoValorNegativo } from "../../../ComponentesParaTodos/utils/removerSimboloMenosDoValorNegativo/removerSimboloMenosDoValorNegativo";
+import { verificarSeNegativoERetornaEntradaOuSaida } from "../../../ComponentesParaTodos/utils/verificarSeNegativoERetornaEntradaOuSaida/verificarSeNegativoERetornaEntradaOuSaida";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
@@ -74,12 +76,16 @@ export const Formulario: React.FC = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const dadosCarregados = {
     ...itemFluxoCaixa,
-    valor: parseFloat(itemFluxoCaixa?.valor!),
+    entradaSaida: verificarSeNegativoERetornaEntradaOuSaida(
+      itemFluxoCaixa?.valor
+    ),
+    valor: removerSimboloMenosDoValorNegativo(itemFluxoCaixa?.valor!),
   };
 
   useEffect(() => {
@@ -102,6 +108,7 @@ export const Formulario: React.FC = () => {
         register={register}
         control={control}
         errors={errors}
+        setValue={setValue}
       />
       {isSuccess && <ModalSucesso />}
       {isCarregandoSalvacaoitemFluxoCaixa && <ModalCarregando />}

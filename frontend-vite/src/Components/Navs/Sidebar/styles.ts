@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.ul`
+export const Container = styled.div`
   width: 13vw;
   height: 100vh;
 
@@ -12,7 +12,7 @@ export const Container = styled.ul`
 
   display: flex;
   flex-direction: column;
-  gap: 1em;
+  gap: 0.5em;
 
   background-color: #1caf82;
 

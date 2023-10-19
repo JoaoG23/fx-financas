@@ -2,8 +2,11 @@ import { BlueFont } from "../../../../../Components/FontColor/BlueFont";
 import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
 
-import { AcoesItems } from "../../../../../Components/acoes/AcoesItems";
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
+
+import { AcoesItems } from "../../../../../Components/acoes/AcoesItems";
+
+import { converterValorEmMoedaBR } from "../../../../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
 import { formatarDataHoraPadraoBR } from "../../../../../utils/formatadoresDatahora/formatarDataHoraPadraoBR/formatarDataHoraBR";
 
 type Props = {
@@ -18,17 +21,19 @@ export const LinhaItemFluxocaixa: React.FC<Props> = ({ item }) => {
       <td>{item?.subelementos?.descricao}</td>
       <td>{item?.tipos?.descricao}</td>
       <td>{item?.subtipos?.descricao}</td>
-      <td><BlueFont>{item?.descricao}</BlueFont></td>
+      <td>
+        <BlueFont>{item?.descricao}</BlueFont>
+      </td>
       <td>{item?.locais?.descricao}</td>
       <td>{item?.tipos_despesas?.descricao}</td>
       <td>
         {item?.valor! < 0 ? (
-          <RedFont>{item?.valor}</RedFont>
+          <RedFont>{converterValorEmMoedaBR(item?.valor!)}</RedFont>
         ) : (
-          <GreenFont>{item?.valor}</GreenFont>
+          <GreenFont>{converterValorEmMoedaBR(item?.valor!)}</GreenFont>
         )}
       </td>
-      <td>{item?.saldo}</td>
+      <td>{converterValorEmMoedaBR(item?.saldo!)}</td>
       <td>
         <AcoesItems id={item?.id} caminhoPrincipal="/fluxocaixa" />
       </td>

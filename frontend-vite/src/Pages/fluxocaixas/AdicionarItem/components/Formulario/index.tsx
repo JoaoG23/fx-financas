@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import { FieldValues, useForm } from "react-hook-form";
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
@@ -43,8 +43,9 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
-  } = useForm();
+  } = useForm<FieldValues>({});
 
   return (
     <>
@@ -59,6 +60,7 @@ export const Formulario: React.FC = () => {
         register={register}
         control={control}
         errors={errors}
+        setValue={setValue}
       />
       {isSuccess && <ModalSucesso />}
       {isLoading && <ModalCarregando />}

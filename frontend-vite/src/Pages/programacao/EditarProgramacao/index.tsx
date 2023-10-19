@@ -2,10 +2,10 @@ import React from "react";
 import { Formulario } from "./components/Formulario";
 
 
-export const AdicaoItensEmMassa: React.FC = () => {
+export const EditarProgramacao: React.FC = () => {
   return (
     <main>
-        <h2>Adição de Itens em Massa</h2>
+        <h2>Editar Programação</h2>
         <Formulario />
     </main>
   );

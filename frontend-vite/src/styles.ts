@@ -15,7 +15,9 @@ export const Body = styled.div`
 
   height: 80vh;
   justify-content: center;
-  overflow: auto;
+  overflow-y:scroll;
+  overflow-x:hidden;
+  
 
   top: 15vh;
   width: 80vw;

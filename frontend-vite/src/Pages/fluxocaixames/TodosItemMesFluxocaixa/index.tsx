@@ -28,7 +28,7 @@ export const TodosItemsMesFluxoCaixa: React.FC = () => {
   const { isLoading, data } = useQuery(
     ["todos-fluxocaixa-usuario-mes", pagina],
     () =>
-    buscarFluxoCaixaMesPorUsuario({
+      buscarFluxoCaixaMesPorUsuario({
         usuariosId: idUsuario!,
         numero_pagina: pagina,
       }),
@@ -52,10 +52,6 @@ export const TodosItemsMesFluxoCaixa: React.FC = () => {
           <ButtonDefault onClick={() => navigate("/fluxocaixa/adicionar")}>
             <>Adicionar</>
             <IoMdAddCircle />
-          </ButtonDefault>
-          <ButtonDefault onClick={() => navigate("/fluxocaixa/adicionar/massa")}>
-            <> Adicionar em massa </>
-            <BsDatabaseFillAdd />
           </ButtonDefault>
         </Fluxo.ContainerButtons>
       </Fluxo.Header>

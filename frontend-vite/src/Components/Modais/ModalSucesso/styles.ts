@@ -8,20 +8,18 @@ export const BackGround = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #00000098;
+  background-color: #000000d3;
 
   align-items: center;
   justify-content: center;
 
-  animation: entradaSuave 0.5s forwards;
+  animation: entradaSuaveModal 0.5s forwards;
 
-  @keyframes entradaSuave {
+  @keyframes entradaSuaveModal {
     0% {
-      transform: translateY(100vh);
       opacity: 0;
     }
     100% {
-      transform: translateY(0vh);
       opacity: 1;
     }
   }

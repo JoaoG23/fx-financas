@@ -81,10 +81,6 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
             <>Adicionar</>
             <IoMdAddCircle />
           </ButtonDefault>
-          <ButtonDefault onClick={() => navigate("adicionar/massa")}>
-            <> Adicionar em massa </>
-            <BsDatabaseFillAdd />
-          </ButtonDefault>
         </Fluxo.ContainerButtons>
       </Fluxo.Header>
 

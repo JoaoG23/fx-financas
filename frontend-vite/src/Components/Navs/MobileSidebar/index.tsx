@@ -12,7 +12,7 @@ import {
 import { FaUserAlt } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 
-import { tiposFluxosCaixa, categorias } from "./data/listLinks";
+import { tiposFluxosCaixa, categorias } from "../Sidebar/data/listLinks";
 
 import * as SideBar from "./styles";
 

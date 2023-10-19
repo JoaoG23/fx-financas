@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.select`
-  padding: 5px;
-
+  padding: 8px;
+  font-weight: 700;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 

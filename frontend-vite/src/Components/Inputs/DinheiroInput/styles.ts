@@ -1,8 +1,10 @@
 import styled from "styled-components";
-import ReactInputMask from "react-input-mask";
+import IntlCurrencyInput from "react-intl-currency-input";
 
-export const Campo = styled(ReactInputMask)`
+
+export const Campo = styled(IntlCurrencyInput)`
   padding: 8px;
+  font-weight: 700;
 
   background-color: transparent;
   border: none;
