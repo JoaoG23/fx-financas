@@ -10,6 +10,8 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
+import { BiBookmarkAlt, BiCartDownload, BiCategoryAlt, BiTable } from "react-icons/bi";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 import { tiposFluxosCaixa, categorias } from "./data/listLinks";
 
@@ -47,7 +49,7 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill />
+          <RiMoneyDollarCircleFill size={22} />
           <p>Fluxo de caixa</p>
           <IoIosArrowDown />
         </SideBar.ColecaoElementos>
@@ -55,6 +57,7 @@ const Sidebar: React.FC = () => {
           {tiposFluxosCaixa.map((paginas) => {
             return (
               <li key={paginas.id}>
+                <BiCartDownload size={17}/>
                 <Link to={paginas.path}>{paginas.descricao}</Link>
               </li>
             );
@@ -77,7 +80,7 @@ const Sidebar: React.FC = () => {
 
       <details>
         <SideBar.ColecaoElementos>
-          <BsFillGrid3X2GapFill />
+          <BiCategoryAlt size={20} />
           <p>Categorias</p>
           <IoIosArrowDown />
         </SideBar.ColecaoElementos>
@@ -85,6 +88,7 @@ const Sidebar: React.FC = () => {
           {categorias.map((paginas) => {
             return (
               <li key={paginas.id}>
+                <BiBookmarkAlt size={15} />
                 <Link to={paginas.path}>{paginas.descricao}</Link>
               </li>
             );

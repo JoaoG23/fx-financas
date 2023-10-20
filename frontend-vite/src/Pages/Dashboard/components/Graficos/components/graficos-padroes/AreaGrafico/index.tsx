@@ -31,10 +31,11 @@ export const AreaGrafico: React.FC<Props> = ({
       type: "solid",
       opacity: 0.8,
     },
-    colors: ["#6979F8", "#1caf82"],
+    colors: ["#6979F8", "#0acc8e"],
     dataLabels: {
       enabled: false,
     },
+    
   };
 
   const series = [

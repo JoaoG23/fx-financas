@@ -4,7 +4,7 @@ export type Programacao = {
   data_insersao?: Date | string;
   hora_insersao?: Date | string;
   descricao?: string;
-  entradaSaida?: boolean;
+  entradaSaida?: string | boolean;
   valor?: number;
   saldo?: number;
   elementosId?: string;

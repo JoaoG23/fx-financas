@@ -20,20 +20,9 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
       },
     ],
     options: {
-      colors: ["#1CAF82", "#FFA26B"],
-      responsive: [
-        {
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 90,
-            },
-            legend: {
-              position: "bottom",
-            },
-          },
-        },
-      ],
+      colors: ["#0acc8e", "#FFA26B"],
+
+
       chart: {
         type: "bar",
       },

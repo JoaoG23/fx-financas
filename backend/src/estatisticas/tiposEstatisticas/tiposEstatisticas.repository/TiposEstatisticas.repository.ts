@@ -8,6 +8,8 @@ export interface ITiposEstatisticasRepository {
     usuariosId: string,
     mes: number
   );
+  sumBiggerThanZeroUsuariosIdAndTiposId(usuariosId: string, tiposId: string);
+  sumLessThanZeroUsuariosIdAndTiposId(usuariosId: string, tiposId: string);
 }
 
 export class TiposEstatisticasRepository
@@ -23,7 +25,6 @@ export class TiposEstatisticasRepository
     usuariosId: string,
     mes: number
   ) {
-
     const firstDayOfMonth = buscarPrimeiroDiaDoMesSelecionado(mes);
     const lastDayOfMonth = buscarUltimoDiaDoMesSelecionado(mes);
 
@@ -40,7 +41,43 @@ export class TiposEstatisticasRepository
           lt: 0,
         },
         tiposId,
-        usuariosId
+        usuariosId,
+      },
+    });
+  }
+
+  async sumBiggerThanZeroUsuariosIdAndTiposId(
+    usuariosId: string,
+    tiposId: string
+  ) {
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        valor: {
+          gt: 0,
+        },
+        tiposId,
+        usuariosId,
+      },
+    });
+  }
+
+  async sumLessThanZeroUsuariosIdAndTiposId(
+    usuariosId: string,
+    tiposId: string
+  ) {
+    return await this.prisma.fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        valor: {
+          lt: 0,
+        },
+        tiposId,
+        usuariosId,
       },
     });
   }

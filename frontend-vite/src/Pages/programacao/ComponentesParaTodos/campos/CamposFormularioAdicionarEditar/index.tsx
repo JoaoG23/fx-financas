@@ -1,4 +1,14 @@
+import {
+  Control,
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormSetValue,
+} from "react-hook-form";
 import React from "react";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { FiArrowDown, FiArrowUp } from "react-icons/fi";
+
 import "react-toastify/dist/ReactToastify.css";
 
 import * as Form from "./styles";
@@ -17,13 +27,15 @@ import { TiposSelect } from "../../../../../Components/selects/TiposSelect";
 import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect";
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
-import { DecimalInput } from "../../../../../Components/Inputs/DecimalInput";
+import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
+import { CheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadio";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
-  register: any;
-  control: any;
-  errors: any;
+  setValue?: UseFormSetValue<FieldValues>;
+  register: UseFormRegister<FieldValues>;
+  control: Control<FieldValues, any>;
+  errors: FieldErrors<FieldValues>;
 };
 
 export const CamposFormulario: React.FC<Props> = ({
@@ -31,6 +43,7 @@ export const CamposFormulario: React.FC<Props> = ({
   register,
   control,
   errors,
+  setValue,
 }) => {
   const elemento = useElementoStore((state) => state?.elemento!);
   const subelemento = useSubelementoStore((state) => state?.subelemento!);
@@ -89,10 +102,13 @@ export const CamposFormulario: React.FC<Props> = ({
                 label="Locais"
               />
             </div>
+
             <div>
-              <DecimalInput
+              <DinheiroInput
+                setValue={setValue!}
+                control={control}
                 name="valor"
-                placeholder="R$ 0000,00"
+                placeholder="R$ 0,00"
                 register={register}
                 label="Digite o valor"
               />
@@ -102,8 +118,37 @@ export const CamposFormulario: React.FC<Props> = ({
             </div>
           </main>
         </Form.UmaColuna>
-
-        <Form.ObservacoesLinha>
+        <Form.ContainerEntradaSaida>
+          <strong>Selecione entrada ou saida:</strong>
+          <Form.ContainerRadios>
+            <CheckBoxRadio
+              name="entradaSaida"
+              register={register}
+              valorPadrao={"entrada"}
+            />
+            <label>
+              Entrada
+              <FiArrowUp size={20} color="#1CAF82" />
+            </label>
+          </Form.ContainerRadios>
+          <Form.ContainerRadios>
+            <label>
+              Saída
+              <FiArrowDown size={20} color="#F78187" />
+            </label>
+            <CheckBoxRadio
+              name="entradaSaida"
+              register={register}
+              valorPadrao={"saida"}
+            />
+          </Form.ContainerRadios>
+          <div>
+            {errors?.entradaSaida?.type === "required" && (
+              <AlertCampoVazio mensagem="Campo entrada ou saida não selecionado! Por gentileza preencher-o!" />
+            )}
+          </div>
+        </Form.ContainerEntradaSaida>
+        <Form.UmaColuna>
           <div>
             <InputDefault
               requirido={false}
@@ -113,11 +158,14 @@ export const CamposFormulario: React.FC<Props> = ({
               label="Digite alguma observação"
             />
           </div>
-        </Form.ObservacoesLinha>
+        </Form.UmaColuna>
+        <Form.UmaColuna>
+          <SecondaryButton>
+            <p>Salvar</p>
+            <AiFillPlusCircle size={20} />
+          </SecondaryButton>
+        </Form.UmaColuna>
       </Form.Campos>
-      <footer>
-        <SecondaryButton>Salvar </SecondaryButton>
-      </footer>
     </Form.Container>
   );
 };

@@ -35,9 +35,8 @@ export const DespesasTiposDespesasMesGrafico: React.FC<Props> = ({
   const despesasData: TiposDespesasEstatistica[] = data?.data;
 
   const tiposDespesas: any[] =
-    despesasData?.map(
-      (despesa: TiposDespesasEstatistica) => despesa.tipo
-    ) || [];
+    despesasData?.map((despesa: TiposDespesasEstatistica) => despesa.tipo) ||
+    [];
 
   const despesas: number[] =
     despesasData?.map((despesa: TiposDespesasEstatistica) => {

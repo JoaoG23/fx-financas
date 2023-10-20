@@ -43,6 +43,7 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     control,
+    setValue,
     formState: { errors },
   } = useForm();
 
@@ -56,6 +57,7 @@ export const Formulario: React.FC = () => {
           );
           mutate(novoItemFluxocaixa as any);
         })}
+        setValue={setValue}
         register={register}
         control={control}
         errors={errors}

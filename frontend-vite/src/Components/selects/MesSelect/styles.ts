@@ -1,18 +1,17 @@
 import styled from "styled-components";
-import Select from "react-select";
 
 export const Container = styled.select`
-  padding: 5px;
-
+  padding: 8px;
+  font-weight: 700;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius: 0.8em;
-  
+  color: #4a5360;
+  border-radius:.8em;
 
-  :hover {
+  :focus {
     animation-name: toRight;
-    animation-duration: 0.2s;
+    animation-duration: 1s;
     animation-iteration-count: 1;
     animation-timing-function: ease;
     animation-direction: alternate;
@@ -25,12 +24,15 @@ export const Container = styled.select`
     }
 
     100% {
-      transform: translateX(0.3vw);
+      transform: translateX(.2vw);
     }
   }
 `;
-export const ContainerInput = styled.label`
+export const ContainerInput = styled.div`
   display: grid;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
-`;
+  gap: .5em;
+  margin-bottom:.5em
+  
+  `;
+
+

@@ -17,7 +17,7 @@ export const Container = styled.div`
     font-size: large;
     
     box-shadow: 2px 2px 4px #00000027;
-    background-color: #1caf82;
+    background-color: #0acc8e;
     
     display: flex;
     position: fixed;

@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
 
-  font-weight: 300;
+  font-weight: 600;
   position: absolute;
   gap: 1em;
   top: 1em;
@@ -18,7 +18,7 @@ export const Container = styled.div`
 
   justify-content: space-between;
 
-  background-color: #1CAF82;
+  background-color: #0acc8e;
   box-shadow: 2px 2px 4px #00000027;
   color: #fff;
   a {
@@ -45,23 +45,18 @@ export const ImageContainer = styled.div`
   display: flex;
 
   gap: 0.3em;
+  padding: 3px;
 
   align-items: center;
   :hover {
-    border-radius: 1em;
-    animation: toRightButtons 0.2s forwards ease-in;
-  }
-  @keyframes toRightButtons {
-    0% {
-      transform: translateX(0vw);
-    }
-    100% {
-      background-color: #0000003f;
-      transform: translateX(1vw);
-    }
+    transition: 0.3s;
+    background-color: #fff;
+    color: #0acc8e;
   }
 `;
-export const VoltarText = styled.p`
+export const VoltarText = styled.div`
+  display: flex;
+  align-items: center;
   @media only screen and (max-width: 768px) {
     display: none;
   }

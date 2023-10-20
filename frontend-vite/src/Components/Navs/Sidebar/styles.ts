@@ -1,8 +1,9 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 13vw;
+  width: 15vw;
   height: 100vh;
+
 
   position: absolute;
   left: 0px;
@@ -14,9 +15,13 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 0.5em;
 
-  background-color: #1caf82;
+  background-color: #0acc8e;
 
   box-shadow: 2px 2px 2px #00000027;
+
+  details{
+    overflow:hidden;
+  }
 
   @media only screen and (max-width: 768px) {
     display: none;
@@ -39,34 +44,35 @@ export const Item = styled.li`
   gap: 1em;
   color: #fff;
 
-  a {
-
-    color: #fff;
-  }
-  a :hover {
-    transition: 0.3s;
-    background-color: #fff;
-    color: #1caf82;
+  a{
+    all: initial;
+    color: white;
   }
   :hover {
     transition: 0.3s;
     animation: balancar 2s linear infinite;
     background-color: #fff;
-    color: #1caf82;
+    color: #0acc8e;
+    a{
+      color: #0acc8e;
+    }
   }
 `;
 
 export const Elementos = styled.ul`
   border-radius: 8px;
+  padding: 3px;
 
   li {
+    margin-left: 1em;
+    color: #fff;
     padding: 5px;
     display: flex;
     gap: 1em;
     border-radius: 0.7em;
+    align-items: center;
   }
   a {
-    text-decoration: none;
     color: #fff;
   }
 
@@ -74,11 +80,10 @@ export const Elementos = styled.ul`
     transition: 0.3s;
     animation: balancar 2s linear infinite;
     background-color: #fff;
-    color: #1caf82;
-  }
-  a:hover {
-    background-color: #fff;
-    color: #1caf82;
+    color: #0acc8e;
+    a{
+      color: #0acc8e;
+    }
   }
 `;
 
@@ -94,6 +99,6 @@ export const ColecaoElementos = styled.summary`
   :hover {
     transition: 0.3s;
     background-color: #fff;
-    color: #1caf82;
+    color: #0acc8e;
   }
 `;

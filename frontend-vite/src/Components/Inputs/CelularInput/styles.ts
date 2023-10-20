@@ -3,8 +3,8 @@ import ReactInputMask from "react-input-mask";
 
 export const Campo = styled(ReactInputMask)`
   padding: 8px;
+  font-weight: 700;
 
-  background-color: transparent;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
   border-radius: 1em;

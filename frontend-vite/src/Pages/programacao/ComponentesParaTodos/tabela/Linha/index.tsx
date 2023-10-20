@@ -3,6 +3,7 @@ import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
 
 import { Programacao } from "../../../../../types/Programacao";
+import { converterValorEmMoedaBR } from "../../../../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
 import { AcoesItems } from "../../AcoesItems";
 
 type Props = {
@@ -10,6 +11,8 @@ type Props = {
 };
 
 export const LinhaItemProgramacao: React.FC<Props> = ({ item }) => {
+
+  const valorGasto = converterValorEmMoedaBR(item?.valor!)
   return (
     <tr aria-label="linha">
       <td>{item?.elementos?.descricao}</td>
@@ -22,9 +25,9 @@ export const LinhaItemProgramacao: React.FC<Props> = ({ item }) => {
       <td>{item?.locais?.descricao}</td>
       <td>
         {item?.valor! < 0 ? (
-          <RedFont>{item?.valor}</RedFont>
+          <RedFont>{valorGasto}</RedFont>
         ) : (
-          <GreenFont>{item?.valor}</GreenFont>
+          <GreenFont>{valorGasto}</GreenFont>
         )}
       </td>
       <td>

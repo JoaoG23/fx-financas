@@ -46,7 +46,7 @@ export const DinheiroInput: React.FC<Props> = ({
 
   const handleChange = (event?: any, value?: any, maskedValue?: any) => {
     event.preventDefault();
-    setValue(name, value)
+    setValue(name, value);
   };
 
   return (
@@ -61,7 +61,7 @@ export const DinheiroInput: React.FC<Props> = ({
             currency="BRL"
             onChange={handleChange}
             value={value}
-            disabled={desativar}
+            disabled={desativar!}
             placeholder={placeholder}
           />
         </Input.ContainerInput>

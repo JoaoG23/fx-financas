@@ -1,4 +1,5 @@
 import { TiposRepository } from "../../../tipos/tipos.repository/tipos.repository";
+import { converterNegativoParaAbsoluto } from "../../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
 import {
   ITiposEstatisticasRepository,
   TiposEstatisticasRepository,
@@ -10,8 +11,31 @@ export class TiposEstatisticasServices {
     private tiposRepository: TiposRepository
   ) {}
 
+  async calcularSaldoAtualPorUsuarioETipo(usuariosId: string, tiposId: string) {
+    const receitas =
+      await this.tiposEstatisticasRepository.sumBiggerThanZeroUsuariosIdAndTiposId(
+        usuariosId,
+        tiposId
+      );
+    const receitasTotal = receitas._sum.valor;
+
+    const despesas =
+      await this.tiposEstatisticasRepository.sumLessThanZeroUsuariosIdAndTiposId(
+        usuariosId,
+        tiposId
+      );
+    const despesasTotal = despesas._sum.valor;
+
+    const despesasConvertida = converterNegativoParaAbsoluto(
+      Number(despesasTotal)
+    );
+
+    const saldoAtual = Number(receitasTotal) - despesasConvertida;
+    return saldoAtual;
+  }
+
   async despesasTotalPorTipoEUsuarioMes(usuariosId: string, mes: number) {
-    const somaDespesasPorElementoId = [];
+    const somaDespesasPorTipoId = [];
     const tiposDoUsuario = await this.tiposRepository.findAllByUsuariosId(
       usuariosId
     );
@@ -24,17 +48,21 @@ export class TiposEstatisticasServices {
           mes
         );
 
+      const saldoAtual = await this.calcularSaldoAtualPorUsuarioETipo(
+        usuariosId,
+        tipo.id
+      );
       const despesas = somaElemento._sum.valor || "0";
-      const limiteGasto = tipo.limiteGasto || "0";
+      const limiteGasto = saldoAtual || "0";
 
-      somaDespesasPorElementoId.push({
+      somaDespesasPorTipoId.push({
         tipo: tipo.descricao,
         despesas,
         limiteGasto,
       });
     }
 
-    return somaDespesasPorElementoId;
+    return somaDespesasPorTipoId;
   }
 }
 

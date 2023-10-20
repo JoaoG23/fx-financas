@@ -1,8 +1,7 @@
 import styled from "styled-components";
 import IntlCurrencyInput from "react-intl-currency-input";
 
-
-export const Campo = styled(IntlCurrencyInput)`
+export const Campo = styled(IntlCurrencyInput as any)`
   padding: 8px;
   font-weight: 700;
 

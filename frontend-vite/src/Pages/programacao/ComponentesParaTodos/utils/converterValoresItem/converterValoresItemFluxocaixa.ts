@@ -3,6 +3,7 @@ import {
   ItemFluxoCaixaCriado,
 } from "../../../../../types/ItemFluxoCaixa";
 import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
+import { converterValorNegativoSeForSaida } from "../../../../fluxocaixas/ComponentesParaTodos/utils/converterValorNegativoSeSaida/converterValorNegativoSeSaida";
 
 export const converterValoresItemFluxocaixa = (
   idUsuario: string,
@@ -15,8 +16,14 @@ export const converterValoresItemFluxocaixa = (
     subtipos,
     locais,
     tipos_despesas,
+    entradaSaida,
     ...restanteFluxoCaixa
   } = itemFluxocaixa;
+
+  const valor = converterValorNegativoSeForSaida(
+    entradaSaida as string,
+    itemFluxocaixa?.valor!
+  );
 
   const novoItemFluxocaixa = {
     ...restanteFluxoCaixa,
@@ -26,7 +33,7 @@ export const converterValoresItemFluxocaixa = (
     tiposId: converterVazioParaNull(itemFluxocaixa?.tiposId),
     subtiposId: converterVazioParaNull(itemFluxocaixa?.subtiposId),
     locaisId: converterVazioParaNull(itemFluxocaixa?.locaisId),
-    valor: parseFloat(itemFluxocaixa?.valor! as any),
+    valor: valor,
   };
   return novoItemFluxocaixa;
 };

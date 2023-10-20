@@ -1,5 +1,9 @@
 import { SubelementosRepository } from "../../../subelementos/subelementos.repository/subelementos.repository";
-import { ISubelementosEstatisticasRepository, SubelementosEstatisticasRepository } from "../subelementosEstatisticas.repository/SubelementosEstatisticas.repository";
+import { converterNegativoParaAbsoluto } from "../../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
+import {
+  ISubelementosEstatisticasRepository,
+  SubelementosEstatisticasRepository,
+} from "../subelementosEstatisticas.repository/SubelementosEstatisticas.repository";
 
 export class SubelementosEstatisticasServices {
   constructor(
@@ -7,11 +11,39 @@ export class SubelementosEstatisticasServices {
     private subelementosRepository: SubelementosRepository
   ) {}
 
-  async despesasTotalPorsubelementoEUsuarioMes(usuariosId: string, mes: number) {
-    const somaDespesasPorElementoId = [];
-    const subelementosDoUsuario = await this.subelementosRepository.findAllByUsuariosId(
-      usuariosId
+  async calcularSaldoAtualPorUsuarioESubelementosId(
+    usuariosId: string,
+    subelementosId: string
+  ) {
+    const receitas =
+      await this.subelementosEstatisticasRepository.sumBiggerThanZeroUsuariosIdAndSubelementoId(
+        usuariosId,
+        subelementosId
+      );
+    const receitasTotal = receitas._sum.valor;
+
+    const despesas =
+      await this.subelementosEstatisticasRepository.sumLessThanZeroUsuariosIdAndSubelementoId(
+        usuariosId,
+        subelementosId
+      );
+    const despesasTotal = despesas._sum.valor;
+
+    const despesasConvertida = converterNegativoParaAbsoluto(
+      Number(despesasTotal)
     );
+
+    const saldoAtual = Number(receitasTotal) - despesasConvertida;
+    return saldoAtual;
+  }
+
+  async despesasTotalPorsubelementoEUsuarioMes(
+    usuariosId: string,
+    mes: number
+  ) {
+    const somaDespesasPorElementoId = [];
+    const subelementosDoUsuario =
+      await this.subelementosRepository.findAllByUsuariosId(usuariosId);
 
     for (const subelemento of subelementosDoUsuario) {
       const somaElemento =
@@ -21,8 +53,13 @@ export class SubelementosEstatisticasServices {
           mes
         );
 
+      const saldoAtual = await this.calcularSaldoAtualPorUsuarioESubelementosId(
+        usuariosId,
+        subelemento.id
+      );
+
       const despesas = somaElemento._sum.valor || "0";
-      const limiteGasto = subelemento.limiteGasto || "0";
+      const limiteGasto = saldoAtual || "0";
 
       somaDespesasPorElementoId.push({
         subelemento: subelemento.descricao,
@@ -35,7 +72,8 @@ export class SubelementosEstatisticasServices {
   }
 }
 
-const subelementosEstatisticasRepository = new SubelementosEstatisticasRepository();
+const subelementosEstatisticasRepository =
+  new SubelementosEstatisticasRepository();
 const subelementosRepository = new SubelementosRepository();
 
 export default new SubelementosEstatisticasServices(

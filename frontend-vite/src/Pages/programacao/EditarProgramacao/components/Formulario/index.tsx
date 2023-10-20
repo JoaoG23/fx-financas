@@ -14,12 +14,15 @@ import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
+import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
+import { removerSimboloMenosDoValorNegativo } from "../../../../fluxocaixas/ComponentesParaTodos/utils/removerSimboloMenosDoValorNegativo/removerSimboloMenosDoValorNegativo";
+import { verificarSeNegativoERetornaEntradaOuSaida } from "../../../../fluxocaixas/ComponentesParaTodos/utils/verificarSeNegativoERetornaEntradaOuSaida/verificarSeNegativoERetornaEntradaOuSaida";
 
 import { useSubelementoStore } from "../../../../../stores/useSubelementoStore/useSubelementoStore";
 import { useElementoStore } from "../../../../../stores/useElementoStore/useElementoStore";
 import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
+
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
-import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
@@ -73,12 +76,16 @@ export const Formulario: React.FC = () => {
     handleSubmit,
     control,
     reset,
+    setValue,
     formState: { errors },
   } = useForm();
 
   const dadosCarregados = {
     ...itemProgramacao,
-    valor: parseFloat(itemProgramacao?.valor!),
+    entradaSaida: verificarSeNegativoERetornaEntradaOuSaida(
+      itemProgramacao?.valor
+    ),
+    valor: removerSimboloMenosDoValorNegativo(itemProgramacao?.valor!),
   };
 
   useEffect(() => {
@@ -101,6 +108,7 @@ export const Formulario: React.FC = () => {
         register={register}
         control={control}
         errors={errors}
+        setValue={setValue}
       />
       {isSuccess && <ModalSucesso />}
       {isCarregandoSalvacaoitemProgramacao && <ModalCarregando />}

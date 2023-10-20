@@ -20,7 +20,7 @@ export const DonutGrafico: React.FC<Props> = ({ titulo, series, labels }) => {
         position: "bottom",
       },
       colors: [
-        "#1CAF82",
+        "#0acc8e",
         "#FFA26B",
         "#4F63F7",
         "#F78187",
@@ -60,7 +60,8 @@ export const DonutGrafico: React.FC<Props> = ({ titulo, series, labels }) => {
           breakpoint: 480,
           options: {
             chart: {
-              width: 200,
+              width: 280,
+              position: "center",
             },
             legend: {
               position: "bottom",

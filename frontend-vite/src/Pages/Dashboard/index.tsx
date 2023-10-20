@@ -14,6 +14,7 @@ import { Card } from "../../Components/Card";
 import { ModalCarregando } from "../../Components/Modais/ModalCarregando";
 import { Graficos } from "./components/Graficos";
 import { MesSelect } from "../../Components/selects/MesSelect";
+import { converterValorEmMoedaBR } from "../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
 
 export const Dashboard = () => {
   const { data: dataCabecalho, isLoading: isLoadingCabecalho } = useQuery(
@@ -30,9 +31,9 @@ export const Dashboard = () => {
   const totalDespesasEsteMes = dataCabecalho?.[1].data || 0;
   const saldoAtual = dataCabecalho?.[2].data || 0;
 
-  const receitasConvertida = parseFloat(totalReceitasEsteMes).toFixed(2);
-  const despesasConvertida = parseFloat(totalDespesasEsteMes).toFixed(2);
-  const saldoAtualConvertida = parseFloat(saldoAtual).toFixed(2);
+  const receitasConvertida = converterValorEmMoedaBR(totalReceitasEsteMes)
+  const despesasConvertida = converterValorEmMoedaBR(totalDespesasEsteMes)
+  const saldoAtualConvertida = converterValorEmMoedaBR(saldoAtual)
 
   const tamanhoIcones = 60;
   return (
@@ -43,7 +44,7 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Receitas mês</h3>
-              <h2>{receitasConvertida} R$</h2>
+              <h2>{receitasConvertida}</h2>
             </div>
             <RiMoneyDollarCircleFill size={tamanhoIcones} color="#FFA26B" />
           </DashboardStyle.Caixa>
@@ -53,7 +54,7 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Despesas mês</h3>
-              <h2>{despesasConvertida} R$</h2>
+              <h2>{despesasConvertida} </h2>
             </div>
             <IoBagHandle size={tamanhoIcones} color="#6979F8" />
           </DashboardStyle.Caixa>
@@ -63,9 +64,9 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Saldo atual</h3>
-              <h2>{saldoAtualConvertida} R$</h2>
+              <h2>{saldoAtualConvertida} </h2>
             </div>
-            <GiReceiveMoney size={tamanhoIcones} color="#1CAF82" />
+            <GiReceiveMoney size={tamanhoIcones} color="#0acc8e" />
           </DashboardStyle.Caixa>
         </Card>
         <Card light>
