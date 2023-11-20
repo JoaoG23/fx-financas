@@ -29,6 +29,7 @@ import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
 import { CheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadio";
+import { DataHoraInput } from "../../../../../Components/Inputs/DataHoraInput";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -55,12 +56,20 @@ export const CamposFormulario: React.FC<Props> = ({
         <Form.UmaColuna>
           <main>
             <div>
+              <InputDefault
+                register={register}
+                label="Data Inserção"
+                name={"data_insersao"}
+                type="datetime-local"
+              />
+            </div>
+            <div>
               <ElementoSelect
                 requirido={false}
                 register={register}
                 control={control}
                 name="elementosId"
-                label="Elemento"
+                label={"Elemento"}
               />
             </div>
             <div>

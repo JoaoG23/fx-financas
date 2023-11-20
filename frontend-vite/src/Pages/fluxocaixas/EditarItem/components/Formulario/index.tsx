@@ -23,6 +23,7 @@ import { useElementoStore } from "../../../../../stores/useElementoStore/useElem
 import { useTiposStore } from "../../../../../stores/useTiposStore/useTiposStore";
 import { removerSimboloMenosDoValorNegativo } from "../../../ComponentesParaTodos/utils/removerSimboloMenosDoValorNegativo/removerSimboloMenosDoValorNegativo";
 import { verificarSeNegativoERetornaEntradaOuSaida } from "../../../ComponentesParaTodos/utils/verificarSeNegativoERetornaEntradaOuSaida/verificarSeNegativoERetornaEntradaOuSaida";
+import { transformarDatetimeIsoParaExibicaoEmInput } from "../../../../../utils/formatadoresDatahora/transformarDatetimeIsoParaExibicaoEmInput/transformarDatetimeIsoParaExibicaoEmInput";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
@@ -82,6 +83,9 @@ export const Formulario: React.FC = () => {
 
   const dadosCarregados = {
     ...itemFluxoCaixa,
+    data_insersao: transformarDatetimeIsoParaExibicaoEmInput(
+      itemFluxoCaixa?.data_insersao
+    ),
     entradaSaida: verificarSeNegativoERetornaEntradaOuSaida(
       itemFluxoCaixa?.valor
     ),

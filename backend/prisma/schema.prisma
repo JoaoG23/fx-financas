@@ -8,7 +8,7 @@ datasource db {
 }
 
 model usuarios {
-  id String @id @default(uuid())
+  id                     String                   @id @default(uuid())
   nome                   String                   @db.VarChar(200)
   username               String                   @db.VarChar(200)
   senha                  String

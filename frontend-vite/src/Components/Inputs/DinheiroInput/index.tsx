@@ -53,7 +53,7 @@ export const DinheiroInput: React.FC<Props> = ({
     <Controller
       name={name}
       control={control}
-      render={({ field: { onChange, value } }) => (
+      render={({ field: { value } }) => (
         <Input.ContainerInput>
           <strong>{label}</strong>
           <Input.Campo

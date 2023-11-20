@@ -64,7 +64,7 @@ export class FluxoCaixaServices implements IFluxoCaixaService {
     const saldoFinal =
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
     const data = {
-      data_insersao: dataAgora,
+      // data_insersao: dataAgora,
       saldo: saldoFinal,
       ...dados,
     };
@@ -84,7 +84,7 @@ export class FluxoCaixaServices implements IFluxoCaixaService {
         Number(valorExtraido);
 
       const itemSalvo = {
-        data_insersao: dataAgora,
+        // data_insersao: dataAgora,
         saldo: saldoFinal,
         ...item,
       };

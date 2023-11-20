@@ -3,6 +3,7 @@ import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/flu
 
 import { IFluxoCaixaService } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.interface.service";
 import { FluxoCaixaServices } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.service";
+import { buscarDatahoraAtualBancoDados } from "../../utils/datetime/buscarDatahoraAtualBancoDados/buscarDatahoraAtualBancoDados";
 
 import {
   ProgramacaoFluxocaixaCriadoDto,
@@ -42,14 +43,14 @@ export class ProgramacaoFluxocaixaServices {
     );
   }
 
-  async listarTodosPorUsuarioId(usuariosId:string) {
+  async listarTodosPorUsuarioId(usuariosId: string) {
     const programacoes =
       await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
         usuariosId
       );
     return programacoes;
   }
-  async buscarTodosPorUsuarioIdComDescricao(usuariosId:string) {
+  async buscarTodosPorUsuarioIdComDescricao(usuariosId: string) {
     const programacoes =
       await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioIdComDescricao(
         usuariosId
@@ -84,12 +85,15 @@ export class ProgramacaoFluxocaixaServices {
       );
 
     const itemsProgramados: FluxocaixaDto[] = [];
-
+    
+    const dataAtual = await buscarDatahoraAtualBancoDados();
     for (const programacao of programacoes) {
-      const { createdAt, id, ...restanteProgramacao } = programacao;
+      const { createdAt, id, data_insersao, ...restanteProgramacao } =
+        programacao;
 
       const fluxocaixa = {
         ...restanteProgramacao,
+        data_insersao: dataAtual,
         inserido_via_programacao: programacao.id,
       };
       itemsProgramados.push(fluxocaixa);

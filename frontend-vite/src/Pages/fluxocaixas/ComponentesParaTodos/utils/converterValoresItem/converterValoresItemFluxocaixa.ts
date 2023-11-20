@@ -1,5 +1,6 @@
 import { ItemFluxoCaixa } from "../../../../../types/ItemFluxoCaixa";
 import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
+import { transformarDateTimeInputEmIso } from "../../../../../utils/formatadoresDatahora/transformarDateTimeInputEmIso/transformarDateTimeInputEmIso";
 import { converterValorNegativoSeForSaida } from "../converterValorNegativoSeSaida/converterValorNegativoSeSaida";
 
 export const converterValoresItemFluxocaixa = (
@@ -24,6 +25,7 @@ export const converterValoresItemFluxocaixa = (
 
   const novoItemFluxocaixa = {
     ...restanteFluxoCaixa,
+    data_insersao: transformarDateTimeInputEmIso(itemFluxocaixa?.data_insersao as string),
     usuariosId: idUsuario,
     elementosId: converterVazioParaNull(itemFluxocaixa?.elementosId),
     subelementosId: converterVazioParaNull(itemFluxocaixa?.subelementosId),
