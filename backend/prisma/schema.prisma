@@ -26,9 +26,8 @@ model usuarios {
 }
 
 model elementos {
-  id        String @id @default(uuid())
-  descricao String @db.VarChar(70)
-
+  id                     String                   @id @default(uuid())
+  descricao              String                   @db.VarChar(70)
   limiteGasto            Decimal?                 @default(0) @db.Decimal(12, 2)
   fluxocaixa             fluxocaixa[]
   subelementos           subelementos[]
@@ -38,11 +37,9 @@ model elementos {
 }
 
 model subelementos {
-  id        String @id @default(uuid())
-  descricao String @db.VarChar(70)
-
-  limiteGasto Decimal? @default(0) @db.Decimal(12, 2)
-
+  id                     String                   @id @default(uuid())
+  descricao              String                   @db.VarChar(70)
+  limiteGasto            Decimal?                 @default(0) @db.Decimal(12, 2)
   elementosId            String?
   tipos                  tipos[]
   elementos              elementos?               @relation(fields: [elementosId], references: [id], onDelete: Cascade)
@@ -53,11 +50,9 @@ model subelementos {
 }
 
 model tipos {
-  id        String @id @default(uuid())
-  descricao String @db.VarChar(70)
-
-  limiteGasto Decimal? @default(0) @db.Decimal(12, 2)
-
+  id                     String                   @id @default(uuid())
+  descricao              String                   @db.VarChar(70)
+  limiteGasto            Decimal?                 @default(0) @db.Decimal(12, 2)
   subelementos           subelementos?            @relation(fields: [subelementosId], references: [id], onDelete: Cascade)
   subelementosId         String?
   subtipos               subtipos[]
@@ -68,11 +63,9 @@ model tipos {
 }
 
 model subtipos {
-  id        String @id @default(uuid())
-  descricao String @db.VarChar(70)
-
-  limiteGasto Decimal? @default(0) @db.Decimal(12, 2)
-
+  id                     String                   @id @default(uuid())
+  descricao              String                   @db.VarChar(70)
+  limiteGasto            Decimal?                 @default(0) @db.Decimal(12, 2)
   tipos                  tipos?                   @relation(fields: [tiposId], references: [id], onDelete: Cascade)
   tiposId                String?
   fluxocaixa             fluxocaixa[]

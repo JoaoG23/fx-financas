@@ -29,7 +29,6 @@ import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
 import { CheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadio";
-import { DataHoraInput } from "../../../../../Components/Inputs/DataHoraInput";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;

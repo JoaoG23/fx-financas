@@ -10,8 +10,6 @@ import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButt
 type Props = {
   onSubmit?: React.FormEventHandler | any;
   register: any;
-  control: any;
-  errors: any;
 };
 
 export const FormularioPesquisa: React.FC<Props> = ({ onSubmit, register }) => {
@@ -23,9 +21,9 @@ export const FormularioPesquisa: React.FC<Props> = ({ onSubmit, register }) => {
           type="search"
           requirido={false}
           register={register}
-          placeholder="Digite a descrição para efetuar a pesquisa"
+          placeholder="Digite a descrição do item"
           name="descricao"
-          label="Descrição Item"
+          label="Descrição item"
         />
         <SecondaryButton>
           <p>Pesquisar</p>

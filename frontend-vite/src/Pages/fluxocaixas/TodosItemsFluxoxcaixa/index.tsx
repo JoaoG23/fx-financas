@@ -1,9 +1,8 @@
 import { useForm } from "react-hook-form";
 import * as Fluxo from "./styles";
-import { useMutation } from "react-query";
+import { useMutation, useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
-import { BsDatabaseFillAdd } from "react-icons/bs";
 import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 
@@ -19,20 +18,36 @@ import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPes
 
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
 import { CriteriosPesquisaItemFluxoCaixa } from "../../../types/CriteriosPesquisa";
+import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
+import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFluxoCaixaCache";
+import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
 
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
+  const chaveFluxoCaixa: string = "fluxocaixa";
+
+  const configuracaoPagina: PaginacaoFluxoCaixaCache =
+    buscarConfiguracoesPaginaPorChave(chaveFluxoCaixa) || {};
+
+  const paginaAtual: number = Number(configuracaoPagina?.pagina!);
+
+  const [pagina, setPagina] = useState<number>(paginaAtual || 1);
+
   const [criteriosBusca, setCriteriosBusca] =
-    useState<CriteriosPesquisaItemFluxoCaixa>({});
-  const [pagina, setPagina] = useState<number>(1);
+    useState<CriteriosPesquisaItemFluxoCaixa>(
+      configuracaoPagina?.criteriosBusca || {}
+    );
   const comecarPelaPrimeiraPagina = () => setPagina(1);
 
-  const {
-    data,
-    mutate: mutatePesquisar,
-    isLoading,
-  } = useMutation(
+  const { data, isLoading } = useQuery(
+    [
+      "todo-items-fluxocaixa-pagina",
+      {
+        pagina,
+        criteriosBusca,
+      },
+    ],
     async () =>
       await pesquisarItemsFluxoCaixaPaginaPorCriterio(pagina, criteriosBusca),
     {
@@ -42,16 +57,21 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
     }
   );
 
-  useEffect(() => {
-    mutatePesquisar();
-  }, [pagina, criteriosBusca]);
-
   const {
     register,
     handleSubmit,
     control,
+    reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    guardarConfiguracoesPaginaPorChave(chaveFluxoCaixa, {
+      criteriosBusca,
+      pagina,
+    });
+    reset(criteriosBusca);
+  }, [pagina, criteriosBusca]);
 
   const itemsFluxoCaixa = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;
@@ -64,7 +84,6 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
           onSubmit={handleSubmit(
             (criterios: CriteriosPesquisaItemFluxoCaixa) => {
               setCriteriosBusca(criterios);
-              mutatePesquisar();
               comecarPelaPrimeiraPagina();
             }
           )}

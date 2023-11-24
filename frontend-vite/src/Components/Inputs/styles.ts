@@ -20,11 +20,11 @@ export const NoBorders = styled.input`
 
   @keyframes toRight {
     0% {
-      transform: translateX(0vw);
+      transform: translateY(0vh);
     }
 
     100% {
-      transform: translateX(0.3vw);
+      transform: translateY(0.3vh);
     }
   }
 `;

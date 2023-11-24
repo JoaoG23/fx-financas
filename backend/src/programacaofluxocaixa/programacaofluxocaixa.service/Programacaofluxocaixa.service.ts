@@ -36,7 +36,7 @@ export class ProgramacaoFluxocaixaServices {
   }
 
   async pesquisarPorCriterio(
-    criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo">
+    criterios: ProgramacaoFluxocaixaVisualizarDto
   ) {
     return await this.programacaofluxocaixaRepository.pesquisarPorCriterios(
       criterios

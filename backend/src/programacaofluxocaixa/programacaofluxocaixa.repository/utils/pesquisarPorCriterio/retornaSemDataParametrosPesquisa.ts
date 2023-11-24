@@ -55,6 +55,7 @@ export const retornarSemDataParametrosPesquisa = (
     {
       descricao: {
         contains: descricao,
+        mode: 'insensitive'
       },
     },
   ];

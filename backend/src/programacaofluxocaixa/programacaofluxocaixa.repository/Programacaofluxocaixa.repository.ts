@@ -6,6 +6,7 @@ import {
   ProgramacaoFluxocaixaCriadoDto,
   ProgramacaoFluxocaixaVisualizarDto,
 } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
+import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
 
 export class ProgramacaoFluxocaixaRepository
   implements IProgramacaoFluxocaixaRepository
@@ -54,10 +55,8 @@ export class ProgramacaoFluxocaixaRepository
     });
   }
 
-  pesquisarPorCriterios(
-    criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo">
-  ) {
-    throw new Error("Method not implemented.");
+  pesquisarPorCriterios(criterios: ProgramacaoFluxocaixaCriadoDto) {
+    return pesquisarSemData(criterios);
   }
 
   async salvar(data: ProgramacaoFluxocaixaCriadoDto) {

@@ -2,13 +2,14 @@ import * as Fluxo from "./styles";
 import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
-import { BsDatabaseFillAdd } from "react-icons/bs";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { buscarFluxoCaixaMesPorUsuario } from "./api";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
+import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
 
 import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
 import { TableComum } from "../../../Components/tables/TableComum";
@@ -18,12 +19,19 @@ import { LinhaItemFluxocaixa } from "../ComponentesParaTodos/tabela/Linha";
 import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
+import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFluxoCaixaCache";
 
 export const TodosItemsMesFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
   const { idUsuario } = buscaDadoUsuarioNaSessao();
-  const [pagina, setPagina] = useState(1);
+
+  const chaveFluxoCaixa: string = "fluxocaixa-mes";
+
+  const configuracaoPagina: PaginacaoFluxoCaixaCache =
+    buscarConfiguracoesPaginaPorChave(chaveFluxoCaixa) || {};
+
+  const [pagina, setPagina] = useState(configuracaoPagina?.pagina! || 1);
 
   const { isLoading, data } = useQuery(
     ["todos-fluxocaixa-usuario-mes", pagina],
@@ -38,6 +46,13 @@ export const TodosItemsMesFluxoCaixa: React.FC = () => {
       },
     }
   );
+
+  useEffect(() => {
+    guardarConfiguracoesPaginaPorChave(chaveFluxoCaixa, {
+      criteriosBusca: {},
+      pagina,
+    });
+  }, [pagina]);
 
   const itemsFluxoCaixa = data?.data[1];
   const totalQuantidadePaginas = data?.data[0].totalQuantidadePaginas;

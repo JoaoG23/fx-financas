@@ -5,7 +5,7 @@ import {
 
 export interface IProgramacaoFluxocaixaRepository {
   pesquisarPorCriterios(
-    criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo">
+    criterios: ProgramacaoFluxocaixaVisualizarDto
   );
   salvar(data: ProgramacaoFluxocaixaCriadoDto);
   atualizarPorId(id: string, newData: ProgramacaoFluxocaixaCriadoDto);
