@@ -26,7 +26,7 @@ export const TodosItemsMesFluxoCaixa: React.FC = () => {
 
   const { idUsuario } = buscaDadoUsuarioNaSessao();
 
-  const chaveFluxoCaixa: string = "fluxocaixa-mes";
+  const chaveFluxoCaixa: string = "fx-finances-fluxocaixa-mes";
 
   const configuracaoPagina: PaginacaoFluxoCaixaCache =
     buscarConfiguracoesPaginaPorChave(chaveFluxoCaixa) || {};

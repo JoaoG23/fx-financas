@@ -25,7 +25,7 @@ import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/busc
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
-  const chaveFluxoCaixa: string = "fluxocaixa";
+  const chaveFluxoCaixa: string = "fx-finances-fluxocaixa-todos";
 
   const configuracaoPagina: PaginacaoFluxoCaixaCache =
     buscarConfiguracoesPaginaPorChave(chaveFluxoCaixa) || {};

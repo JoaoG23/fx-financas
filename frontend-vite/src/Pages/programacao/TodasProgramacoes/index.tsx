@@ -27,7 +27,7 @@ import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPes
 export const TodosProgramacoes: React.FC = () => {
   const navigate = useNavigate();
 
-  const chaveProgramacao: string = "programacao";
+  const chaveProgramacao: string = "fx-finances-programacao";
 
   const configuracaoPagina: PaginacaoFluxoCaixaCache =
     buscarConfiguracoesPaginaPorChave(chaveProgramacao) || {};

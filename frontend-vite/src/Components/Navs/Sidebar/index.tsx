@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   BsFillCalendarWeekFill,
-  BsFillGrid3X2GapFill,
   BsFillPieChartFill,
   BsFillBasket2Fill,
   BsBank2,
@@ -10,7 +9,12 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
-import { BiBookmarkAlt, BiCartDownload, BiCategoryAlt, BiTable } from "react-icons/bi";
+import {
+  BiBookmarkAlt,
+  BiCartDownload,
+  BiCategoryAlt,
+  BiTable,
+} from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 import { tiposFluxosCaixa, categorias } from "./data/listLinks";
@@ -20,6 +24,7 @@ import * as SideBar from "./styles";
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { limparConfiguracoesPaginaPorChave } from "../../../utils/paginacao/limparConfiguracoesPaginaPorChave/limparConfiguracoesPaginaPorChave";
 
 const Sidebar: React.FC = () => {
   const { nomeUsuario } = buscaDadoUsuarioNaSessao();
@@ -56,8 +61,8 @@ const Sidebar: React.FC = () => {
         <SideBar.Elementos>
           {tiposFluxosCaixa.map((paginas) => {
             return (
-              <li key={paginas.id}>
-                <BiCartDownload size={17}/>
+              <li key={paginas.id} onClick={limparConfiguracoesPaginaPorChave}>
+                <BiCartDownload size={17} />
                 <Link to={paginas.path}>{paginas.descricao}</Link>
               </li>
             );
