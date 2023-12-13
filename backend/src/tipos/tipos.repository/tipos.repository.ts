@@ -33,6 +33,12 @@ export class TiposRepository implements TiposRepositoryInterface {
     });
   }
 
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.tipos.deleteMany({
+      where: { usuariosId },
+    });
+  }
+
   async countAllBySubelementosId(subelementosId: string) {
     const contagem = await this.prisma.tipos.count({
       where: { subelementosId },

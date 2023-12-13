@@ -1,9 +1,8 @@
 import { compareSync } from "bcryptjs";
 import { Request, Response } from "express";
-import { AuthenticacaoService } from "../autenticacao.service/autenticacao.service";
+import autenticacaoService from "../autenticacao.service/autenticacao.service";
 import { tratarErroSemStatus } from "../../utils/tratarErroSemStatus/tratarErroSemStatus";
 
-const autenticacaoService = new AuthenticacaoService();
 class AutenticacaoController {
   async criar(req: Request, res: Response) {
     try {

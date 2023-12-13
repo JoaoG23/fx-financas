@@ -1,30 +1,19 @@
-import { PrismaClient } from "@prisma/client";
+import { UsuariosRepositoryInterface } from "../../usuarios.repository/UsuariosRepositoryInterface";
 
-export class UsuarioBuscasServices {
-  prismaService: PrismaClient;
+import { UsuarioBuscasServicesInterface } from "./UsuarioBuscasServicesInterface";
 
-  constructor() {
-    this.prismaService = new PrismaClient();
-  }
+export class UsuarioBuscasServices implements UsuarioBuscasServicesInterface {
+  constructor(private usuariosRepository: UsuariosRepositoryInterface) {}
 
-  async buscarUmPeloIdusuario(id: string) {
-    const usuario = await this.prismaService.usuarios.findFirst({
-      where: { id },
-    });
-    return usuario;
+  async buscarUmPorIdusuario(id: string) {
+    return await this.usuariosRepository.findById(id);
   }
 
   async buscarUmPeloEmail(email: string) {
-    const usuario = await this.prismaService.usuarios.findFirst({
-      where: { email },
-    });
-    return usuario;
+    return await this.usuariosRepository.findByEmail(email);
   }
 
-  async buscarUmNomeLogin(username: string) {
-    const usuario = await this.prismaService.usuarios.findFirst({
-      where: { username },
-    });
-    return usuario;
+  async buscarUmUsername(username: string) {
+    return await this.usuariosRepository.findByUsername(username);
   }
 }

@@ -1,8 +1,8 @@
 import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 import {
   FluxoCaixaRepository,
-  IFluxocaixaRepository,
 } from "../fluxocaixa.repository/fluxocaixa.repository";
+import { IFluxocaixaRepository } from "../fluxocaixa.repository/IFluxocaixaRepository";
 
 import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
 import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
@@ -54,8 +54,6 @@ export class FluxoCaixaServices implements IFluxoCaixaService {
   async criar(dados: FluxocaixaDto) {
     const valorExtraido = dados?.valor;
 
-    const dataAgora = buscaDatahoraAtual();
-
     const ultimoItemAdicionado =
       await this.fluxoCaixaRepository.findLastItemByUsuariosId(
         dados.usuariosId
@@ -64,7 +62,6 @@ export class FluxoCaixaServices implements IFluxoCaixaService {
     const saldoFinal =
       Number(ultimoItemAdicionado?.saldo) + Number(valorExtraido);
     const data = {
-      // data_insersao: dataAgora,
       saldo: saldoFinal,
       ...dados,
     };
@@ -77,14 +74,11 @@ export class FluxoCaixaServices implements IFluxoCaixaService {
     for (const item of itemsFluxocaixa) {
       const valorExtraido = item?.valor;
 
-      const dataAgora = buscaDatahoraAtual();
-
       const saldoFinal =
         (await this.calcularSaldoAtual(item?.usuariosId)) +
         Number(valorExtraido);
 
       const itemSalvo = {
-        // data_insersao: dataAgora,
         saldo: saldoFinal,
         ...item,
       };

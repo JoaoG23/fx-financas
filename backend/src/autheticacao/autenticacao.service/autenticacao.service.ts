@@ -6,33 +6,33 @@ import criptografia from "../../utils/Criptografia";
 
 import { AutenticacaoUsuarioDto } from "../AutenticacaoUsuarioDto";
 import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/fluxocaixa.repository";
+import { UsuariosRepository } from "../../usuarios/usuarios.repository/usuarios.repository";
+
 import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
+import { UsuariosRepositoryInterface } from "../../usuarios/usuarios.repository/UsuariosRepositoryInterface";
+import { UsuarioDto } from "../../usuarios/usuario.dto/Usuario.dto";
 export class AuthenticacaoService {
-  public prisma: PrismaClient;
-  public fluxocaixaRepository: FluxoCaixaRepository;
-  constructor() {
-    this.prisma = new PrismaClient();
-    this.fluxocaixaRepository = new FluxoCaixaRepository();
+  private fluxocaixaRepository: FluxoCaixaRepository;
+  private usuariosRepository: UsuariosRepositoryInterface;
+
+  constructor(
+    fluxocaixaRepository: FluxoCaixaRepository,
+    usuariosRepository: UsuariosRepositoryInterface
+  ) {
+    this.usuariosRepository = usuariosRepository;
+    this.fluxocaixaRepository = fluxocaixaRepository;
   }
 
   async verificarExisteEmail(email: string) {
-    const usuario = await this.prisma.usuarios.findFirst({
-      where: { email },
-    });
-    return usuario;
+    return await this.usuariosRepository.findByEmail(email);
   }
 
   async verificarExisteUsername(username: string) {
-    const usuario = await this.prisma.usuarios.findFirst({
-      where: { username },
-    });
-    return usuario;
+    return await this.usuariosRepository.findByUsername(username);
   }
 
   async validarExisteEmail(email: string) {
-    const existeEmail = await this.prisma.usuarios.findFirst({
-      where: { email },
-    });
+    const existeEmail = await this.usuariosRepository.findByEmail(email);
 
     if (existeEmail) {
       throw new ConflictError("", "Esse email já está cadastrado no sistema");
@@ -40,9 +40,9 @@ export class AuthenticacaoService {
   }
 
   async validarExisteUsername(username: string) {
-    const existeUsername = await this.prisma.usuarios.findFirst({
-      where: { username },
-    });
+    const existeUsername = await this.usuariosRepository.findByUsername(
+      username
+    );
 
     if (existeUsername) {
       throw new ConflictError("", "Esse nome de usuário já existe");
@@ -81,18 +81,15 @@ export class AuthenticacaoService {
     return usuarioLogado;
   }
 
-  async registar(dadosLogin: AutenticacaoUsuarioDto) {
-    const { email, username, senha } = dadosLogin;
+  async registar(usuario: AutenticacaoUsuarioDto) {
+    const { email, username, senha } = usuario;
 
     await this.validarExisteEmail(email);
     await this.validarExisteUsername(username);
 
-    dadosLogin.senha = criptografia.crptografarSenha(senha);
+    usuario.senha = criptografia.crptografarSenha(senha);
 
-    // Criar primeiro Item fluxo caixa
-    const novoUsuario = await this.prisma.usuarios.create({
-      data: dadosLogin,
-    });
+    const novoUsuario = await this.usuariosRepository.save(usuario);
 
     await this.fluxocaixaRepository.save({
       descricao: "Saldo inicial",
@@ -110,8 +107,8 @@ export class AuthenticacaoService {
     return novoUsuario;
   }
 
-  async esqueciSenha(dadosLogin: AutenticacaoUsuarioDto) {
-    const { email, senha } = dadosLogin;
+  async esqueciSenha(usuario: AutenticacaoUsuarioDto) {
+    const { email, senha } = usuario;
 
     const existeEmail = await this.verificarExisteEmail(email);
 
@@ -120,12 +117,19 @@ export class AuthenticacaoService {
     }
 
     const hashSenha = criptografia.crptografarSenha(senha);
-
-    await this.prisma.usuarios.update({
-      where: { id: existeEmail?.id },
-      data: { senha: hashSenha },
-    });
+    const idUsuario = existeEmail?.id;
+    await this.usuariosRepository.updateById(idUsuario, {
+      senha: hashSenha,
+    } as UsuarioDto);
 
     return "Operacão realizada com sucesso! Tente logar novamente com senha nova!";
   }
 }
+
+const fluxocaixaRepository = new FluxoCaixaRepository();
+const usuariosRepository = new UsuariosRepository();
+
+export default new AuthenticacaoService(
+  fluxocaixaRepository,
+  usuariosRepository
+);

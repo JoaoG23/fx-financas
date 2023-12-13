@@ -4,6 +4,7 @@ export interface SubelementosRepositoryInterface {
   save(data: SubelementoDto);
   updateById(id: string, newData: SubelementoDto);
   deleteById(id: string);
+  deleteAllByUsuariosId(usuariosId: string);
   findById(id: string);
   findAllByUsuariosId(usuariosId: string);
 
@@ -14,6 +15,5 @@ export interface SubelementosRepositoryInterface {
     numeroPagina: number,
     quantidadeItemPagina: number,
     elementosId: string
-  )
-
+  );
 }

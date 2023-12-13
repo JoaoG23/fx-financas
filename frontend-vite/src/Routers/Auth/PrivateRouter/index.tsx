@@ -1,5 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 type Private = {
     children:any,
@@ -9,7 +10,10 @@ const PrivateRoute:React.FC<Private> = ({
     children,
     redirectTo
 }) => {
-    const isAuthenticated = localStorage.getItem('token') !== null ;
+
+    const { tokenSessao } = buscaDadoUsuarioNaSessao();
+
+    const isAuthenticated = tokenSessao !== null ;
     return isAuthenticated ? children : <Navigate to={redirectTo} />
 }
 

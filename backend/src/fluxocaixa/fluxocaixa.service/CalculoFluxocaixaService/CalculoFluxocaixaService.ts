@@ -1,4 +1,4 @@
-import { IFluxocaixaRepository } from "../../fluxocaixa.repository/fluxocaixa.repository";
+import { IFluxocaixaRepository } from "../../fluxocaixa.repository/IFluxocaixaRepository";
 
 export class CalculoFluxocaixaService {
   private fluxoCaixaRepository: IFluxocaixaRepository;

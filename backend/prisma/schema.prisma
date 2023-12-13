@@ -9,11 +9,11 @@ datasource db {
 
 model usuarios {
   id                     String                   @id @default(uuid())
-  nome                   String                   @db.VarChar(200)
-  username               String                   @db.VarChar(200)
+  nome                   String                   @unique @db.VarChar(200)
+  username               String                   @unique @db.VarChar(200)
   senha                  String
-  email                  String                   @db.VarChar(200)
-  telefone               String                   @db.VarChar(22)
+  email                  String                   @unique @db.VarChar(200)
+  telefone               String                   @unique @db.VarChar(22)
   createdAt              DateTime                 @default(now())
   updateAt               DateTime                 @updatedAt
   fluxocaixa             fluxocaixa[]

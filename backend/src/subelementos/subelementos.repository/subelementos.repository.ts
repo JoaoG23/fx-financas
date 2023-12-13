@@ -33,6 +33,12 @@ export class SubelementosRepository implements SubelementosRepositoryInterface {
     });
   }
 
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.subelementos.deleteMany({
+      where: { usuariosId },
+    });
+  }
+
   async countAllByElementosId(elementosId: string) {
     const contagem = await this.prisma.subelementos.count({
       where: { elementosId },

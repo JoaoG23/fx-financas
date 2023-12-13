@@ -11,6 +11,7 @@ import { CategoriasRotas } from "./CategoriasRotas";
 import { FluxocaixaRotas } from "./FluxocaixaRotas";
 import { LocaisRotas } from "./LocaisRotas";
 import { ProgramacaoRotas } from "./ProgramacaoRotas";
+import { DeletarUsuario } from "../../Pages/usuario/DeletarUsuario";
 
 const AutenticadasRotas = () => {
   return (
@@ -21,6 +22,14 @@ const AutenticadasRotas = () => {
           element={
             <PrivateRoute redirectTo={"/"}>
               <VisualizarUsuarioLogado />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/usuario_logado/deletar/:id"
+          element={
+            <PrivateRoute redirectTo={"/"}>
+              <DeletarUsuario />
             </PrivateRoute>
           }
         />

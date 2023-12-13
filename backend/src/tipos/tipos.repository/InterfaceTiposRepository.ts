@@ -4,6 +4,7 @@ export interface TiposRepositoryInterface {
   save(data: TiposDto);
   updateById(id: string, newData: TiposDto);
   deleteById(id: string);
+  deleteAllByUsuariosId(usuariosId: string);
   findById(id: string);
   findAllByUsuariosId(usuariosId: string);
 

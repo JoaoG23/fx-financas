@@ -1,19 +1,16 @@
 import React from "react";
 import "react-toastify/dist/ReactToastify.css";
 
-
 import * as Form from "./styles";
 
 import { BsFillEmojiExpressionlessFill } from "react-icons/bs";
 
-
-import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
-
-
 import RedFont from "../../../../../Components/FontColor/RedFont";
 
-
 import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
+import ButtonDefault from "../../../../../Components/Buttons/ButtonDefault/ButtonDark";
+import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { IoMdAddCircle } from "react-icons/io";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -25,7 +22,6 @@ type Props = {
 export const CamposFormulario: React.FC<Props> = ({
   onSubmit,
   register,
-  control,
   errors,
 }) => {
   return (
@@ -63,7 +59,6 @@ export const CamposFormulario: React.FC<Props> = ({
           )}
         </div>
 
-
         <div>
           <InputDefault
             placeholder="Digite o E-mail.."
@@ -97,7 +92,10 @@ export const CamposFormulario: React.FC<Props> = ({
         </div>
       </Form.Campos>
       <footer>
-        {/* <SecondaryButton>Salvar + </SecondaryButton> */}
+        <SecondaryButton>
+          <p>Salvar</p>
+          <IoMdAddCircle size={20} />
+        </SecondaryButton>
       </footer>
     </Form.Container>
   );

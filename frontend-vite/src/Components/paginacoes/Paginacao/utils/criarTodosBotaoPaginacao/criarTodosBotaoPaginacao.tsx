@@ -3,7 +3,7 @@ import * as Paginacao from "../../styles";
 export const criarTodosBotaoPaginacao = (
   totalPaginas: number,
   pagina: number,
-  setPagina: any,
+  setPagina: React.Dispatch<React.SetStateAction<number>>,
 ) => {
   let arrayBotoes: JSX.Element[] = [];
 

@@ -1,7 +1,7 @@
 import { buscaDatahoraAtual } from "../../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
 
 import { FluxocaixaDto } from "../../fluxocaixa.dto/fluxocaixa.dto";
-import { IFluxocaixaRepository } from "../../fluxocaixa.repository/fluxocaixa.repository";
+import { IFluxocaixaRepository } from "../../fluxocaixa.repository/IFluxocaixaRepository";
 
 import { CalculoFluxocaixaServiceInteface } from "../CalculoFluxocaixaService/CalculoFluxocaixaInterface";
 

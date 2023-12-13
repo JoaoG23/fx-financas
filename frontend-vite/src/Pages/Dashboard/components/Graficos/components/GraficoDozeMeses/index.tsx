@@ -38,8 +38,8 @@ export const GraficoDozeMeses: React.FC = () => {
         labels={mes}
         secondLabel="Receitas"
         firstLabel="Despesas"
-        firstSerie={receitas}
-        secondSerie={despesas}
+        firstSerie={despesas}
+        secondSerie={receitas}
       />
     </div>
   );

@@ -3,14 +3,15 @@ import {
   ProgramacaoFluxocaixaVisualizarDto,
 } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 
-export interface IProgramacaoFluxocaixaRepository {
+export interface ProgramacaoFluxocaixaRepositoryInterface {
   pesquisarPorCriterios(
     criterios: ProgramacaoFluxocaixaVisualizarDto
   );
   salvar(data: ProgramacaoFluxocaixaCriadoDto);
   atualizarPorId(id: string, newData: ProgramacaoFluxocaixaCriadoDto);
   deletarPorId(id: string);
-  buscarPorId(iddepartamento: string);
+  deleteAllByUsuariosId(usuariosId: string);
+  buscarPorId(id: string);
   buscarTodosPorUsuarioId(usuariosId:string);
   buscarTodosPorUsuarioIdComDescricao(usuariosId:string);
   contarTodosPorCriterio(criterios: object);

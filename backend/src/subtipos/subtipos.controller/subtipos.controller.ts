@@ -16,15 +16,6 @@ class SubtiposController {
     }
   }
 
-  async listarTodos(req: Request, res: Response) {
-    try {
-      const todos = await subtiposService.listarTodos();
-      res.status(200).json(todos);
-    } catch (error) {
-      res.status(400).json(error.message);
-    }
-  }
-
   async listaPorId(req: Request, res: Response) {
     try {
       const { id } = req.params;

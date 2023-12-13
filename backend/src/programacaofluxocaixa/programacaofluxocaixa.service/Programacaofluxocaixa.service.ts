@@ -3,6 +3,7 @@ import { FluxoCaixaRepository } from "../../fluxocaixa/fluxocaixa.repository/flu
 
 import { IFluxoCaixaService } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.interface.service";
 import { FluxoCaixaServices } from "../../fluxocaixa/fluxocaixa.service/fluxocaixa.service";
+
 import { buscarDatahoraAtualBancoDados } from "../../utils/datetime/buscarDatahoraAtualBancoDados/buscarDatahoraAtualBancoDados";
 
 import {
@@ -11,11 +12,11 @@ import {
 } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 
 import { ProgramacaoFluxocaixaRepository } from "../programacaofluxocaixa.repository/Programacaofluxocaixa.repository";
-import { IProgramacaoFluxocaixaRepository } from "../programacaofluxocaixa.repository/Programacaofluxocaixa.repository.Interface";
+import { ProgramacaoFluxocaixaRepositoryInterface } from "../programacaofluxocaixa.repository/Programacaofluxocaixa.repository.Interface";
 
 export class ProgramacaoFluxocaixaServices {
   constructor(
-    private programacaofluxocaixaRepository: IProgramacaoFluxocaixaRepository,
+    private programacaofluxocaixaRepository: ProgramacaoFluxocaixaRepositoryInterface,
     private fluxocaixaService: IFluxoCaixaService
   ) {}
 
@@ -35,9 +36,7 @@ export class ProgramacaoFluxocaixaServices {
     return await this.programacaofluxocaixaRepository.buscarPorId(id);
   }
 
-  async pesquisarPorCriterio(
-    criterios: ProgramacaoFluxocaixaVisualizarDto
-  ) {
+  async pesquisarPorCriterio(criterios: ProgramacaoFluxocaixaVisualizarDto) {
     return await this.programacaofluxocaixaRepository.pesquisarPorCriterios(
       criterios
     );
@@ -85,7 +84,7 @@ export class ProgramacaoFluxocaixaServices {
       );
 
     const itemsProgramados: FluxocaixaDto[] = [];
-    
+
     const dataAtual = await buscarDatahoraAtualBancoDados();
     for (const programacao of programacoes) {
       const { createdAt, id, data_insersao, ...restanteProgramacao } =

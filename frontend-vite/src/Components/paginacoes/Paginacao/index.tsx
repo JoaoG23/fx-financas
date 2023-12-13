@@ -6,9 +6,9 @@ import { controlarNumeroBotoesExibidosTela } from "./utils/controlarNumeroBotoes
 import { criarTodosBotaoPaginacao } from "./utils/criarTodosBotaoPaginacao/criarTodosBotaoPaginacao";
 
 type Props = {
-  setPagina: any;
-  pagina: any;
-  totalPaginas: any;
+  setPagina: React.Dispatch<React.SetStateAction<number>>;
+  pagina: number;
+  totalPaginas: number;
   arrayElementos: object[];
   quantidadeTotalItems?: number;
 };

@@ -1,17 +1,38 @@
 import { SubtiposDto } from "../subtipos.dto/subtipos.dto";
-import { SubtiposBuscasServices } from './subtipos.buscas.service/subtipos.buscas.service'
 
-  
+import { SubtiposRepositoryInterface } from "../subtipos.repository/InterfaceSubtiposRepository";
 
-class SubtiposServices
-  extends SubtiposBuscasServices
-  implements SubtiposServices
-{
+import { SubtiposRepository } from "../subtipos.repository/subtipos.repository";
+
+class SubtiposServices {
+  constructor(private subtiposRepository: SubtiposRepositoryInterface) {}
+
+  async listarTodosPorTiposId(tiposId: string) {
+    return this.subtiposRepository.findAllByTiposId(tiposId);
+  }
+
+  async listaUmPorId(id: string) {
+    return this.subtiposRepository.findById(id);
+  }
+
+  async listaPorTodosUsuariosId(usuariosId: string) {
+    return this.subtiposRepository.findAllByUsuariosId(usuariosId);
+  }
+
+  async listarPorTiposPorPagina(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    tiposId: string
+  ) {
+    return this.subtiposRepository.findAllByPageAndTiposId(
+      numeroPagina,
+      quantidadeItemPagina,
+      tiposId
+    );
+  }
+
   async criar(data: SubtiposDto) {
-    const subtipos = await this.prismaService.subtipos.create({
-      data,
-    });
-    return subtipos;
+    return this.subtiposRepository.save(data);
   }
 
   async atualizarUmPorId(id: string, dadosNovos: SubtiposDto) {
@@ -20,11 +41,7 @@ class SubtiposServices
       throw new Error("Não existe esse ID para ser atualizado");
     }
 
-    const subtipos = await this.prismaService.subtipos.update({
-      where: { id },
-      data: dadosNovos,
-    });
-    return subtipos;
+    return await this.subtiposRepository.updateById(id, dadosNovos);
   }
 
   async deletarUmPorId(id: any) {
@@ -32,19 +49,10 @@ class SubtiposServices
     if (!existeIdsubtipos) {
       throw new Error("Não há esse Id para ser excluido");
     }
-    return this.prismaService.subtipos.delete({
-      where: { id },
-    });
+    return await this.subtiposRepository.deleteById(id);
   }
 }
 
-export default new SubtiposServices();
-  
-  
-  
-  
-  
-  
-  
-  
-  
+const subtiposRepository = new SubtiposRepository();
+
+export default new SubtiposServices(subtiposRepository);

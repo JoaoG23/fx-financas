@@ -47,12 +47,12 @@ export class ElementosServices implements IElementosServices {
   async atualizarUmPorId(id: string, elemento: ElementoDto) {
     await this.validarExisteId(id, "atualização");
 
-    return this.elementosRepository.update(id, elemento);
+    return this.elementosRepository.updateById(id, elemento);
   }
 
   async deletarUmPorId(id: string) {
     await this.validarExisteId(id, "exclusao");
 
-    return this.elementosRepository.delete(id);
+    return this.elementosRepository.deleteById(id);
   }
 }

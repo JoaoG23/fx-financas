@@ -17,7 +17,7 @@ export const DefaultStyle = styled.button`
   border-radius: 1em;
 
   color: #fff;
-  padding: 0.5em;
+  padding: 0.6em;
   background-size: 200% 200%;
 
   box-shadow: 0 0 2px #fbae82;

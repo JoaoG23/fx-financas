@@ -1,16 +1,39 @@
 import { SubelementoDto } from "../subelementos.dto/subelementos.dto";
-import { SubelementoBuscasServices } from "./subelementos.buscas.service/subelementos.buscas.service";
+
+import { SubelementosRepositoryInterface } from "../subelementos.repository/InterfaceSubelementosRepository";
+import { SubelementosRepository } from "../subelementos.repository/subelementos.repository";
+
 import { ISubelementosService } from "./ISubelementosService";
 
-class SubelementosServices
-  extends SubelementoBuscasServices
-  implements ISubelementosService
-{
+class SubelementosServices implements ISubelementosService {
+  constructor(private subelementoRepository: SubelementosRepositoryInterface) {}
+
+  async buscarPorId(id: string) {
+    return await this.subelementoRepository.findById(id);
+  }
+
+  async listarTodosPorElementosId(elementosId: string) {
+    return await this.subelementoRepository.findAllByElementosId(elementosId);
+  }
+
+  async listarTodosPorUsuariosId(usuariosId: string) {
+    return this.subelementoRepository.findAllByUsuariosId(usuariosId);
+  }
+
+  async listarPorElementosPorPagina(
+    numeroPagina: number,
+    quantidadeItemPagina: number,
+    elementosId: string
+  ) {
+    return this.subelementoRepository.findAllByPageAndElementosId(
+      numeroPagina,
+      quantidadeItemPagina,
+      elementosId
+    );
+  }
+
   async criar(data: any) {
-    const subelemento = await this.prismaService.subelementos.create({
-      data,
-    });
-    return subelemento;
+    return this.subelementoRepository.save(data);
   }
 
   async atualizarUmPorId(id: string, dadosNovos: SubelementoDto) {
@@ -18,12 +41,7 @@ class SubelementosServices
     if (!existeIdsubelemento) {
       throw new Error("Não existe esse ID para ser atualizado");
     }
-
-    const subelemento = await this.prismaService.subelementos.update({
-      where: { id },
-      data: dadosNovos,
-    });
-    return subelemento;
+    return this.subelementoRepository.updateById(id, dadosNovos);
   }
 
   async deletarUmPorId(id: any) {
@@ -31,10 +49,10 @@ class SubelementosServices
     if (!existeIdsubelemento) {
       throw new Error("Não há esse Id para ser excluido");
     }
-    return this.prismaService.subelementos.delete({
-      where: { id },
-    });
+    return this.subelementoRepository.deleteById(id);
   }
 }
 
-export default new SubelementosServices();
+const subelementoRepository = new SubelementosRepository();
+
+export default new SubelementosServices(subelementoRepository);

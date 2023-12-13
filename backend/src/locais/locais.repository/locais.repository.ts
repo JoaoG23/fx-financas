@@ -21,6 +21,11 @@ export class LocaisRepository implements LocaisRepositoryInteface {
       data: local,
     });
   }
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.locais.deleteMany({
+      where: { usuariosId },
+    });
+  }
 
   async deleteById(id: string) {
     return await this.prisma.locais.delete({

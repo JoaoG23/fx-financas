@@ -4,10 +4,7 @@ import { CriteriosPesquisa } from "../../../../fluxocaixa/interfaces/CriteriosPe
 
 const prisma = new PrismaClient();
 
-export async function pesquisarSemData(
-  criterios: CriteriosPesquisa
-) {
-
+export async function pesquisarSemData(criterios: CriteriosPesquisa) {
   const itemsDaPagina = await prisma.programacao_fluxocaixa.findMany({
     include: {
       elementos: {
@@ -36,12 +33,15 @@ export async function pesquisarSemData(
           descricao: true,
         },
       },
+      tipos_despesas: {
+        select: {
+          descricao: true,
+        },
+      },
     },
     where: {
       AND: retornarSemDataParametrosPesquisa(criterios),
     },
-
-    
   });
 
   return itemsDaPagina;

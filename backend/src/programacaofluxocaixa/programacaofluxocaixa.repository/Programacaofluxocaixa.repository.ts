@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
-import { IProgramacaoFluxocaixaRepository } from "./Programacaofluxocaixa.repository.Interface";
-import {
-  ProgramacaoFluxocaixaCriadoDto,
-  ProgramacaoFluxocaixaVisualizarDto,
-} from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
+import { ProgramacaoFluxocaixaCriadoDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
+import { ProgramacaoFluxocaixaRepositoryInterface } from "./Programacaofluxocaixa.repository.Interface";
 
 export class ProgramacaoFluxocaixaRepository
-  implements IProgramacaoFluxocaixaRepository
+  implements ProgramacaoFluxocaixaRepositoryInterface
 {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
@@ -51,6 +48,11 @@ export class ProgramacaoFluxocaixaRepository
             descricao: true,
           },
         },
+        tipos_despesas: {
+          select: {
+            descricao: true,
+          },
+        },
       },
     });
   }
@@ -73,6 +75,11 @@ export class ProgramacaoFluxocaixaRepository
   async deletarPorId(id: string) {
     return await this.prisma.programacao_fluxocaixa.delete({
       where: { id },
+    });
+  }
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.programacao_fluxocaixa.deleteMany({
+      where: { usuariosId },
     });
   }
   async buscarPorId(id: string) {

@@ -18,16 +18,21 @@ export class ElementosRepository implements IElementosRepository {
     });
   }
 
-  async update(id: string, newData: ElementoDto) {
+  async updateById(id: string, newData: ElementoDto) {
     return await this.prisma.elementos.update({
       where: { id },
       data: newData,
     });
   }
 
-  async delete(id: string) {
+  async deleteById(id: string) {
     return await this.prisma.elementos.delete({
       where: { id },
+    });
+  }
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.elementos.deleteMany({
+      where: { usuariosId },
     });
   }
 

@@ -15,7 +15,6 @@ export const converterValoresItemFluxocaixa = (
     tipos,
     subtipos,
     locais,
-    tipos_despesas,
     entradaSaida,
     ...restanteFluxoCaixa
   } = itemFluxocaixa;
@@ -33,6 +32,7 @@ export const converterValoresItemFluxocaixa = (
     tiposId: converterVazioParaNull(itemFluxocaixa?.tiposId),
     subtiposId: converterVazioParaNull(itemFluxocaixa?.subtiposId),
     locaisId: converterVazioParaNull(itemFluxocaixa?.locaisId),
+    tipos_despesasId: converterVazioParaNull(itemFluxocaixa?.tipos_despesasId),
     valor: valor,
   };
   return novoItemFluxocaixa;

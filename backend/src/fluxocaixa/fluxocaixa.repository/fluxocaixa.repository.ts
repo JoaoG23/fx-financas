@@ -1,40 +1,14 @@
 import { PrismaClient } from "@prisma/client";
 import { FluxocaixaDto } from "../fluxocaixa.dto/fluxocaixa.dto";
 
-import { Paginacao } from "../../utils/Paginacao";
-
-
 import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
+
 import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
 import { buscarPrimeiroDiaMesAtual } from "../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
+import { Paginacao } from "../../utils/Paginacao";
 import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 
-export interface IFluxocaixaRepository {
-  save(data: FluxocaixaDto);
-  saveMany(fluxocaixaDto: FluxocaixaDto[]);
-  update(id: string, newData: FluxocaixaDto);
-  delete(id: string);
-  findById(id: string);
-  findLastItemByUsuariosId(usuariosId: string);
-  findAllByUsuariosId(usuariosId: string);
-  describeAllFields();
-  countAllByIdUsuario(usuariosId: string);
-  countAllByIdUsuarioThisMonth(usuariosId: string);
-  updateLastItemSaldo(valor: number, usuariosId: string);
-  sumBiggerThanZero(usuariosId: string);
-  sumLessThanZero(usuariosId: string);
-  findAllByPageAndUsuariosId(
-    numeroPagina: number,
-    quantidadeItemPagina: number,
-    usuariosId: string
-  );
-  findAllByPageAndUsuariosIdAndThisMonth(
-    numeroPagina: number,
-    quantidadeItemPagina: number,
-    usuariosId: string
-  );
-  findAllByCriterios(criterios: CriteriosPesquisa);
-}
+import { IFluxocaixaRepository } from "./IFluxocaixaRepository";
 
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
   private paginacao: Paginacao;
@@ -181,6 +155,11 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
   async delete(id: string) {
     return await this.prisma.fluxocaixa.delete({
       where: { id },
+    });
+  }
+  async deleteAllByUsuariosId(usuariosId: string) {
+    return await this.prisma.fluxocaixa.deleteMany({
+      where: { usuariosId },
     });
   }
 

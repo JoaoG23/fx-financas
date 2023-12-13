@@ -1,7 +1,7 @@
 export function buscaDadoUsuarioNaSessao() {
-  const idUsuario = localStorage.getItem("id");
-  const nomeUsuario = localStorage.getItem("nome");
-  const tokenSessao = localStorage.getItem("token");
+  const idUsuario = sessionStorage.getItem("id");
+  const nomeUsuario = sessionStorage.getItem("nome");
+  const tokenSessao = sessionStorage.getItem("token");
 
   return { idUsuario, nomeUsuario, tokenSessao };
 }

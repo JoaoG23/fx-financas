@@ -116,6 +116,16 @@ export const CamposFormulario: React.FC<Props> = ({
                 <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
               )}
             </div>
+
+            <div>
+              <TipoDespesaSelect
+                requirido={false}
+                register={register}
+                name="tipos_despesasId"
+                control={control}
+                label="Meio de movimentação"
+              />
+            </div>
           </main>
         </Form.UmaColuna>
         <Form.ContainerEntradaSaida>

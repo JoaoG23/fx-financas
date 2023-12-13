@@ -1,46 +1,54 @@
 import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 import { UsuarioDto } from "../usuario.dto/Usuario.dto";
+import { UsuariosRepositoryInterface } from "./UsuariosRepositoryInterface";
 
-export interface IUsuariosRepository {
-  save(data: UsuarioDto);
-  update(id: string, newData: UsuarioDto);
-  delete(id: string);
-  findById(id: string);
-  findLastItem();
-}
-
-export class UsuariosRepository implements IUsuariosRepository {
-  private paginacao: Paginacao;
+export class UsuariosRepository implements UsuariosRepositoryInterface {
   private prisma: PrismaClient;
   constructor() {
     this.prisma = new PrismaClient();
-    this.paginacao = new Paginacao();
   }
-  findById(id: string) {
-    throw new Error("Method not implemented.");
+  async findAll() {
+    return await this.prisma.usuarios.findMany({});
   }
-  findLastItem() {
-    throw new Error("Method not implemented.");
+  async findByUsername(username: string) {
+    return await this.prisma.usuarios.findFirst({
+      where: { username },
+    });
   }
-
-  async save(data: UsuarioDto) {
-    return await this.prisma.usuarios.create({
-      data,
+  async findByEmail(email: string) {
+    return await this.prisma.usuarios.findFirst({
+      where: { email },
+    });
+  }
+  async findById(id: string) {
+    return await this.prisma.usuarios.findUnique({
+      where: { id },
+      select: {
+        nome:true,
+        username:true,
+        email:true,
+        telefone:true,
+      }
     });
   }
 
-  async update(id: string, newData: UsuarioDto) {
+  async save(usuario: UsuarioDto) {
+    return await this.prisma.usuarios.create({
+      data:usuario,
+    });
+  }
+
+  async updateById(id: string, usuario: UsuarioDto) {
     return await this.prisma.usuarios.update({
       where: { id },
-      data: newData,
+      data: usuario,
     });
   }
 
-  async delete(id: string) {
+  async deleteById(id: string) {
     return await this.prisma.usuarios.delete({
       where: { id },
     });
   }
-
 }

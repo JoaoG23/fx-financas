@@ -15,6 +15,7 @@ import { CabecalhoTabela } from "../ComponentesParaTodos/tabela/CabecalhoTabela"
 import { LinhaItemProgramacao } from "../ComponentesParaTodos/tabela/Linha";
 import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPesquisa";
 
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
 import { CriteriosPesquisaItemFluxoCaixa } from "../../../types/CriteriosPesquisa";
@@ -22,7 +23,6 @@ import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFlu
 
 import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
 import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
-import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPesquisa";
 
 export const TodosProgramacoes: React.FC = () => {
   const navigate = useNavigate();

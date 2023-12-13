@@ -22,6 +22,7 @@ export const LinhaItemProgramacao: React.FC<Props> = ({ item }) => {
       <td>
         <BlueFont>{item?.descricao}</BlueFont>
       </td>
+      <td>{item?.tipos_despesas?.descricao}</td>
       <td>{item?.locais?.descricao}</td>
       <td>
         {item?.valor! < 0 ? (

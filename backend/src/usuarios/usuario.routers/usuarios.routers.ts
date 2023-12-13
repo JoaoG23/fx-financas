@@ -4,8 +4,6 @@ import usuariosController from "../usuarios.controller/Usuarios.controller";
 
 
 routers.get("/", usuariosController.listarTodos);
-routers.get("/paginas", usuariosController.listarTodosPorPagina);
-routers.get("/paginas", usuariosController.listarTodosPorPagina);
 routers.get("/:id", usuariosController.listaPorId);
 
 routers.put("/:id", usuariosController.atualizarPorId);
