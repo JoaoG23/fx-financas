@@ -27,6 +27,10 @@ export const Campo = styled(ReactInputMask)`
       transform: translateX(0.3vw);
     }
   }
+  @media only screen and (max-width: 768px) {    font-size: large;
+    font-size: large;
+
+  }
 `;
 export const ContainerInput = styled.div`
   display: grid;

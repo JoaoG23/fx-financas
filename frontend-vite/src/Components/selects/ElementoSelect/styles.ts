@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Select from 'react-select';
 
 export const Container = styled.select`
   padding: 8px;
@@ -8,8 +7,7 @@ export const Container = styled.select`
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:.8em;
-
+  border-radius: 1em;
   :hover {
     animation-name: toRight;
     animation-duration: 0.2s;

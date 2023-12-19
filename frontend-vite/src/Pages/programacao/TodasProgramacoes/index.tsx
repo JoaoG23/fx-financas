@@ -23,6 +23,7 @@ import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFlu
 
 import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
 import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
+import { converterValorEmMoedaBR } from "../../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
 
 export const TodosProgramacoes: React.FC = () => {
   const navigate = useNavigate();
@@ -56,7 +57,8 @@ export const TodosProgramacoes: React.FC = () => {
     reset(criteriosBusca);
   }, [criteriosBusca]);
 
-  const programacao = data?.data || [];
+  const programacoes = data?.data[1] || [];
+  const somaTotalReceitas = data?.data[0]?.somaTodasProgramacaoDeReceita || 0;
 
   return (
     <Fluxo.Container>
@@ -72,7 +74,12 @@ export const TodosProgramacoes: React.FC = () => {
       </Fluxo.Formulario>
       {isLoading && <SpinnerCarregamento />}
       <Fluxo.Header>
-        <h2>Todas Programações</h2>
+        <div>
+          <h2>Todas Programações</h2>
+          <Fluxo.TotalReceitas>
+            Total receitas : {converterValorEmMoedaBR(somaTotalReceitas)}
+          </Fluxo.TotalReceitas>
+        </div>
         <Fluxo.ContainerButtons>
           <ButtonDefault onClick={() => navigate("adicionar")}>
             <>Adicionar</>
@@ -87,7 +94,7 @@ export const TodosProgramacoes: React.FC = () => {
 
       <TableComum>
         <CabecalhoTabela />
-        {programacao?.map((item: ItemFluxoCaixa) => (
+        {programacoes?.map((item: ItemFluxoCaixa) => (
           <LinhaItemProgramacao key={item?.id} item={item} />
         ))}
       </TableComum>

@@ -10,14 +10,16 @@ import { CamposFormulario } from "../../../ComponentesParaTodos/campos/CamposFor
 
 import { navegarAtePaginaDepoisTempo } from "../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 import { buscaDadoUsuarioNaSessao } from "../../../../../utils/buscaDadoUsuarioNaSessao";
+import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
+
 import {
   ItemFluxoCaixa,
   ItemFluxoCaixaCriado,
 } from "../../../../../types/ItemFluxoCaixa";
 import { ModalSucesso } from "../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../Components/Modais/ModalCarregando";
+
 import { adicionarProgramacao } from "../../api";
-import { converterValoresItemFluxocaixa } from "../../../ComponentesParaTodos/utils/converterValoresItem/converterValoresItemFluxocaixa";
 
 export const Formulario: React.FC = () => {
   const { idUsuario } = buscaDadoUsuarioNaSessao();
@@ -32,8 +34,8 @@ export const Formulario: React.FC = () => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
       },
       onSuccess: () => {
-        queryClient.invalidateQueries("listar-um-itemfluxocaixa");
-        queryClient.invalidateQueries("listar-itemfluxocaixa-por-pagina");
+        queryClient.invalidateQueries("listar-um-item-fluxocaixa");
+        queryClient.invalidateQueries("listar-item-fluxocaixa-por-pagina");
         navegarAtePaginaDepoisTempo(navigate, -1);
       },
     }

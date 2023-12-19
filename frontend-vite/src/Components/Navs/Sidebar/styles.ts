@@ -4,6 +4,22 @@ export const Container = styled.div`
   width: 15vw;
   height: 100vh;
 
+  *::-webkit-scrollbar {
+    width: 9px;
+    border-radius: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background-color: #66738729;
+    border: none;
+    border-radius: 1em;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    border-radius: 20px;
+    background-color: #6673875e;
+    border: none;
+  }
 
   position: absolute;
   left: 0px;
@@ -17,13 +33,9 @@ export const Container = styled.div`
 
   background-color: #0acc8e;
 
-  box-shadow: 2px 2px 2px #00000027;
+  box-shadow: 3px 2px 2px #7e7e7e14;
 
-  details{
-    overflow:hidden;
-  }
-
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 840px) {
     display: none;
     flex-direction: row;
   }
@@ -44,8 +56,7 @@ export const Item = styled.li`
   gap: 1em;
   color: #fff;
 
-  a{
-    all: initial;
+  a {
     color: white;
   }
   :hover {
@@ -53,7 +64,7 @@ export const Item = styled.li`
     animation: balancar 2s linear infinite;
     background-color: #fff;
     color: #0acc8e;
-    a{
+    a {
       color: #0acc8e;
     }
   }
@@ -81,7 +92,7 @@ export const Elementos = styled.ul`
     animation: balancar 2s linear infinite;
     background-color: #fff;
     color: #0acc8e;
-    a{
+    a {
       color: #0acc8e;
     }
   }
@@ -95,6 +106,7 @@ export const ColecaoElementos = styled.summary`
   gap: 0.9em;
   color: #fff;
   text-decoration: none;
+  cursor: pointer;
 
   :hover {
     transition: 0.3s;

@@ -1,21 +1,26 @@
 import styled from "styled-components";
 
-export const BackGround = styled.div`
+export const BackGround = styled.section`
   display: flex;
   position: fixed;
-  z-index: 2;
+  z-index: 12;
+
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
   width: 100vw;
   height: 100vh;
-  background-color: #000000d3;
+  background-color: #0acc8e;
 
   align-items: center;
   justify-content: center;
 
-  animation: entradaSuaveModal 0.5s forwards;
+  animation: aparecendoModalCarregando 0.2s forwards;
 
-  @keyframes entradaSuaveModal {
+  @keyframes aparecendoModalCarregando {
     0% {
       opacity: 0;
     }
@@ -24,35 +29,32 @@ export const BackGround = styled.div`
     }
   }
 `;
+export const Title = styled.span`
+  font-size: x-large;
+  color: #faf5ff;
+  font-weight: 800;
+  animation: novoAparecer 0.5s forwards;
+`;
 
 export const Body = styled.div`
-  width:38vw;
+  width: 38vw;
   height: auto;
 
   text-align: center;
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
   justify-content: center;
-  align-items: center;
-  gap: 1em;
-
-  padding: 1em;
-
-  background-color: #fff;
-
-  border: none;
-  border-radius: 1.5em;
-  box-shadow: 2px 2px 5px #00000050;
-
-  @media screen and (max-width:769px) {
-    width:90vw;
+  align-content: center;
+  @media screen and (max-width: 769px) {
+    width: 90vw;
   }
 `;
 
 export const AnimationSucesso = styled.img`
-
-animation: aparecendoSucesso 1s ease-out alternate forwards;
-@keyframes aparecendoSucesso {
+margin: auto;
+  opacity: 0.6;
+  animation: aparecendoSucesso 1s ease-out alternate forwards;
+  @keyframes aparecendoSucesso {
     0% {
       transform: rotate(0deg) scale(0);
     }
@@ -61,6 +63,14 @@ animation: aparecendoSucesso 1s ease-out alternate forwards;
     }
     100% {
       transform: rotate(0deg) scale(0.8);
+    }
+  }
+  @keyframes novoAparecer {
+    0% {
+      transform: scale(0);
+    }
+    100% {
+      transform: scale(1);
     }
   }
 `;

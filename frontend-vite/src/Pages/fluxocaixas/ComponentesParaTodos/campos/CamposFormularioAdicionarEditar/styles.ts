@@ -13,6 +13,13 @@ export const ContainerEntradaSaida = styled.section`
   gap: 0.5em;
   align-items: center;
   justify-content: center;
+
+  
+  @media only screen and (max-width: 768px) {
+    justify-content: start;
+
+  }
+  
 `;
 export const ContainerRadios = styled.div`
   display: flex;
@@ -26,6 +33,7 @@ export const ContainerRadios = styled.div`
     align-items: center;
     font-weight: 600;
   }
+
 `;
 
 export const ObservacoesLinha = styled.section`

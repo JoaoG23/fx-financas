@@ -13,7 +13,7 @@ import { FormularioStyle } from "./styles";
 
 import { CamposFormulario } from "./CamposFormulario/CamposFormulario";
 import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { SpinnerCarregamento } from "../../../Components/spinners/SpinnerCarregamento";
+import { SpinnerCarregamentoGrande } from "../../../Components/spinners/SpinnerCarregamentoGrande";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
@@ -34,17 +34,24 @@ export const Formulario: React.FC = () => {
     }
   );
   return (
-    <FormularioStyle>
-      <CamposFormulario
-        funcaoSubmit={(usuario: any) => {
-          mutate(usuario);
-        }}
-      />
-      {isLoading && <SpinnerCarregamento />}
-      <SecondaryButton onClick={() => navigate("/registrar")}>
-        <p>Registrar</p>
-        <BsPersonFillAdd />
-      </SecondaryButton>
-    </FormularioStyle>
+    <>
+      <FormularioStyle>
+        {isLoading ? (
+          <SpinnerCarregamentoGrande />
+        ) : (
+          <>
+            <CamposFormulario
+              funcaoSubmit={(usuario: any) => {
+                mutate(usuario);
+              }}
+            />
+            <SecondaryButton onClick={() => navigate("/registrar")}>
+              <p>Registrar</p>
+              <BsPersonFillAdd />
+            </SecondaryButton>
+          </>
+        )}
+      </FormularioStyle>
+    </>
   );
 };

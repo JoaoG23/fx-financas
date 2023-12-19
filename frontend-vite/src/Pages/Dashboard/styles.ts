@@ -8,7 +8,6 @@ width: auto;
  
   @media screen and (max-width: 764px) {
     width: 95%;
-    /* display: grid; */
   }
 `;
 
@@ -25,6 +24,11 @@ export const Cabecalho = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: 10px;
 
+  @media screen and (max-width: 1274px) {
+    padding: 7px;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+  }
   @media screen and (max-width: 764px) {
     padding: 7px;
     display: grid;

@@ -22,22 +22,25 @@ export const DefaultStyle = styled.button`
   font-weight: 500;
   padding: 0.5em;
 
-  box-shadow: 0 0 3px  #717f953a;
+  box-shadow: 0 0 3px #717f953a;
 
-  :hover{
-
-      animation: changeColor 0.5s ease alternate both;
+  :hover {
+    animation: changeColor 0.5s ease alternate both;
   }
 
   @keyframes changeColor {
     from {
-    transform: translateY(0vh);
+      transform: translateY(0vh);
       background-position: 200 0;
     }
 
     to {
-    transform: translateY(-4px);
+      transform: translateY(-4px);
       background-position: 100% 100%;
     }
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: large;
   }
 `;

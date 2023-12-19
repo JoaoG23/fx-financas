@@ -94,6 +94,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     };
   }
 
+ 
   async updateLastItemSaldo(valor: number, usuariosId: string) {
     return await this.prisma.$executeRawUnsafe(
       `UPDATE fluxocaixa SET saldo = $1 where orderador = (SELECT MAX(orderador)  
@@ -105,6 +106,7 @@ export class FluxoCaixaRepository implements IFluxocaixaRepository {
     );
   }
 
+  
   async sumBiggerThanZero(usuariosId: string) {
     return await this.prisma.fluxocaixa.aggregate({
       _sum: {

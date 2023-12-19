@@ -1,8 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+
 import { Paginacao } from "../../utils/Paginacao";
 import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
-import { ProgramacaoFluxocaixaCriadoDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
+
+import { ProgramacaoFluxocaixaCriadoDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 import { ProgramacaoFluxocaixaRepositoryInterface } from "./Programacaofluxocaixa.repository.Interface";
 
 export class ProgramacaoFluxocaixaRepository
@@ -14,12 +16,12 @@ export class ProgramacaoFluxocaixaRepository
     this.prisma = new PrismaClient();
     this.paginacao = new Paginacao();
   }
-  async buscarTodosPorUsuarioId(usuariosId: string) {
+  async findAllByUsuariosId(usuariosId: string) {
     return await this.prisma.programacao_fluxocaixa.findMany({
       where: { usuariosId },
     });
   }
-  async buscarTodosPorUsuarioIdComDescricao(usuariosId: string) {
+  async findAllByUsuariosIdAndDescription(usuariosId: string) {
     return await this.prisma.programacao_fluxocaixa.findMany({
       where: { usuariosId },
       include: {
@@ -57,22 +59,38 @@ export class ProgramacaoFluxocaixaRepository
     });
   }
 
-  pesquisarPorCriterios(criterios: ProgramacaoFluxocaixaCriadoDto) {
-    return pesquisarSemData(criterios);
+  async sumBiggerThanZeroByUsuariosId(usuariosId: string) {
+    const {
+      _sum: { valor: result },
+    } = await this.prisma.programacao_fluxocaixa.aggregate({
+      _sum: {
+        valor: true,
+      },
+      where: {
+        valor: {
+          gt: 0,
+        },
+        usuariosId,
+      },
+    });
+
+    return result;
   }
 
-  async salvar(data: ProgramacaoFluxocaixaCriadoDto) {
+  async save(programacao: ProgramacaoFluxocaixaCriadoDto) {
     return await this.prisma.programacao_fluxocaixa.create({
-      data: data,
+      data: programacao,
     });
   }
-  async atualizarPorId(id: string, newData: any) {
+
+  async updateById(id: string, programacao: ProgramacaoFluxocaixaCriadoDto) {
     return await this.prisma.programacao_fluxocaixa.update({
       where: { id },
-      data: newData,
+      data: programacao,
     });
   }
-  async deletarPorId(id: string) {
+
+  async deleteById(id: string) {
     return await this.prisma.programacao_fluxocaixa.delete({
       where: { id },
     });
@@ -82,30 +100,34 @@ export class ProgramacaoFluxocaixaRepository
       where: { usuariosId },
     });
   }
-  async buscarPorId(id: string) {
+
+  async findById(id: string) {
     const programacaofluxocaixa =
       await this.prisma.programacao_fluxocaixa.findFirst({
         where: { id },
       });
     return programacaofluxocaixa;
   }
-  async buscarTodos() {
-    return await this.prisma.programacao_fluxocaixa.findMany({
-      include: joinDescricaoSelect,
-    });
-  }
-  async contarTodosPorCriterio(criterios: object) {
+
+  async countAllByCriterios(criterios: object) {
     const count = await this.prisma.programacao_fluxocaixa.count({
       where: criterios,
     });
     return count;
   }
 
-  async buscarTodosPorPagina(
-    numeroPagina: number,
-    quantidadeItemPagina: number
-  ) {
-    const quantidadeTotalRegistros = await this.contarTodosPorCriterio({});
+  async findAllByCriterios(criterios: ProgramacaoFluxocaixaCriadoDto) {
+    return await pesquisarSemData(criterios);
+  }
+
+  async findAll() {
+    return await this.prisma.programacao_fluxocaixa.findMany({
+      include: joinDescricaoSelect,
+    });
+  }
+
+  async findAllByPage(numeroPagina: number, quantidadeItemPagina: number) {
+    const quantidadeTotalRegistros = await this.countAllByCriterios({});
     const itemsPorPagina = Number(quantidadeItemPagina);
 
     const totalQuantidadePaginas =

@@ -1,6 +1,7 @@
 import React from "react";
 import * as Modal from "./styles";
-import { BsCheckCircleFill } from "react-icons/bs";
+
+import sucessoIcon from "../../../assets/ok.svg";
 
 type Props = {
   children?: JSX.Element[] | JSX.Element;
@@ -9,8 +10,8 @@ type Props = {
 export const ModalSucesso: React.FC<Props> = ({ children }) => (
   <Modal.BackGround>
     <Modal.Body>
-      <BsCheckCircleFill size="150" color="#11d697" />
-      <h3>Operação concluida com sucesso</h3>
+      <Modal.AnimationSucesso src={sucessoIcon}/>
+      <Modal.Title>Operação concluida com sucesso</Modal.Title>
       {children}
     </Modal.Body>
   </Modal.BackGround>

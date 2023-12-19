@@ -16,7 +16,6 @@ export const Light = styled.button`
     animation: changeColor 0.5s ease alternate both;
   }
 
-  
   @keyframes changeColor {
     from {
       transform: translateY(0vh);
@@ -26,5 +25,8 @@ export const Light = styled.button`
       transform: translateY(-4px);
     }
   }
-`;
 
+  @media only screen and (max-width: 768px) {
+    font-size: large;
+  }
+`;

@@ -1,7 +1,21 @@
-import { Prisma } from "@prisma/client";
+export interface ProgramacaoFluxocaixaCriadoDto {
+  descricao?: string;
+  elementosId: string;
+  subelementosId: string;
+  subtiposId: string;
+  tiposId: string;
+  locaisId: string;
+  usuariosId: string;
+  valor: number;
+}
 
-export interface ProgramacaoFluxocaixaCriadoDto
-  extends Prisma.programacao_fluxocaixaCreateInput {}
-
-export interface ProgramacaoFluxocaixaVisualizarDto
-  extends Prisma.programacao_fluxocaixaCreateInput {}
+export interface ProgramacaoFluxocaixaVisualizarDto {
+  descricao?: string;
+  elementosId?: string;
+  subelementosId?: string;
+  subtiposId?: string;
+  tiposId?: string;
+  locaisId?: string;
+  usuariosId?: string;
+  valor?: number;
+}

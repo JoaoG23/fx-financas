@@ -14,15 +14,14 @@ export const DefaultStyle = styled.button`
     #f9792f 80%,
     #ea5a20 100%
   );
-  border-radius: 1em;
+  border-radius: 1.2em;
 
   color: #fff;
-  padding: 0.6em;
+  padding: 0.5em;
   background-size: 200% 200%;
 
   box-shadow: 0 0 2px #fbae82;
 
-  
   font-weight: 500;
   :hover {
     animation: changeColor 0.5s ease alternate both;
@@ -38,5 +37,9 @@ export const DefaultStyle = styled.button`
       transform: translateY(-5px);
       background-position: 100% 200%;
     }
+  }
+
+  @media only screen and (max-width: 768px) {
+    font-size: large;
   }
 `;

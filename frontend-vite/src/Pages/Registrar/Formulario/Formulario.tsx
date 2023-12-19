@@ -17,6 +17,8 @@ import { registrarUsuario } from "../api";
 import { Usuario } from "../../../types/usuario/Usuario";
 
 import { BsArrowLeftCircleFill } from "react-icons/bs";
+import { ModalCarregando } from "../../../Components/Modais/ModalCarregando";
+import { SpinnerCarregamentoGrande } from "../../../Components/spinners/SpinnerCarregamentoGrande";
 
 export const Formulario: React.FC = () => {
   const navigate = useNavigate();
@@ -45,20 +47,25 @@ export const Formulario: React.FC = () => {
 
   return (
     <FormularioStyle>
-      <CamposFormulario
-        funcaoSubmit={handleSubmit((usuario: Usuario) => {
-          mutate(usuario);
-        })}
-        register={register}
-        errors={errors}
-        control={control}
-      />
-      {isLoading && <SpinnerCarregamento />}
+      {isLoading ? (
+        <SpinnerCarregamentoGrande />
+      ) : (
+        <>
+          <CamposFormulario
+            funcaoSubmit={handleSubmit((usuario: Usuario) => {
+              mutate(usuario);
+            })}
+            register={register}
+            errors={errors}
+            control={control}
+          />
 
-      <SecondaryButton onClick={() => navigate("/")}>
-        <BsArrowLeftCircleFill />
-        <p>Voltar</p>
-      </SecondaryButton>
+          <SecondaryButton onClick={() => navigate("/")}>
+            <BsArrowLeftCircleFill />
+            <p>Voltar</p>
+          </SecondaryButton>
+        </>
+      )}
     </FormularioStyle>
   );
 };

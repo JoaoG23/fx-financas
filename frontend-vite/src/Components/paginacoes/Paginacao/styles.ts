@@ -11,7 +11,6 @@ export const Button = styled.button<BotaoAtivo>`
   color: #717f95;
   border-radius: 0.7em;
   padding: 0.5em;
- 
 
   :hover {
     animation: mudancaCorBackground 0.4s ease alternate both;
@@ -24,7 +23,8 @@ export const Button = styled.button<BotaoAtivo>`
         color: white;
         border: none;
         font-weight: 500;
-      `: `
+      `
+      : `
       background-color: #fbfbfb;
       color: #717f95;
   `}
@@ -70,6 +70,10 @@ export const Container = styled.div`
   background-color: #fff;
   border-radius: 0.7em;
   color: #717f95;
+
+  @media only screen and (max-width: 768px) {
+    font-size: 11px;
+  }
 `;
 
 export const NumeroPaginas = styled.div`

@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-type Colors = {
-  shadowColor?: string;
-  textColor?: string;
-  headerColor?: string;
-  bodyColor?: string;
-};
-
 export const Container = styled.main`
   display: block;
   color: #424651;
@@ -15,12 +8,19 @@ export const Container = styled.main`
     justify-content: center;
   }
 `;
+export const TotalReceitas = styled.h3`
+  margin-top: 0.2em;
+  margin-bottom: 0.2em;
+  color: #0acc8e;
+`;
 export const Formulario = styled.div`
   margin-bottom: 1.5em;
+  position: sticky;
 `;
 export const Header = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 0.3em;
 `;
 export const ContainerButtons = styled.header`

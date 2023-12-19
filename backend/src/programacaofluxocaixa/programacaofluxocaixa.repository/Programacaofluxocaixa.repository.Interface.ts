@@ -4,16 +4,21 @@ import {
 } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 
 export interface ProgramacaoFluxocaixaRepositoryInterface {
-  pesquisarPorCriterios(
-    criterios: ProgramacaoFluxocaixaVisualizarDto
-  );
-  salvar(data: ProgramacaoFluxocaixaCriadoDto);
-  atualizarPorId(id: string, newData: ProgramacaoFluxocaixaCriadoDto);
-  deletarPorId(id: string);
+  sumBiggerThanZeroByUsuariosId(usuariosId: string);
+
+  save(programacao: ProgramacaoFluxocaixaCriadoDto);
+
+  updateById(id: string, programacao: ProgramacaoFluxocaixaCriadoDto);
+
+  deleteById(id: string);
   deleteAllByUsuariosId(usuariosId: string);
-  buscarPorId(id: string);
-  buscarTodosPorUsuarioId(usuariosId:string);
-  buscarTodosPorUsuarioIdComDescricao(usuariosId:string);
-  contarTodosPorCriterio(criterios: object);
-  buscarTodosPorPagina(numeroPagina: number, quantidadeItemPagina: number);
+
+  countAllByCriterios(criterios: object);
+
+  findAllByCriterios(criterios: ProgramacaoFluxocaixaVisualizarDto);
+  findById(id: string);
+  findAll();
+  findAllByUsuariosId(usuariosId: string);
+  findAllByUsuariosIdAndDescription(usuariosId: string);
+  findAllByPage(numeroPagina: number, quantidadeItemPagina: number);
 }

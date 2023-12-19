@@ -20,36 +20,16 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
       },
     ],
     options: {
-      colors: ["#0acc8e", "#FFA26B"],
-
-
       chart: {
         type: "bar",
       },
-      plotOptions: {
-        bar: {
-          horizontal: true,
-        },
-      },
-      dataLabels: {
-        formatter: function (val: any, opt: any) {
-          const goals =
-            opt.w.config.series[opt.seriesIndex].data[opt.dataPointIndex].goals;
-
-          if (goals && goals.length) {
-            return `${val} / ${goals[0].value}`;
-          }
-          return val;
-        },
-      },
+      colors: ["#0acc8e", "#FFA26B"],
 
       legend: {
         show: true,
+        
         showForSingleSeries: true,
-        customLegendItems: ["Despesa atual", "Limite Gastos"],
-        // markers: {
-        //   fillColors: ["#1caf82", "#FFAB7A"],
-        // },
+        customLegendItems: ["Despesa atual", "Saldo Atual"],
       },
     },
   };

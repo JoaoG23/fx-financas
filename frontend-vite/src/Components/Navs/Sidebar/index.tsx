@@ -13,7 +13,6 @@ import {
   BiBookmarkAlt,
   BiCartDownload,
   BiCategoryAlt,
-  BiTable,
 } from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 

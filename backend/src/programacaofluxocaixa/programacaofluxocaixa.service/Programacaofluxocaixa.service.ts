@@ -22,7 +22,7 @@ export class ProgramacaoFluxocaixaServices {
 
   async validarNaoExisteProgramacoes(usuariosId: string) {
     const programacoes =
-      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+      await this.programacaofluxocaixaRepository.findAllByUsuariosId(
         usuariosId
       );
 
@@ -33,25 +33,30 @@ export class ProgramacaoFluxocaixaServices {
   }
 
   async buscarPorId(id: string) {
-    return await this.programacaofluxocaixaRepository.buscarPorId(id);
+    return await this.programacaofluxocaixaRepository.findById(id);
   }
 
   async pesquisarPorCriterio(criterios: ProgramacaoFluxocaixaVisualizarDto) {
-    return await this.programacaofluxocaixaRepository.pesquisarPorCriterios(
-      criterios
-    );
+    const idUsuario = criterios?.usuariosId;
+    const somaTodasProgramacaoDeReceita =
+      await this.programacaofluxocaixaRepository.sumBiggerThanZeroByUsuariosId(
+        idUsuario
+      );
+    const programacoes =
+      await this.programacaofluxocaixaRepository.findAllByCriterios(criterios);
+    return [{ somaTodasProgramacaoDeReceita }, programacoes];
   }
 
   async listarTodosPorUsuarioId(usuariosId: string) {
     const programacoes =
-      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+      await this.programacaofluxocaixaRepository.findAllByUsuariosId(
         usuariosId
       );
     return programacoes;
   }
   async buscarTodosPorUsuarioIdComDescricao(usuariosId: string) {
     const programacoes =
-      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioIdComDescricao(
+      await this.programacaofluxocaixaRepository.findAllByUsuariosIdAndDescription(
         usuariosId
       );
     return programacoes;
@@ -61,7 +66,7 @@ export class ProgramacaoFluxocaixaServices {
     numeroPagina: number,
     quantidadeItemPagina: number
   ) {
-    return await this.programacaofluxocaixaRepository.buscarTodosPorPagina(
+    return await this.programacaofluxocaixaRepository.findAllByPage(
       numeroPagina,
       quantidadeItemPagina
     );
@@ -69,7 +74,7 @@ export class ProgramacaoFluxocaixaServices {
 
   async criar(programacaofluxocaixaDto: ProgramacaoFluxocaixaCriadoDto) {
     const programacaofluxocaixa =
-      await this.programacaofluxocaixaRepository.salvar({
+      await this.programacaofluxocaixaRepository.save({
         ...programacaofluxocaixaDto,
       });
     return programacaofluxocaixa;
@@ -79,7 +84,7 @@ export class ProgramacaoFluxocaixaServices {
     await this.validarNaoExisteProgramacoes(usuariosId);
 
     const programacoes =
-      await this.programacaofluxocaixaRepository.buscarTodosPorUsuarioId(
+      await this.programacaofluxocaixaRepository.findAllByUsuariosId(
         usuariosId
       );
 
@@ -106,23 +111,23 @@ export class ProgramacaoFluxocaixaServices {
     dadosNovos: ProgramacaoFluxocaixaCriadoDto
   ) {
     const existeIdprogramacaofluxocaixa: any =
-      await this.programacaofluxocaixaRepository.buscarPorId(id);
+      await this.programacaofluxocaixaRepository.findById(id);
     if (!existeIdprogramacaofluxocaixa) {
       throw new Error("Não existe esse ID para ser atualizado");
     }
     const programacaofluxocaixa =
-      await this.programacaofluxocaixaRepository.atualizarPorId(id, dadosNovos);
+      await this.programacaofluxocaixaRepository.updateById(id, dadosNovos);
     return programacaofluxocaixa;
   }
 
   async deletarUmPorId(id: any) {
     const existeIdprogramacaofluxocaixa =
-      await this.programacaofluxocaixaRepository.buscarPorId(id);
+      await this.programacaofluxocaixaRepository.findById(id);
     if (!existeIdprogramacaofluxocaixa) {
       throw new Error("Não há esse Id para ser excluido");
     }
 
-    return this.programacaofluxocaixaRepository.deletarPorId(id);
+    return this.programacaofluxocaixaRepository.deleteById(id);
   }
 }
 

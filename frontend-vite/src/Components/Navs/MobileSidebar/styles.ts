@@ -1,6 +1,11 @@
 import styled from "styled-components";
 
-
+export const Exit = styled.button`
+  color: white;
+  background-color: transparent;
+  border: none;
+  display: flex;
+`;
 
 export const Container = styled.div`
   padding-left: 5px;
@@ -11,17 +16,15 @@ export const Container = styled.div`
   gap: 1em;
   justify-content: center;
 
-  
-  
   @media only screen and (max-width: 768px) {
-    font-size: large;
-    
+    font-size: 27px;
+
     box-shadow: 2px 2px 4px #00000027;
     background-color: #0acc8e;
-    
+
     display: flex;
     position: fixed;
-    
+
     padding: 10px;
     width: 100vw;
     height: 100vh;

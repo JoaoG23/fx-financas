@@ -2,12 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   BsFillCalendarWeekFill,
-  BsFillFileRuledFill,
   BsFillGrid3X2GapFill,
   BsFillPieChartFill,
   BsFillBasket2Fill,
-  BsBoxArrowInLeft,
   BsBank2,
+  BsX,
 } from "react-icons/bs";
 import { FaUserAlt } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
@@ -35,6 +34,9 @@ export const MobileSidebar: React.FC<Props> = ({
     <>
       {mostrarSidebar && (
         <SideBar.Container>
+          <SideBar.Exit role="button" onClick={() => setMostrarSidebar(false)}>
+            <BsX size={60} />
+          </SideBar.Exit>
           <SideBar.Item>
             <FaUserAlt color="#fff" size={20} />
             <Link to={"/usuario_logado"}>
@@ -116,9 +118,6 @@ export const MobileSidebar: React.FC<Props> = ({
               <p>Sair</p>
             </Link>
           </SideBar.Item>
-          <SecondaryButton onClick={() => setMostrarSidebar(false)}>
-            <BsBoxArrowInLeft size={20} />
-          </SecondaryButton>
         </SideBar.Container>
       )}
     </>

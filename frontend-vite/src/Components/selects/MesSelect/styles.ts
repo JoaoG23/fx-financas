@@ -7,8 +7,7 @@ export const Container = styled.select`
   box-shadow: 1px 1px 5px #717f953a;
 
   color: #4a5360;
-  border-radius:.8em;
-
+  border-radius: 1em;
   :focus {
     animation-name: toRight;
     animation-duration: 1s;

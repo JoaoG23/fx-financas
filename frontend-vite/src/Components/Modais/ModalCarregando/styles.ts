@@ -1,14 +1,19 @@
 import styled from "styled-components";
 
-export const BackGround = styled.div`
+export const BackGround = styled.section`
   display: flex;
   position: fixed;
-  z-index: 5;
+  z-index: 12;
+
   top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+
   width: 100vw;
   height: 100vh;
-  background-color: #000000cc;
+  background-color: #0acc8e;
 
   align-items: center;
   justify-content: center;
@@ -24,35 +29,30 @@ export const BackGround = styled.div`
     }
   }
 `;
+export const Title = styled.span`
+  font-size: large;
+  color: #faf5ff;
+  font-weight: 700;
+`;
 
 export const Body = styled.div`
-  width:38vw;
+  width: 38vw;
   height: auto;
 
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+  display: grid;
   gap: 1em;
-
-  padding: 1em;
-
-  background-color: #fff;
-
-  border: none;
-  border-radius: 1em;
-  box-shadow: 2px 2px 5px #00000050;
-
-  @media screen and (max-width:769px) {
-    width:90vw;
+  justify-content: center;
+  align-content: center;
+  @media screen and (max-width: 769px) {
+    width: 90vw;
   }
 `;
 
 export const AnimationSucesso = styled.img`
-
-animation: aparecendoSucesso 1s ease-out alternate forwards;
-@keyframes aparecendoSucesso {
+  animation: aparecendoSucesso 1s ease-out alternate forwards;
+  @keyframes aparecendoSucesso {
     0% {
       transform: rotate(0deg) scale(0);
     }

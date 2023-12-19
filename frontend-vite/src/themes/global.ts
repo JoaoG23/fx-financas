@@ -130,10 +130,6 @@ details[open] summary ~ * {
     max-width: 300px;
   }
 
-
-
-
-
 `;
 
 export default GlobalStyle;
