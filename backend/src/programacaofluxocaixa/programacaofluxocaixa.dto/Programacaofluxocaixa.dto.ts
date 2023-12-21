@@ -18,4 +18,5 @@ export interface ProgramacaoFluxocaixaVisualizarDto {
   locaisId?: string;
   usuariosId?: string;
   valor?: number;
+  entradaOuSaidaOuTodos?:string
 }

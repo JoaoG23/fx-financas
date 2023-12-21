@@ -7,10 +7,11 @@ export async function pesquisarProgramacoesPorCriterio(
   criteriosBusca: CriteriosPesquisaItemFluxoCaixa
 ) {
   const { idUsuario } = buscaDadoUsuarioNaSessao();
-  const { descricao } = criteriosBusca;
+  const { descricao, entradaOuSaidaOuTodos } = criteriosBusca;
   const resposta = await endpoint.get(`/programacao/pesquisa`, {
     params: {
       usuariosId: idUsuario,
+      entradaOuSaidaOuTodos,
       descricao,
     },
   });

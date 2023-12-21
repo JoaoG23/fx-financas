@@ -1,10 +1,14 @@
 import { PrismaClient } from "@prisma/client";
-import { retornarSemDataParametrosPesquisa } from "./retornaSemDataParametrosPesquisa";
+
 import { CriteriosPesquisa } from "../../../../fluxocaixa/interfaces/CriteriosPesquisa";
+
+import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuTodos/selecionarSeEntradaSaidasOuTodos";
 
 const prisma = new PrismaClient();
 
-export async function pesquisarSemData(criterios: CriteriosPesquisa) {
+export async function pesquisarPorCriterio(criterios: CriteriosPesquisa) {
+  const entradaOuSaidaTodosItems: string = criterios?.entradaOuSaidaOuTodos;
+
   const itemsDaPagina = await prisma.programacao_fluxocaixa.findMany({
     include: {
       elementos: {
@@ -40,7 +44,10 @@ export async function pesquisarSemData(criterios: CriteriosPesquisa) {
       },
     },
     where: {
-      AND: retornarSemDataParametrosPesquisa(criterios),
+      AND: selecionarSeEntradaSaidasOuTodos(
+        entradaOuSaidaTodosItems,
+        criterios
+      ),
     },
   });
 

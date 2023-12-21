@@ -5,8 +5,12 @@ export const ContainerPesquisa = styled.section`
 
   display: grid;
   gap: 10px;
-  grid-template-columns: 4fr 1fr;
+  grid-template-columns: 4fr 1fr 1fr;
   align-items: end;
+
+  @media screen and (max-width: 769px) {
+    grid-template-columns: 4fr
+  }
 `;
 
 export const Container = styled.form`

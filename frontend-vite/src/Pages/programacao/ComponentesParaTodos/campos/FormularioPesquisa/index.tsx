@@ -6,6 +6,7 @@ import * as Form from "./styles";
 
 import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
+import { SelectEntradaSaidaTodos } from "../../../../../Components/selects/SelectEntradaSaidaTodos";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -21,9 +22,14 @@ export const FormularioPesquisa: React.FC<Props> = ({ onSubmit, register }) => {
           type="search"
           requirido={false}
           register={register}
-          placeholder="Digite a descrição do item"
+          placeholder="Digite as iniciais para pesquisa"
           name="descricao"
           label="Descrição item"
+        />
+
+        <SelectEntradaSaidaTodos
+          name={"entradaOuSaidaOuTodos"}
+          register={register}
         />
         <SecondaryButton>
           <p>Pesquisar</p>

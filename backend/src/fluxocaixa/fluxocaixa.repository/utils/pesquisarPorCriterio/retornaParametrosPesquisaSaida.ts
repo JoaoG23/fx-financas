@@ -6,9 +6,10 @@ interface CriteriosProgramacao {
   subtiposId?: string;
   tipos_despesasId?: string;
   descricao?: string;
+  entradaOuSaida?: string
 }
 
-export const retornarSemDataParametrosPesquisa = (
+export const retornaParametrosPesquisaSaida = (
   criteriosProgramacao: CriteriosProgramacao
 ): object[] => {
   const {
@@ -58,5 +59,10 @@ export const retornarSemDataParametrosPesquisa = (
         mode: 'insensitive'
       },
     },
+    {
+      valor: {
+        lt: 0,
+      },
+    }
   ];
 };

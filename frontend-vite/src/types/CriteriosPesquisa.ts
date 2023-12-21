@@ -8,4 +8,5 @@ export type CriteriosPesquisaItemFluxoCaixa = {
   subtiposId?: string;
   tipos_despesasId?: string;
   descricao?: string;
-}
+  entradaOuSaidaOuTodos?: string;
+};

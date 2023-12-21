@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 import { Paginacao } from "../../utils/Paginacao";
 import { joinDescricaoSelect } from "./utils/joinDescricaoSelect";
-import { pesquisarSemData } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
+import { pesquisarPorCriterio } from "./utils/pesquisarPorCriterio/pesquisarPorCriterio";
 
 import { ProgramacaoFluxocaixaCriadoDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 import { ProgramacaoFluxocaixaRepositoryInterface } from "./Programacaofluxocaixa.repository.Interface";
@@ -117,7 +117,7 @@ export class ProgramacaoFluxocaixaRepository
   }
 
   async findAllByCriterios(criterios: ProgramacaoFluxocaixaCriadoDto) {
-    return await pesquisarSemData(criterios);
+    return await pesquisarPorCriterio(criterios);
   }
 
   async findAll() {

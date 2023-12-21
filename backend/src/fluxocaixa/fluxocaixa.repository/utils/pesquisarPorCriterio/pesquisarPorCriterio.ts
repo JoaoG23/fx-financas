@@ -1,8 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import { contarQuantidadeRegistros } from "./contarQuantidadeRegistros";
-import { Paginacao } from "../../../../utils/Paginacao";
-import { retornarSemDataParametrosPesquisa } from "./retornaSemDataParametrosPesquisa";
+
 import { CriteriosPesquisa } from "../../../interfaces/CriteriosPesquisa";
+
+import { Paginacao } from "../../../../utils/Paginacao";
+
+import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuTodos/selecionarSeEntradaSaidasOuTodos";
 
 const prisma = new PrismaClient();
 const paginacao = new Paginacao();
@@ -13,8 +15,17 @@ export async function pesquisarSemData(
   const { numero_pagina, quantidade_items_pagina } = criterios;
 
   const itemsPorPagina = parseInt(quantidade_items_pagina);
+  const entradaOuSaidaTodosItems: string = criterios?.entradaOuSaidaOuTodos;
 
-  const quantidadeTotalRegistros = await contarQuantidadeRegistros(criterios);
+  const quantidadeTotalRegistros = await prisma.fluxocaixa.count({
+    where: {
+      AND: selecionarSeEntradaSaidasOuTodos(
+        entradaOuSaidaTodosItems,
+        criterios
+      ),
+    },
+  });
+
   const pularPagina = (numero_pagina - 1) * itemsPorPagina;
 
   const totalQuantidadePaginas = await paginacao.retornaQuantidadePaginas(
@@ -62,7 +73,10 @@ export async function pesquisarSemData(
       },
     },
     where: {
-      AND: retornarSemDataParametrosPesquisa(criterios),
+      AND: selecionarSeEntradaSaidasOuTodos(
+        entradaOuSaidaTodosItems,
+        criterios
+      ),
     },
     skip: pularPagina,
     take: itemsPorPagina,
