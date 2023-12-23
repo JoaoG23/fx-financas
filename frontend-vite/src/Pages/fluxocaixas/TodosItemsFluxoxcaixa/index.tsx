@@ -16,11 +16,13 @@ import { LinhaItemFluxocaixa } from "../ComponentesParaTodos/tabela/Linha";
 import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPesquisa";
 
+
+import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
+
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
 import { CriteriosPesquisaItemFluxoCaixa } from "../../../types/CriteriosPesquisa";
 import { guardarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/guardarConfiguracoesPaginaPorChave/guardarConfiguracoesPaginaPorChave";
 import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFluxoCaixaCache";
-import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
 
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();

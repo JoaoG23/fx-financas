@@ -28,7 +28,8 @@ import { SubtiposSelect } from "../../../../../Components/selects/SubtiposSelect
 import { LocaisSelect } from "../../../../../Components/selects/LocaisSelect";
 import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesaSelect";
 import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
-import { CheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadio";
+import { GreenCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioGreen";
+import { RedCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioRed";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -131,10 +132,10 @@ export const CamposFormulario: React.FC<Props> = ({
         <Form.ContainerEntradaSaida>
           <strong>Selecione entrada ou saida:</strong>
           <Form.ContainerRadios>
-            <CheckBoxRadio
+            <GreenCheckBoxRadio
               name="entradaSaida"
               register={register}
-              valorPadrao={"entrada"}
+              defaultValue={"entrada"}
             />
             <label>
               Entrada
@@ -146,10 +147,10 @@ export const CamposFormulario: React.FC<Props> = ({
               Saída
               <FiArrowDown size={20} color="#F78187" />
             </label>
-            <CheckBoxRadio
+            <RedCheckBoxRadio
               name="entradaSaida"
               register={register}
-              valorPadrao={"saida"}
+              defaultValue={"saida"}
             />
           </Form.ContainerRadios>
           <div>
