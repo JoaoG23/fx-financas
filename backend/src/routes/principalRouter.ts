@@ -1,5 +1,8 @@
 import { Router } from "express";
 
+import swaggerUi from "swagger-ui-express";
+import swaggerDocs from "../../swagger.json";
+
 import auth from "./Auth";
 
 import usuariosRouters from "../usuarios/usuario.routers/usuarios.routers";
@@ -21,6 +24,8 @@ import tiposDespesasEstatisticasRouters from "../estatisticas/tiposDespesasEstat
 
 const routers = Router();
 
+routers.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+
 routers.use("/usuarios", auth.comum, usuariosRouters);
 routers.use("/elementos", auth.comum, elementosRouters);
 routers.use("/subelementos", auth.comum, subelementoRouters);
@@ -37,7 +42,11 @@ routers.use(
   subelementosEstatisticasRouters
 );
 routers.use("/estatistica/tipos", auth.comum, tiposEstatisticasRouters);
-routers.use("/estatistica/tipos_despesas", auth.comum, tiposDespesasEstatisticasRouters);
+routers.use(
+  "/estatistica/tipos_despesas",
+  auth.comum,
+  tiposDespesasEstatisticasRouters
+);
 
 routers.use("/fluxocaixa", auth.comum, fluxocaixaRouters);
 routers.use("/programacao", auth.comum, programacaoRouters);

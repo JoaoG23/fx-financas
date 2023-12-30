@@ -1,6 +1,6 @@
 import { Prisma } from "@prisma/client";
 
-export class ElementoDto implements Prisma.elementosCreateManyInput {
+export class ElementoDto {
   id?: string;
   descricao: string;
   usuariosId?: string;
