@@ -26,4 +26,11 @@ export class UsuarioValidacaoServices
       throw new Error("Esse nome de login Já existe");
     }
   }
+  async verificarSeExisteTelefone(telefone: string) {
+    const existeTelefone = await this.usuariosRepository.findByTelefone(telefone);
+
+    if (existeTelefone) {
+      throw new Error("Esse telefone Já existe");
+    }
+  }
 }

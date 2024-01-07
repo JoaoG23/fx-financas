@@ -10,6 +10,7 @@ import { SubtiposRepository } from "../../subtipos/subtipos.repository/subtipos.
 
 import { TiposRepositoryInterface } from "../../tipos/tipos.repository/InterfaceTiposRepository";
 import { TiposRepository } from "../../tipos/tipos.repository/tipos.repository";
+import { removerArquivo } from "../../utils/arquivos/removerArquivo/removerArquivo";
 
 import { UsuarioDto } from "../usuario.dto/Usuario.dto";
 
@@ -42,15 +43,22 @@ class UsuariosServices {
     await this.validacoesServices.verificarSeNaoExisteId(id);
     return await this.usuariosRepository.updateById(id, usuario);
   }
-  async criar(usuario: UsuarioDto) {
-    const { email, username } = usuario;
-
-    await this.validacoesServices.verificarSeExisteEmail(email);
-    await this.validacoesServices.verificarSeExisteUsername(username);
-    return await this.usuariosRepository.save(usuario);
+  async atualizarImageUsuarioPorId(
+    id: string,
+    imagemUsuario: Pick<UsuarioDto, "caminho_imagem">
+  ) {
+    await this.validacoesServices.verificarSeNaoExisteId(id);
+    return await this.usuariosRepository.updateById(id, imagemUsuario);
   }
 
+
   async deletarPorId(id: string) {
+    const usuario: UsuarioDto = await this.usuariosRepository.findById(id);
+    const caminhoImagem = usuario?.caminho_imagem;
+
+    const imagemARemover = `uploads/usuarios/${caminhoImagem}`;
+    await removerArquivo(imagemARemover);
+
     await this.validacoesServices.verificarSeNaoExisteId(id);
 
     await this.subtiposRepository.deleteAllByUsuariosId(id);

@@ -31,6 +31,30 @@ class UsuarioController {
     }
   }
 
+  async buscarImagemPerfilPorId(req: Request, res: Response) {
+    const { id } = req.params;
+    try {
+      res.sendFile(`uploads/usuarios/${id}`, { root: "." });
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async uploadImagemPerfilPorId(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const fileName = req.file?.filename;
+
+      const imagemUsuario = {
+        caminho_imagem: fileName,
+      };
+      await usuarioService.atualizarImageUsuarioPorId(id, imagemUsuario);
+      res.json(`Imagem de perfil salva com sucesso com ${fileName}`);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
   async atualizarPorId(req: Request, res: Response) {
     const { id } = req.params;
     try {

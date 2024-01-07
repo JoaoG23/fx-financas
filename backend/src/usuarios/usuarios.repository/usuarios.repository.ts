@@ -21,21 +21,27 @@ export class UsuariosRepository implements UsuariosRepositoryInterface {
       where: { email },
     });
   }
+  async findByTelefone(telefone: string) {
+    return await this.prisma.usuarios.findUnique({
+      where: { telefone },
+    });
+  }
   async findById(id: string) {
     return await this.prisma.usuarios.findUnique({
       where: { id },
       select: {
-        nome:true,
-        username:true,
-        email:true,
-        telefone:true,
-      }
+        nome: true,
+        username: true,
+        email: true,
+        telefone: true,
+        caminho_imagem: true,
+      },
     });
   }
 
   async save(usuario: UsuarioDto) {
     return await this.prisma.usuarios.create({
-      data:usuario,
+      data: usuario,
     });
   }
 

@@ -38,6 +38,18 @@ export class AuthenticacaoService {
       throw new ConflictError("", "Esse email já está cadastrado no sistema");
     }
   }
+  async validarExisteTelefone(telefone: string) {
+    const existeTelefone = await this.usuariosRepository.findByTelefone(
+      telefone
+    );
+
+    if (existeTelefone) {
+      throw new ConflictError(
+        "",
+        "Esse telefone já está cadastrado no sistema"
+      );
+    }
+  }
 
   async validarExisteUsername(username: string) {
     const existeUsername = await this.usuariosRepository.findByUsername(
@@ -82,10 +94,11 @@ export class AuthenticacaoService {
   }
 
   async registar(usuario: AutenticacaoUsuarioDto) {
-    const { email, username, senha } = usuario;
+    const { email, username, senha, telefone } = usuario;
 
     await this.validarExisteEmail(email);
     await this.validarExisteUsername(username);
+    await this.validarExisteTelefone(telefone);
 
     usuario.senha = criptografia.crptografarSenha(senha);
 
