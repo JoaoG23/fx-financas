@@ -9,11 +9,7 @@ import {
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
-import {
-  BiBookmarkAlt,
-  BiCartDownload,
-  BiCategoryAlt,
-} from "react-icons/bi";
+import { BiBookmarkAlt, BiCartDownload, BiCategoryAlt } from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 import { tiposFluxosCaixa, categorias } from "./data/listLinks";
@@ -24,18 +20,20 @@ import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 import { limparConfiguracoesPaginaPorChave } from "../../../utils/paginacao/limparConfiguracoesPaginaPorChave/limparConfiguracoesPaginaPorChave";
+import { ImagemPerfil } from "../../images/ImagePerfil";
 
 const Sidebar: React.FC = () => {
-  const { nomeUsuario } = buscaDadoUsuarioNaSessao();
+  const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
+  console.log("🚀 ~ imagePerfil:", imagePerfil);
 
   return (
     <SideBar.Container>
-      <SideBar.Item>
-        <FaUserAlt size={20} />
+      <SideBar.PerfilImagem>
+        <ImagemPerfil srcImage={imagePerfil!} />
         <Link to={"/usuario_logado"}>
           <p>Olá {nomeUsuario}!</p>
         </Link>
-      </SideBar.Item>
+      </SideBar.PerfilImagem>
 
       <SideBar.Item>
         <BsFillPieChartFill />

@@ -1,4 +1,19 @@
 import styled from "styled-components";
+export const PerfilImagem = styled.div`
+  /* background-color: #fff; */
+  border-radius: 4em;
+
+  display: flex;
+  padding: 5px;
+
+  align-items: center;
+  gap: 1em;
+
+  a {
+    color: white;
+    font-weight: 700;
+  }
+`;
 
 export const Container = styled.div`
   width: 15vw;

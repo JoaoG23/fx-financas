@@ -80,6 +80,7 @@ export class AuthenticacaoService {
     const logado = {
       id: existeUsername.id,
       nome: existeUsername.nome,
+      caminho_imagem: existeUsername.caminho_imagem,
     };
 
     const tokenRecebido = await autenticacao.gerarTokenSessao(logado);
