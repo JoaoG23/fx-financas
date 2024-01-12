@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
-import { useForm } from "react-hook-form";
 import React, { useState } from "react";
 import { useMutation } from "react-query";
 import { toast } from "react-toastify";
@@ -42,13 +41,6 @@ export const MundacaImagemPerfil: React.FC = () => {
       },
     }
   );
-
-  const {
-    register,
-    reset,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({});
 
   return (
     <Container>

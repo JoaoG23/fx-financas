@@ -13,13 +13,13 @@ import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 import { tiposFluxosCaixa, categorias } from "./data/listLinks";
 
+import { ImagemPerfil } from "./ImagePerfil";
 import * as SideBar from "./styles";
 
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 import { limparConfiguracoesPaginaPorChave } from "../../../utils/paginacao/limparConfiguracoesPaginaPorChave/limparConfiguracoesPaginaPorChave";
-import { ImagemPerfil } from "./ImagePerfil";
 
 const Sidebar: React.FC = () => {
   const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
@@ -27,7 +27,7 @@ const Sidebar: React.FC = () => {
   return (
     <SideBar.Container>
       <SideBar.PerfilImagem>
-        <ImagemPerfil srcImage={imagePerfil!} />
+        <ImagemPerfil caminho_imagem={imagePerfil!} />
         <Link to={"/usuario_logado"}>
           <p>Olá {nomeUsuario}!</p>
         </Link>

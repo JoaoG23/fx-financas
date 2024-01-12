@@ -5,26 +5,20 @@ import { Perfil } from "./styles";
 
 import { buscarImagemPerfilPorCaminho } from "./api";
 
-import semImage from "./icon_sem_image.svg";
 
 type Props = {
-  srcImage: string;
+  caminho_imagem: string;
 };
 
-export const ImagemPerfil: React.FC<Props> = ({ srcImage }) => {
-  const { data: caminhoLogomarca } = useQuery(
-    ["magem-perfil", srcImage],
-    () => buscarImagemPerfilPorCaminho(srcImage || ""),
-    {
-      enabled: false,
-      staleTime: Infinity,
-    }
+export const ImagemPerfil: React.FC<Props> = ({ caminho_imagem }) => {
+  const { data: caminhoLogomarca } = useQuery(["imagem-perfil", caminho_imagem], () =>
+  buscarImagemPerfilPorCaminho(caminho_imagem)
   );
 
   return (
     <div>
       <Perfil>
-        <img src={caminhoLogomarca || semImage} alt="Profile" />
+        <img src={caminhoLogomarca} alt="Profile" />
       </Perfil>
     </div>
   );

@@ -16,6 +16,7 @@
     "tests",
     "docs",
     "src/**/*.test.ts",
+    "src/**/*.spec.ts",
     "src/__test__",
     "**vitest.config.ts",
     "database-migrations"
