@@ -8,7 +8,6 @@ import {
 } from "react-icons/bs";
 import { IoIosArrowDown } from "react-icons/io";
 import { IoLogOut } from "react-icons/io5";
-import { FaUserAlt } from "react-icons/fa";
 import { BiBookmarkAlt, BiCartDownload, BiCategoryAlt } from "react-icons/bi";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
@@ -20,11 +19,10 @@ import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 import { limparConfiguracoesPaginaPorChave } from "../../../utils/paginacao/limparConfiguracoesPaginaPorChave/limparConfiguracoesPaginaPorChave";
-import { ImagemPerfil } from "../../images/ImagePerfil";
+import { ImagemPerfil } from "./ImagePerfil";
 
 const Sidebar: React.FC = () => {
   const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
-  console.log("🚀 ~ imagePerfil:", imagePerfil);
 
   return (
     <SideBar.Container>

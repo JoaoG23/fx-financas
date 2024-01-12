@@ -2,18 +2,22 @@ import { Link } from "react-router-dom";
 import { IoPersonRemoveSharp } from "react-icons/io5";
 import React from "react";
 
-import { Header, Titulo, UsuarioText } from "./styles";
+
+import { Container, Header, Titulo, UsuarioText } from "./styles";
 
 import { Formulario } from "./components/Formulario";
 import { SecondaryButton } from "../../../Components/Buttons/SecondaryButton/ButtonDark";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { ImagemPerfil } from "./components/ImagePerfil";
+import { MundacaImagemPerfil } from "./components/MudancaImagemPerfil";
 
 export const VisualizarUsuarioLogado: React.FC = () => {
-  const { nomeUsuario, idUsuario } = buscaDadoUsuarioNaSessao();
+  const { nomeUsuario, idUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
   return (
-    <main>
+    <Container>
       <Header>
+        <ImagemPerfil caminho_image={imagePerfil!} />
         <Titulo>
           Seja bem-vindo a sua área <UsuarioText>{nomeUsuario}</UsuarioText>
         </Titulo>
@@ -24,7 +28,8 @@ export const VisualizarUsuarioLogado: React.FC = () => {
           </SecondaryButton>
         </Link>
       </Header>
+      <MundacaImagemPerfil />
       <Formulario />
-    </main>
+    </Container>
   );
 };

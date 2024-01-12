@@ -4,8 +4,11 @@ export const Campos = styled.section`
   display: grid;
   gap: 1em;
 
-  grid-template-columns: 20% auto;
+  grid-template-columns: 1fr 2fr;
 
+  @media screen and (max-width: 1064px) {
+    grid-template-columns: auto;
+  }
   @media screen and (max-width: 764px) {
     grid-template-columns: auto;
   }

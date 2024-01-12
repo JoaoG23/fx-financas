@@ -4,6 +4,7 @@ export type Usuario = {
   username?: string;
   senha?: string;
   email?: string;
+  caminho_imagem?: string;
   telefone?: string;
   createdAt?: Date;
   updateAt?: Date;

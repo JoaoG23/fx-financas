@@ -48,8 +48,9 @@ class UsuarioController {
       const imagemUsuario = {
         caminho_imagem: fileName,
       };
+
       await usuarioService.atualizarImageUsuarioPorId(id, imagemUsuario);
-      res.json(`Imagem de perfil salva com sucesso com ${fileName}`);
+      res.json(fileName);
     } catch (error) {
       res.status(400).json(error.message);
     }

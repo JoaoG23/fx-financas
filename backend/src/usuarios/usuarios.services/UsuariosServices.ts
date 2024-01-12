@@ -47,10 +47,25 @@ class UsuariosServices {
     id: string,
     imagemUsuario: Pick<UsuarioDto, "caminho_imagem">
   ) {
-    await this.validacoesServices.verificarSeNaoExisteId(id);
-    return await this.usuariosRepository.updateById(id, imagemUsuario);
-  }
+    const usuario: UsuarioDto = await this.usuariosRepository.findById(id);
 
+    // Buscar caminho da imagem anterior
+    const imagemAnterior: string = usuario?.caminho_imagem;
+
+    const imagemARemover = `uploads/usuarios/${imagemAnterior}`;
+
+    await this.validacoesServices.verificarSeNaoExisteId(id);
+
+    // Adiciona imagem nova
+    const usuarioAtualizado = await this.usuariosRepository.updateById(
+      id,
+      imagemUsuario
+    );
+
+    // Remover a imagem anterior
+    await removerArquivo(imagemARemover);
+    return usuarioAtualizado;
+  }
 
   async deletarPorId(id: string) {
     const usuario: UsuarioDto = await this.usuariosRepository.findById(id);
