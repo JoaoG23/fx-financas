@@ -6,7 +6,7 @@ export const Perfil = styled.div`
   height: 70px;
   overflow: hidden;
   border-radius: 50%;
-  border: 6px solid #42d7a8;
+  border: 2px solid #42d7a8;
 
   img {
     width: 100%;

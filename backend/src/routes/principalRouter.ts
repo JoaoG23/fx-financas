@@ -19,6 +19,7 @@ import tipoDespesaRouters from "../tiposDespesas/tiposDespesas.routers/tiposDesp
 import estatisticasPrincipais from "../estatisticasPrincipais/estatisticas.routers/estatisticas.routers";
 import elementosEstatisitcas from "../estatisticas/elementosEstatisticas/elementosEstatisticas.routers/ElementosEstatisticas.routers";
 import tiposEstatisticasRouters from "../estatisticas/tiposEstatisticas/tiposEstatisticas.routers/TiposEstatisticas.routers";
+import subtiposEstatisticasRouters from "../estatisticas/subtiposEstatisticas/subtiposEstatisticas.routers/SubtiposEstatisticas.routers";
 import subelementosEstatisticasRouters from "../estatisticas/subelementosEstatisticas/subelementosEstatisticas.routers/SubelementosEstatisticas.routers";
 import tiposDespesasEstatisticasRouters from "../estatisticas/tiposDespesasEstatisticas/tiposDespesasEstatisticas.routers/TiposDespesasEstatisticas.routers";
 
@@ -34,6 +35,8 @@ routers.use("/subtipos", auth.comum, subtiposRouters);
 routers.use("/locais", auth.comum, locaisRouters);
 routers.use("/tipos_despesas", auth.comum, tipoDespesaRouters);
 
+
+// --Rotas Estatisticas 
 routers.use("/estatisticas", auth.comum, estatisticasPrincipais);
 routers.use("/estatistica/elementos", auth.comum, elementosEstatisitcas);
 routers.use(
@@ -42,6 +45,7 @@ routers.use(
   subelementosEstatisticasRouters
 );
 routers.use("/estatistica/tipos", auth.comum, tiposEstatisticasRouters);
+routers.use("/estatistica/subtipos", auth.comum, subtiposEstatisticasRouters);
 routers.use(
   "/estatistica/tipos_despesas",
   auth.comum,

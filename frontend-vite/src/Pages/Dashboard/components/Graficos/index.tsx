@@ -11,6 +11,7 @@ import { DespesasTiposMesGrafico } from "./components/despesas/DespesasTiposMesG
 import { DespesasSubelementosMesGrafico } from "./components/despesas/DespesasSubelementosMesGrafico";
 import { DespesasTiposDespesasMesGrafico } from "./components/despesas/DespesasTipoDespesaGrafico";
 import { Card } from "../../../../Components/Card";
+import { DespesasSubtiposMesGrafico } from "./components/despesas/DespesasSubtiposMesGraficos";
 
 export const Graficos: React.FC = () => {
   const mes = useMesStore((state) => state?.mes!);
@@ -34,6 +35,9 @@ export const Graficos: React.FC = () => {
         </Card>
         <Card light>
           <DespesasTiposMesGrafico mesSelecionado={mes} />
+        </Card>
+        <Card light>
+          <DespesasSubtiposMesGrafico mesSelecionado={mes} />
         </Card>
       </Grafico.SegundaLinha>
     </Grafico.Container>

@@ -29,7 +29,7 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
         show: true,
         
         showForSingleSeries: true,
-        customLegendItems: ["Despesa atual", "Saldo Atual"],
+        customLegendItems: ["Despesa", "Saldo Atual"],
       },
     },
   };

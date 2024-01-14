@@ -2,7 +2,7 @@ import React from "react";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
-import { buscarDespesaMesPorTiposUsuarios } from "./api";
+import { buscarDespesaMesPorSubtiposUsuarios } from "./api";
 
 import { TipoDespesa } from "./types/TipoDespesa";
 
@@ -17,13 +17,13 @@ import { Container } from "./styles";
 type Props = {
   mesSelecionado: number;
 };
-export const DespesasTiposMesGrafico: React.FC<Props> = ({
+export const DespesasSubtiposMesGrafico: React.FC<Props> = ({
   mesSelecionado,
 }) => {
   const mes = mesSelecionado;
   const { data, isLoading } = useQuery(
-    ["despesas-tipos-mes", mes],
-    () => buscarDespesaMesPorTiposUsuarios(mes),
+    ["despesas-subtipos-mes", mes],
+    () => buscarDespesaMesPorSubtiposUsuarios(mes),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -38,7 +38,7 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
 
       const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
       const serieDespesa = {
-        x: despesa?.tipo, // Label
+        x: despesa?.subtipo, // Label
         y: gastoMes, // valor
         goals: [
           {
@@ -57,7 +57,7 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
     <Container>
       {isLoading && <SpinnerCarregamento />}
       <BarraHorizontalMarcadoresGrafico
-        titulo={"Tipos despesas por mês"}
+        titulo={"Subtipos despesas por mês"}
         data={despesas}
       />
     </Container>

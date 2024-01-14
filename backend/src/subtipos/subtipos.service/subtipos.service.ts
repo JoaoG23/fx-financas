@@ -7,16 +7,16 @@ import { SubtiposRepository } from "../subtipos.repository/subtipos.repository";
 class SubtiposServices {
   constructor(private subtiposRepository: SubtiposRepositoryInterface) {}
 
-  async listarTodosPorTiposId(tiposId: string) {
-    return this.subtiposRepository.findAllByTiposId(tiposId);
-  }
-
   async listaUmPorId(id: string) {
-    return this.subtiposRepository.findById(id);
+    return await this.subtiposRepository.findById(id);
   }
 
   async listaPorTodosUsuariosId(usuariosId: string) {
-    return this.subtiposRepository.findAllByUsuariosId(usuariosId);
+    return await this.subtiposRepository.findAllByUsuariosId(usuariosId);
+  }
+
+  async listaPorTodosTiposId(tiposId: string) {
+    return await this.subtiposRepository.findAllByTiposId(tiposId);
   }
 
   async listarPorTiposPorPagina(
@@ -24,7 +24,7 @@ class SubtiposServices {
     quantidadeItemPagina: number,
     tiposId: string
   ) {
-    return this.subtiposRepository.findAllByPageAndTiposId(
+    return await this.subtiposRepository.findAllByPageAndTiposId(
       numeroPagina,
       quantidadeItemPagina,
       tiposId
@@ -32,7 +32,7 @@ class SubtiposServices {
   }
 
   async criar(data: SubtiposDto) {
-    return this.subtiposRepository.save(data);
+    return await this.subtiposRepository.save(data);
   }
 
   async atualizarUmPorId(id: string, dadosNovos: SubtiposDto) {

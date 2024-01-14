@@ -11,12 +11,17 @@ import { ModalSucesso } from "../../../../../../Components/Modais/ModalSucesso";
 import { ModalCarregando } from "../../../../../../Components/Modais/ModalCarregando";
 
 import { adicionarSubtipo } from "../../api";
+
 import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
+
 import { Subtipo } from "../../../../../../types/Subtipo";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
 
   const { id } = useParams();
 
@@ -48,6 +53,7 @@ export const Formulario: React.FC = () => {
           const novoSubtipo = {
             ...subtipo,
             tiposId: id,
+            usuariosId: idUsuario,
           };
           mutate(novoSubtipo as any);
         })}

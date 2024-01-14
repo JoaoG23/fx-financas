@@ -57,7 +57,7 @@ export const DespesasSubelementosMesGrafico: React.FC<Props> = ({
     <Container>
       {isLoading && <SpinnerCarregamento />}
       <BarraHorizontalMarcadoresGrafico
-        titulo={"Despesas por subelementos mês"}
+        titulo={"Subelementos despesas por mês"}
         data={despesas}
       />
     </Container>

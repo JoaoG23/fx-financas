@@ -29,11 +29,11 @@ export class SubtiposRepository implements SubtiposRepositoryInterface {
   }
 
   async deleteById(id: string) {
-    return this.prisma.subtipos.delete({
+    return await this.prisma.subtipos.delete({
       where: { id },
     });
   }
-  
+
   async deleteAllByUsuariosId(usuariosId: string) {
     return await this.prisma.subtipos.deleteMany({
       where: { usuariosId },
@@ -41,11 +41,13 @@ export class SubtiposRepository implements SubtiposRepositoryInterface {
   }
 
   async findAllByUsuariosId(usuariosId: string) {
-    return await this.prisma.subtipos.findMany({
+    const subtipos = await this.prisma.subtipos.findMany({
       where: {
         usuariosId,
       },
     });
+
+    return subtipos;
   }
 
   async findAllByPageAndTiposId(

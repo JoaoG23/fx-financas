@@ -14,12 +14,15 @@ import { buscarUmSubtipoPorId, editarSubtipoPorId } from "../../api";
 import { navegarAtePaginaDepoisTempo } from "../../../../../../utils/navegarAtePaginaDepoisTempo/navegarAtePaginaDepoisTempo";
 
 import { Subtipo } from "../../../../../../types/Subtipo";
+import { buscaDadoUsuarioNaSessao } from "../../../../../../utils/buscaDadoUsuarioNaSessao";
 
 export const Formulario: React.FC = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 
   const { id } = useParams();
+
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
 
   const { isLoading: isCarregandosubtipoAnterior, data } = useQuery(
     ["ver-um-subtipo", id],
@@ -67,7 +70,7 @@ export const Formulario: React.FC = () => {
     <>
       <CamposFormulario
         onSubmit={handleSubmit((subtipo: Subtipo) => {
-          mutate(subtipo);
+          mutate({ ...subtipo, usuariosId: idUsuario! });
         })}
         register={register}
         control={control}
