@@ -1,14 +1,15 @@
 import React from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-import { FaUser } from 'react-icons/fa'
+import { FaUser } from "react-icons/fa";
 import { BsFillArrowRightCircleFill } from "react-icons/bs";
 
-import { Container, ImageContainer, VoltarText, TextLimited } from "./styles";
+import { Container, ImageContainer, VoltarText, TextLimited, VoltarContainer } from "./styles";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { ImagemPerfil } from "./components/ImagePerfil";
 
 const Header: React.FC = () => {
-  const { nomeUsuario } = buscaDadoUsuarioNaSessao();
+  const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
 
   const navigate = useNavigate();
   function voltarPaginaAnterior() {
@@ -18,20 +19,20 @@ const Header: React.FC = () => {
     <Container>
       <Link to={"/usuario_logado"}>
         <ImageContainer>
-        <FaUser/>
+          <ImagemPerfil caminho_imagem={imagePerfil!} />
           <TextLimited>{nomeUsuario}</TextLimited>
         </ImageContainer>
       </Link>
       <p>Fluxos</p>
-      <ImageContainer
+      <VoltarContainer
         role={"button"}
         onClick={() => {
           voltarPaginaAnterior();
         }}
       >
         <VoltarText>Voltar</VoltarText>
-        <BsFillArrowRightCircleFill/>
-      </ImageContainer>
+        <BsFillArrowRightCircleFill />
+      </VoltarContainer>
     </Container>
   );
 };

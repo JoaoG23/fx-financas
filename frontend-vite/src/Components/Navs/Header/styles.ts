@@ -4,7 +4,7 @@ export const Container = styled.div`
   width: 80vw;
   height: 4vh;
 
-  border-radius: 2em;
+  border-radius: 10px;
   display: flex;
   align-items: center;
 
@@ -14,12 +14,12 @@ export const Container = styled.div`
   top: 1em;
   right: 1em;
 
-  padding: 1em;
+  padding: 16px;
 
   justify-content: space-between;
 
   background-color: #0acc8e;
-  box-shadow: 2px 2px 4px #00000027;
+  box-shadow: 2px 2px 1px rgb(130, 130, 130,0.2);
   color: #fff;
   a {
     color: #fff;
@@ -41,6 +41,20 @@ export const TextLimited = styled.p`
 `;
 
 export const ImageContainer = styled.div`
+  border-radius: 2em;
+  display: flex;
+
+  gap: 0.3em;
+  padding: 3px;
+
+  align-items: center;
+  /* :hover {
+    transition: 0.3s;
+    background-color: #fff;
+    color: #0acc8e;
+  } */
+`;
+export const VoltarContainer = styled.div`
   border-radius: 2em;
   display: flex;
 

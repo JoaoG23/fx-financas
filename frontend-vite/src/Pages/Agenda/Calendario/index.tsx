@@ -50,7 +50,7 @@ export const Calendario = () => {
   );
 
   const { mutate: atualizarDataItemMutate, isLoading } = useMutation(
-    async (values: any) => await atualizarHorarioEvento(values),
+    async (evento: any) => await atualizarHorarioEvento(evento),
     {
       onError: (error: any) => {
         toast.error(`Ops! : ${error.response.data}`);
@@ -81,8 +81,8 @@ export const Calendario = () => {
     [setAgendamento]
   );
 
-  const eventoAoClicarNaTarefaCalendario = useCallback((event: any) => {
-    navigate(`/fluxocaixa/editar/${event.id}`);
+  const eventoAoClicarNaTarefaCalendario = useCallback((evento: any) => {
+    navigate(`/fluxocaixa/editar/${evento.id}`);
   }, []);
 
   const { messages } = useMemo<any>(

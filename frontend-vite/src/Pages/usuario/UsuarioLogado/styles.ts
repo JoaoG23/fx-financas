@@ -5,11 +5,15 @@ export const Titulo = styled.h2`
   margin-bottom: 1.5em;
 `;
 export const Container = styled.main`
- width: 70%;
- display: grid;
+  width: 70%;
+  display: grid;
 
- align-content: center;
- justify-content: center;
+  align-content: center;
+  justify-content: center;
+
+  @media screen and (max-width: 1064px) {
+    grid-template-columns: 100%;
+  }
 `;
 
 export const Header = styled.section`
@@ -17,7 +21,13 @@ export const Header = styled.section`
   gap: 1em;
   /* justify-content: space-between; */
   align-items: center;
+  @media screen and (max-width: 1064px) {
+    flex-direction: column;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    align-items: start;
+  }
 `;
 export const UsuarioText = styled.h2`
-  color: #5968DC;
+  color: #5968dc;
 `;

@@ -4,6 +4,7 @@ export const Container = styled.div`
   display: flex;
   align-items: center;
   gap: 1em;
+  
 `;
 export const DragDropImage = styled.div`
   display: flex;

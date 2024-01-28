@@ -18,6 +18,7 @@ import * as SideBar from "./styles";
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
 import { SecondaryButton } from "../../Buttons/SecondaryButton/ButtonDark";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { ImagemPerfil } from "../Sidebar/ImagePerfil";
 
 type Props = {
   setMostrarSidebar: any;
@@ -28,7 +29,7 @@ export const MobileSidebar: React.FC<Props> = ({
   mostrarSidebar,
   setMostrarSidebar,
 }) => {
-  const { nomeUsuario } = buscaDadoUsuarioNaSessao();
+  const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
   const esconderSidebar = () => setMostrarSidebar(false);
   return (
     <>
@@ -38,7 +39,7 @@ export const MobileSidebar: React.FC<Props> = ({
             <BsX size={60} />
           </SideBar.Exit>
           <SideBar.Item>
-            <FaUserAlt color="#fff" size={20} />
+            <ImagemPerfil caminho_imagem={imagePerfil!} />
             <Link to={"/usuario_logado"}>
               <p>Olá {nomeUsuario}!</p>
             </Link>
