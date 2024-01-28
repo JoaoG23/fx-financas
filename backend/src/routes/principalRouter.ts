@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import swaggerUi from "swagger-ui-express";
-import swaggerDocs from "../../swagger.json";
+import swaggerDocs from "../swagger.json";
 
 import auth from "./Auth";
 

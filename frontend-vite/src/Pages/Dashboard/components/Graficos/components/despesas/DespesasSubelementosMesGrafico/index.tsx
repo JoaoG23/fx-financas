@@ -42,7 +42,7 @@ export const DespesasSubelementosMesGrafico: React.FC<Props> = ({
         y: gastoMes, // valor
         goals: [
           {
-            name: "Limite Gastos",
+            name: "Saldo Atual",
             value: despesa?.limiteGasto || 0,
             strokeWidth: 10,
             strokeHeight: 5,

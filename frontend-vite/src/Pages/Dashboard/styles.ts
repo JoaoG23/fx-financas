@@ -41,6 +41,9 @@ export const Caixa = styled.div`
   align-items: center;
   justify-content: center;
   gap: 1em;
-  padding: 1em;
+  padding: 0.1em;
   text-align: center;
+`;
+export const FontDespesa = styled.h2`
+  color: #f78187;
 `;

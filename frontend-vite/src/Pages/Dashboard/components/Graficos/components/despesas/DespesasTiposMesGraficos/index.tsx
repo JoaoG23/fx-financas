@@ -31,10 +31,10 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
     }
   );
 
-  const despesasData: TipoDespesa[] = data?.data;
+  const despesasData: TipoDespesa[] = data?.data!;
   const despesas: SeriesLabel[] | any =
     despesasData?.map((despesa: TipoDespesa) => {
-      const valorInteiro = parseFloat(despesa.despesas!);
+      const valorInteiro = parseFloat(despesa?.despesas!);
 
       const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
       const serieDespesa = {
@@ -42,7 +42,7 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
         y: gastoMes, // valor
         goals: [
           {
-            name: "Limite Gastos",
+            name: "Saldo Atual",
             value: despesa?.limiteGasto || 0,
             strokeWidth: 10,
             strokeHeight: 5,

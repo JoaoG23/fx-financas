@@ -15,6 +15,8 @@ import { ModalCarregando } from "../../Components/Modais/ModalCarregando";
 import { Graficos } from "./components/Graficos";
 import { MesSelect } from "../../Components/selects/MesSelect";
 import { converterValorEmMoedaBR } from "../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
+import RedFont from "../../Components/FontColor/RedFont";
+import { FontDespesa } from "./styles";
 
 export const Dashboard = () => {
   const { data: dataCabecalho, isLoading: isLoadingCabecalho } = useQuery(
@@ -32,7 +34,7 @@ export const Dashboard = () => {
   const saldoAtual = dataCabecalho?.[2].data || 0;
 
   const receitasConvertida = converterValorEmMoedaBR(totalReceitasEsteMes)
-  const despesasConvertida = converterValorEmMoedaBR(totalDespesasEsteMes)
+  const despesasConvertida = converterValorEmMoedaBR(Math.abs(totalDespesasEsteMes))
   const saldoAtualConvertida = converterValorEmMoedaBR(saldoAtual)
 
   const tamanhoIcones = 60;
@@ -54,9 +56,9 @@ export const Dashboard = () => {
           <DashboardStyle.Caixa>
             <div>
               <h3>Despesas mês</h3>
-              <h2>{despesasConvertida} </h2>
+              <FontDespesa>{despesasConvertida} </FontDespesa>
             </div>
-            <IoBagHandle size={tamanhoIcones} color="#6979F8" />
+            <IoBagHandle size={tamanhoIcones} color="#F78187" />
           </DashboardStyle.Caixa>
         </Card>
 
@@ -75,7 +77,7 @@ export const Dashboard = () => {
               <strong>Selecione um mês</strong>
               <MesSelect />
             </div>
-            <MdOutlineCalendarMonth size={tamanhoIcones} color="#F78187" />
+            <MdOutlineCalendarMonth size={tamanhoIcones} color="#6979F8" />
           </DashboardStyle.Caixa>
         </Card>
       </DashboardStyle.Cabecalho>
