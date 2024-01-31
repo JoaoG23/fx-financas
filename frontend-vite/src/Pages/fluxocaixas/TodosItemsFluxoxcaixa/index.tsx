@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import * as Fluxo from "./styles";
-import { useMutation, useQuery } from "react-query";
+import { useQuery } from "react-query";
 import { useNavigate } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { toast } from "react-toastify";
@@ -16,7 +16,6 @@ import { LinhaItemFluxocaixa } from "../ComponentesParaTodos/tabela/Linha";
 import ButtonDefault from "../../../Components/Buttons/ButtonDefault/ButtonDark";
 import { FormularioPesquisa } from "../ComponentesParaTodos/campos/FormularioPesquisa";
 
-
 import { buscarConfiguracoesPaginaPorChave } from "../../../utils/paginacao/buscarConfiguracoesPaginaPorChave/buscarConfiguracoesPaginaPorChave";
 
 import { ItemFluxoCaixa } from "../../../types/ItemFluxoCaixa";
@@ -27,6 +26,7 @@ import { PaginacaoFluxoCaixaCache } from "../../../types/fluxocaixa/PaginacaoFlu
 export const TodosItemsFluxoCaixa: React.FC = () => {
   const navigate = useNavigate();
 
+  // Paginacao ---
   const chaveFluxoCaixa: string = "fx-finances-fluxocaixa-todos";
 
   const configuracaoPagina: PaginacaoFluxoCaixaCache =
@@ -38,8 +38,9 @@ export const TodosItemsFluxoCaixa: React.FC = () => {
 
   const [criteriosBusca, setCriteriosBusca] =
     useState<CriteriosPesquisaItemFluxoCaixa>(
-      configuracaoPagina?.criteriosBusca || {}
+      configuracaoPagina?.criteriosBusca || { entradaOuSaidaOuTodos: "todos" }
     );
+
   const comecarPelaPrimeiraPagina = () => setPagina(1);
 
   const { data, isLoading } = useQuery(

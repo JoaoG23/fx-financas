@@ -9,6 +9,7 @@ type Props = {
   defaultValue?: string | boolean;
   disabled?: boolean;
   required?: boolean;
+  checked?: boolean;
 };
 
 export const CheckBoxRadioDefault: React.FC<Props> = ({
@@ -17,12 +18,14 @@ export const CheckBoxRadioDefault: React.FC<Props> = ({
   register,
   disabled = false,
   required = true,
+  checked,
 }) => {
   return (
     <Checkbox.Container>
       <Checkbox.Radio
         type="radio"
         readOnly={disabled}
+        checked={checked}
         defaultValue={defaultValue}
         {...register(name, { required: required })}
       />

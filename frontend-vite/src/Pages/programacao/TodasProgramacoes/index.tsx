@@ -35,7 +35,7 @@ export const TodosProgramacoes: React.FC = () => {
 
   const [criteriosBusca, setCriteriosBusca] =
     useState<CriteriosPesquisaItemFluxoCaixa>(
-      configuracaoPagina?.criteriosBusca || {}
+      configuracaoPagina?.criteriosBusca || { entradaOuSaidaOuTodos: "todos" }
     );
 
   const { data, isLoading } = useQuery(

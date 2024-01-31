@@ -71,15 +71,6 @@ export const Formulario: React.FC = () => {
     }
   );
 
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm();
-
   const dadosCarregados = {
     ...itemProgramacao,
     entradaSaida: verificarSeNegativoERetornaEntradaOuSaida(
@@ -87,12 +78,22 @@ export const Formulario: React.FC = () => {
     ),
     valor: removerSimboloMenosDoValorNegativo(itemProgramacao?.valor!),
   };
+  const {
+    register,
+    handleSubmit,
+    control,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    values: dadosCarregados,
+  });
 
   useEffect(() => {
     selecionarElemento(itemProgramacao?.elementosId!);
     selecionarSubElemento(itemProgramacao?.subelementosId!);
     selecionarTipo(itemProgramacao?.tiposId!);
-    reset(dadosCarregados);
+    // reset(dadosCarregados);
   }, [data]);
 
   return (

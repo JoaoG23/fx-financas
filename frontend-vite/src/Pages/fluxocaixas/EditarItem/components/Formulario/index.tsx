@@ -71,16 +71,6 @@ export const Formulario: React.FC = () => {
       },
     }
   );
-
-  const {
-    register,
-    handleSubmit,
-    control,
-    reset,
-    setValue,
-    formState: { errors },
-  } = useForm();
-
   const dadosCarregados = {
     ...itemFluxoCaixa,
     data_insersao: transformarDatetimeIsoParaExibicaoEmInput(
@@ -92,11 +82,20 @@ export const Formulario: React.FC = () => {
     valor: removerSimboloMenosDoValorNegativo(itemFluxoCaixa?.valor!),
   };
 
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm({
+    values: dadosCarregados,
+  });
+
   useEffect(() => {
     selecionarElemento(itemFluxoCaixa?.elementosId!);
     selecionarSubElemento(itemFluxoCaixa?.subelementosId!);
     selecionarTipo(itemFluxoCaixa?.tiposId!);
-    reset(dadosCarregados);
   }, [data]);
 
   return (

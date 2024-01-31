@@ -23,11 +23,14 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
       chart: {
         type: "bar",
       },
+      dataLabels: {
+        enabled: true,
+      },
       colors: ["#0acc8e", "#FFA26B"],
 
       legend: {
         show: true,
-        
+
         showForSingleSeries: true,
         customLegendItems: ["Despesa", "Saldo Atual"],
       },

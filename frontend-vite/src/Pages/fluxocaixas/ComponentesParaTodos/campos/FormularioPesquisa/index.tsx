@@ -8,7 +8,6 @@ import * as Form from "./styles";
 
 import { InputDefault } from "../../../../../Components/Inputs/InputDefault";
 import { SecondaryButton } from "../../../../../Components/Buttons/SecondaryButton/ButtonDark";
-import { SelectEntradaSaidaTodos } from "../../../../../Components/selects/SelectEntradaSaidaTodos";
 import { GreenCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioGreen";
 import { RedCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioRed";
 import { CheckBoxRadioDefault } from "../../../../../Components/checkboxs/CheckBoxRadioDefault";
