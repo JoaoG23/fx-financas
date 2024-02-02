@@ -93,7 +93,6 @@ export const Formulario: React.FC = () => {
     selecionarElemento(itemProgramacao?.elementosId!);
     selecionarSubElemento(itemProgramacao?.subelementosId!);
     selecionarTipo(itemProgramacao?.tiposId!);
-    // reset(dadosCarregados);
   }, [data]);
 
   return (
