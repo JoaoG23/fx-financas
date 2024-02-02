@@ -42,6 +42,8 @@ node_modules/
 jspm_packages/
 dist/
 
+backend/uploads/usuarios/*
+
 # TypeScript v1 declaration files
 typings/
 
