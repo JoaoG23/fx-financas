@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "prod": "dotenv -e .env node dist/src/server.js",
+    "prod": "dotenv -e .env node dist/src/server.js ",
     "build": "tsc",
     "update:db:dev": "dotenv -e .env npx prisma db push",
     "update:db:prod": "dotenv -e .env.prod npx prisma db push",
@@ -12,7 +12,7 @@
     "test:end2end": "dotenv -e .env.test npx vitest api.e2e",
     "unitest": "dotenv -e .env.test npx vitest ",
     "dev": "nodemon --exec ts-node --files src/server.ts",
-    "start": "dotenv -e .env node dist/src/server.js"
+    "start": "ts-node ./src/server.ts"
   },
   "keywords": [],
   "author": "",
