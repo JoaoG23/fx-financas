@@ -29,13 +29,13 @@ export const AreaGrafico: React.FC<Props> = ({
 
     fill: {
       type: "solid",
-      opacity: 0.8,
+      opacity: 0.9,
     },
     colors: [ "#6979F8", "#0acc8e"],
     dataLabels: {
       enabled: true,
       style: {
-        fontSize: "13px",
+        fontSize: "12px",
       }
     },
   };

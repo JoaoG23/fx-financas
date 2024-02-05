@@ -27,6 +27,14 @@ export const LocaisRotas: React.FC = () => {
         }
       />
       <Route
+        path="/locais/visualizar/:id"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <h3>Não implementado</h3>
+          </PrivateRoute>
+        }
+      />
+      <Route
         path="/locais/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>

@@ -22,15 +22,32 @@ export const BarraHorizontalMarcadoresGrafico: React.FC<Props> = ({
     options: {
       chart: {
         type: "bar",
+        stacked: false
+
+      },
+      plotOptions: {
+        bar: {
+          borderRadius: 4,
+          // horizontal: true,
+        },
       },
       dataLabels: {
         enabled: true,
+        style: {
+          fontSize: "12px",
+          colors: ['#ffffffdc'],
+        },
+        dropShadow: {
+          enabled: true,
+          top: 1,
+          left: 1,
+          blur: 1,
+        },
       },
       colors: ["#0acc8e", "#FFA26B"],
 
       legend: {
         show: true,
-
         showForSingleSeries: true,
         customLegendItems: ["Despesa", "Saldo Atual"],
       },

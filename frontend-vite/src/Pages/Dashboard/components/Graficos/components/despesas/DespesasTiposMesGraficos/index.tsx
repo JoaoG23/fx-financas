@@ -44,8 +44,7 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
           {
             name: "Saldo Atual",
             value: despesa?.limiteGasto || 0,
-            strokeHeight: 5,
-            strokeColor: "#FFAB7A",
+            strokeColor: "#F77B36",
           },
         ],
       };
