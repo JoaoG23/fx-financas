@@ -1,5 +1,6 @@
 import { TiposRepository } from "../../../tipos/tipos.repository/tipos.repository";
 import { converterNegativoParaAbsoluto } from "../../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
+import { converterParaFlutuantePorCasaDecimais } from "../../../utils/conversor-numeros/converterParaFlutuantePorCasaDecimais/converterParaFlutuantePorCasaDecimais";
 import {
   ITiposEstatisticasRepository,
   TiposEstatisticasRepository,
@@ -52,8 +53,10 @@ export class TiposEstatisticasServices {
         usuariosId,
         tipo.id
       );
-      const despesas = somaElemento._sum.valor || "0";
-      const limiteGasto = saldoAtual || "0";
+      const despesas =
+        converterParaFlutuantePorCasaDecimais(somaElemento._sum.valor || 0) ;
+      const limiteGasto =
+        converterParaFlutuantePorCasaDecimais(saldoAtual || 0)
 
       somaDespesasPorTipoId.push({
         tipo: tipo.descricao,

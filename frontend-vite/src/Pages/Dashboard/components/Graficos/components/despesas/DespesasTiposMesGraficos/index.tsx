@@ -6,13 +6,12 @@ import { buscarDespesaMesPorTiposUsuarios } from "./api";
 
 import { TipoDespesa } from "./types/TipoDespesa";
 
-import { SeriesLabel } from "../../graficos-padroes/BarraHorizontalMarcadoresGrafico/types/SeriesLabel";
-
-import { converteValorNegativoParaAbsoluto } from "../../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
-
 import { SpinnerCarregamento } from "../../../../../../../Components/spinners/SpinnerCarregamento";
-import { BarraHorizontalMarcadoresGrafico } from "../../graficos-padroes/BarraHorizontalMarcadoresGrafico";
 import { Container } from "./styles";
+import { MultiplasBarrasGrafico } from "../../graficos-padroes/MultiplasBarrasGrafico";
+
+import { extrairDespesas } from "../../../utils/extrairDespesas/extrairDespesas";
+import { extrairSaldoAtual } from "../../../utils/extrairSaldoAtual/extrairSaldoAtual";
 
 type Props = {
   mesSelecionado: number;
@@ -31,32 +30,29 @@ export const DespesasTiposMesGrafico: React.FC<Props> = ({
     }
   );
 
-  const despesasData: TipoDespesa[] = data?.data!;
-  const despesas: SeriesLabel[] | any =
-    despesasData?.map((despesa: TipoDespesa) => {
-      const valorInteiro = parseFloat(despesa?.despesas!);
+  const extrairLabels = (despesa: TipoDespesa) => despesa.tipo;
 
-      const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
-      const serieDespesa = {
-        x: despesa?.tipo, // Label
-        y: gastoMes, // valor
-        goals: [
-          {
-            name: "Saldo Atual",
-            value: despesa?.limiteGasto || 0,
-            strokeColor: "#F77B36",
-          },
-        ],
-      };
-      return serieDespesa;
-    }) || [];
+  const despesasData: TipoDespesa[] = data?.data! || [];
+  const despesas: number[] = despesasData.map(extrairDespesas);
+  const saldoAtual: number[] = despesasData.map(extrairSaldoAtual);
+  const categories: string[] = despesasData.map(extrairLabels);
 
   return (
     <Container>
       {isLoading && <SpinnerCarregamento />}
-      <BarraHorizontalMarcadoresGrafico
+      <MultiplasBarrasGrafico
         titulo={"Tipos despesas por mês"}
-        data={despesas}
+        series={[
+          {
+            name: "Despesas",
+            data: despesas,
+          },
+          {
+            name: "Saldo Atual",
+            data: saldoAtual,
+          },
+        ]}
+        categories={categories}
       />
     </Container>
   );

@@ -11,8 +11,11 @@ import { SeriesLabel } from "../../graficos-padroes/BarraHorizontalMarcadoresGra
 import { converteValorNegativoParaAbsoluto } from "../../../../../../../utils/conversao/converteValorNegativoParaAbsoluto/converteValorNegativoParaAbsoluto";
 
 import { SpinnerCarregamento } from "../../../../../../../Components/spinners/SpinnerCarregamento";
-import { BarraHorizontalMarcadoresGrafico } from "../../graficos-padroes/BarraHorizontalMarcadoresGrafico";
 import { Container } from "./styles";
+import { MultiplasBarrasGrafico } from "../../graficos-padroes/MultiplasBarrasGrafico";
+
+import { extrairSaldoAtual } from "../../../utils/extrairSaldoAtual/extrairSaldoAtual";
+import { extrairDespesas } from "../../../utils/extrairDespesas/extrairDespesas";
 
 type Props = {
   mesSelecionado: number;
@@ -30,34 +33,29 @@ export const DespesasSubtiposMesGrafico: React.FC<Props> = ({
       },
     }
   );
+  const despesasData: TipoDespesa[] = data?.data! || [];
 
-  const despesasData: TipoDespesa[] = data?.data!;
-
-  const despesas: SeriesLabel[] | any =
-    despesasData?.map((despesa: TipoDespesa) => {
-      const valorInteiro = parseFloat(despesa?.despesas!);
-
-      const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
-      const serieDespesa = {
-        x: despesa?.subtipo, // Label
-        y: gastoMes, // valor
-        goals: [
-          {
-            name: "Saldo Atual",
-            value: despesa?.limiteGasto || 0,
-            strokeColor: "#F77B36",
-          },
-        ],
-      };
-      return serieDespesa;
-    }) || [];
+  const extrairLabels = (despesa: TipoDespesa) => despesa.subtipo;
+  const despesas: number[] = despesasData.map(extrairDespesas);
+  const saldoAtual: number[] = despesasData.map(extrairSaldoAtual);
+  const categories: string[] = despesasData.map(extrairLabels);
 
   return (
     <Container>
       {isLoading && <SpinnerCarregamento />}
-      <BarraHorizontalMarcadoresGrafico
+      <MultiplasBarrasGrafico
+        categories={categories}
         titulo={"Subtipos despesas por mês"}
-        data={despesas}
+        series={[
+          {
+            name: "Gastos Mês",
+            data: despesas,
+          },
+          {
+            name: "Saldo Atual",
+            data: saldoAtual,
+          },
+        ]}
       />
     </Container>
   );

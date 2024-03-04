@@ -11,6 +11,5 @@ export const buscarDespesaMesPorSubtiposUsuarios = async (mes: number) => {
       usuariosId: idUsuario,
     },
   });
-  console.log("🚀 ~ buscarDespesaMesPorSubtiposUsuarios ~ resposta:", resposta)
   return resposta;
 };

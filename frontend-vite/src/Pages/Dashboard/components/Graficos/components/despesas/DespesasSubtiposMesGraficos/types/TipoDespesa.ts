@@ -1,5 +1,5 @@
 export type TipoDespesa = {
-  subtipo?: string;
-  despesas?: string;
-  limiteGasto?: string | number;
+  subtipo: string;
+  despesas: number;
+  limiteGasto: number;
 };

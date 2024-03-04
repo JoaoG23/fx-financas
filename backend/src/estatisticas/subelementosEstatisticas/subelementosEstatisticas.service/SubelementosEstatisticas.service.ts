@@ -1,5 +1,6 @@
 import { SubelementosRepository } from "../../../subelementos/subelementos.repository/subelementos.repository";
 import { converterNegativoParaAbsoluto } from "../../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
+import { converterParaFlutuantePorCasaDecimais } from "../../../utils/conversor-numeros/converterParaFlutuantePorCasaDecimais/converterParaFlutuantePorCasaDecimais";
 import {
   ISubelementosEstatisticasRepository,
   SubelementosEstatisticasRepository,
@@ -58,8 +59,12 @@ export class SubelementosEstatisticasServices {
         subelemento.id
       );
 
-      const despesas = somaElemento._sum.valor || "0";
-      const limiteGasto = saldoAtual || "0";
+      const despesas = converterParaFlutuantePorCasaDecimais(
+        somaElemento._sum.valor || 0
+      );
+      const limiteGasto = converterParaFlutuantePorCasaDecimais(
+        saldoAtual || 0
+      );
 
       somaDespesasPorElementoId.push({
         subelemento: subelemento.descricao,

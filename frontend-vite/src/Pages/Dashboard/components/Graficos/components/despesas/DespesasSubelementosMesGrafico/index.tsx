@@ -12,6 +12,9 @@ import { converteValorNegativoParaAbsoluto } from "../../../../../../../utils/co
 
 import { SpinnerCarregamento } from "../../../../../../../Components/spinners/SpinnerCarregamento";
 import { Container } from "./styles";
+import { extrairSaldoAtual } from "../../../utils/extrairSaldoAtual/extrairSaldoAtual";
+import { extrairDespesas } from "../../../utils/extrairDespesas/extrairDespesas";
+import { MultiplasBarrasGrafico } from "../../graficos-padroes/MultiplasBarrasGrafico";
 
 type Props = {
   mesSelecionado: number;
@@ -30,37 +33,29 @@ export const DespesasSubelementosMesGrafico: React.FC<Props> = ({
       },
     }
   );
+  const despesasData: SubelementosDespesa[] = data?.data || [];
 
-  const despesasData: SubelementosDespesa[] = data?.data;
-  const despesas: SeriesLabel[] | any =
-    despesasData?.map((despesa: SubelementosDespesa) => {
-      const valorInteiro = parseFloat(despesa.despesas!);
-
-      const gastoMes = converteValorNegativoParaAbsoluto(valorInteiro);
-      const serieDespesa = {
-        x: despesa?.subelemento, // Label
-        y: gastoMes, // valor
-        goals: [
-          {
-            name: "Saldo Atual",
-            value: despesa?.limiteGasto || 0,
-            strokeColor: "#F77B36",
-            label: {
-              borderColor: "#F77B36",
-              
-            },
-          },
-        ],
-      };
-      return serieDespesa;
-    }) || [];
+  const extrairLabels = (despesa: SubelementosDespesa) => despesa.subelemento;
+  const despesas: number[] = despesasData.map(extrairDespesas);
+  const saldoAtual: number[] = despesasData.map(extrairSaldoAtual);
+  const categories: string[] = despesasData.map(extrairLabels);
 
   return (
     <Container>
       {isLoading && <SpinnerCarregamento />}
-      <BarraHorizontalMarcadoresGrafico
+      <MultiplasBarrasGrafico
         titulo={"Subelementos despesas por mês"}
-        data={despesas}
+        series={[
+          {
+            name: "Gasto Mês",
+            data: despesas,
+          },
+          {
+            name: "Saldo Atual",
+            data: saldoAtual,
+          },
+        ]}
+        categories={categories}
       />
     </Container>
   );

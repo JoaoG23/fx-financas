@@ -1,5 +1,6 @@
 import { IElementosRepository } from "../../../elementos/elementos.repository/InterfaceElementosRepository";
 import { ElementosRepository } from "../../../elementos/elementos.repository/elementos.repository";
+import { converterParaFlutuantePorCasaDecimais } from "../../../utils/conversor-numeros/converterParaFlutuantePorCasaDecimais/converterParaFlutuantePorCasaDecimais";
 import {
   ElementosEstatisticasRepository,
   IElementosEstatisticasRepository,
@@ -23,7 +24,9 @@ export class ElementosEstatisticasServices {
           mes
         );
 
-      const despesas = somaElemento._sum.valor;
+      const despesas = converterParaFlutuantePorCasaDecimais(
+        somaElemento._sum.valor || 0
+      );
 
       somaDespesasPorElementoId.push({
         elemento: elemento.descricao,

@@ -1,6 +1,7 @@
 import { SubtiposRepository } from "../../../subtipos/subtipos.repository/subtipos.repository";
 
 import { converterNegativoParaAbsoluto } from "../../../utils/conversor-numeros/converterNegativoParaAbsoluto/converterNegativoParaAbsoluto";
+import { converterParaFlutuantePorCasaDecimais } from "../../../utils/conversor-numeros/converterParaFlutuantePorCasaDecimais/converterParaFlutuantePorCasaDecimais";
 
 import {
   ISubtiposEstatisticasRepository,
@@ -57,8 +58,8 @@ export class SubtiposEstatisticasServices {
         usuariosId,
         subtipo.id
       );
-      const despesas = somaElemento._sum.valor || "0";
-      const limiteGasto = saldoAtual || "0";
+      const despesas = converterParaFlutuantePorCasaDecimais(somaElemento._sum.valor || 0);
+      const limiteGasto = converterParaFlutuantePorCasaDecimais(saldoAtual || 0);
 
       somaDespesasPorSubtipoId.push({
         subtipo: subtipo.descricao,

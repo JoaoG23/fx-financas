@@ -1,38 +1,66 @@
 import React from "react";
 import ReactApexChart from "react-apexcharts";
 
+import { Series } from "./types/Series";
+
 type Props = {
   titulo: string;
-  despesasData: any[];
-  saldoAtualData: any[];
+  series: Series[];
+  categories: string[];
 };
 
 export const MultiplasBarrasGrafico: React.FC<Props> = ({
   titulo,
-  despesasData,
-  saldoAtualData,
+  series,
+  categories,
 }) => {
   const dados = {
-    series: [
-      {
-        name: "Despesas",
-        data: despesasData, 
-      },
-      {
-        name: "Saldo Atual",
-        data: saldoAtualData, 
-      },
-    ],
+    series,
     options: {
       chart: {
         type: "bar",
-        stacked: true, // this makes the chart stacked
+        stacked: false,
+        zoom: {
+          enabled: true,
+          type: "x",
+          autoScaleYaxis: true,
+          zoomedArea: {
+            fill: {
+              color: "#90CAF9",
+              opacity: 0.4,
+            },
+            stroke: {
+              color: "#0D47A1",
+              opacity: 0.4,
+              width: 1,
+            },
+          },
+        },
       },
       plotOptions: {
         bar: {
-          horizontal: false, // this makes the chart vertical
+          horizontal: false,
+          columnWidth: "60%",
+          borderRadius: 4,
         },
       },
+      xaxis: {
+        categories: categories,
+        tickPlacement: "on",
+      },
+      yaxis: {
+        title: {
+          text: "Reais $",
+        },
+      },
+      tooltip: {
+        y: {
+          formatter: function (valor: any) {
+            return `R$ ${valor}`;
+          },
+        },
+      },
+
       dataLabels: {
         enabled: true,
         style: {
@@ -46,13 +74,8 @@ export const MultiplasBarrasGrafico: React.FC<Props> = ({
           blur: 1,
         },
       },
-      colors: ["#0acc8e", "#FFA26B"],
 
-      legend: {
-        show: true,
-        showForSingleSeries: true,
-        customLegendItems: ["Despesas", "Saldo Atual"],
-      },
+      colors: ["#F77B36", "#0ACC8E"],
     },
   };
 

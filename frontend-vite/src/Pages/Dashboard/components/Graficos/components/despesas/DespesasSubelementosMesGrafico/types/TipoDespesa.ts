@@ -1,5 +1,5 @@
 export type SubelementosDespesa = {
-  subelemento?: string;
-  despesas?: string;
-  limiteGasto?: string | number;
+  subelemento: string;
+  despesas: number;
+  limiteGasto: number;
 };
