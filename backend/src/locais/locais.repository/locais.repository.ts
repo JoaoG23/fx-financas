@@ -2,13 +2,14 @@ import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 import { LocaisRepositoryInteface } from "./InterfaceLocaisRepository";
 import { LocaisDto } from "../locais.dto/locais.dto";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class LocaisRepository implements LocaisRepositoryInteface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
   async findAllByUsuariosId(usuariosId: string) {

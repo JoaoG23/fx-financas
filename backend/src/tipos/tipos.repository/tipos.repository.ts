@@ -2,13 +2,14 @@ import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 import { TiposDto } from "../tipos.dto/tipos.dto";
 import { TiposRepositoryInterface } from "./InterfaceTiposRepository";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class TiposRepository implements TiposRepositoryInterface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
 

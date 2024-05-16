@@ -9,12 +9,13 @@ import { Paginacao } from "../../utils/Paginacao";
 import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
 
 import { IFluxocaixaRepository } from "./IFluxocaixaRepository";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class FluxoCaixaRepository implements IFluxocaixaRepository {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia()
     this.paginacao = new Paginacao();
   }
 

@@ -7,13 +7,15 @@ import { pesquisarPorCriterio } from "./utils/pesquisarPorCriterio/pesquisarPorC
 import { ProgramacaoFluxocaixaCriadoDto } from "../programacaofluxocaixa.dto/Programacaofluxocaixa.dto";
 import { ProgramacaoFluxocaixaRepositoryInterface } from "./Programacaofluxocaixa.repository.Interface";
 
+import { PrismaConexao } from "../../configs/PrismaConexao";
+
 export class ProgramacaoFluxocaixaRepository
   implements ProgramacaoFluxocaixaRepositoryInterface
 {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
   async findAllByUsuariosId(usuariosId: string) {

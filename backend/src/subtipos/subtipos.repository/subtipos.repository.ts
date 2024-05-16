@@ -3,13 +3,14 @@ import { Paginacao } from "../../utils/Paginacao";
 import { SubtiposDto } from "../subtipos.dto/subtipos.dto";
 
 import { SubtiposRepositoryInterface } from "./InterfaceSubtiposRepository";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class SubtiposRepository implements SubtiposRepositoryInterface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
 
