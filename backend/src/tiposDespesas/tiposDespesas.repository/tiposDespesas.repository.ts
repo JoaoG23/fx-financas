@@ -4,6 +4,7 @@ import { Paginacao } from "../../utils/Paginacao";
 
 import { TipoDespesaDto } from "../tiposDespesas.dto/tiposDespesas.dto";
 import { TiposDespesasRepositoryInteface } from "./tiposDespesas.repositoryInterface";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class TiposDespesasRepository
   implements TiposDespesasRepositoryInteface
@@ -12,7 +13,7 @@ export class TiposDespesasRepository
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
 

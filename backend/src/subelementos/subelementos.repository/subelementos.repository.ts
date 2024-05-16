@@ -1,14 +1,18 @@
 import { PrismaClient } from "@prisma/client";
+
 import { Paginacao } from "../../utils/Paginacao";
+
 import { SubelementosRepositoryInterface } from "./InterfaceSubelementosRepository";
 import { SubelementoDto } from "../subelementos.dto/subelementos.dto";
+
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class SubelementosRepository implements SubelementosRepositoryInterface {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
 
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
 

@@ -3,12 +3,13 @@ import { Paginacao } from "../../utils/Paginacao";
 
 import { ElementoDto } from "../elementos.dto/Elementos.dto";
 import { IElementosRepository } from "./InterfaceElementosRepository";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class ElementosRepository implements IElementosRepository {
   private paginacao: Paginacao;
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
 

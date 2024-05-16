@@ -2,11 +2,12 @@ import { PrismaClient } from "@prisma/client";
 import { Paginacao } from "../../utils/Paginacao";
 import { UsuarioDto } from "../usuario.dto/Usuario.dto";
 import { UsuariosRepositoryInterface } from "./UsuariosRepositoryInterface";
+import { PrismaConexao } from "../../configs/PrismaConexao";
 
 export class UsuariosRepository implements UsuariosRepositoryInterface {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
   }
   async findAll() {
     return await this.prisma.usuarios.findMany({});
