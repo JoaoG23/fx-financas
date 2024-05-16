@@ -41,7 +41,7 @@ export const MultiplasBarrasGrafico: React.FC<Props> = ({
         bar: {
           horizontal: false,
           columnWidth: "60%",
-          borderRadius: 4,
+          borderRadius: 1,
         },
       },
       xaxis: {

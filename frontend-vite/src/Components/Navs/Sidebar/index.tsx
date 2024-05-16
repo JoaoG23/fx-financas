@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   BsFillCalendarWeekFill,
@@ -23,11 +23,12 @@ import { limparConfiguracoesPaginaPorChave } from "../../../utils/paginacao/limp
 
 const Sidebar: React.FC = () => {
   const { nomeUsuario, imagePerfil } = buscaDadoUsuarioNaSessao();
+  const [perfil, serPerfil] = useState<string>(imagePerfil || "");
 
   return (
     <SideBar.Container>
       <SideBar.PerfilImagem>
-        <ImagemPerfil caminho_imagem={imagePerfil!} />
+        <ImagemPerfil caminho_imagem={perfil} />
         <Link to={"/usuario_logado"}>
           <p>Olá {nomeUsuario}!</p>
         </Link>
