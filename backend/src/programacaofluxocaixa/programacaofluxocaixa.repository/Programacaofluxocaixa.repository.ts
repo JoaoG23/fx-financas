@@ -18,9 +18,9 @@ export class ProgramacaoFluxocaixaRepository
     this.prisma = PrismaConexao.getInstancia();
     this.paginacao = new Paginacao();
   }
-  async findAllByUsuariosIdAtivo(usuariosId: string, ativo: boolean) {
+  async findAllByUsuariosIdAtivo(usuariosId: string) {
     return await this.prisma.programacao_fluxocaixa.findMany({
-      where: { usuariosId, ativo },
+      where: { usuariosId, ativo: true },
     });
   }
   async findAllByUsuariosId(usuariosId: string) {

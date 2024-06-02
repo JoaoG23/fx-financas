@@ -1,7 +1,6 @@
-
 type NullableString = string | null;
 export interface ProgramacaoFluxocaixaCriadoDto {
-  descricao?: string;
+  descricao?: NullableString;
   elementosId: NullableString;
   subelementosId: NullableString;
   subtiposId: NullableString;
@@ -22,5 +21,9 @@ export interface ProgramacaoFluxocaixaVisualizarDto {
   usuariosId?: string;
   valor?: number;
   ativos?: boolean;
-  entradaOuSaidaOuTodos?:string
+  createdAt?: Date;
+  id?: string;
+  data_insersao?: Date;
+  ativo?: boolean;
+  entradaOuSaidaOuTodos?: string;
 }

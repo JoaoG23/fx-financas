@@ -19,7 +19,7 @@ export interface ProgramacaoFluxocaixaRepositoryInterface {
   findById(id: string);
   findAll();
   findAllByUsuariosId(usuariosId: string);
-  findAllByUsuariosIdAtivo(usuariosId: string, ativo: boolean);
+  findAllByUsuariosIdAtivo(usuariosId: string);
   findAllByUsuariosIdAndDescription(usuariosId: string);
   findAllByPage(numeroPagina: number, quantidadeItemPagina: number);
 }
