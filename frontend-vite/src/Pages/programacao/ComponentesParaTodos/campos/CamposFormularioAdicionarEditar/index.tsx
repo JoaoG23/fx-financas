@@ -30,6 +30,8 @@ import { TipoDespesaSelect } from "../../../../../Components/selects/TipoDespesa
 import { DinheiroInput } from "../../../../../Components/Inputs/DinheiroInput";
 import { GreenCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioGreen";
 import { RedCheckBoxRadio } from "../../../../../Components/checkboxs/CheckBoxRadioRed";
+import { LabelDefault } from "../../../../../Components/FontColor/LabelDefault";
+import { SwitchDefault } from "../../../../../Components/switchs/SwitchDefault";
 
 type Props = {
   onSubmit?: React.FormEventHandler | any;
@@ -52,101 +54,114 @@ export const CamposFormulario: React.FC<Props> = ({
 
   return (
     <Form.Container role="form" onSubmit={onSubmit}>
-      <Form.Campos>
-        <Form.UmaColuna>
-          <main>
-            <div>
-              <ElementoSelect
-                requirido={false}
-                register={register}
-                control={control}
-                name="elementosId"
-                label="Elemento"
-              />
-            </div>
-            <div>
-              <SublementoSelect
-                requirido={false}
-                register={register}
-                elementosId={elemento}
-                control={control}
-                name="subelementosId"
-                label={"Sublemento"}
-              />
-            </div>
-            <div>
-              <TiposSelect
-                requirido={false}
-                register={register}
-                subelementosId={subelemento}
-                control={control}
-                name="tiposId"
-                label={"Tipo"}
-              />
-            </div>
-            <div>
-              <SubtiposSelect
-                requirido={false}
-                register={register}
-                tiposId={tipos}
-                control={control}
-                name="subtiposId"
-                label={"Subtipos"}
-              />
-            </div>
-            <div>
-              <LocaisSelect
-                requirido={false}
-                register={register}
-                name="locaisId"
-                control={control}
-                label="Locais"
-              />
-            </div>
+      <section>
+        <div>
+          <InputDefault
+            requirido={false}
+            type="text"
+            name="descricao"
+            register={register}
+            label="Digite alguma observação"
+          />
+        </div>
+      </section>
+      <Form.QuatroColunas>
+        <div>
+          <ElementoSelect
+            requirido={false}
+            register={register}
+            control={control}
+            name="elementosId"
+            label="Elemento"
+          />
+        </div>
+        <div>
+          <SublementoSelect
+            requirido={false}
+            register={register}
+            elementosId={elemento}
+            control={control}
+            name="subelementosId"
+            label={"Sublemento"}
+          />
+        </div>
+        <div>
+          <TiposSelect
+            requirido={false}
+            register={register}
+            subelementosId={subelemento}
+            control={control}
+            name="tiposId"
+            label={"Tipo"}
+          />
+        </div>
+        <div>
+          <SubtiposSelect
+            requirido={false}
+            register={register}
+            tiposId={tipos}
+            control={control}
+            name="subtiposId"
+            label={"Subtipos"}
+          />
+        </div>
+      </Form.QuatroColunas>
 
-            <div>
-              <DinheiroInput
-                setValue={setValue!}
-                control={control}
-                name="valor"
-                placeholder="R$ 0,00"
-                register={register}
-                label="Digite o valor"
-              />
-              {errors?.valor?.type === "required" && (
-                <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
-              )}
-            </div>
+      <Form.QuatroColunas>
+        <div>
+          <LocaisSelect
+            requirido={false}
+            register={register}
+            name="locaisId"
+            control={control}
+            label="Locais"
+          />
+        </div>
 
-            <div>
-              <TipoDespesaSelect
-                requirido={false}
-                register={register}
-                name="tipos_despesasId"
-                control={control}
-                label="Meio de movimentação"
-              />
-            </div>
-          </main>
-        </Form.UmaColuna>
-        <Form.ContainerEntradaSaida>
-          <strong>Selecione entrada ou saida:</strong>
+        <div>
+          <DinheiroInput
+            setValue={setValue!}
+            control={control}
+            name="valor"
+            placeholder="R$ 0,00"
+            register={register}
+            label="Digite o valor"
+          />
+          {errors?.valor?.type === "required" && (
+            <AlertCampoVazio mensagem="Campo valor vazio! Por gentileza preencher-o!" />
+          )}
+        </div>
+
+        <div>
+          <TipoDespesaSelect
+            requirido={false}
+            register={register}
+            name="tipos_despesasId"
+            control={control}
+            label="Meio de movimentação"
+          />
+        </div>
+        <Form.ContainerRadios>
+          <LabelDefault>
+            <p>Selecione</p>
+            <p>entrada ou saida:</p>
+          </LabelDefault>
           <Form.ContainerRadios>
             <GreenCheckBoxRadio
               name="entradaSaida"
               register={register}
               defaultValue={"entrada"}
             />
-            <label>
+            <LabelDefault>
               Entrada
               <FiArrowUp size={20} color="#1CAF82" />
-            </label>
+            </LabelDefault>
           </Form.ContainerRadios>
           <Form.ContainerRadios>
-            <label>
+            <LabelDefault>
               Saída
               <FiArrowDown size={20} color="#F78187" />
-            </label>
+            </LabelDefault>
             <RedCheckBoxRadio
               name="entradaSaida"
               register={register}
@@ -158,25 +173,18 @@ export const CamposFormulario: React.FC<Props> = ({
               <AlertCampoVazio mensagem="Campo entrada ou saida não selecionado! Por gentileza preencher-o!" />
             )}
           </div>
-        </Form.ContainerEntradaSaida>
-        <Form.UmaColuna>
-          <div>
-            <InputDefault
-              requirido={false}
-              type="text"
-              name="descricao"
-              register={register}
-              label="Digite alguma observação"
-            />
-          </div>
-        </Form.UmaColuna>
-        <Form.UmaColuna>
-          <SecondaryButton>
-            <p>Salvar</p>
-            <AiFillPlusCircle size={20} />
-          </SecondaryButton>
-        </Form.UmaColuna>
-      </Form.Campos>
+        </Form.ContainerRadios>
+      </Form.QuatroColunas>
+      <Form.UmaColuna>
+        <LabelDefault>Ativa inserção em fluxo:</LabelDefault>
+        <SwitchDefault requirido={false} register={register} name={"ativo"} />
+      </Form.UmaColuna>
+      <div>
+        <SecondaryButton>
+          <p>Salvar</p>
+          <AiFillPlusCircle size={20} />
+        </SecondaryButton>
+      </div>
     </Form.Container>
   );
 };

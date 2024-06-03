@@ -5,11 +5,11 @@ export const Campo = styled(IntlCurrencyInput as any)`
   padding: 8px;
   font-weight: 700;
 
-  background-color: transparent;
+  background-color: white;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
   border-radius: 1em;
-
+  color: #4e5868;
   :focus {
     animation-name: toRight;
     animation-duration: 1s;
@@ -31,5 +31,5 @@ export const Campo = styled(IntlCurrencyInput as any)`
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 10px;
+  gap: .3em;
 `;

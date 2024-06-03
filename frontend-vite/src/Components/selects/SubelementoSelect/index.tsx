@@ -11,6 +11,7 @@ import { useSubelementoStore } from "../../../stores/useSubelementoStore/useSube
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 
 import { Subelemento } from "../../../types/Subelemento";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props<T = unknown> = {
   label?: string;
@@ -51,14 +52,13 @@ export const SublementoSelect: React.FC<Props<Subelemento>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      <strong>{label}</strong>
-
+      <LabelDefault>{label}</LabelDefault>
       <Selects.Container
         aria-label="subelementos"
         {...register(name, { required: requirido })}
         disabled={desativar}
         onChange={(e: any) => {
-          const idSubelemento  = e.target.value;
+          const idSubelemento = e.target.value;
 
           selecionarSubElemento(idSubelemento);
         }}

@@ -13,6 +13,7 @@ export const BotaoPorCima = styled.div`
 export const Body = styled.div`
   position: absolute;
 
+  display: flex;
   height: 80vh;
   justify-content: center;
   overflow-y:scroll;
@@ -36,6 +37,7 @@ export const IconFundo1Flutuante = styled.img`
   position: fixed;
   top: 20vh;
   right: 0vw;
+  opacity: .7;
   animation: elevations 6s ease-in infinite alternate forwards;
 
   @media screen and (max-width: 769px) {

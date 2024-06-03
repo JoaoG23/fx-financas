@@ -15,5 +15,5 @@ export class FluxocaixaDto implements Prisma.fluxocaixaCreateManyInput {
   tiposId?: string;
   subtiposId?: string;
   tipos_despesasId?: string;
- 
+  inserido_via_programacao?:string;
 }

@@ -10,7 +10,6 @@ describe("buscarUltimoDiaDoMesSelecionado", () => {
       const esperadaData = new Date(dataAtual.getFullYear(), mes -1 , 0);
 
       const primeiraData = buscarUltimoDiaDoMesSelecionado(mes);
-      console.log("🚀 ~ file: buscarUltimoDiaDoMesSelecionados.unit.test.ts:13 ~ test ~ primeiraData:", primeiraData)
 
       expect(primeiraData).toStrictEqual(esperadaData);
     });

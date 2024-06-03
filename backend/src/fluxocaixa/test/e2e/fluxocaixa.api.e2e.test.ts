@@ -1,4 +1,4 @@
-import { beforeAll, describe } from "vitest";
+import { afterAll, beforeAll, describe } from "vitest";
 
 import { limparTabelaFluxoCaixa } from "../utils/limparTabelaFluxoCaixa";
 

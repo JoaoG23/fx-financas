@@ -1,6 +1,5 @@
 import {
   ItemFluxoCaixa,
-  ItemFluxoCaixaCriado,
 } from "../../../../../types/ItemFluxoCaixa";
 import { converterVazioParaNull } from "../../../../../utils/conversao/converterVazioParaNull/converterVazioParaNull";
 import { converterValorNegativoSeForSaida } from "../../../../fluxocaixas/ComponentesParaTodos/utils/converterValorNegativoSeSaida/converterValorNegativoSeSaida";

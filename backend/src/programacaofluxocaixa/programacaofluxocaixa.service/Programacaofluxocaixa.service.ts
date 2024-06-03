@@ -83,8 +83,8 @@ export class ProgramacaoFluxocaixaServices {
   async capturarProgramacaoEInserirEmFluxoCaixa(usuariosId: string) {
     await this.validarNaoExisteProgramacoes(usuariosId);
 
-    const programacoes =
-      await this.programacaofluxocaixaRepository.findAllByUsuariosId(
+    const programacoes: ProgramacaoFluxocaixaVisualizarDto[] =
+      await this.programacaofluxocaixaRepository.findAllByUsuariosIdAtivo(
         usuariosId
       );
 
@@ -92,15 +92,15 @@ export class ProgramacaoFluxocaixaServices {
 
     const dataAtual = await buscarDatahoraAtualBancoDados();
     for (const programacao of programacoes) {
-      const { createdAt, id, data_insersao, ...restanteProgramacao } =
+      const { createdAt, id, data_insersao, ativo, ...restanteProgramacao } =
         programacao;
 
-      const fluxocaixa = {
+      const itemFluxocaixa = {
         ...restanteProgramacao,
         data_insersao: dataAtual,
         inserido_via_programacao: programacao.id,
       };
-      itemsProgramados.push(fluxocaixa);
+      itemsProgramados.push(itemFluxocaixa as FluxocaixaDto);
     }
 
     return await this.fluxocaixaService.criarVarios(itemsProgramados);

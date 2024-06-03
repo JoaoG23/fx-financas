@@ -8,6 +8,7 @@ import {
 } from "react-hook-form";
 
 import * as Input from "./styles";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props = {
   label?: string;
@@ -55,7 +56,7 @@ export const DinheiroInput: React.FC<Props> = ({
       control={control}
       render={({ field: { value } }) => (
         <Input.ContainerInput>
-          <strong>{label}</strong>
+          <LabelDefault>{label}</LabelDefault>
           <Input.Campo
             config={currencyConfig}
             currency="BRL"

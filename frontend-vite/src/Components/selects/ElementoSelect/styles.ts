@@ -6,7 +6,7 @@ export const Container = styled.select`
 
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
-
+  color:#566070 ;
   border-radius: 1em;
   :hover {
     animation-name: toRight;
@@ -23,15 +23,11 @@ export const Container = styled.select`
     }
 
     100% {
-      transform: translateX(.3vw);
+      transform: translateX(0.3vw);
     }
   }
 `;
 export const ContainerInput = styled.label`
   display: grid;
-  gap: .5em;
-  margin-bottom:.5em;
+  gap: 0.3em;
 `;
-
-
-

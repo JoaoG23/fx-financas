@@ -102,6 +102,7 @@ model fluxocaixa {
 model programacao_fluxocaixa {
   id               String          @id @default(uuid())
   descricao        String?         @db.VarChar(70)
+  ativo            Boolean         @default(true)
   valor            Decimal         @db.Decimal(12, 2)
   elementosId      String?         @default("")
   usuariosId       String?         @db.VarChar(36)

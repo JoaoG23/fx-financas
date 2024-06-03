@@ -6,8 +6,8 @@ export const Container = styled.select`
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
 
-  border-radius:1em;
-
+  border-radius: 1em;
+  color: #566070;
   :focus {
     animation-name: toRight;
     animation-duration: 1s;
@@ -23,14 +23,11 @@ export const Container = styled.select`
     }
 
     100% {
-      transform: translateX(.2vw);
+      transform: translateX(0.2vw);
     }
   }
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: .5em;
-  margin-bottom:.5em;
-
+  gap: 0.3em;
 `;
-

@@ -8,6 +8,7 @@ import * as Selects from "./styles";
 
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 import { Local } from "../../../types/Local";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props<T = unknown> = {
   label?: string;
@@ -42,7 +43,7 @@ export const TipoDespesaSelect: React.FC<Props<any>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      <strong>{label}</strong>
+      <LabelDefault>{label}</LabelDefault>
       <Selects.Container
         aria-label="tipoDespesa"
         {...register(name, { required: requirido })}
