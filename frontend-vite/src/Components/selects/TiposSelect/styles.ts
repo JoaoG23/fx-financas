@@ -5,7 +5,7 @@ export const Container = styled.select`
   font-weight: 700;
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
-
+  color: #566070;
   border-radius: 1em;
   :focus {
     animation-name: toRight;
@@ -28,6 +28,5 @@ export const Container = styled.select`
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 0.5em;
-  margin-bottom: 0.5em;
+  gap: 0.3em;
 `;

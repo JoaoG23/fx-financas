@@ -17,7 +17,8 @@ export const PerfilImagem = styled.div`
 
 export const Container = styled.div`
   width: 15vw;
-  height: 100vh;
+  height: auto;
+  min-height: 100vh;
 
   *::-webkit-scrollbar {
     width: 9px;

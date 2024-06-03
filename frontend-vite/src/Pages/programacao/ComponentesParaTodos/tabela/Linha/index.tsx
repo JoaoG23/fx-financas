@@ -1,6 +1,7 @@
 import { BlueFont } from "../../../../../Components/FontColor/BlueFont";
 import { GreenFont } from "../../../../../Components/FontColor/GreenFont";
 import RedFont from "../../../../../Components/FontColor/RedFont";
+import { BadgeDefault } from "../../../../../Components/badges/BadgeDefault";
 
 import { Programacao } from "../../../../../types/Programacao";
 import { converterValorEmMoedaBR } from "../../../../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
@@ -11,10 +12,16 @@ type Props = {
 };
 
 export const LinhaItemProgramacao: React.FC<Props> = ({ item }) => {
-
-  const valorGasto = converterValorEmMoedaBR(item?.valor!)
+  const valorGasto = converterValorEmMoedaBR(item?.valor!);
   return (
     <tr aria-label="linha">
+      <td>
+        {item?.ativo ? (
+          <BadgeDefault descricao="Ativado" cor="verde" />
+        ) : (
+          <BadgeDefault descricao="Desativado" />
+        )}
+      </td>
       <td>{item?.elementos?.descricao}</td>
       <td>{item?.subelementos?.descricao}</td>
       <td>{item?.tipos?.descricao}</td>

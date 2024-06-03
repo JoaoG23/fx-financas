@@ -2,6 +2,7 @@ import React from "react";
 import { ContainerInput, NoBorders } from "../styles";
 
 import { FieldValues, UseFormRegister } from "react-hook-form";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props = {
   label?: string;
@@ -28,7 +29,7 @@ export const InputDefault: React.FC<Props> = ({
 }) => {
   return (
     <ContainerInput>
-      <strong>{label}</strong>
+      <LabelDefault>{label}</LabelDefault>
       <NoBorders
         readOnly={desativar}
         placeholder={placeholder}

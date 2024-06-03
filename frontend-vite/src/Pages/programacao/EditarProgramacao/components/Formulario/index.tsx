@@ -82,7 +82,6 @@ export const Formulario: React.FC = () => {
     register,
     handleSubmit,
     control,
-    reset,
     setValue,
     formState: { errors },
   } = useForm({

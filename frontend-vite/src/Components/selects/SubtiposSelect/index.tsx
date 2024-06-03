@@ -1,8 +1,4 @@
-import {
-  Control,
-  FieldValues,
-  UseFormRegister,
-} from "react-hook-form";
+import { Control, FieldValues, UseFormRegister } from "react-hook-form";
 import { useQuery } from "react-query";
 import { toast } from "react-toastify";
 
@@ -13,6 +9,7 @@ import * as Selects from "./styles";
 import { useSubtipoStore } from "../../../stores/useSubtipoStore/useSubtiposStore";
 import { Subtipo } from "../../../types/Subtipo";
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props<T = unknown> = {
   label?: string;
@@ -38,8 +35,7 @@ export const SubtiposSelect: React.FC<Props> = ({
 
   const { isLoading, data } = useQuery(
     ["subtipos-tipo", tiposId!],
-    () =>
-      buscarTodosSubTipos(tiposId!),
+    () => buscarTodosSubTipos(tiposId!),
     {
       onError: (error: any) => {
         toast.error(`Houve um error: ${error.response.data}`);
@@ -53,8 +49,7 @@ export const SubtiposSelect: React.FC<Props> = ({
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
 
-      <strong>{label}</strong>
-
+      <LabelDefault>{label}</LabelDefault>
       <Selects.Container
         aria-label="subtipos"
         {...register(name, { required: requirido })}

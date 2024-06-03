@@ -10,6 +10,8 @@ import { useTiposStore } from "../../../stores/useTiposStore/useTiposStore";
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 import { Tipo } from "../../../types/Tipo";
 
+import { LabelDefault } from "../../FontColor/LabelDefault";
+
 type Props<T = unknown> = {
   label?: string;
   name: string;
@@ -47,7 +49,7 @@ export const TiposSelect: React.FC<Props<Tipo>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      <strong>{label}</strong>
+      <LabelDefault>{label}</LabelDefault>
 
       <Selects.Container
         aria-label="tipos"

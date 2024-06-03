@@ -13,6 +13,7 @@ import { Elemento } from "../../../types/Elemento";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 
 import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props<T = unknown> = {
   label?: string;
@@ -56,7 +57,7 @@ export const ElementoSelect: React.FC<Props<Elemento>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      <strong>{label}</strong>
+      <LabelDefault>{label}</LabelDefault>
       <Selects.Container
         aria-label="elementos"
         {...register(name, { required: requirido })}

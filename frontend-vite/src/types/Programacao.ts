@@ -1,6 +1,7 @@
 export type Programacao = {
   orderador?: number;
   id?: string;
+  ativo?: boolean;
   data_insersao?: Date | string;
   hora_insersao?: Date | string;
   descricao?: string;

@@ -11,6 +11,7 @@ import { SpinnerCarregamento } from "../../spinners/SpinnerCarregamento";
 import { Local } from "../../../types/Local";
 
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
+import { LabelDefault } from "../../FontColor/LabelDefault";
 
 type Props<T = unknown> = {
   label?: string;
@@ -46,7 +47,7 @@ export const LocaisSelect: React.FC<Props<any>> = ({
   return (
     <Selects.ContainerInput>
       {isLoading && <SpinnerCarregamento />}
-      <strong>{label}</strong>
+      <LabelDefault>{label}</LabelDefault>
       <Selects.Container
         aria-label="locais"
         {...register(name, { required: requirido })}

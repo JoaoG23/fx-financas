@@ -6,6 +6,7 @@ export const NoBorders = styled.input`
 
   border: none;
   box-shadow: 1px 1px 5px #717f953a;
+  color:#5c6677;
 
   border-radius: 1em;
 
@@ -34,7 +35,9 @@ export const NoBorders = styled.input`
 `;
 export const ContainerInput = styled.div`
   display: grid;
-  gap: 10px;
+  gap: .3em;
 `;
+
+
 
 export const SecondaryInputStyle = styled(NoBorders);

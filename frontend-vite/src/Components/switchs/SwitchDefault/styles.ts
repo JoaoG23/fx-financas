@@ -3,8 +3,8 @@ import styled from "styled-components";
 export const SwitchContainer = styled.label`
   position: relative;
   display: inline-block;
-  width: 60px;
-  height: 30px;
+  width: 45px;
+  height: 24px;
   margin-right: 10px;
   /* justify-content: space-between; */
 `;
@@ -27,16 +27,16 @@ export const SwitchSlider = styled.span`
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: tomato;
+  background-color: #CBD5E0;
   transition: background-color 0.2s;
-  border-radius: 15px;
+  border-radius: 13px;
 
   &:before {
-    border-radius: 15px;
+    border-radius: 13px;
     position: absolute;
     content: "";
-    height: 24px;
-    width: 24px;
+    height: 19px;
+    width: 19px;
     left: 3px;
     bottom: 3px;
     background-color: white;
@@ -50,14 +50,14 @@ export const SwitchInput = styled.input`
 
 
   &:checked + ${SwitchSlider} {
-    background-color: #1caf82;
+    background-color: #0ACC8E;
   }
 
   &:focus + ${SwitchSlider} {
-    box-shadow: 0 0 1px #1caf82;
+    box-shadow: 0 0 1px #0ACC8E;
   }
 
   &:checked + ${SwitchSlider}:before {
-    transform: translateX(30px);
+    transform: translateX(20px);
   }
 `;
