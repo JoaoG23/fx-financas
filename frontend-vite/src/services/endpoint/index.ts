@@ -1,7 +1,7 @@
 import axios from "axios";
 import { buscaDadoUsuarioNaSessao } from "../../utils/buscaDadoUsuarioNaSessao";
 
-const rotaPrincipal = import.meta.env.VITE_SOME_KEY;
+const rotaPrincipal = import.meta.env.VITE_ENDPOINT;
 
 const { tokenSessao } = buscaDadoUsuarioNaSessao();
 export const endpoint = axios.create({
