@@ -4,9 +4,11 @@ import { CriteriosPesquisa } from "../../../../fluxocaixa/interfaces/CriteriosPe
 
 import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuTodos/selecionarSeEntradaSaidasOuTodos";
 
-const prisma = PrismaConexao.getInstancia();
 
 export async function pesquisarPorCriterio(criterios: CriteriosPesquisa) {
+  
+  const prisma = PrismaConexao.getInstancia();
+
   const entradaOuSaidaTodosItems: string = criterios?.entradaOuSaidaOuTodos;
 
   const itemsDaPagina = await prisma.programacao_fluxocaixa.findMany({
