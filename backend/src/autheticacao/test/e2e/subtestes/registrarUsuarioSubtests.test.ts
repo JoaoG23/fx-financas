@@ -1,12 +1,18 @@
-import { afterEach, describe, expect, test } from "vitest";
+import { afterAll, afterEach, describe, expect, test } from "vitest";
 import request from "supertest";
 import app from "../../../../app";
 import { limparTabelaUsuarios } from "../../utils/limparTabelaUsuarios";
-import { usuarioCriado, usuarioCriadoEmailDiferenteMesmoUsername } from "../../mock/seeds/usuarioCriado";
+
+import {
+  usuarioCriado,
+  usuarioCriadoEmailDiferenteMesmoUsername,
+} from "../../mock/seeds/usuarioCriado";
 
 export function registrarUsuarioSubtests() {
   describe("POST /api/v1/registrar", () => {
-
+    afterAll(async () => {
+      await limparTabelaUsuarios();
+    });
 
     describe("(SUCESSO) Quando dados forem enviados", () => {
       afterEach(async () => {
@@ -73,8 +79,5 @@ export function registrarUsuarioSubtests() {
         );
       });
     });
-
-
-
   });
 }
