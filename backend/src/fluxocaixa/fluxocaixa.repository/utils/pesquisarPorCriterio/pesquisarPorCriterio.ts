@@ -6,6 +6,7 @@ import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuT
 
 import { PrismaConexao } from "../../../../configs/PrismaConexao";
 
+
 export async function pesquisarSemData(
   criterios: CriteriosPesquisa
 ): Promise<[object, object[]]> {
