@@ -2,6 +2,7 @@
     "version": 2,
     "builds": [
         {
+            
             "src": "src/server.js",
             "use": "@vercel/node"
         }
@@ -11,5 +12,6 @@
             "src": "/(.*)",
             "dest": "src/server.js"
         }
-    ]
+    ],
+    "logging": true
 }
