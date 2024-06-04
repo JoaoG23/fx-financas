@@ -1,7 +1,6 @@
 import { Router } from "express";
 
-import swaggerUi from "swagger-ui-express";
-import swaggerDocs from "../swagger.json";
+
 
 import auth from "./Auth";
 
@@ -25,7 +24,6 @@ import tiposDespesasEstatisticasRouters from "../estatisticas/tiposDespesasEstat
 
 const routers = Router();
 
-routers.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 
 routers.use("/usuarios", auth.comum, usuariosRouters);
 routers.use("/elementos", auth.comum, elementosRouters);

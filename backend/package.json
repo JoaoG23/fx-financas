@@ -6,13 +6,13 @@
   "scripts": {
     "prod": "dotenv -e .env node dist/src/server.js ",
     "build": "tsc",
-    "update:db:dev": "dotenv -e .env npx prisma db push",
-    "update:db:prod": "dotenv -e .env.prod -- npx prisma db push",
-    "update:db:teste": "dotenv -e .env.test -- npx prisma db push",
+    "updev": "dotenv -e .env npx prisma db push",
+    "upprod": "dotenv -e .env.prod -- npx prisma db push",
+    "upteste": "dotenv -e .env.test -- npx prisma db push",
     "test:end2end": "dotenv -e .env.test -- npx vitest --run api.e2e",
     "unitest": "dotenv -e .env.test npx vitest",
     "dev": "nodemon --exec ts-node --files src/server.ts",
-    "start": "ts-node ./src/server.ts"
+    "start": "node dist/src/server.js"
   },
   "keywords": [],
   "author": "",
