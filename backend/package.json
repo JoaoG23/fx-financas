@@ -12,7 +12,8 @@
     "test:end2end": "dotenv -e .env.test -- npx vitest --run api.e2e",
     "unitest": "dotenv -e .env.test npx vitest",
     "dev": "nodemon --exec ts-node --files src/server.ts",
-    "start": "node dist/src/server.js"
+    "start": "node dist/src/server.js",
+    "vercel-build": "npx prisma generate"
   },
   "keywords": [],
   "author": "",
