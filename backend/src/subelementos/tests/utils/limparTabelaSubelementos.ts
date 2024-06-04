@@ -1,8 +1,8 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaConexao } from "../../../configs/PrismaConexao";
 
-const prisma = new PrismaClient();
+const prisma = PrismaConexao.getInstancia();
 
 export const limparTabelaSubelementos = async () => {
-    const limpar = await prisma.subelementos.deleteMany({})
-    return limpar;
-}
+  const limpar = await prisma.subelementos.deleteMany({});
+  return limpar;
+};

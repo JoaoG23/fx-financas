@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { buscarPrimeiroDiaDoMesSelecionado } from "../../../utils/datetime/buscarPrimeiroDiaDoMesSelecionado/buscarPrimeiroDiaDoMesSelecionado";
 import { buscarUltimoDiaDoMesSelecionado } from "../../../utils/datetime/buscarUltimoDiaDoMesSelecionado/buscarUltimoDiaDoMesSelecionado";
+import { PrismaConexao } from "../../../configs/PrismaConexao";
 
 export interface IElementosEstatisticasRepository {
   sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
@@ -14,16 +15,13 @@ export class ElementosEstatisticasRepository
 {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
   }
 
   async sumAllValorOfMonthLessThanZeroByUsuarioIdAndElementosId(
     elementosId: string,
     mes: number
   ) {
-
-    
-
     const firstDayOfMonth = buscarPrimeiroDiaDoMesSelecionado(mes);
     const lastDayOfMonth = buscarUltimoDiaDoMesSelecionado(mes);
 

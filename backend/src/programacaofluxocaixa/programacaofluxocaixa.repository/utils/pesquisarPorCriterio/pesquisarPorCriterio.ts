@@ -1,10 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaConexao } from "../../../../configs/PrismaConexao";
 
 import { CriteriosPesquisa } from "../../../../fluxocaixa/interfaces/CriteriosPesquisa";
 
 import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuTodos/selecionarSeEntradaSaidasOuTodos";
 
-const prisma = new PrismaClient();
+const prisma = PrismaConexao.getInstancia();
 
 export async function pesquisarPorCriterio(criterios: CriteriosPesquisa) {
   const entradaOuSaidaTodosItems: string = criterios?.entradaOuSaidaOuTodos;

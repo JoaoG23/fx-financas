@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import { PrismaConexao } from "../../configs/PrismaConexao";
+
 import { EstatisticaRepositoryInterface } from "./EstatisticaRepositoryInterface";
 import { buscarPrimeiroDiaMesAtual } from "../../utils/datetime/buscarPrimeiroDiaMesAtual/buscarPrimeiroDiaMesAtual";
 import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMesAtual/buscarUltimoDiaMesAtual";
@@ -6,9 +8,8 @@ import { buscarUltimoDiaMesAtual } from "../../utils/datetime/buscarUltimoDiaMes
 export class EstatisticaRepository implements EstatisticaRepositoryInterface {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
   }
-
 
   async sumBiggerThanZero(usuariosId: string) {
     return await this.prisma.fluxocaixa.aggregate({

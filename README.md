@@ -39,6 +39,8 @@ Espero que isso ajude! Se você precisar de mais shields, fique à vontade para 
 
 ## 3. Como Instalar 👨🏽‍💻
 
+### Backend
+
 Para instalar o projeto, siga os seguintes passos:
 
 1. Clone este repositório
@@ -62,7 +64,17 @@ Segue uma coleção incompleta no Insomnia.
 
 [![Insomnia](https://img.shields.io/badge/Insomnia-5849BE?style=for-the-badge&logo=insomnia&logoColor=white)](https://insomnia.rest/)
 
-Espero que isso ajude! Se você precisar de mais shields, fique à vontade para pedir.
+#### Frontend 
+
+1. Entre na pasta `/frontend-vite`
+2. Instale as dependências utilizando o comando `npm install` ou `yarn`
+3. Crie um arquivo `.env` na raiz do projeto, com as seguintes variáveis:
+
+```
+    # PRODUCAO 
+    VITE_ENDPOINT=http://192.168.100.7:3001/api/v1
+```
+4. Execute o **npm run dev** para rodar a aplicação em ambiente de desenvolvimento e **npm run build** para gerar o build da aplicação;
 
 
 **Observação:**
@@ -137,3 +149,5 @@ Feito com 🤭 por Joao Guilherme 👋🏽 Entre em contato links abaixo!
 <h2 id='licenca'><b>7 - Licença</b></h2>
 
 [![Licence](https://shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
+
+

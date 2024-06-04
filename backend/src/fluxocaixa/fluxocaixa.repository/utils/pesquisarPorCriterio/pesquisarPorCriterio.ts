@@ -1,12 +1,12 @@
-import { PrismaClient } from "@prisma/client";
-
 import { CriteriosPesquisa } from "../../../interfaces/CriteriosPesquisa";
 
 import { Paginacao } from "../../../../utils/Paginacao";
 
 import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuTodos/selecionarSeEntradaSaidasOuTodos";
 
-const prisma = new PrismaClient();
+import { PrismaConexao } from "../../../../configs/PrismaConexao";
+
+const prisma = PrismaConexao.getInstancia();
 const paginacao = new Paginacao();
 
 export async function pesquisarSemData(
