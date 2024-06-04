@@ -6,12 +6,12 @@ import { selecionarSeEntradaSaidasOuTodos } from "./selecionarSeEntradaSaidasOuT
 
 import { PrismaConexao } from "../../../../configs/PrismaConexao";
 
-const prisma = PrismaConexao.getInstancia();
-const paginacao = new Paginacao();
-
 export async function pesquisarSemData(
   criterios: CriteriosPesquisa
 ): Promise<[object, object[]]> {
+  const prisma = PrismaConexao.getInstancia();
+  const paginacao = new Paginacao();
+
   const { numero_pagina, quantidade_items_pagina } = criterios;
 
   const itemsPorPagina = parseInt(quantidade_items_pagina);

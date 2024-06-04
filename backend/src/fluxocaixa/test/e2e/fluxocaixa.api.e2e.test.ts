@@ -14,6 +14,9 @@ describe("ROTAS de manipulação /fluxocaixa", () => {
   beforeAll(async () => {
     await limparTabelaFluxoCaixa();
   });
+  afterAll(async () => {
+    await limparTabelaFluxoCaixa();
+  });
 
   editarItemSubtests();
   atualizarDataInsersaoItemSubtests();
