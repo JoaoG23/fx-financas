@@ -12,6 +12,5 @@
             "src": "/(.*)",
             "dest": "src/server.js"
         }
-    ],
-    "logging": true
+    ]
 }
