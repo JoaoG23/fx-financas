@@ -13,7 +13,7 @@
     "unitest": "dotenv -e .env.test npx vitest",
     "dev": "nodemon --exec ts-node --files src/server.ts",
     "start": "node dist/src/server.js",
-    "vercel-build": "npx prisma generate && npx prisma migrate deploy"
+    "vercel-build": "npx prisma generate "
   },
   "keywords": [],
   "author": "",
