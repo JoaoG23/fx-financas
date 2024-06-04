@@ -1,4 +1,6 @@
 import { PrismaClient } from "@prisma/client";
+import { PrismaConexao } from "../../../configs/PrismaConexao";
+
 import { buscarPrimeiroDiaDoMesSelecionado } from "../../../utils/datetime/buscarPrimeiroDiaDoMesSelecionado/buscarPrimeiroDiaDoMesSelecionado";
 import { buscarUltimoDiaDoMesSelecionado } from "../../../utils/datetime/buscarUltimoDiaDoMesSelecionado/buscarUltimoDiaDoMesSelecionado";
 
@@ -17,7 +19,7 @@ export class TiposEstatisticasRepository
 {
   private prisma: PrismaClient;
   constructor() {
-    this.prisma = new PrismaClient();
+    this.prisma = PrismaConexao.getInstancia();
   }
 
   async sumAllValorOfMonthLessThanZeroByUsuarioIdAndTiposId(
