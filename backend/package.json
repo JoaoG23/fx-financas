@@ -2,7 +2,7 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "server.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "prod": "dotenv -e .env node dist/src/server.js ",
     "build": "tsc",
