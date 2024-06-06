@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:3000"
+  phases:
+    - duration: 10
+      arrivalRate: 10
+  defaults:
+    headers:
+      Authorization: "Bearer your-jwt-token"
+scenarios:
+  - name: "Logar usuario"
+    flow:
+      - post:
+          url: "/api/v1/logar"
+          json:
+            username: 'teste'
+            senha: 'teste'
+          expect:
+            - statusCode: 200
