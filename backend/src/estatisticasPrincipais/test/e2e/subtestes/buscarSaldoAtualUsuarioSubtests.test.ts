@@ -38,7 +38,7 @@ export function buscarSaldoAtualUsuarioSubtests() {
         await limparTabelaUsuarios();
       });
 
-      test.only("Deverá ser capaz de tirar a diferença entre (gasto e ganho) e retorna (saldo atual)", async () => {
+      test("Deverá ser capaz de tirar a diferença entre (gasto e ganho) e retorna (saldo atual)", async () => {
         const usuario = await criarUsuario();
         const idUsuario = usuario.body.id;
 

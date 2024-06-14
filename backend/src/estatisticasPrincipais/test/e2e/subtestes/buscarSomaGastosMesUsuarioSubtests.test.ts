@@ -30,44 +30,98 @@ export function buscarSomaGastosMesUsuarioSubtests() {
   describe("GET /api/v1/estatisticas/total_gasto_mes", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 
-    describe("(SUCESSO) Quando após item fluxo de caixa ter sido criado", () => {
+    // describe("(SUCESSO) Ao criar item fluxo de caixa", () => {
+    //   beforeEach(async () => {
+    //     await limparTabelaFluxoCaixa();
+    //     await limparTabelaUsuarios();
+    //   });
+
+    //   test("Deverá ser capaz de soma total os gasto mês do usuario pelo usuariosId", async () => {
+    //     const usuario = await criarUsuario();
+    //     const idUsuario = usuario.body.id;
+
+    //     await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+    //       descricao: "Item 1",
+    //       valor: 100,
+    //       data_insersao: new Date(),
+    //       elementosId: null,
+    //       usuariosId: idUsuario,
+    //       locaisId: null,
+    //       subelementosId: null,
+    //       tiposId: null,
+    //       subtiposId: null,
+    //     });
+
+    //     await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+    //       descricao: "Item 2",
+    //       valor: 50,
+    //       data_insersao: new Date(),
+    //       elementosId: null,
+    //       usuariosId: idUsuario,
+    //       locaisId: null,
+    //       subelementosId: null,
+    //       tiposId: null,
+    //       subtiposId: null,
+    //     });
+
+    //     const retorno = await request(app)
+    //       .get(`/api/v1/estatisticas/total_gasto_mes/${idUsuario}`)
+    //       .set("auth", token);
+
+    //     const resposta = retorno.body;
+    //     expect(retorno.statusCode).toEqual(200);
+
+    //     expect(resposta).not.toBeNull();
+    //     expect(resposta).toBe("-50");
+    //   });
+    // });
+
+    describe("(SUCESSO) Ao criar item fluxo de caixa", () => {
       beforeEach(async () => {
         await limparTabelaFluxoCaixa();
         await limparTabelaUsuarios();
       });
 
-      test("Deverá ser capaz de soma total os gasto mês do usuario pelo usuariosId", async () => {
+      test.only("Deverá ser capaz retorna total de (receitas), despesas e saldo do usuariosId", async () => {
         const usuario = await criarUsuario();
         const idUsuario = usuario.body.id;
 
-        const item1FluxocaixaComUsuariosId = {
-          ...item1FluxocaixaCriado,
+        await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+          descricao: "Item 1",
+          valor: 100,
+          data_insersao: new Date(),
+          elementosId: null,
           usuariosId: idUsuario,
-        };
-        const item2FluxocaixaComUsuariosId = {
-          ...item2FluxocaixaCriado,
+          locaisId: null,
+          subelementosId: null,
+          tiposId: null,
+          subtiposId: null,
+        });
+
+        await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+          descricao: "Item 2",
+          valor: -50,
+          data_insersao: new Date(),
+          elementosId: null,
           usuariosId: idUsuario,
-        };
-
-        const criarUmItem = await request(app)
-          .post(`/api/v1/fluxocaixa`)
-          .set("auth", token)
-          .send(item1FluxocaixaComUsuariosId);
-
-        const criarDoisItem = await request(app)
-          .post(`/api/v1/fluxocaixa`)
-          .set("auth", token)
-          .send(item2FluxocaixaComUsuariosId);
+          locaisId: null,
+          subelementosId: null,
+          tiposId: null,
+          subtiposId: null,
+        });
 
         const retorno = await request(app)
-          .get(`/api/v1/estatisticas/total_gasto_mes/${idUsuario}`)
+          .get(`/api/v1/estatisticas/detalhes-finaceiros-mes/${idUsuario}`)
           .set("auth", token);
 
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);
 
-        expect(resposta).not.toBeNull();
-        expect(resposta).toBe("-50");
+        expect(resposta).toEqual({
+          despesa: "-50",
+          receita: "100",
+          saldoAtual: 50,
+        });
       });
     });
   });

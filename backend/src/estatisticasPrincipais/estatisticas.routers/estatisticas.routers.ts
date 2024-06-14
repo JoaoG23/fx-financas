@@ -21,4 +21,9 @@ routers.get(
   estatisticasController.buscarSaldoAtualPorUsuario
 );
 
+routers.get(
+  "/detalhes-finaceiros-mes/:usuariosId",
+  estatisticasController.obterDetalhesFinanceirosMesPorUsuario
+);
+
 export default routers;

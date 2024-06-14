@@ -39,6 +39,8 @@ export class EstatisticaRepository implements EstatisticaRepositoryInterface {
     });
   }
 
+  
+
   async sumAllValorMoreThanZeroByUsuariosIdAndMonthAndYears(
     numberOfMonth: number,
     usuariosId: string,
