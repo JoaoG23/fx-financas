@@ -16,7 +16,5 @@ describe("ROTAS de manipulação /estatisticas", () => {
   });
 
   buscarReceitasDespesas12MesesSubtests()
-  // buscarSomaGanhosMesUsuarioSubtests();
   buscarSomaGastosMesUsuarioSubtests();
-  // buscarSaldoAtualUsuarioSubtests();
 });
