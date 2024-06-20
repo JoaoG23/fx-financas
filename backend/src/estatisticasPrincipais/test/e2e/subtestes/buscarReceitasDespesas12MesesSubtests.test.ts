@@ -61,7 +61,6 @@ export function buscarReceitasDespesas12MesesSubtests() {
               descricao: `Item do mês ${i}`,
               valor: 50,
               data_insersao: new Date(2023, i, 12),
-              hora_insersao: new Date(),
               elementosId: null,
               usuariosId: idUsuario,
               locaisId: null,

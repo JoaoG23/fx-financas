@@ -35,8 +35,7 @@ h1, h2, h3, h4, h5,strong{
     body {
     
     background-color: #fff;
-    padding: 0;
-    margin: 0;
+   
     }
 
     code {
@@ -79,14 +78,13 @@ details[open] summary ~ * {
 }
 
 *::-webkit-scrollbar-track {
-  background-color: #ffa16b3a;
+  background-color: rgb(102, 115, 135,.3);
   border-radius: 1em;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background-color: #f47e3fbb;
-  border:1px solid #f2b798;
+  background-color: rgb(102, 115, 135,.6);
 }
 
 

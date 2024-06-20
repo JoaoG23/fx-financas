@@ -1,7 +1,5 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter as Router } from "react-router-dom";
-import { useState } from "react";
-import { BsList } from "react-icons/bs";
 
 import AutenticadasRouters from "./Routers/AutenticadasRotas";
 import { ToastContainer } from "react-toastify";
@@ -10,48 +8,28 @@ import "react-toastify/dist/ReactToastify.css";
 
 import calculadora from "./assets/calculadora.svg";
 
-import InicialRouters from "./Routers/InicialRouters";
+import { InicialRouters } from "./Routers/InicialRouters";
 
 import GlobalStyle from "./themes/global";
 
-import { Body, IconFundo1Flutuante, BotaoPorCima } from "./styles";
-
-import Sidebar from "./Components/Navs/Sidebar";
-import Header from "./Components/Navs/Header";
-
-import { MobileSidebar } from "./Components/Navs/MobileSidebar";
-import ButtonDefault from "./Components/Buttons/ButtonDefault/ButtonDark";
+import { IconFundo1Flutuante } from "./styles";
 
 const queryClient = new QueryClient();
 
 function App() {
-  const [mostrarSidebar, setMostrarSidebar] = useState<boolean>(false);
   return (
     <QueryClientProvider client={queryClient}>
-      <>
+      <div>
         <ToastContainer></ToastContainer>
-        <>
+        <div>
           <IconFundo1Flutuante src={calculadora} alt="fundo" />
           <GlobalStyle />
           <Router>
-            <Sidebar />
-            <BotaoPorCima>
-              <ButtonDefault onClick={() => setMostrarSidebar(true)}>
-                <BsList size={27} />
-              </ButtonDefault>
-            </BotaoPorCima>
-            <MobileSidebar
-              setMostrarSidebar={setMostrarSidebar}
-              mostrarSidebar={mostrarSidebar}
-            />
-            <Header />
-            <Body>
-              <AutenticadasRouters />
-            </Body>
             <InicialRouters />
+            <AutenticadasRouters />
           </Router>
-        </>
-      </>
+        </div>
+      </div>
     </QueryClientProvider>
   );
 }

@@ -5,10 +5,7 @@ import app from "../../../../app";
 
 import autenticacao from "../../../../utils/Autenticacao";
 import { limparTabelaFluxoCaixa } from "../../utils/limparTabelaFluxoCaixa";
-import {
-  item1FluxocaixaCriado,
-  item2FluxocaixaCriado,
-} from "../../mock/fluxocaixasCriado";
+
 import { limparTabelaUsuarios } from "../../../../usuarios/tests/utils/limparTabelaUsuarios";
 
 const logado = {
@@ -26,7 +23,7 @@ async function criarUsuario() {
   });
 }
 
-export function obterDetalhesFinanceirosMesPorUsuario() {
+export function obterDetalhesFinanceirosMesPorUsuarioSubtests() {
   describe("GET /api/v1/estatisticas/detalhes-finaceiros-mes", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 

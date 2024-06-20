@@ -10,18 +10,19 @@ type Props = {
 };
 
 export const ImagemPerfil: React.FC<Props> = ({ caminho_imagem }) => {
-  const { data: caminhoLogomarca } = useQuery(
+  const { data: caminhoLogomarca, isLoading } = useQuery(
     ["imagem-perfil", caminho_imagem],
     () => buscarImagemPerfilPorCaminho(caminho_imagem),
     {
-      retry: 2,
+      retry: false,
     }
   );
 
   return (
     <div>
       <Perfil>
-        <img src={caminhoLogomarca || ''} alt="Profile" />
+        {isLoading && <div>Carregando...</div>}
+        <img src={caminhoLogomarca || ""} alt="Profile" />
       </Perfil>
     </div>
   );

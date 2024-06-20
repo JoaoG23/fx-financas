@@ -2,9 +2,7 @@ import { afterAll, beforeAll, describe } from "vitest";
 
 import { limparTabelaFluxoCaixa } from "../utils/limparTabelaFluxoCaixa";
 
-import { buscarSaldoAtualUsuarioSubtests } from "./subtestes/buscarSaldoAtualUsuarioSubtests.test";
-import { buscarSomaGanhosMesUsuarioSubtests } from "./subtestes/buscarSomaGanhosMesUsuarioSubtests.test";
-import { buscarSomaGastosMesUsuarioSubtests } from "./subtestes/buscarSomaGastosMesUsuarioSubtests.test";
+import { obterDetalhesFinanceirosMesPorUsuarioSubtests } from "./subtestes/obterDetalhesFinanceirosMesPorUsuarioSubtest.test";
 import { buscarReceitasDespesas12MesesSubtests } from "./subtestes/buscarReceitasDespesas12MesesSubtests.test";
 
 describe("ROTAS de manipulação /estatisticas", () => {
@@ -15,6 +13,6 @@ describe("ROTAS de manipulação /estatisticas", () => {
     await limparTabelaFluxoCaixa();
   });
 
-  buscarReceitasDespesas12MesesSubtests()
-  buscarSomaGastosMesUsuarioSubtests();
+  buscarReceitasDespesas12MesesSubtests();
+  obterDetalhesFinanceirosMesPorUsuarioSubtests();
 });
