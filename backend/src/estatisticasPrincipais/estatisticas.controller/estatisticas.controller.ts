@@ -3,6 +3,19 @@ import estatisticasService from "../estatisticas.service/estatisticas.service";
 import { tratarErroSemStatus } from "../../utils/tratarErroSemStatus/tratarErroSemStatus";
 
 class EstatisticasController {
+  async obterDetalhesFinanceirosMesPorUsuario(req: Request, res: Response) {
+    try {
+      const { usuariosId } = req.params;
+      const saldos =
+        await estatisticasService.obterDetalhesFinanceirosMesPorUsuario(
+          usuariosId
+        );
+      res.json(saldos);
+    } catch (error) {
+      res.status(tratarErroSemStatus(error.status)).json(error.message);
+    }
+  }
+
   async buscarGastosMesPorUsuario(req: Request, res: Response) {
     try {
       const { usuariosId } = req.params;

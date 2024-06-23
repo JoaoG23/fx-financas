@@ -6,11 +6,6 @@ import app from "../../../../app";
 import autenticacao from "../../../../utils/Autenticacao";
 import { limparTabelaFluxoCaixa } from "../../utils/limparTabelaFluxoCaixa";
 
-import {
-  item1FluxocaixaCriado,
-  item2FluxocaixaCriado,
-} from "../../mock/fluxocaixasCriado";
-
 import { limparTabelaUsuarios } from "../../../../usuarios/tests/utils/limparTabelaUsuarios";
 
 const logado = {
@@ -28,49 +23,56 @@ async function criarUsuario() {
   });
 }
 
-export function buscarSaldoAtualUsuarioSubtests() {
-  describe("GET /api/v1/estatisticas/saldo_atual", async () => {
+export function obterDetalhesFinanceirosMesPorUsuarioSubtests() {
+  describe("GET /api/v1/estatisticas/detalhes-finaceiros-mes", async () => {
     const token = await autenticacao.gerarTokenSessao(logado);
 
-    describe("(SUCESSO) Quando após item fluxo de caixa ter sido criado", () => {
+    describe("(SUCESSO) Ao criar item fluxo de caixa", () => {
       beforeEach(async () => {
         await limparTabelaFluxoCaixa();
         await limparTabelaUsuarios();
       });
 
-      test.only("Deverá ser capaz de tirar a diferença entre (gasto e ganho) e retorna (saldo atual)", async () => {
+      test.only("Deverá ser capaz retorna total de (receitas), despesas e saldo do usuariosId", async () => {
         const usuario = await criarUsuario();
         const idUsuario = usuario.body.id;
 
-        const item1FluxocaixaComUsuariosId = {
-          ...item1FluxocaixaCriado,
+        await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+          descricao: "Item 1",
+          valor: 100,
+          data_insersao: new Date(),
+          elementosId: null,
           usuariosId: idUsuario,
-        };
+          locaisId: null,
+          subelementosId: null,
+          tiposId: null,
+          subtiposId: null,
+        });
 
-        const item2FluxocaixaComUsuariosId = {
-          ...item2FluxocaixaCriado,
+        await request(app).post(`/api/v1/fluxocaixa`).set("auth", token).send({
+          descricao: "Item 2",
+          valor: -50,
+          data_insersao: new Date(),
+          elementosId: null,
           usuariosId: idUsuario,
-        };
-
-        const criarUmItem = await request(app)
-          .post(`/api/v1/fluxocaixa`)
-          .set("auth", token)
-          .send(item1FluxocaixaComUsuariosId);
-
-        const criarDoisItem = await request(app)
-          .post(`/api/v1/fluxocaixa`)
-          .set("auth", token)
-          .send(item2FluxocaixaComUsuariosId);
+          locaisId: null,
+          subelementosId: null,
+          tiposId: null,
+          subtiposId: null,
+        });
 
         const retorno = await request(app)
-          .get(`/api/v1/estatisticas/saldo_atual/${idUsuario}`)
+          .get(`/api/v1/estatisticas/detalhes-finaceiros-mes/${idUsuario}`)
           .set("auth", token);
 
         const resposta = retorno.body;
         expect(retorno.statusCode).toEqual(200);
 
-        expect(resposta).not.toBeNull();
-        expect(resposta).toBe(50);
+        expect(resposta).toEqual({
+          despesa: "-50",
+          receita: "100",
+          saldoAtual: 50,
+        });
       });
     });
   });

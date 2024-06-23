@@ -6,11 +6,38 @@ import { EstatisticaRepository } from "../estatisticas.repository/estatisticas.r
 import { DespesaReceitas } from "../types/DespesasReceitas";
 import { meses } from "./meses";
 
+type DespesaReceitaSaldoAtual = {
+  despesa?: string;
+  receita?: string;
+  saldoAtual?: number;
+};
 export class EstatisticasService {
   private estatisticasRepository: EstatisticaRepositoryInterface;
 
   constructor(estatisticasRepository: EstatisticaRepositoryInterface) {
     this.estatisticasRepository = estatisticasRepository;
+  }
+
+  public async obterDetalhesFinanceirosMesPorUsuario(
+    usuariosId: string
+  ): Promise<DespesaReceitaSaldoAtual> {
+    const despesa =
+      await this.estatisticasRepository.sumAllValorOfMonthLessThanZeroByUsuarioId(
+        usuariosId
+      );
+
+    const receita =
+      await this.estatisticasRepository.sumAllValorOfMonthMoreThanZeroByUsuarioId(
+        usuariosId
+      );
+
+    const saldoAtual = await this.buscarSaldoAtualPorUsuario(usuariosId);
+
+    return {
+      despesa: despesa._sum.valor,
+      receita: receita._sum.valor,
+      saldoAtual: saldoAtual,
+    };
   }
 
   async buscarGastosTotalMesPorUsuario(usuariosId: string) {

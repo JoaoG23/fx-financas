@@ -8,6 +8,7 @@ import { AdicionarProgramacao } from "../../../Pages/programacao/AdicionarProgra
 import { DeletarProgramacao } from "../../../Pages/programacao/DeletarProgramacao";
 import { InserirProgramacaoFluxocaixa } from "../../../Pages/programacao/InserirProgramacaoFluxocaixa";
 import { EditarProgramacao } from "../../../Pages/programacao/EditarProgramacao";
+import { Layout } from "../../../Layout";
 
 export const ProgramacaoRotas: React.FC = () => {
   return (
@@ -16,7 +17,9 @@ export const ProgramacaoRotas: React.FC = () => {
         path="/programacao"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <TodosProgramacoes />
+            <Layout>
+              <TodosProgramacoes />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -24,7 +27,9 @@ export const ProgramacaoRotas: React.FC = () => {
         path="/programacao/adicionar"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <AdicionarProgramacao />
+            <Layout>
+              <AdicionarProgramacao />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -32,7 +37,9 @@ export const ProgramacaoRotas: React.FC = () => {
         path="/programacao/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <EditarProgramacao />
+            <Layout>
+              <EditarProgramacao />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -40,7 +47,9 @@ export const ProgramacaoRotas: React.FC = () => {
         path="/programacao/deletar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <DeletarProgramacao />
+            <Layout>
+              <DeletarProgramacao />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -48,7 +57,9 @@ export const ProgramacaoRotas: React.FC = () => {
         path="/programacao/capturar_inserir"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <InserirProgramacaoFluxocaixa />
+            <Layout>
+              <InserirProgramacaoFluxocaixa />
+            </Layout>
           </PrivateRoute>
         }
       />

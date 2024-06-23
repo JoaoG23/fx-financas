@@ -66,8 +66,6 @@ export const Container = styled.div`
   margin: 5px;
   align-items: center;
   gap: 0.5em;
-  border: 0.6px solid #fbfbfb;
-  background-color: #fff;
   border-radius: 0.7em;
   color: #717f95;
 

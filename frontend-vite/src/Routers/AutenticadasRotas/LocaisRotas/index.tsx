@@ -6,6 +6,7 @@ import PrivateRoute from "../../Auth/PrivateRouter";
 import { TodosLocais } from "../../../Pages/locais/TodosLocais";
 import { AdicionarLocais } from "../../../Pages/locais/AdicionarLocais";
 import { EditarLocais } from "../../../Pages/locais/EditarLocais";
+import { Layout } from "../../../Layout";
 
 export const LocaisRotas: React.FC = () => {
   return (
@@ -14,7 +15,9 @@ export const LocaisRotas: React.FC = () => {
         path="/locais"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <TodosLocais />
+            <Layout>
+              <TodosLocais />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -22,7 +25,9 @@ export const LocaisRotas: React.FC = () => {
         path="/locais/adicionar"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <AdicionarLocais />
+            <Layout>
+              <AdicionarLocais />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -30,7 +35,9 @@ export const LocaisRotas: React.FC = () => {
         path="/locais/visualizar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <h3>Não implementado</h3>
+            <Layout>
+              <h3>Não implementado</h3>
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -38,11 +45,12 @@ export const LocaisRotas: React.FC = () => {
         path="/locais/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <EditarLocais />
+            <Layout>
+              <EditarLocais />
+            </Layout>
           </PrivateRoute>
         }
       />
-
     </Routes>
   );
 };

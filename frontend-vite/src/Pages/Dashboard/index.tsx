@@ -8,20 +8,23 @@ import { MdOutlineCalendarMonth } from "react-icons/md";
 
 import * as DashboardStyle from "./styles";
 
-import { buscarDadosCabecalho } from "./api";
+import { obterDetalhesFinanceirosMesPorUsuario } from "./api";
 
 import { Card } from "../../Components/Card";
 import { ModalCarregando } from "../../Components/Modais/ModalCarregando";
 import { Graficos } from "./components/Graficos";
 import { MesSelect } from "../../Components/selects/MesSelect";
-import { converterValorEmMoedaBR } from "../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
-import RedFont from "../../Components/FontColor/RedFont";
 import { FontDespesa } from "./styles";
 
+import { converterValorEmMoedaBR } from "../../utils/conversao/converterValorEmMoedaBR/converterValorEmMoedaBR";
+import { buscaDadoUsuarioNaSessao } from "../../utils/buscaDadoUsuarioNaSessao";
+
 export const Dashboard = () => {
+  const { idUsuario } = buscaDadoUsuarioNaSessao();
+
   const { data: dataCabecalho, isLoading: isLoadingCabecalho } = useQuery(
-    "cabecalho-dashboard",
-    buscarDadosCabecalho,
+    ["cabecalho-dashboard", idUsuario],
+    () => obterDetalhesFinanceirosMesPorUsuario(idUsuario),
     {
       onError: (error: any) => {
         toast.error(`Ops! Houve um error: ${error.response.data}`);
@@ -29,13 +32,13 @@ export const Dashboard = () => {
     }
   );
 
-  const totalReceitasEsteMes = dataCabecalho?.[0].data || 0;
-  const totalDespesasEsteMes = dataCabecalho?.[1].data || 0;
-  const saldoAtual = dataCabecalho?.[2].data || 0;
+  const receitasMes = dataCabecalho?.data?.receita || 0;
+  const despesasMes = dataCabecalho?.data?.despesa || 0;
+  const saldoAtual = dataCabecalho?.data?.saldoAtual || 0;
 
-  const receitasConvertida = converterValorEmMoedaBR(totalReceitasEsteMes)
-  const despesasConvertida = converterValorEmMoedaBR(Math.abs(totalDespesasEsteMes))
-  const saldoAtualConvertida = converterValorEmMoedaBR(saldoAtual)
+  const receitasConvertida = converterValorEmMoedaBR(receitasMes);
+  const despesasConvertida = converterValorEmMoedaBR(Math.abs(despesasMes));
+  const saldoAtualConvertida = converterValorEmMoedaBR(saldoAtual);
 
   const tamanhoIcones = 60;
   return (

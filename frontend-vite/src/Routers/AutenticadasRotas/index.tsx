@@ -12,6 +12,7 @@ import { FluxocaixaRotas } from "./FluxocaixaRotas";
 import { LocaisRotas } from "./LocaisRotas";
 import { ProgramacaoRotas } from "./ProgramacaoRotas";
 import { DeletarUsuario } from "../../Pages/usuario/DeletarUsuario";
+import { Layout } from "../../Layout";
 
 const AutenticadasRotas = () => {
   return (
@@ -21,7 +22,9 @@ const AutenticadasRotas = () => {
           path="/usuario_logado"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <VisualizarUsuarioLogado />
+              <Layout>
+                <VisualizarUsuarioLogado />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -29,7 +32,9 @@ const AutenticadasRotas = () => {
           path="/usuario_logado/deletar/:id"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <DeletarUsuario />
+              <Layout>
+                <DeletarUsuario />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -37,7 +42,9 @@ const AutenticadasRotas = () => {
           path="/dashboard"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <Dashboard />
+              <Layout>
+                <Dashboard />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -47,7 +54,9 @@ const AutenticadasRotas = () => {
           path="/tipos_despesas"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <TodosTiposDespesa />
+              <Layout>
+                <TodosTiposDespesa />
+              </Layout>
             </PrivateRoute>
           }
         />
@@ -57,7 +66,9 @@ const AutenticadasRotas = () => {
           path="/agenda"
           element={
             <PrivateRoute redirectTo={"/"}>
-              <Agenda />
+              <Layout>
+                <Agenda />
+              </Layout>
             </PrivateRoute>
           }
         />

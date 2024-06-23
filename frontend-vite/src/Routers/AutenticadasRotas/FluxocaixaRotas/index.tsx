@@ -9,6 +9,7 @@ import { EditarItem } from "../../../Pages/fluxocaixas/EditarItem";
 import { DeletarItem } from "../../../Pages/fluxocaixas/DeletarItem";
 import { VisualizarItem } from "../../../Pages/fluxocaixas/VisualizarItem";
 import { TodosItemsMesFluxoCaixa } from "../../../Pages/fluxocaixames/TodosItemMesFluxocaixa";
+import { Layout } from "../../../Layout";
 
 export const FluxocaixaRotas: React.FC = () => {
   return (
@@ -17,7 +18,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <TodosItemsFluxoCaixa />
+            <Layout>
+              <TodosItemsFluxoCaixa />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -25,7 +28,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa/mes"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <TodosItemsMesFluxoCaixa />
+            <Layout>
+              <TodosItemsMesFluxoCaixa />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -33,7 +38,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa/adicionar"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <AdicionarItem />
+            <Layout>
+              <AdicionarItem />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -41,7 +48,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa/editar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <EditarItem />
+            <Layout>
+              <EditarItem />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -49,7 +58,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa/visualizar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <VisualizarItem />
+            <Layout>
+              <VisualizarItem />
+            </Layout>
           </PrivateRoute>
         }
       />
@@ -57,7 +68,9 @@ export const FluxocaixaRotas: React.FC = () => {
         path="/fluxocaixa/deletar/:id"
         element={
           <PrivateRoute redirectTo={"/"}>
-            <DeletarItem />
+            <Layout>
+              <DeletarItem />
+            </Layout>
           </PrivateRoute>
         }
       />
