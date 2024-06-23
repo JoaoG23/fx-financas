@@ -1,6 +1,5 @@
 import styled from "styled-components";
 export const PerfilImagem = styled.div`
-  /* background-color: #fff; */
   border-radius: 4em;
 
   display: flex;
@@ -76,8 +75,7 @@ export const Item = styled.li`
     color: white;
   }
   :hover {
-    transition: 0.3s;
-    animation: balancar 2s linear infinite;
+    transition: 0.4s;
     background-color: #fff;
     color: #0acc8e;
     a {
@@ -104,7 +102,7 @@ export const Elementos = styled.ul`
   }
 
   li:hover {
-    transition: 0.3s;
+    transition: 0.4s;
     animation: balancar 2s linear infinite;
     background-color: #fff;
     color: #0acc8e;

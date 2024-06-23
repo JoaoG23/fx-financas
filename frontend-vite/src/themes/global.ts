@@ -73,18 +73,18 @@ details[open] summary ~ * {
 
 
 *::-webkit-scrollbar {
-  width: 15px;
-  border-radius: 10px;
+  width: 12px;
+  border-radius: 20px;
 }
 
 *::-webkit-scrollbar-track {
-  background-color: rgb(102, 115, 135,.3);
+  background-color: rgb(102, 115, 135,.2);
   border-radius: 1em;
 }
 
 *::-webkit-scrollbar-thumb {
   border-radius: 20px;
-  background-color: rgb(102, 115, 135,.6);
+  background-color: rgb(102, 115, 135,.4);
 }
 
 

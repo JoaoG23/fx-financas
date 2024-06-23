@@ -16,7 +16,6 @@ import { tiposFluxosCaixa, categorias } from "../Sidebar/data/listLinks";
 import * as SideBar from "./styles";
 
 import { limparSessaoUsuario } from "../../../utils/limparSessaoUsuario";
-import { SecondaryButton } from "../../Buttons/SecondaryButton/ButtonDark";
 import { buscaDadoUsuarioNaSessao } from "../../../utils/buscaDadoUsuarioNaSessao";
 import { ImagemPerfil } from "../Sidebar/ImagePerfil";
 
