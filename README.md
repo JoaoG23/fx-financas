@@ -49,7 +49,8 @@ Para instalar o projeto, siga os seguintes passos:
 
 ```
 DATABASE_URL=postgres://usuario:senha@endereco-do-banco:5432/nome-do-banco
-JWT_SECRET=segredo
+PORT_SERVER = 3000
+TOKEN_SECRET=segredo
 ```
 
 Substitua `usuario`, `senha`, `endereco-do-banco` e `nome-do-banco` pelos valores corretos de acordo com a configuração do seu banco de dados. 4. Execute as migrations do banco de dados com o comando `npx prisma migrate dev` ou `yarn prisma migrate dev` 5. Inicie o servidor com o comando `npm run dev` ou `yarn dev` 6. Acesse o sistema em `http://localhost:3001`
