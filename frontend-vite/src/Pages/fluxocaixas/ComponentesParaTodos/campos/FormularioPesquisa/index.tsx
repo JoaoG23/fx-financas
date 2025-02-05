@@ -32,7 +32,6 @@ export const FormularioPesquisa: React.FC<Props> = ({ onSubmit, register }) => {
           name="descricao"
           label="Descrição item"
         />
-
         <SecondaryButton>
           <p>Pesquisar</p>
           <ImSearch color="#fff" size={20} />

@@ -50,7 +50,7 @@ export const retornaParametrosPesquisaSaida = (
     },
     {
       tipos_despesasId: {
-        contains: tipos_despesasId,
+        contains: tipos_despesasId || undefined,
       },
     },
     {

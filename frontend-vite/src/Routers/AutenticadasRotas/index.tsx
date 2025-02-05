@@ -48,8 +48,6 @@ const AutenticadasRotas = () => {
             </PrivateRoute>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path="/tipos_despesas"
           element={
@@ -60,8 +58,6 @@ const AutenticadasRotas = () => {
             </PrivateRoute>
           }
         />
-      </Routes>
-      <Routes>
         <Route
           path="/agenda"
           element={

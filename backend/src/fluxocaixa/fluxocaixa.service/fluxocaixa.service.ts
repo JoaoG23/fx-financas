@@ -4,7 +4,6 @@ import {
 } from "../fluxocaixa.repository/fluxocaixa.repository";
 import { IFluxocaixaRepository } from "../fluxocaixa.repository/IFluxocaixaRepository";
 
-import { buscaDatahoraAtual } from "../../utils/datetime/buscarDatahoraAtual/buscaDatahoraAtual";
 import { CriteriosPesquisa } from "../interfaces/CriteriosPesquisa";
 import { IFluxoCaixaService } from "./fluxocaixa.interface.service";
 

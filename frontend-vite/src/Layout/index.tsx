@@ -9,7 +9,7 @@ import { MobileSidebar } from "../Components/Navs/MobileSidebar";
 import Header from "../Components/Navs/Header";
 
 type Props = {
-  children?: React.ReactNode;
+  children?: React.ReactNode | React.ReactNode[];
 };
 
 export const Layout: React.FC<Props> = ({ children }) => {
