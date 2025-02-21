@@ -27,19 +27,16 @@ jobs:
             joaog545/fx-finances-backend:latest
           build-args: VERBOSE=1
           
-      - name: Build Docker Image
-        run: docker build -t test_fxbug --no-cache ./frontend-vite/Dockerfile
-          
-      # - name: Build e Push da imagem de Frontend Docker
-      #   uses: docker/build-push-action@v6.5.0
-      #   with:
-      #     context: ./frontend-vite
-      #     file: ./frontend-vite/Dockerfile
-      #     push: true
-      #     tags: |
-      #       joaog545/fx-finances-frontend:${{github.run_number}}
-      #       joaog545/fx-finances-frontend:latest
-      #     build-args: VERBOSE=1
+      - name: Build e Push da imagem de Frontend Docker
+        uses: docker/build-push-action@v6.5.0
+        with:
+          context: ./frontend-vite
+          file: ./frontend-vite/Dockerfile
+          push: true
+          tags: |
+            joaog545/fx-finances-frontend:${{github.run_number}}
+            joaog545/fx-finances-frontend:latest
+          build-args: VERBOSE=1
 
           
 
