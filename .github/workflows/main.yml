@@ -16,8 +16,8 @@ jobs:
       - name: Generate image docker fx-finances-backend
         uses: docker/build-push-action@v6.5.0
         with:
-          context: ./
-          file: ./backend/Dockerfile
+          context: ./backend
+          file: Dockerfile
           push: true
           tags: |
             joaog545/fx-finances-backend:${{github.run_number}}
