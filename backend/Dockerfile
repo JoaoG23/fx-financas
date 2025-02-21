@@ -1,14 +1,17 @@
-FROM node
+FROM node:14
 
-WORKDIR /dist
+WORKDIR /app
 
-COPY package*.json .
+COPY package*.json ./
 
 RUN npm install
 
 COPY . .
 
-# RUN npx prisma db push --schema ./prisma/schema.prisma
+RUN npm run build
+
 RUN npx prisma generate --schema ./prisma/schema.prisma
 
-CMD npm run prod
+EXPOSE 3000
+
+CMD ["npm", "run", "prod"]

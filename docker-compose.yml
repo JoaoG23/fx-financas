@@ -16,9 +16,9 @@ services:
       - "5437:5432"
 
   backend:
-    build: "./backend"
+    # build: "./backend"
     restart: always
-    image: api-fx-financas-image
+    image: joaog545/api-fx-financas-image
     container_name: api-fx-financas-container
     env_file:
       - ./backend/.env.prod
@@ -33,9 +33,9 @@ services:
       - fx-financas-network
 
   frontend:
-    build: "./frontend-vite"
+    # build: "./frontend-vite"
     container_name: frontend-fx-financas-container
-    image: front-fx-financas-image
+    image: joaog545/front-fx-financas-image
     restart: always
     volumes:
       - ./frontend-vite/nginx:/usr/share/nginx/html
