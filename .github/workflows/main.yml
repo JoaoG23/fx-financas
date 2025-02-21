@@ -13,13 +13,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Debug Files
-        run: ls -R
-
       - name: Generate image docker fx-finances-backend
         uses: docker/build-push-action@v6.5.0
         with:
-          context: ./backend
+          context: ./
           file: ./backend/Dockerfile
           push: true
           tags: |
