@@ -8,9 +8,10 @@ RUN npm install
 
 COPY . .
 
+RUN npx prisma generate --schema ./prisma/schema.prisma
+
 RUN npm run build
 
-RUN npx prisma generate --schema ./prisma/schema.prisma
 
 EXPOSE 3000
 
