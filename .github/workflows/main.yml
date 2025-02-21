@@ -10,16 +10,13 @@ jobs:
       - name: Checkout do código
         uses: actions/checkout@v4.1.7
 
-      - name: Verificar arquivos no repositório
-        run: ls -R backend
-
       - name: Login no DockerHub
         uses: docker/login-action@v3.3.0
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Build e Push da imagem Docker
+      - name: Build e Push da imagem de Backend Docker
         uses: docker/build-push-action@v6.5.0
         with:
           context: ./backend
@@ -29,3 +26,18 @@ jobs:
             joaog545/fx-finances-backend:${{github.run_number}}
             joaog545/fx-finances-backend:latest
           build-args: VERBOSE=1
+          
+      - name: Build e Push da imagem de Frontend Docker
+        uses: docker/build-push-action@v6.5.0
+        with:
+          context: ./frontend-vite
+          file: ./frontend-vite/Dockerfile
+          push: true
+          tags: |
+            joaog545/fx-finances-frontend:${{github.run_number}}
+            joaog545/fx-finances-frontend:latest
+          build-args: VERBOSE=1
+
+          
+
+        
