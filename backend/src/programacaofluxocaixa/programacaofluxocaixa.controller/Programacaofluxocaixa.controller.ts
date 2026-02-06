@@ -8,7 +8,7 @@ class ProgramacaoFluxocaixaController {
       const { numero_pagina, quantidade_items_pagina } = req.query;
       const pagina = await programacaofluxocaixaService.listarTodosPorPagina(
         numero_pagina,
-        quantidade_items_pagina
+        quantidade_items_pagina,
       );
       res.status(200).json(pagina);
     } catch (error) {
@@ -20,9 +20,8 @@ class ProgramacaoFluxocaixaController {
     try {
       const { usuariosId } = req.params;
       const idUsuario = usuariosId;
-      const todos = await programacaofluxocaixaService.listarTodosPorUsuarioId(
-        idUsuario
-      );
+      const todos =
+        await programacaofluxocaixaService.listarTodosPorUsuarioId(idUsuario);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -35,7 +34,7 @@ class ProgramacaoFluxocaixaController {
       const idUsuario = usuariosId;
       const todos =
         await programacaofluxocaixaService.buscarTodosPorUsuarioIdComDescricao(
-          idUsuario
+          idUsuario,
         );
       res.status(200).json(todos);
     } catch (error) {
@@ -59,9 +58,8 @@ class ProgramacaoFluxocaixaController {
       const criterios: Omit<ProgramacaoFluxocaixaVisualizarDto, "ativo"> =
         req.query;
 
-      const todos = await programacaofluxocaixaService.pesquisarPorCriterio(
-        criterios
-      );
+      const todos =
+        await programacaofluxocaixaService.pesquisarPorCriterio(criterios);
       res.status(200).json(todos);
     } catch (error) {
       res.status(400).json(error.message);
@@ -82,8 +80,18 @@ class ProgramacaoFluxocaixaController {
   async criar(req: Request, res: Response) {
     try {
       const programacaofluxocaixa = await programacaofluxocaixaService.criar(
-        req.body
+        req.body,
       );
+      res.status(200).json(programacaofluxocaixa);
+    } catch (error) {
+      res.status(400).json(error.message);
+    }
+  }
+
+  async criarDupla(req: Request, res: Response) {
+    try {
+      const programacaofluxocaixa =
+        await programacaofluxocaixaService.criarDupla(req.body);
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {
       res.status(400).json(error.message);
@@ -96,7 +104,7 @@ class ProgramacaoFluxocaixaController {
     try {
       const programacaofluxocaixa =
         await programacaofluxocaixaService.capturarProgramacaoEInserirEmFluxoCaixa(
-          idUsuario
+          idUsuario,
         );
       res.status(200).json(programacaofluxocaixa);
     } catch (error) {

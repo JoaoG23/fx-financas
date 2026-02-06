@@ -5,6 +5,7 @@ import PrivateRoute from "../../Auth/PrivateRouter";
 
 import { TodosProgramacoes } from "../../../Pages/programacao/TodasProgramacoes";
 import { AdicionarProgramacao } from "../../../Pages/programacao/AdicionarProgramacao";
+import { AdicionarProgramacaoDuplicada } from "../../../Pages/programacao/AdicionarProgramacaoDuplicada";
 import { DeletarProgramacao } from "../../../Pages/programacao/DeletarProgramacao";
 import { InserirProgramacaoFluxocaixa } from "../../../Pages/programacao/InserirProgramacaoFluxocaixa";
 import { EditarProgramacao } from "../../../Pages/programacao/EditarProgramacao";
@@ -29,6 +30,16 @@ export const ProgramacaoRotas: React.FC = () => {
           <PrivateRoute redirectTo={"/"}>
             <Layout>
               <AdicionarProgramacao />
+            </Layout>
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/programacao/adicionar-duplicada"
+        element={
+          <PrivateRoute redirectTo={"/"}>
+            <Layout>
+              <AdicionarProgramacaoDuplicada />
             </Layout>
           </PrivateRoute>
         }

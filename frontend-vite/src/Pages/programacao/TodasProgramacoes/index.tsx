@@ -35,7 +35,7 @@ export const TodosProgramacoes: React.FC = () => {
 
   const [criteriosBusca, setCriteriosBusca] =
     useState<CriteriosPesquisaItemFluxoCaixa>(
-      configuracaoPagina?.criteriosBusca || { entradaOuSaidaOuTodos: "todos" }
+      configuracaoPagina?.criteriosBusca || { entradaOuSaidaOuTodos: "todos" },
     );
 
   const { data, isLoading } = useQuery(
@@ -45,7 +45,7 @@ export const TodosProgramacoes: React.FC = () => {
       onError: (error: any) => {
         toast.error(`Ops! : ${error.response.data}`);
       },
-    }
+    },
   );
 
   const { register, handleSubmit, reset } = useForm();
@@ -67,7 +67,7 @@ export const TodosProgramacoes: React.FC = () => {
           onSubmit={handleSubmit(
             (criterios: CriteriosPesquisaItemFluxoCaixa) => {
               setCriteriosBusca(criterios);
-            }
+            },
           )}
           register={register}
         />
@@ -83,6 +83,10 @@ export const TodosProgramacoes: React.FC = () => {
         <Fluxo.ContainerButtons>
           <ButtonDefault onClick={() => navigate("adicionar")}>
             <>Adicionar</>
+            <IoMdAddCircle />
+          </ButtonDefault>
+          <ButtonDefault onClick={() => navigate("adicionar-duplicada")}>
+            <>Adicionar Duplicada</>
             <IoMdAddCircle />
           </ButtonDefault>
           <SecondaryButton onClick={() => navigate("capturar_inserir")}>

@@ -17,13 +17,13 @@ import { ProgramacaoFluxocaixaRepositoryInterface } from "../programacaofluxocai
 export class ProgramacaoFluxocaixaServices {
   constructor(
     private programacaofluxocaixaRepository: ProgramacaoFluxocaixaRepositoryInterface,
-    private fluxocaixaService: IFluxoCaixaService
+    private fluxocaixaService: IFluxoCaixaService,
   ) {}
 
   async validarNaoExisteProgramacoes(usuariosId: string) {
     const programacoes =
       await this.programacaofluxocaixaRepository.findAllByUsuariosId(
-        usuariosId
+        usuariosId,
       );
 
     const isExisteProgramacoes = programacoes.length;
@@ -40,7 +40,7 @@ export class ProgramacaoFluxocaixaServices {
     const idUsuario = criterios?.usuariosId;
     const somaTodasProgramacaoDeReceita =
       await this.programacaofluxocaixaRepository.sumBiggerThanZeroByUsuariosId(
-        idUsuario
+        idUsuario,
       );
     const programacoes =
       await this.programacaofluxocaixaRepository.findAllByCriterios(criterios);
@@ -50,25 +50,25 @@ export class ProgramacaoFluxocaixaServices {
   async listarTodosPorUsuarioId(usuariosId: string) {
     const programacoes =
       await this.programacaofluxocaixaRepository.findAllByUsuariosId(
-        usuariosId
+        usuariosId,
       );
     return programacoes;
   }
   async buscarTodosPorUsuarioIdComDescricao(usuariosId: string) {
     const programacoes =
       await this.programacaofluxocaixaRepository.findAllByUsuariosIdAndDescription(
-        usuariosId
+        usuariosId,
       );
     return programacoes;
   }
 
   async listarTodosPorPagina(
     numeroPagina: number,
-    quantidadeItemPagina: number
+    quantidadeItemPagina: number,
   ) {
     return await this.programacaofluxocaixaRepository.findAllByPage(
       numeroPagina,
-      quantidadeItemPagina
+      quantidadeItemPagina,
     );
   }
 
@@ -80,12 +80,26 @@ export class ProgramacaoFluxocaixaServices {
     return programacaofluxocaixa;
   }
 
+  async criarDupla(programacaofluxocaixaDto: ProgramacaoFluxocaixaCriadoDto) {
+    const itemPositivo = await this.programacaofluxocaixaRepository.save({
+      ...programacaofluxocaixaDto,
+      valor: Math.abs(programacaofluxocaixaDto.valor),
+    });
+
+    const itemNegativo = await this.programacaofluxocaixaRepository.save({
+      ...programacaofluxocaixaDto,
+      valor: -Math.abs(programacaofluxocaixaDto.valor),
+    });
+
+    return [itemPositivo, itemNegativo];
+  }
+
   async capturarProgramacaoEInserirEmFluxoCaixa(usuariosId: string) {
     await this.validarNaoExisteProgramacoes(usuariosId);
 
     const programacoes: ProgramacaoFluxocaixaVisualizarDto[] =
       await this.programacaofluxocaixaRepository.findAllByUsuariosIdAtivo(
-        usuariosId
+        usuariosId,
       );
 
     const itemsProgramados: FluxocaixaDto[] = [];
@@ -108,7 +122,7 @@ export class ProgramacaoFluxocaixaServices {
 
   async atualizarUmPorId(
     id: string,
-    dadosNovos: ProgramacaoFluxocaixaCriadoDto
+    dadosNovos: ProgramacaoFluxocaixaCriadoDto,
   ) {
     const existeIdprogramacaofluxocaixa: any =
       await this.programacaofluxocaixaRepository.findById(id);
@@ -136,5 +150,5 @@ const fluxocaixaService = new FluxoCaixaServices(new FluxoCaixaRepository());
 
 export default new ProgramacaoFluxocaixaServices(
   programacaofluxocaixaRepository,
-  fluxocaixaService
+  fluxocaixaService,
 );

@@ -16,9 +16,9 @@ services:
       - "5437:5432"
 
   backend:
-    # build: "./backend"
+    build: "./backend"
     restart: always
-    image: joaog545/api-fx-financas-image
+    image: api-fx-financas-image
     container_name: api-fx-financas-container
     env_file:
       - ./backend/.env.prod
@@ -26,29 +26,31 @@ services:
       - ./backend:/home/node/app
       - ./backend/uploads/usuarios:/dist/uploads/usuarios
     ports:
-      - "3001:3001"
+      - "3001:3000"
     depends_on:
       - db
     networks:
       - fx-financas-network
 
   frontend:
-    # build: "./frontend-vite"
+    build: "./frontend-vite"
     container_name: frontend-fx-financas-container
-    image: joaog545/front-fx-financas-image
+    image: front-fx-financas-image
     restart: always
+    env_file:
+      - ./frontend-vite/.env.prod
     volumes:
-      - ./frontend-vite/nginx:/usr/share/nginx/html
-      - ./frontend-vite/nginx:/nginx.config /etc/nginx/conf.d/default.conf
+      - ./frontend-vite/nginx/nginx.config:/etc/nginx/conf.d/default.conf
     ports:
       - "81:80"
     environment:
-      - NGINX_HOST=fluxos.com
-      - NGINX_PORT=80
+      - NGINX_HOST=fx-financas.com
+      - NGINX_PORT=81
     depends_on:
       - db
       - backend
     networks:
       - fx-financas-network
+
 networks:
   fx-financas-network:

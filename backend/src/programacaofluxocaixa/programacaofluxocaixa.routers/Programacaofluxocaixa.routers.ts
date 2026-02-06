@@ -4,20 +4,21 @@ import programacaofluxocaixaController from "../programacaofluxocaixa.controller
 
 routers.get(
   "/usuario/descricao/:usuariosId",
-  programacaofluxocaixaController.listarTodosPorUsuarioIdComDescricao
+  programacaofluxocaixaController.listarTodosPorUsuarioIdComDescricao,
 );
 routers.get(
   "/usuario/:usuariosId",
-  programacaofluxocaixaController.listarTodosPorUsuarioId
+  programacaofluxocaixaController.listarTodosPorUsuarioId,
 );
 routers.get("/paginas", programacaofluxocaixaController.listarTodosPorPagina);
 routers.get("/pesquisa", programacaofluxocaixaController.pesquisarPorCriterio);
 routers.get("/:id", programacaofluxocaixaController.listaPorId);
 
 routers.post("/", programacaofluxocaixaController.criar);
+routers.post("/criar-dupla", programacaofluxocaixaController.criarDupla);
 routers.post(
   "/capturar/:usuariosId",
-  programacaofluxocaixaController.capturarEInserirEmFluxoCaixa
+  programacaofluxocaixaController.capturarEInserirEmFluxoCaixa,
 );
 
 routers.put("/:id", programacaofluxocaixaController.atualizarPorId);
